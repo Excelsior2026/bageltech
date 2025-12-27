@@ -1,193 +1,292 @@
-// BagelTech.net — Homepage
-// Next.js App Router + Tailwind
+// app/page.tsx
+import type { Metadata } from "next";
 
-import Link from "next/link";
-
-function Badge({ children }: { children: React.ReactNode }) {
-  return (
-    <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/80">
-      {children}
-    </span>
-  );
-}
-
-function SectionTitle({
-  kicker,
-  title,
-  desc,
-}: {
-  kicker: string;
-  title: string;
-  desc?: string;
-}) {
-  return (
-    <div className="mx-auto mb-8 max-w-3xl">
-      <div className="mb-3">
-        <Badge>{kicker}</Badge>
-      </div>
-      <h2 className="text-2xl font-semibold tracking-tight text-white sm:text-3xl">
-        {title}
-      </h2>
-      {desc && (
-        <p className="mt-3 text-base leading-relaxed text-white/70 sm:text-lg">
-          {desc}
-        </p>
-      )}
-    </div>
-  );
-}
-
-function Card({ title, desc }: { title: string; desc: string }) {
-  return (
-    <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-6 hover:border-white/20">
-      <h3 className="text-base font-semibold text-white">{title}</h3>
-      <p className="mt-2 text-sm text-white/70">{desc}</p>
-    </div>
-  );
-}
+export const metadata: Metadata = {
+  title: "BagelTech — Ethical AI Governance at Execution Time",
+  description:
+    "Human-centered systems for AI, data, and governance. We route uncertainty, enforce authority boundaries, and embed responsibility at the moment decisions are made.",
+  openGraph: {
+    title: "BagelTech — Ethical AI Governance at Execution Time",
+    description:
+      "Governance for autonomous systems at the moment decisions are made — not just when rules are written.",
+    type: "website",
+  },
+};
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-[#070A12] text-white">
-      <header className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6">
-        <div>
-          <div className="text-sm font-semibold">BagelTech</div>
-          <div className="text-xs text-white/60">
-            BagelSoft products • CogniScribe
+    <main style={styles.main}>
+      {/* HERO */}
+      <section style={styles.hero}>
+        <div style={styles.container}>
+          <p style={styles.kicker}>Human-centered systems for AI, data, and governance</p>
+          <h1 style={styles.h1}>Ethical AI needs leadership, not just alignment.</h1>
+          <p style={styles.lede}>
+            Governance for autonomous systems at the moment decisions are made — not just when rules are written.
+            We build environments that know when to act, when to escalate, and when to say: <strong>“I’m not sure.”</strong>
+          </p>
+
+          <div style={styles.ctaRow}>
+            <a href="#framework" style={{ ...styles.button, ...styles.buttonPrimary }}>
+              Explore the framework
+            </a>
+            <a href="#contact" style={{ ...styles.button, ...styles.buttonGhost }}>
+              Start a conversation
+            </a>
           </div>
         </div>
-        <nav className="flex gap-5 text-sm text-white/70">
-          <Link href="#work" className="hover:text-white">
-            What we do
-          </Link>
-          <Link href="#products" className="hover:text-white">
-            Products
-          </Link>
-          <Link href="#about" className="hover:text-white">
-            About
-          </Link>
-          <Link href="#contact" className="hover:text-white">
-            Contact
-          </Link>
-        </nav>
-      </header>
+      </section>
 
-      <main className="mx-auto max-w-6xl px-6">
-        <section className="py-16 sm:py-20">
-          <Badge>Company</Badge>
-          <h1 className="mt-4 text-balance text-4xl font-semibold sm:text-5xl">
-            Human-centered systems for AI, data, and governance.
-          </h1>
-          <p className="mt-5 max-w-2xl text-pretty text-lg text-white/70">
-            We design and build technology that behaves correctly when decisions
-            matter—especially under uncertainty, edge cases, and real-world
-            pressure.
+      {/* PROBLEM */}
+      <section style={styles.section}>
+        <div style={styles.container}>
+          <h2 style={styles.h2}>The problem isn’t intelligence. It’s authority.</h2>
+          <p style={styles.p}>
+            Most governance efforts focus on either model training (alignment) or static guardrails (rules).
+            Both matter. Neither is sufficient when systems operate in messy, high-stakes reality.
           </p>
-          <div className="mt-8 flex flex-wrap gap-3">
-            <Link
-              href="#products"
-              className="rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-black"
-            >
-              Explore the work
-            </Link>
-            <Link
-              href="#contact"
-              className="rounded-xl border border-white/20 bg-white/5 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/10"
-            >
-              Get in touch
-            </Link>
-          </div>
-        </section>
-
-        <section id="work" className="py-14">
-          <SectionTitle
-            kicker="What we do"
-            title="Systems that keep their composure"
-            desc="We focus on the parts that usually break: ambiguity, escalation paths, and responsibility."
-          />
-          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            <Card
-              title="AI Governance & Oversight"
-              desc="Rights-aware, auditable systems built for accountability."
-            />
-            <Card
-              title="Applied AI Systems"
-              desc="Production-grade AI designed for real environments."
-            />
-            <Card
-              title="Data & Decision Infrastructure"
-              desc="Traceability, escalation, and human review by design."
-            />
-            <Card
-              title="Advisory & Prototyping"
-              desc="From concept to deployment with judgment engineered in."
-            />
-          </div>
-        </section>
-
-        <section id="products" className="py-14">
-          <SectionTitle
-            kicker="BagelSoft"
-            title="Software products"
-            desc="Practical tools that translate governance and systems thinking into deployable software."
-          />
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Card
-              title="CogniScribe"
-              desc="Intelligent note-taking for medical and academic environments that respects uncertainty and preserves traceability."
-            />
-            <Card
-              title="Coming soon"
-              desc="Governance toolkit and applied AI utilities designed for operational accountability."
-            />
-          </div>
-        </section>
-
-        <section id="about" className="py-14">
-          <SectionTitle kicker="About" title="Built for high-stakes environments" />
-          <p className="max-w-3xl text-pretty text-lg text-white/70">
-            BagelTech builds responsible AI systems, data platforms, and
-            governance infrastructure where reliability and human oversight
-            matter. BagelSoft is our product division, where these ideas become
-            software.
+          <p style={styles.p}>
+            The failure mode isn’t “AI is evil.” It’s “AI is confidently wrong” — and still allowed to execute.
+            When uncertainty has nowhere safe to go, systems guess. And guessing is how quiet failures become systemic ones.
           </p>
-        </section>
+        </div>
+      </section>
 
-        <section id="contact" className="py-14">
-          <SectionTitle
-            kicker="Contact"
-            title="Selective engagements"
-            desc="If it has to work when it counts, let’s talk."
-          />
-          <div className="flex flex-wrap items-center gap-3">
-            <a
-              href="mailto:contact@bageltech.net"
-              className="inline-flex items-center justify-center rounded-xl bg-white px-4 py-2.5 text-sm font-semibold text-black"
-            >
-              contact@bageltech.net
+      {/* FRAMEWORK */}
+      <section id="framework" style={styles.sectionAlt}>
+        <div style={styles.container}>
+          <h2 style={styles.h2}>Governance at execution time</h2>
+          <p style={styles.p}>
+            Instead of asking whether a model is aligned, we ask: <strong>who may act, on what, under which conditions — and who is accountable</strong>.
+            That’s the difference between principles on paper and responsibility in production.
+          </p>
+
+          <div style={styles.diagramCard}>
+            <h3 style={styles.h3}>Ethical Governance at the Moment of Execution</h3>
+            <pre style={styles.pre}>
+{`Request / Input
+      ↓
+Context Interpretation
+      ↓
+Uncertainty Evaluation
+      ↓
+Authority & Scope Check
+      ↓
+ ┌──────────────┬──────────────────┬──────────────────┐
+ │   Execute    │     Escalate     │      Defer       │
+ │  (Allowed)   │   (Human Review) │ (Insufficient)   │
+ └──────────────┴──────────────────┴──────────────────┘`}
+            </pre>
+            <p style={styles.caption}>
+              Decisions are governed <strong>before</strong> execution — not explained after harm.
+            </p>
+          </div>
+
+          <div style={styles.grid}>
+            <div style={styles.card}>
+              <h3 style={styles.cardTitle}>Context interpretation</h3>
+              <p style={styles.cardText}>
+                Decisions aren’t judged in isolation. We evaluate situational risk, affected parties, downstream consequences,
+                and what the system is actually about to do.
+              </p>
+            </div>
+            <div style={styles.card}>
+              <h3 style={styles.cardTitle}>Uncertainty routing</h3>
+              <p style={styles.cardText}>
+                Uncertainty is treated as a signal, not a defect. When confidence drops, the system pauses, escalates, or defers —
+                so “I don’t know” becomes safe and enforceable.
+              </p>
+            </div>
+            <div style={styles.card}>
+              <h3 style={styles.cardTitle}>Authority enforcement</h3>
+              <p style={styles.cardText}>
+                Capability is not permission. Execution is gated by role, scope, and responsibility — so systems can’t quietly act beyond
+                what’s allowed.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CAPABILITIES (YOUR EXISTING SECTIONS, REPHRASED) */}
+      <section style={styles.section}>
+        <div style={styles.container}>
+          <h2 style={styles.h2}>What we build</h2>
+          <p style={styles.p}>
+            Practical systems that hold up in the real world — where edge cases are normal, accountability matters, and trust is earned.
+          </p>
+
+          <div style={styles.grid}>
+            <div style={styles.card}>
+              <h3 style={styles.cardTitle}>AI governance & oversight</h3>
+              <p style={styles.cardText}>
+                Execution-time controls that route uncertainty, enforce authority boundaries, and require escalation when risk is high.
+                Designed for human review workflows, auditability, and policy enforcement.
+              </p>
+            </div>
+            <div style={styles.card}>
+              <h3 style={styles.cardTitle}>Applied AI systems</h3>
+              <p style={styles.cardText}>
+                Product-grade AI features that prioritize reliability over theatrics: transcription, summarization, decision support,
+                and human-in-the-loop interfaces that behave responsibly under pressure.
+              </p>
+            </div>
+            <div style={styles.card}>
+              <h3 style={styles.cardTitle}>Data & decision infrastructure</h3>
+              <p style={styles.cardText}>
+                Clean pipelines, traceable logic, and decision provenance — so teams can answer “why did this happen?” without guessing.
+                Governance is a lot easier when the data isn’t a haunted house.
+              </p>
+            </div>
+            <div style={styles.card}>
+              <h3 style={styles.cardTitle}>Advisory & prototyping</h3>
+              <p style={styles.cardText}>
+                Fast, pragmatic design-to-proof builds: scoping, architecture, prototypes, and governance patterns that can be implemented
+                without waiting for the perfect committee to form.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* PRODUCTS */}
+      <section style={styles.sectionAlt}>
+        <div style={styles.container}>
+          <h2 style={styles.h2}>Products</h2>
+
+          <div style={styles.productCard}>
+            <div>
+              <h3 style={styles.h3}>CogniScribe</h3>
+              <p style={styles.p}>
+                A lecture transcription and study companion designed for health professions education — built for clarity,
+                traceability, and respectful handling of uncertainty.
+              </p>
+              <ul style={styles.ul}>
+                <li style={styles.li}>High-quality transcription + structured notes</li>
+                <li style={styles.li}>Study questions generated from the lecture content</li>
+                <li style={styles.li}>Confidence-aware outputs (knows when it’s not sure)</li>
+              </ul>
+            </div>
+            <div style={styles.productMeta}>
+              <p style={styles.small}><strong>Status:</strong> Active development</p>
+              <p style={styles.small}><strong>Focus:</strong> Education-first (not clinical deployment)</p>
+            </div>
+          </div>
+
+          <p style={{ ...styles.p, marginTop: 18 }}>
+            Additional governance tooling is in development — focused on execution-time responsibility, auditability, and safe escalation patterns.
+          </p>
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section id="contact" style={styles.section}>
+        <div style={styles.container}>
+          <h2 style={styles.h2}>Contact</h2>
+          <p style={styles.p}>
+            If you’re working in a high-stakes environment and want systems that can slow down safely, escalate responsibly,
+            and enforce authority boundaries — let’s talk.
+          </p>
+
+          <div style={styles.ctaRow}>
+            <a href="mailto:info@bageltech.net" style={{ ...styles.button, ...styles.buttonPrimary }}>
+              Email
             </a>
-            <a
-              href="#"
-              className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/10"
-            >
+            <a href="https://github.com/" style={{ ...styles.button, ...styles.buttonGhost }}>
               GitHub
             </a>
-            <a
-              href="#"
-              className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-4 py-2.5 text-sm font-semibold text-white hover:bg-white/10"
-            >
+            <a href="https://www.linkedin.com/" style={{ ...styles.button, ...styles.buttonGhost }}>
               LinkedIn
             </a>
           </div>
-        </section>
 
-        <footer className="py-10 text-center text-xs text-white/40">
-          © {new Date().getFullYear()} BagelTech. BagelSoft is a product division
-          of BagelTech.
-        </footer>
-      </main>
-    </div>
+          <p style={styles.footerNote}>© {new Date().getFullYear()} BagelTech. Built for clarity, not hype.</p>
+        </div>
+      </section>
+    </main>
   );
 }
 
+const styles: Record<string, React.CSSProperties> = {
+  main: { fontFamily: "system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif", lineHeight: 1.45 },
+  container: { maxWidth: 980, margin: "0 auto", padding: "0 22px" },
+
+  hero: { padding: "72px 0 44px", borderBottom: "1px solid rgba(0,0,0,0.08)" },
+  kicker: { letterSpacing: 0.3, opacity: 0.8, margin: "0 0 10px" },
+  h1: { fontSize: 44, lineHeight: 1.08, margin: "0 0 14px" },
+  lede: { fontSize: 18, opacity: 0.9, margin: "0 0 22px", maxWidth: 820 },
+
+  section: { padding: "56px 0" },
+  sectionAlt: { padding: "56px 0", background: "rgba(0,0,0,0.03)" },
+
+  h2: { fontSize: 28, margin: "0 0 12px" },
+  h3: { fontSize: 20, margin: "0 0 10px" },
+  p: { fontSize: 16, margin: "0 0 12px", maxWidth: 900 },
+
+  ctaRow: { display: "flex", gap: 12, flexWrap: "wrap", marginTop: 14 },
+  button: {
+    display: "inline-block",
+    padding: "10px 14px",
+    borderRadius: 12,
+    textDecoration: "none",
+    border: "1px solid rgba(0,0,0,0.2)",
+    fontSize: 14,
+  },
+  buttonPrimary: { background: "black", color: "white", borderColor: "black" },
+  buttonGhost: { background: "transparent", color: "black" },
+
+  diagramCard: {
+    marginTop: 18,
+    padding: 18,
+    borderRadius: 16,
+    background: "white",
+    border: "1px solid rgba(0,0,0,0.12)",
+  },
+  pre: {
+    margin: "12px 0 8px",
+    padding: 14,
+    borderRadius: 12,
+    background: "rgba(0,0,0,0.04)",
+    overflowX: "auto",
+    fontSize: 13,
+    lineHeight: 1.35,
+  },
+  caption: { margin: 0, fontSize: 13, opacity: 0.8 },
+
+  grid: {
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+    gap: 14,
+    marginTop: 18,
+  },
+  card: {
+    padding: 16,
+    borderRadius: 16,
+    background: "white",
+    border: "1px solid rgba(0,0,0,0.12)",
+  },
+  cardTitle: { margin: "0 0 8px", fontSize: 16 },
+  cardText: { margin: 0, fontSize: 14, opacity: 0.9 },
+
+  productCard: {
+    display: "grid",
+    gridTemplateColumns: "2fr 1fr",
+    gap: 16,
+    padding: 18,
+    borderRadius: 16,
+    background: "white",
+    border: "1px solid rgba(0,0,0,0.12)",
+  },
+  productMeta: {
+    padding: 14,
+    borderRadius: 14,
+    background: "rgba(0,0,0,0.04)",
+    border: "1px solid rgba(0,0,0,0.08)",
+  },
+
+  ul: { margin: "10px 0 0", paddingLeft: 18 },
+  li: { margin: "6px 0" },
+  small: { margin: "0 0 8px", fontSize: 13, opacity: 0.85 },
+
+  footerNote: { marginTop: 20, fontSize: 12, opacity: 0.7 },
+};
