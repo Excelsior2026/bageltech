@@ -1,36 +1,43 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# BagelTech Website
 
-## Getting Started
+Company website built with Next.js.
 
-First, run the development server:
+## Run locally
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Publish an article
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+1. Create a new file in `content/articles/<slug>.md`.
+2. Add frontmatter:
 
-## Learn More
+```md
+---
+title: "Your title"
+date: "YYYY-MM-DD"
+summary: "One sentence summary"
+author: "Your name"
+---
+```
 
-To learn more about Next.js, take a look at the following resources:
+3. Write markdown content below.
+4. Article appears automatically at `/insights` and `/insights/<slug>`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Bagel's Corner content
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Add playful notes to `content/bagel-notes/<slug>.md` with this frontmatter:
 
-## Deploy on Vercel
+```md
+---
+title: "Note title"
+date: "YYYY-MM-DD"
+summary: "Short summary"
+---
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+They are automatically listed at `/bagels-corner` and available at `/bagels-corner/notes/<slug>`.
