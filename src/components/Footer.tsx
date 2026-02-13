@@ -7,6 +7,8 @@ const footerLinks = [
   { href: "/products", label: "Products" },
   { href: "/research", label: "Research" },
   { href: "/writing", label: "Writing" },
+  { href: "/insights", label: "Insights" },
+  { href: "/bagels-corner", label: "Bagel's Corner" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
   { href: EXTERNAL_LINKS.orcid, label: "ORCID" },
