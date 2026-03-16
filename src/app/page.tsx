@@ -1,353 +1,259 @@
-const principles = [
-  {
-    title: "Context interpretation",
-    body:
-      "Decisions aren’t judged in isolation. We evaluate situational risk, affected parties, downstream consequences, and what the system is actually about to do.",
-  },
-  {
-    title: "Uncertainty routing",
-    body:
-      "Uncertainty is treated as a signal, not a defect. When confidence drops, the system pauses, escalates, or defers — so \"I don’t know\" becomes safe and enforceable.",
-  },
-  {
-    title: "Authority enforcement",
-    body:
-      "Capability is not permission. Execution is gated by role, scope, and responsibility — so systems can’t quietly act beyond what’s allowed.",
-  },
-];
+"use client";
 
-const capabilities = [
-  {
-    title: "AI governance & oversight",
-    body:
-      "Execution-time controls that route uncertainty, enforce authority boundaries, and require escalation when risk is high.",
-  },
-  {
-    title: "Applied AI systems",
-    body:
-      "Product-grade AI features that prioritize reliability over theatrics: transcription, summarization, decision support, and human-in-the-loop interfaces.",
-  },
-  {
-    title: "Data & decision infrastructure",
-    body:
-      "Clean pipelines, traceable logic, and decision provenance — so teams can answer \"why did this happen?\" without guessing.",
-  },
-  {
-    title: "Advisory & prototyping",
-    body:
-      "Fast, pragmatic design-to-proof builds: scoping, architecture, prototypes, and governance patterns ready for implementation.",
-  },
-];
+import { useMemo, useState } from "react";
 
-const outcomes = [
-  "Reduced risky automation events",
-  "Clearer human escalation ownership",
-  "Faster audit and incident response",
-];
+type Redesign = {
+  slug: string;
+  label: string;
+  audience: string;
+  headline: string;
+  summary: string;
+  sections: { title: string; body: string }[];
+  ctas: { label: string; href: string; tone?: "primary" | "ghost" }[];
+  trustSignals: string[];
+  seo: string[];
+};
 
-const riskRegister = [
+const redesigns: Redesign[] = [
   {
-    risk: "Precedent poisoning & retrieval manipulation",
-    likelihood: "High",
-    impact: "Critical",
-    owner: "Data governance + platform security",
-    test: "Inject adversarial precedent samples into staging and verify trust-weighted retrieval, quarantine controls, and rollback release workflow.",
+    slug: "executive",
+    label: "Concept 1 · Executive Assurance",
+    audience: "Primary audience: CIOs, county executives, procurement leaders, and risk officers.",
+    headline: "AI governance consulting for public-sector execution risk.",
+    summary:
+      "Lead with buyer relevance in the first screen: who this is for, what BagelTech does, and why execution-time governance lowers operational risk.",
+    sections: [
+      {
+        title: "Hero + audience qualifier",
+        body: "Keep the line ‘Beautiful systems are responsible systems,’ then immediately add a short qualifier: ‘For public-sector and enterprise teams deploying high-stakes AI workflows.’",
+      },
+      {
+        title: "Proof-first About block",
+        body: "Move an About section above the fold with Bill and Dennis bios, 25+ years public-sector modernization experience, PMP/CSM/DASSM credentials, and delivery footprint.",
+      },
+      {
+        title: "Two-path CTA architecture",
+        body: "Primary CTA: ‘Book a governance readiness call.’ Secondary CTA: ‘Download ELEANOR white paper’ (Zenodo) for visitors not yet ready to engage.",
+      },
+    ],
+    ctas: [
+      { label: "Book a governance readiness call", href: "#contact", tone: "primary" },
+      { label: "Download ELEANOR white paper", href: "https://zenodo.org", tone: "ghost" },
+      { label: "View ORCID research profile", href: "https://orcid.org", tone: "ghost" },
+    ],
+    trustSignals: [
+      "Clarifies Bett as ‘BagelTech Consulting Practice (Bett)’ to remove brand ambiguity.",
+      "Adds short anonymized case snapshots (e.g., county government ERP modernization).",
+      "Places credentials and publication links before deep technical sections.",
+    ],
+    seo: [
+      "AI governance consulting",
+      "public sector AI implementation",
+      "enterprise AI risk controls",
+    ],
   },
   {
-    risk: "Indirect prompt injection against critics & detectors",
-    likelihood: "High",
-    impact: "Critical",
-    owner: "LLM safety engineering",
-    test: "Run prompt-injection benchmark corpus against critic pipelines and confirm instruction-like context is detected, neutralized, and sandboxed.",
+    slug: "technical",
+    label: "Concept 2 · Technical Confidence",
+    audience: "Primary audience: architecture leaders, platform teams, and AI safety engineers.",
+    headline: "Execution-time controls your engineering team can test, sign, and ship.",
+    summary:
+      "Keep technical depth, but gate complexity with clear layers so executives are not overwhelmed while technical buyers can drill down.",
+    sections: [
+      {
+        title: "Layered information architecture",
+        body: "Top layer: plain-language outcomes and decision model (Execute / Escalate / Defer). Middle layer: controls map. Deep layer: full ELEANOR V8 risk register.",
+      },
+      {
+        title: "Replace ASCII with responsive visuals",
+        body: "Convert the flow diagrams to SVG cards with explicit status chips and mobile-safe typography while preserving the same logic.",
+      },
+      {
+        title: "Validation-centered narrative",
+        body: "Frame each risk item with a linked validation test script to reinforce implementation credibility over marketing claims.",
+      },
+    ],
+    ctas: [
+      { label: "See controls map", href: "#framework", tone: "primary" },
+      { label: "Read risk register", href: "#risk-register", tone: "ghost" },
+      { label: "View governance checklist", href: "#contact", tone: "ghost" },
+    ],
+    trustSignals: [
+      "Adds ‘How we test this’ callouts under each control family.",
+      "Links publications and GitHub artifacts directly from framework modules.",
+      "Includes a concise architecture FAQ for procurement and security review.",
+    ],
+    seo: [
+      "constitutional AI governance",
+      "AI decision provenance",
+      "human-in-the-loop governance",
+    ],
   },
   {
-    risk: "Decision-binding gap between interpretation and action",
-    likelihood: "Medium",
-    impact: "Critical",
-    owner: "Policy engine + application integration",
-    test: "Fuzz downstream decision handlers and confirm only signed typed decision objects can trigger actions (narrative text must be ignored).",
-  },
-  {
-    risk: "Threshold gaming & uncertainty-lane abuse",
-    likelihood: "Medium",
-    impact: "High",
-    owner: "Detection operations",
-    test: "Replay near-threshold probe campaigns and validate hysteresis, retry clustering, semantic rate limits, and queue-flood protections.",
-  },
-  {
-    risk: "Evidence, audit & provenance tampering",
-    likelihood: "Medium",
-    impact: "Critical",
-    owner: "Security + compliance",
-    test: "Attempt log mutation/deletion in red-team scenario; verify append-only storage, bundle signatures, and cross-domain reconciliation alerts.",
-  },
-  {
-    risk: "Supply-chain, fallback & API-surface exposure",
-    likelihood: "Medium",
-    impact: "High",
-    owner: "Platform engineering",
-    test: "Perform SBOM diff checks and fallback-chaos tests; confirm fail-closed behavior, pinned versions, and tenant-safe WebSocket authorization.",
+    slug: "thought-leadership",
+    label: "Concept 3 · Authority Thesis + Product",
+    audience: "Primary audience: strategy teams comparing firms for advisory + product execution.",
+    headline: "The problem isn’t intelligence. It’s authority.",
+    summary:
+      "Turn the homepage into a thought-leadership hub that combines consulting trust signals with product momentum and recurring content for SEO.",
+    sections: [
+      {
+        title: "Thesis-led homepage",
+        body: "Lead with the authority thesis and immediately route users to one of three journeys: Advisory, Platform Controls, or CogniScribe.",
+      },
+      {
+        title: "Research and publication surface",
+        body: "Create a dedicated ‘Publications & methods’ strip linking Zenodo, ORCID, and downloadable governance artifacts.",
+      },
+      {
+        title: "Product depth and cadence",
+        body: "Expand CogniScribe with differentiators, monthly release notes, and an educational-use positioning statement that builds transparent momentum.",
+      },
+    ],
+    ctas: [
+      { label: "Explore advisory services", href: "#consulting", tone: "primary" },
+      { label: "Read latest governance brief", href: "#insights", tone: "ghost" },
+      { label: "Follow product development", href: "#products", tone: "ghost" },
+    ],
+    trustSignals: [
+      "Introduces a compact team panel with role, background, and delivery domains.",
+      "Reinforces ‘Built for clarity, not hype’ near the hero for earlier brand recall.",
+      "Adds newsletter/brief signup for non-sales conversion and repeat visits.",
+    ],
+    seo: [
+      "AI governance framework",
+      "public-sector digital modernization consulting",
+      "responsible AI implementation partner",
+    ],
   },
 ];
 
 export default function HomePage() {
+  const [activeSlug, setActiveSlug] = useState(redesigns[0].slug);
+
+  const activeRedesign = useMemo(
+    () => redesigns.find((option) => option.slug === activeSlug) ?? redesigns[0],
+    [activeSlug],
+  );
+
   return (
-    <main>
-      <a className="skipLink" href="#content">
-        Skip to content
-      </a>
-
-      <header className="siteHeader">
-        <div className="container navWrap">
-          <a className="brand" href="#top" aria-label="BagelTech home">
-            BagelTech
-          </a>
-          <nav className="navLinks" aria-label="Primary">
-            <a href="#framework">Framework</a>
-            <a href="#risk-register">Risk register</a>
-            <a href="#consulting">Consulting</a>
-            <a href="#build">What we build</a>
-            <a href="#products">Products</a>
-            <a href="#contact">Contact</a>
-          </nav>
-        </div>
-      </header>
-
-      <section id="top" className="hero section">
-        <div className="container">
-          <p className="kicker">Human-centered systems for AI, data, and governance</p>
-          <h1>Beautiful systems are responsible systems.</h1>
+    <main className="proposalPage">
+      <section className="section hero">
+        <div className="container proposalIntro">
+          <p className="kicker">BagelTech redesign proposals</p>
+          <h1>Three homepage redesign directions, tailored to your evaluation.</h1>
           <p className="lede">
-            Governance for autonomous systems at the moment decisions are made — not just when rules are
-            written. We build environments that know when to act, when to escalate, and when to say:{" "}
-            <strong>“I’m not sure.”</strong>
+            Each concept incorporates your top priorities: clearer audience targeting, stronger trust
+            signals, better CTA pathways, publication visibility, SEO-friendly framing, and Bett naming
+            clarity.
           </p>
-          <div className="ctaRow">
-            <a href="#framework" className="btn btnPrimary">
-              Explore framework
-            </a>
-            <a href="#contact" className="btn btnGhost">
-              Start a conversation
-            </a>
-          </div>
-          <ul className="outcomes" aria-label="Key outcomes">
-            {outcomes.map((outcome) => (
-              <li key={outcome}>{outcome}</li>
-            ))}
-          </ul>
+          <p className="footerNote">Built for clarity, not hype.</p>
         </div>
       </section>
 
-      <div id="content">
-        <section className="section">
-          <div className="container prose">
-            <h2>The problem isn’t intelligence. It’s authority.</h2>
-            <p>
-              Most governance efforts focus on model behavior during training or static guardrails after
-              deployment. Both matter. Neither is sufficient when systems operate in messy, high-stakes
-              reality.
-            </p>
-            <p>
-              The failure mode isn’t “AI is evil.” It’s “AI is confidently wrong” — and still allowed to
-              execute. When uncertainty has nowhere safe to go, systems guess.
-            </p>
+      <section className="section sectionAlt" aria-labelledby="concepts-heading">
+        <div className="container">
+          <h2 id="concepts-heading">Choose a redesign concept</h2>
+          <div className="conceptTabs" role="tablist" aria-label="Redesign concepts">
+            {redesigns.map((option) => {
+              const isActive = option.slug === activeRedesign.slug;
+              return (
+                <button
+                  type="button"
+                  key={option.slug}
+                  role="tab"
+                  aria-selected={isActive}
+                  className={`conceptTab ${isActive ? "conceptTabActive" : ""}`}
+                  onClick={() => setActiveSlug(option.slug)}
+                >
+                  {option.label}
+                </button>
+              );
+            })}
           </div>
-        </section>
 
-        <section id="framework" className="section sectionAlt">
-          <div className="container prose">
-            <h2>Governance at execution time</h2>
-            <p>
-              Instead of asking whether a model is aligned, we ask:{" "}
-              <strong>who may act, on what, under which conditions — and who is accountable</strong>.
-            </p>
-
-            <article className="diagramCard">
-              <h3>Ethical governance at the moment of execution</h3>
-              <pre>{`Request / Input
-      ↓
-Context Interpretation
-      ↓
-Uncertainty Evaluation
-      ↓
-Authority & Scope Check
-      ↓
- ┌──────────────┬──────────────────┬──────────────────┐
- │   Execute    │     Escalate     │      Defer       │
- │  (Allowed)   │   (Human Review) │ (Insufficient)   │
- └──────────────┴──────────────────┴──────────────────┘`}</pre>
-              <p className="caption">
-                Decisions are governed <strong>before</strong> execution — not explained after harm.
-              </p>
-            </article>
+          <article className="conceptPanel" role="tabpanel" aria-live="polite">
+            <p className="kicker">{activeRedesign.audience}</p>
+            <h3>{activeRedesign.headline}</h3>
+            <p>{activeRedesign.summary}</p>
 
             <div className="cardGrid">
-              {principles.map((principle) => (
-                <article className="card" key={principle.title}>
-                  <h3>{principle.title}</h3>
-                  <p>{principle.body}</p>
+              {activeRedesign.sections.map((section) => (
+                <article className="card" key={section.title}>
+                  <h4>{section.title}</h4>
+                  <p>{section.body}</p>
                 </article>
               ))}
             </div>
-            <article className="diagramCard">
-              <h3>Ensemble software engineering framework</h3>
-              <p>
-                We use an ensemble approach that combines product engineering, governance design,
-                security assurance, and operations readiness into one delivery loop.
-              </p>
-              <pre>{`Discover & Scope
-      ↓
-Architecture & Controls
-      ↓
-Build, Test, and Validate
-      ↓
-Operate, Observe, and Improve`}</pre>
-              <p className="caption">
-                The goal is resilient delivery: each release includes capability, control coverage,
-                and measurable evidence for stakeholders.
-              </p>
-            </article>
-          </div>
-        </section>
-
-        <section id="build" className="section">
-          <div className="container prose" id="risk-register">
-            <h2>One-page risk register for ELEANOR V8</h2>
-            <p>
-              This plan captures the six architecture-specific risks and maps each one to likelihood,
-              impact, accountable owner, and a concrete validation test. Priority fixes are highlighted
-              first: precedent ingestion controls, strict untrusted-context separation, and signed
-              typed decision binding.
-            </p>
-
-            <div className="cardGrid">
-              {riskRegister.map((entry) => (
-                <article className="card" key={entry.risk}>
-                  <h3>{entry.risk}</h3>
-                  <p>
-                    <strong>Likelihood:</strong> {entry.likelihood}
-                  </p>
-                  <p>
-                    <strong>Impact:</strong> {entry.impact}
-                  </p>
-                  <p>
-                    <strong>Owner:</strong> {entry.owner}
-                  </p>
-                  <p>
-                    <strong>Validation test:</strong> {entry.test}
-                  </p>
-                </article>
-              ))}
-            </div>
-          </div>
-
-          <div className="container prose">
-            <h2>What we build</h2>
-            <p>
-              Practical systems that hold up in the real world — where edge cases are normal,
-              accountability matters, and trust is earned.
-            </p>
-
-            <div className="cardGrid">
-              {capabilities.map((capability) => (
-                <article className="card" key={capability.title}>
-                  <h3>{capability.title}</h3>
-                  <p>{capability.body}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-
-        <section id="consulting" className="section sectionAlt">
-          <div className="container prose">
-            <h2>Consulting services</h2>
-            <p>
-              Bett consulting supports organizations that need practical modernization plans with
-              accountable delivery. We partner with executive, technology, and operational teams to
-              turn strategy into implementable programs.
-            </p>
-
-            <div className="cardGrid">
-              <article className="card">
-                <h3>Public sector ERP implementations</h3>
-                <p>
-                  End-to-end support for ERP discovery, vendor alignment, implementation governance,
-                  and risk-managed rollout in public sector environments.
-                </p>
-              </article>
-              <article className="card">
-                <h3>Technology roadmap design</h3>
-                <p>
-                  Multi-horizon roadmaps that prioritize funding, sequencing, and measurable outcomes
-                  across data, AI, and core enterprise systems.
-                </p>
-              </article>
-              <article className="card">
-                <h3>Modernization planning</h3>
-                <p>
-                  Legacy-to-modern transition plans covering architecture surfaces, integration risk,
-                  operating model updates, and change management.
-                </p>
-              </article>
-            </div>
-          </div>
-        </section>
-
-        <section id="products" className="section sectionAlt">
-          <div className="container prose">
-            <h2>Products</h2>
-
-            <article className="productCard">
-              <div>
-                <h3>CogniScribe</h3>
-                <p>
-                  A lecture transcription and study companion designed for health professions education —
-                  built for clarity, traceability, and respectful handling of uncertainty.
-                </p>
-                <ul>
-                  <li>High-quality transcription + structured notes</li>
-                  <li>Study questions generated from lecture content</li>
-                  <li>Confidence-aware outputs (knows when it’s not sure)</li>
-                </ul>
-              </div>
-              <aside className="productMeta">
-                <p>
-                  <strong>Status:</strong> Active development
-                </p>
-                <p>
-                  <strong>Focus:</strong> Education-first (not clinical deployment)
-                </p>
-              </aside>
-            </article>
-          </div>
-        </section>
-
-        <section id="contact" className="section">
-          <div className="container prose">
-            <h2>Contact</h2>
-            <p>
-              If you want systems that can slow down safely, escalate responsibly, and enforce authority
-              boundaries — let’s talk.
-            </p>
 
             <div className="ctaRow">
-              <a href="mailto:info@bageltech.net" className="btn btnPrimary">
-                Email us
-              </a>
-              <a href="https://github.com/bageltech" className="btn btnGhost">
-                GitHub
-              </a>
-              <a href="https://www.linkedin.com/company/bageltech" className="btn btnGhost">
-                LinkedIn
-              </a>
+              {activeRedesign.ctas.map((cta) => (
+                <a
+                  key={cta.label}
+                  href={cta.href}
+                  className={`btn ${cta.tone === "ghost" ? "btnGhost" : "btnPrimary"}`}
+                >
+                  {cta.label}
+                </a>
+              ))}
             </div>
+          </article>
+        </div>
+      </section>
 
-            <p className="footerNote">© {new Date().getFullYear()} BagelTech. Built for clarity, not hype.</p>
+      <section className="section" id="framework">
+        <div className="container">
+          <h2>How all three concepts address your feedback</h2>
+          <div className="twoCol">
+            <article className="diagramCard">
+              <h3>Priority fixes embedded in every option</h3>
+              <ul>
+                <li>Adds an About/Team section with credentials and public-sector experience.</li>
+                <li>Surfaces ELEANOR publications (Zenodo) and ORCID as trust anchors.</li>
+                <li>Resolves Bett naming confusion with explicit BagelTech practice language.</li>
+                <li>Introduces secondary conversion paths (white paper, brief, newsletter).</li>
+              </ul>
+            </article>
+
+            <article className="diagramCard" id="risk-register">
+              <h3>SEO and discoverability upgrades</h3>
+              <ul>
+                {activeRedesign.seo.map((keyword) => (
+                  <li key={keyword}>{keyword}</li>
+                ))}
+              </ul>
+              <p className="caption">
+                Recommended metadata pattern: “AI Governance Consulting for Public Sector & Enterprise | BagelTech”
+              </p>
+            </article>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
+
+      <section className="section sectionAlt" id="consulting">
+        <div className="container">
+          <h2>Trust-signal content to add next</h2>
+          <div className="cardGrid">
+            {activeRedesign.trustSignals.map((signal) => (
+              <article className="card" key={signal}>
+                <p>{signal}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section" id="contact">
+        <div className="container">
+          <h2>Recommended rollout</h2>
+          <ol className="rolloutList">
+            <li>Pick one concept as the core homepage direction.</li>
+            <li>Prototype mobile-first wireframes and replace ASCII flows with responsive SVG diagrams.</li>
+            <li>Publish About, publications, and one anonymized case snapshot before launch.</li>
+            <li>Add an insights cadence (monthly brief) to improve SEO and repeat traffic.</li>
+          </ol>
+        </div>
+      </section>
     </main>
   );
 }

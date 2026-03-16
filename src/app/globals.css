@@ -52,22 +52,6 @@ button:focus-visible {
   outline-offset: 2px;
 }
 
-.skipLink {
-  position: absolute;
-  left: -9999px;
-  top: auto;
-}
-
-.skipLink:focus {
-  left: 1rem;
-  top: 1rem;
-  z-index: 100;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 0.5rem;
-  padding: 0.4rem 0.7rem;
-}
-
 .container {
   max-width: 1080px;
   margin: 0 auto;
@@ -82,51 +66,15 @@ button:focus-visible {
   background: linear-gradient(180deg, color-mix(in oklab, var(--brand-soft) 70%, transparent), transparent);
 }
 
-.siteHeader {
-  position: sticky;
-  top: 0;
-  backdrop-filter: blur(10px);
-  background: color-mix(in oklab, var(--bg) 86%, transparent);
-  border-bottom: 1px solid color-mix(in oklab, var(--border) 80%, transparent);
-  z-index: 20;
-}
-
-.navWrap {
-  min-height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.brand {
-  font-weight: 800;
-  text-decoration: none;
-  letter-spacing: 0.02em;
-  color: var(--brand-strong);
-}
-
-.navLinks {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.navLinks a {
-  text-decoration: none;
-  color: var(--muted);
-  font-size: 0.95rem;
-}
-
-.navLinks a:hover {
-  color: var(--brand-strong);
-}
-
 .hero h1 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-size: clamp(2rem, 5vw, 3.3rem);
   line-height: 1.06;
   margin: 0 0 1rem;
-  max-width: 16ch;
+  max-width: 19ch;
+}
+
+.proposalIntro {
+  text-wrap: pretty;
 }
 
 .kicker {
@@ -138,40 +86,78 @@ button:focus-visible {
 .lede {
   font-size: clamp(1rem, 2vw, 1.2rem);
   color: var(--muted);
-  max-width: 70ch;
+  max-width: 76ch;
 }
 
-.outcomes {
-  margin: 1.2rem 0 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-}
-
-.outcomes li {
-  border: 1px solid var(--border);
-  background: var(--surface);
-  border-radius: 999px;
-  padding: 0.35rem 0.75rem;
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
-.prose h2 {
+h2 {
   font-size: clamp(1.5rem, 3vw, 2rem);
-  margin: 0 0 0.8rem;
+  margin: 0 0 1rem;
 }
 
-.prose h3 {
+h3 {
   margin: 0 0 0.5rem;
-  font-size: 1.1rem;
+  font-size: 1.25rem;
 }
 
-.prose p,
-.prose li {
+h4 {
+  margin: 0 0 0.5rem;
+  font-size: 1.05rem;
+}
+
+p,
+li {
   color: var(--muted);
+}
+
+.conceptTabs {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 1rem;
+}
+
+.conceptTab {
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  font: inherit;
+  padding: 0.45rem 0.85rem;
+  cursor: pointer;
+}
+
+.conceptTabActive {
+  border-color: var(--brand);
+  color: var(--brand-strong);
+  background: var(--brand-soft);
+}
+
+.conceptPanel,
+.diagramCard,
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
+}
+
+.conceptPanel {
+  padding: 1rem;
+}
+
+.cardGrid {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin-top: 1rem;
+}
+
+.card {
+  padding: 1rem;
+}
+
+.card p {
+  margin: 0;
 }
 
 .ctaRow {
@@ -196,94 +182,40 @@ button:focus-visible {
   box-shadow: 0 10px 26px color-mix(in srgb, var(--brand) 35%, transparent);
 }
 
-.btnPrimary:hover {
-  transform: translateY(-1px);
-}
-
 .btnGhost {
   background: var(--surface);
   border-color: var(--border);
   color: var(--brand-strong);
 }
 
-.btnGhost:hover {
-  border-color: var(--brand);
-  background: var(--brand-soft);
-}
-
-.diagramCard,
-.card,
-.productCard {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 1rem;
-  box-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
+.twoCol {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
 }
 
 .diagramCard {
-  margin-top: 1rem;
   padding: 1rem;
-}
-
-.diagramCard pre {
-  background: var(--surface-alt);
-  border-radius: 0.75rem;
-  padding: 0.8rem;
-  overflow: auto;
-  font-size: 0.8rem;
-  color: var(--text);
 }
 
 .caption {
   font-size: 0.9rem;
 }
 
-.cardGrid {
-  display: grid;
-  gap: 0.9rem;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  margin-top: 1rem;
-}
-
-.card {
-  padding: 1rem;
-}
-
-.card p {
+.rolloutList {
   margin: 0;
-}
-
-.productCard {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 1rem;
-  padding: 1rem;
-}
-
-.productMeta {
-  background: var(--brand-soft);
-  border: 1px solid color-mix(in oklab, var(--brand) 28%, var(--border));
-  border-radius: 0.75rem;
-  padding: 0.8rem;
+  padding-left: 1.2rem;
 }
 
 .footerNote {
   margin-top: 1.25rem;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
+  color: var(--brand-strong);
+  font-weight: 600;
 }
 
 @media (max-width: 700px) {
-  .productCard {
-    grid-template-columns: 1fr;
-  }
-
-  .navWrap {
-    padding: 0.65rem 1.25rem;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
   .section {
-    padding: 3.8rem 0;
+    padding: 3.6rem 0;
   }
 }
