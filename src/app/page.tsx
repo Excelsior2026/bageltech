@@ -117,6 +117,39 @@ const research = [
   },
 ];
 
+const selectedWorks = [
+  {
+    type: "Academic paper",
+    title: "ELEANOR: A Jurisprudential AI Governance Framework for Runtime Interpretive Oversight",
+    body: "A formal runtime-governance paper framing ELEANOR as a rights-based deliberation layer using multi-critic reasoning, precedent, and lexicographic priority.",
+  },
+  {
+    type: "Governance paper",
+    title: "Routing Uncertainty in AI Systems: From Failure Mode to Governance Signal",
+    body: "A paper arguing that uncertainty should be treated as an operational governance signal that triggers escalation, abstention, retrieval, or review.",
+  },
+  {
+    type: "Brief",
+    title: "ELEANOR Uncertainty Routing Brief",
+    body: "A partner-facing concept brief explaining how runtime governance can convert uncertainty into enforceable behavior rather than optional caveats.",
+  },
+  {
+    type: "Essay",
+    title: "The AI Governance Crisis and the Case for Jurisprudential Oversight",
+    body: "A long-form argument that current AI governance approaches are too brittle, too static, or too binary for systems with real decision authority.",
+  },
+  {
+    type: "Publication",
+    title: "From Asimov to Alignment - and Beyond",
+    body: "A moral and technical lineage from the control era of machine ethics toward constitutional governance and accountable decision-time oversight.",
+  },
+  {
+    type: "Creative work",
+    title: "Shadows of Justice: Inverting Folklore",
+    body: "A parallel creative project exploring power, justice, narrative inversion, and the voices usually flattened into villainy or myth.",
+  },
+];
+
 const founderFacts = [
   "25+ years of public-sector technology leadership",
   "$15M+ enterprise ERP programs led in California regional government",
@@ -282,6 +315,24 @@ export default function HomePage() {
           <a className={styles.secondaryAction} href="https://github.com/Excelsior2026">
             Research repositories
           </a>
+        </div>
+        <div className={styles.worksIntro}>
+          <p className={styles.sectionTag}>Selected works</p>
+          <h3>Representative papers, briefs, and writing</h3>
+          <p>
+            The current body of work spans runtime AI governance, constitutional oversight, uncertainty routing,
+            machine ethics, and adjacent long-form writing. It is broader than one whitepaper and more serious than
+            marketing copy.
+          </p>
+        </div>
+        <div className={styles.worksGrid}>
+          {selectedWorks.map((work) => (
+            <article className={styles.workCard} key={work.title}>
+              <p className={styles.workType}>{work.type}</p>
+              <h3>{work.title}</h3>
+              <p>{work.body}</p>
+            </article>
+          ))}
         </div>
       </section>
 

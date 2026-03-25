@@ -366,6 +366,59 @@
   margin-top: 18px;
 }
 
+.worksIntro {
+  max-width: 46rem;
+  margin-top: 28px;
+  margin-bottom: 16px;
+}
+
+.worksIntro h3 {
+  font-family: var(--font-serif), serif;
+  font-size: 1.8rem;
+  letter-spacing: -0.03em;
+  margin-bottom: 0.65rem;
+}
+
+.worksIntro p {
+  color: rgba(23, 32, 51, 0.8);
+  line-height: 1.7;
+}
+
+.worksGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.workCard {
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: var(--surface-strong);
+  padding: 20px;
+}
+
+.workType {
+  font-family: var(--font-mono), monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: 0.76rem;
+  color: var(--accent-deep);
+  margin-bottom: 0.75rem;
+}
+
+.workCard h3 {
+  font-family: var(--font-serif), serif;
+  letter-spacing: -0.03em;
+  font-size: 1.45rem;
+  margin-bottom: 0.7rem;
+}
+
+.workCard p:last-child {
+  color: rgba(23, 32, 51, 0.79);
+  line-height: 1.68;
+  margin-bottom: 0;
+}
+
 .leadershipSection {
   display: grid;
   grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.7fr);
@@ -429,7 +482,8 @@
   .hero,
   .productGrid,
   .cardGrid,
-  .leadershipSection {
+  .leadershipSection,
+  .worksGrid {
     grid-template-columns: 1fr;
   }
 }
