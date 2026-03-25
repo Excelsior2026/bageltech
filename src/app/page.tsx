@@ -104,49 +104,79 @@ const products = [
 
 const research = [
   {
-    title: "The Doctrine of Intelligence Pluralism",
-    body: "A research direction on reliability through functional separation and structured coordination rather than monolithic intelligence.",
+    title: "Jurisprudential AI governance",
+    body: "Research on runtime governance, constitutional reasoning, uncertainty routing, and decision-time oversight for systems that operate under real consequence.",
   },
   {
-    title: "Constitutional governance for AI",
-    body: "Research and publication work on principled machine governance, moral-risk gradients, and oversight for systems that affect public welfare.",
+    title: "Intelligence pluralism",
+    body: "A line of work arguing that high-stakes AI should rely on coordinated specialist roles and structured challenge rather than monolithic machine judgment.",
   },
   {
-    title: "ELEANOR whitepapers and narratives",
-    body: "Technical and strategic writing that positions runtime governance as a deployable operating layer rather than a compliance afterthought.",
+    title: "Applied institutional AI",
+    body: "Writing that ties research to enterprise modernization, public-sector implementation, procurement realism, and accountable operating design.",
   },
 ];
 
 const selectedWorks = [
   {
-    type: "Academic paper",
-    title: "ELEANOR: A Jurisprudential AI Governance Framework for Runtime Interpretive Oversight",
-    body: "A formal runtime-governance paper framing ELEANOR as a rights-based deliberation layer using multi-critic reasoning, precedent, and lexicographic priority.",
+    type: "Journal article",
+    year: "2026",
+    title: "The Doctrine of Intelligence Pluralism",
+    body: "A statement of the case for reliability through structured, role-separated intelligence rather than a single synthetic authority pretending to do every kind of reasoning well.",
+    href: "https://doi.org/10.5281/zenodo.18613183",
+    linkLabel: "Read on Zenodo",
   },
   {
-    type: "Governance paper",
+    type: "Preprint",
+    year: "2025",
+    title: "Jurisprudential Governance for AI (ELEANOR): An Ethical Leadership Engine for Autonomous Navigation of Rights-Based Reasoning",
+    body: "A formal framing of ELEANOR as a runtime governance layer grounded in rights-based reasoning, interpretive oversight, and controlled execution under uncertainty.",
+    href: "https://doi.org/10.5281/zenodo.17498043",
+    linkLabel: "Read on Zenodo",
+  },
+  {
+    type: "Report",
+    year: "2025",
     title: "Routing Uncertainty in AI Systems: From Failure Mode to Governance Signal",
-    body: "A paper arguing that uncertainty should be treated as an operational governance signal that triggers escalation, abstention, retrieval, or review.",
+    body: "A governance argument that uncertainty is not a cosmetic confidence score. It is an operational routing signal that should trigger escalation, abstention, retrieval, or human review.",
+    href: "https://orcid.org/0009-0001-6994-6828",
+    linkLabel: "View via ORCID",
   },
   {
-    type: "Brief",
-    title: "ELEANOR Uncertainty Routing Brief",
-    body: "A partner-facing concept brief explaining how runtime governance can convert uncertainty into enforceable behavior rather than optional caveats.",
+    type: "Report",
+    year: "2025",
+    title: "Dynamics of Precedent-Driven Decision Latency in Deliberative Governance and Rule-Based AI Systems",
+    body: "A more technical exploration of how precedent, retrieval, and deliberative structure affect timing, interpretability, and operational behavior in governed systems.",
+    href: "https://orcid.org/0009-0001-6994-6828",
+    linkLabel: "View via ORCID",
   },
   {
     type: "Essay",
+    year: "2025",
     title: "The AI Governance Crisis and the Case for Jurisprudential Oversight",
-    body: "A long-form argument that current AI governance approaches are too brittle, too static, or too binary for systems with real decision authority.",
+    body: "A longer-form public argument that current governance patterns are too static and too brittle for AI systems with real institutional authority.",
   },
   {
     type: "Publication",
-    title: "From Asimov to Alignment - and Beyond",
-    body: "A moral and technical lineage from the control era of machine ethics toward constitutional governance and accountable decision-time oversight.",
+    year: "2025",
+    title: "From Asimov to Alignment — and Beyond: The Moral Evolution of Machine Ethics and the Rise of Constitutional Governance",
+    body: "A moral and technical lineage from early machine-ethics stories toward contemporary alignment discourse and, ultimately, jurisprudential governance.",
+    href: "https://doi.org/10.5281/zenodo.17613022",
+    linkLabel: "Read on Zenodo",
+  },
+  {
+    type: "Specification",
+    year: "2025",
+    title: "The ELEANOR Governance Specification – Runtime Architecture v2.1",
+    body: "A technical specification for the runtime architecture behind execution, escalation, evidence, and governable model behavior.",
+    href: "https://doi.org/10.5281/zenodo.17605176",
+    linkLabel: "Read on Zenodo",
   },
   {
     type: "Creative work",
+    year: "2025",
     title: "Shadows of Justice: Inverting Folklore",
-    body: "A parallel creative project exploring power, justice, narrative inversion, and the voices usually flattened into villainy or myth.",
+    body: "A parallel creative project exploring power, justice, narrative inversion, and the figures mythology usually flattens into villainy or warning.",
   },
 ];
 
@@ -295,9 +325,9 @@ export default function HomePage() {
           <p className={styles.sectionTag}>Research and publication</p>
           <h2>Serious ideas with a visible paper trail</h2>
           <p>
-            The work behind BagelTech includes ongoing writing and research in AI governance, constitutional machine
-            oversight, and intelligence pluralism. That research matters because it directly informs the product and
-            consulting work.
+            The work behind BagelTech includes ongoing writing in AI governance, constitutional machine oversight,
+            uncertainty routing, and intelligence pluralism. It is not separate from the products. The research is
+            part of how the products and consulting point of view are formed.
           </p>
         </div>
         <div className={styles.cardGrid}>
@@ -310,7 +340,10 @@ export default function HomePage() {
         </div>
         <div className={styles.publicationLinks}>
           <a className={styles.secondaryAction} href="https://orcid.org/0009-0001-6994-6828">
-            ORCID
+            ORCID profile
+          </a>
+          <a className={styles.secondaryAction} href="https://doi.org/10.5281/zenodo.18613183">
+            Latest paper
           </a>
           <a className={styles.secondaryAction} href="https://github.com/Excelsior2026">
             Research repositories
@@ -320,17 +353,24 @@ export default function HomePage() {
           <p className={styles.sectionTag}>Selected works</p>
           <h3>Representative papers, briefs, and writing</h3>
           <p>
-            The current body of work spans runtime AI governance, constitutional oversight, uncertainty routing,
-            machine ethics, and adjacent long-form writing. It is broader than one whitepaper and more serious than
-            marketing copy.
+            These selections draw from the public ORCID record, Zenodo publications, and current manuscript work. The
+            emphasis is runtime governance, institutional AI, and the practical design of accountable systems.
           </p>
         </div>
         <div className={styles.worksGrid}>
           {selectedWorks.map((work) => (
             <article className={styles.workCard} key={work.title}>
-              <p className={styles.workType}>{work.type}</p>
+              <div className={styles.workMeta}>
+                <p className={styles.workType}>{work.type}</p>
+                <p className={styles.workYear}>{work.year}</p>
+              </div>
               <h3>{work.title}</h3>
               <p>{work.body}</p>
+              {work.href ? (
+                <a className={styles.workLink} href={work.href}>
+                  {work.linkLabel}
+                </a>
+              ) : null}
             </article>
           ))}
         </div>
@@ -348,8 +388,8 @@ export default function HomePage() {
           </p>
           <p>
             His work spans enterprise implementation oversight, AI readiness and governance frameworks, responsible
-            deployment strategy, procurement language, and product design for systems that must remain legible and
-            accountable.
+            deployment strategy, procurement language, runtime decision controls, and product design for systems that
+            must remain legible and accountable.
           </p>
           <ul className={styles.factList}>
             {founderFacts.map((fact) => (
