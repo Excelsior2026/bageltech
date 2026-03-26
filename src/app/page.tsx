@@ -81,6 +81,7 @@ const products = [
       "Execution, escalation, and defer routing based on risk and authority",
       "Designed for auditability, traceability, and human oversight",
     ],
+    cta: { label: "Read the spec", href: "https://doi.org/10.5281/zenodo.17605176" },
   },
   {
     label: "Applied product",
@@ -92,6 +93,7 @@ const products = [
       "Confidence-aware summaries",
       "Education-first workflow design",
     ],
+    cta: { label: "Get early access", href: "mailto:info@bageltech.net?subject=CogniScribe early access" },
   },
   {
     label: "Framework",
@@ -103,6 +105,7 @@ const products = [
       "Pack mode with fixed role catalogs",
       "Task, PR, dashboard, export, and replay workflows",
     ],
+    cta: { label: "View on GitHub", href: "https://github.com/Excelsior2026" },
   },
   {
     label: "Domain intelligence",
@@ -114,29 +117,87 @@ const products = [
       "Insurance, funding, and compliance review",
       "Obligation registers and lifecycle monitoring",
     ],
+    cta: { label: "Inquire about pilot", href: "mailto:info@bageltech.net?subject=CMI pilot inquiry" },
   },
 ];
 
-const papers = [
-  {
-    title: "The Doctrine of Intelligence Pluralism",
-    body: "A draft research framework on reliability through functional separation and structured coordination rather than monolithic intelligence.",
-  },
-  {
-    title: "From Asimov to Alignment",
-    body: "A constitutional-AI publication project focused on principled machine governance and the architecture of trustworthy decision systems.",
-  },
-  {
-    title: "ELEANOR governance papers and narratives",
-    body: "Whitepapers and supporting materials that frame ELEANOR as a practical execution-time governance system rather than a static compliance layer.",
-  },
-];
 
 const fitAreas = [
   "High-stakes internal operations",
   "Regulated or auditable workflows",
   "Decision support with human review",
   "Domain-specific AI products that need traceability",
+];
+
+const founderFacts = [
+  "25+ years of public-sector technology leadership",
+  "$15M+ enterprise ERP programs led in California regional government",
+  "PMP, CSM, DASSM, and Lean Six Sigma Yellow Belt",
+  "Builder of governance frameworks, PMOs, and enterprise transformation programs",
+];
+
+const selectedWorks = [
+  {
+    type: "Journal article",
+    year: "2026",
+    title: "The Doctrine of Intelligence Pluralism",
+    body: "A statement of the case for reliability through structured, role-separated intelligence rather than a single synthetic authority pretending to do every kind of reasoning well.",
+    href: "https://doi.org/10.5281/zenodo.18613183",
+    linkLabel: "Read on Zenodo",
+    featured: true,
+  },
+  {
+    type: "Preprint",
+    year: "2025",
+    title: "Jurisprudential Governance for AI (ELEANOR)",
+    body: "A formal framing of ELEANOR as a runtime governance layer grounded in rights-based reasoning, interpretive oversight, and controlled execution under uncertainty.",
+    href: "https://doi.org/10.5281/zenodo.17498043",
+    linkLabel: "Read on Zenodo",
+    featured: true,
+  },
+  {
+    type: "Report",
+    year: "2025",
+    title: "Routing Uncertainty in AI Systems: From Failure Mode to Governance Signal",
+    body: "A governance argument that uncertainty is not a cosmetic confidence score — it is an operational routing signal that should trigger escalation, abstention, retrieval, or human review.",
+    href: "https://orcid.org/0009-0001-6994-6828",
+    linkLabel: "View via ORCID",
+    featured: false,
+  },
+  {
+    type: "Report",
+    year: "2025",
+    title: "Dynamics of Precedent-Driven Decision Latency in Deliberative Governance and Rule-Based AI Systems",
+    body: "A technical exploration of how precedent, retrieval, and deliberative structure affect timing, interpretability, and operational behavior in governed systems.",
+    href: "https://orcid.org/0009-0001-6994-6828",
+    linkLabel: "View via ORCID",
+    featured: false,
+  },
+  {
+    type: "Essay",
+    year: "2025",
+    title: "The AI Governance Crisis and the Case for Jurisprudential Oversight",
+    body: "A longer-form public argument that current governance patterns are too static and too brittle for AI systems with real institutional authority.",
+    featured: false,
+  },
+  {
+    type: "Publication",
+    year: "2025",
+    title: "From Asimov to Alignment — and Beyond",
+    body: "A moral and technical lineage from early machine-ethics stories toward contemporary alignment discourse and, ultimately, jurisprudential governance.",
+    href: "https://doi.org/10.5281/zenodo.17613022",
+    linkLabel: "Read on Zenodo",
+    featured: false,
+  },
+  {
+    type: "Specification",
+    year: "2025",
+    title: "The ELEANOR Governance Specification – Runtime Architecture v2.1",
+    body: "A technical specification for the runtime architecture behind execution, escalation, evidence, and governable model behavior.",
+    href: "https://doi.org/10.5281/zenodo.17605176",
+    linkLabel: "Read on Zenodo",
+    featured: false,
+  },
 ];
 
 export default function HomePage() {
@@ -153,6 +214,9 @@ export default function HomePage() {
             BagelTech designs AI infrastructure for environments where confident mistakes are expensive. We build
             governance systems, ensemble decision frameworks, and domain-specific products that know when to proceed,
             when to ask for review, and when not to fake certainty.
+          </p>
+          <p className={styles.audience}>
+            Built for public agencies, regulated industries, and enterprises deploying AI in high-stakes environments.
           </p>
           <div className={styles.actions}>
             <a className={styles.primaryAction} href="#products">
@@ -286,6 +350,11 @@ export default function HomePage() {
                   <li key={bullet}>{bullet}</li>
                 ))}
               </ul>
+              {product.cta && (
+                <a className={styles.productCta} href={product.cta.href}>
+                  {product.cta.label}
+                </a>
+              )}
             </article>
           ))}
         </div>
@@ -297,24 +366,48 @@ export default function HomePage() {
           <h2>Ideas with an actual paper trail</h2>
           <p>
             The BagelTech direction is backed by serious writing in AI governance, constitutional AI, and intelligence
-            pluralism. Some of that work lives off-site in publication repositories, ORCID, and working-paper archives,
-            but it is part of the company story and should be visible here.
+            pluralism. Start with these two, then explore the full archive.
           </p>
         </div>
-        <div className={styles.cardGrid}>
-          {papers.map((paper) => (
-            <article className={styles.infoCard} key={paper.title}>
-              <h3>{paper.title}</h3>
-              <p>{paper.body}</p>
+        <div className={styles.featuredWorks}>
+          {selectedWorks.filter((w) => w.featured).map((work) => (
+            <article className={styles.featuredWorkCard} key={work.title}>
+              <div className={styles.workMeta}>
+                <p className={styles.workType}>{work.type}</p>
+                <p className={styles.workYear}>{work.year}</p>
+              </div>
+              <h3>{work.title}</h3>
+              <p>{work.body}</p>
+              {work.href && (
+                <a className={styles.workLink} href={work.href}>{work.linkLabel}</a>
+              )}
+            </article>
+          ))}
+        </div>
+        <div className={styles.worksGrid}>
+          {selectedWorks.filter((w) => !w.featured).map((work) => (
+            <article className={styles.workCard} key={work.title}>
+              <div className={styles.workMeta}>
+                <p className={styles.workType}>{work.type}</p>
+                <p className={styles.workYear}>{work.year}</p>
+              </div>
+              <h3>{work.title}</h3>
+              <p>{work.body}</p>
+              {work.href && (
+                <a className={styles.workLink} href={work.href}>{work.linkLabel}</a>
+              )}
             </article>
           ))}
         </div>
         <div className={styles.publicationLinks}>
           <a className={styles.secondaryAction} href="https://orcid.org/0009-0001-6994-6828">
-            ORCID
+            ORCID profile
+          </a>
+          <a className={styles.secondaryAction} href="https://doi.org/10.5281/zenodo.18613183">
+            Latest paper
           </a>
           <a className={styles.secondaryAction} href="https://github.com/Excelsior2026">
-            Publication repos
+            Research repositories
           </a>
         </div>
       </section>
@@ -341,7 +434,7 @@ export default function HomePage() {
       <section className={styles.leadershipSection} id="about">
         <div className={styles.founderCard}>
           <p className={styles.sectionTag}>Founder and CEO</p>
-          <h2>William Parris is building BagelTech around governance, judgment, and deployable systems.</h2>
+          <h2>William Parris brings enterprise delivery discipline to AI governance and product systems.</h2>
           <p>
             BagelTech reflects founder-led work across AI governance, constitutional design for machine decision-making,
             applied product development, and digital transformation. The through-line is a rare combination of
@@ -352,6 +445,11 @@ export default function HomePage() {
             That is the BagelTech pitch in one sentence: serious ideas, translated into operational systems people can
             actually use.
           </p>
+          <ul className={styles.factList}>
+            {founderFacts.map((fact) => (
+              <li key={fact}>{fact}</li>
+            ))}
+          </ul>
         </div>
         <aside className={styles.mischiefCard}>
           <p className={styles.sectionTag}>Executive corner</p>
