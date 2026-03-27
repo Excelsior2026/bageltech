@@ -229,6 +229,13 @@ const selectedWorks = [
     linkLabel: "Read on Zenodo",
     featured: false,
   },
+  {
+    type: "Essay",
+    year: "2025",
+    title: "The AI Governance Crisis and the Case for Jurisprudential Oversight",
+    body: "A longer-form public argument that current governance patterns are too static and too brittle for AI systems with real institutional authority.",
+    featured: false,
+  },
 ];
 
 export default function HomePage() {
