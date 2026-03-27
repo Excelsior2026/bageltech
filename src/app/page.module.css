@@ -315,6 +315,8 @@
 
 .productCard {
   padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .productHeader {
@@ -360,6 +362,44 @@
   margin-top: 0.55rem;
 }
 
+.productActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 1.1rem;
+}
+
+.productCta {
+  display: inline-block;
+  color: var(--accent-deep);
+  text-decoration: none;
+  font-size: 0.9rem;
+  border-bottom: 1px solid rgba(127, 54, 22, 0.2);
+  padding-bottom: 0.1rem;
+  transition: color 180ms ease, border-color 180ms ease;
+}
+
+.productCta:hover {
+  color: var(--accent);
+  border-color: rgba(180, 85, 45, 0.35);
+}
+
+.productCtaSecondary {
+  display: inline-block;
+  color: rgba(23, 32, 51, 0.56);
+  text-decoration: none;
+  font-size: 0.9rem;
+  border-bottom: 1px solid rgba(23, 32, 51, 0.12);
+  padding-bottom: 0.1rem;
+  transition: color 180ms ease, border-color 180ms ease;
+}
+
+.productCtaSecondary:hover {
+  color: rgba(23, 32, 51, 0.82);
+  border-color: rgba(23, 32, 51, 0.28);
+}
+
 .fitSection {
   display: grid;
   grid-template-columns: minmax(0, 0.9fr) minmax(320px, 1.1fr);
@@ -368,6 +408,12 @@
 
 .fitCopy p:last-child {
   margin-bottom: 0;
+}
+
+.fitCopy a {
+  color: var(--accent-deep);
+  text-decoration: underline;
+  text-underline-offset: 2px;
 }
 
 .fitList {
@@ -396,6 +442,35 @@
   font-size: 1.02rem;
 }
 
+/* ── Founder section ── */
+.founderLinks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 1.4rem;
+}
+
+.founderLink {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--accent-deep);
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  border: 1px solid rgba(127, 54, 22, 0.2);
+  background: rgba(180, 85, 45, 0.05);
+  transition: background 180ms ease, border-color 180ms ease, transform 180ms ease;
+}
+
+.founderLink:hover {
+  background: rgba(180, 85, 45, 0.1);
+  border-color: rgba(127, 54, 22, 0.35);
+  transform: translateY(-1px);
+}
+
+/* ── Contact section ── */
 .contactCard {
   padding: 24px;
   background:
@@ -403,6 +478,7 @@
     rgba(127, 54, 22, 0.92);
   color: #fff8f2;
   border-color: rgba(127, 54, 22, 0.25);
+  border-radius: 24px;
 }
 
 .contactCard h2 {
@@ -421,6 +497,65 @@
   color: rgba(255, 248, 242, 0.78);
 }
 
+.contactMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 1.4rem;
+  margin-bottom: 0.4rem;
+  padding: 16px 20px;
+  border-radius: 18px;
+  background: rgba(255, 248, 242, 0.1);
+  border: 1px solid rgba(255, 248, 242, 0.14);
+}
+
+.contactMetaItem {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.contactMetaLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 248, 242, 0.55);
+}
+
+.contactMetaValue {
+  font-size: 0.95rem;
+  color: rgba(255, 248, 242, 0.95);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 248, 242, 0.25);
+  padding-bottom: 1px;
+  transition: color 180ms ease, border-color 180ms ease;
+}
+
+.contactMetaValue:hover {
+  color: #fff;
+  border-color: rgba(255, 248, 242, 0.55);
+}
+
+/* ── Contact card actions override for light-on-dark ── */
+.contactCard .primaryAction {
+  background: rgba(255, 248, 242, 0.96);
+  color: var(--accent-deep);
+  border-color: rgba(255, 248, 242, 0.3);
+}
+
+.contactCard .secondaryAction {
+  background: rgba(255, 248, 242, 0.12);
+  color: rgba(255, 248, 242, 0.9);
+  border-color: rgba(255, 248, 242, 0.22);
+}
+
+.contactCard .primaryAction:hover,
+.contactCard .secondaryAction:hover {
+  transform: translateY(-2px);
+}
+
+/* ── Publication / research links ── */
 .publicationLinks {
   display: flex;
   flex-wrap: wrap;
@@ -434,22 +569,6 @@
   color: var(--accent-deep);
   font-family: var(--font-mono), monospace;
   letter-spacing: 0.04em;
-}
-
-.productCta {
-  display: inline-block;
-  margin-top: 1.1rem;
-  color: var(--accent-deep);
-  text-decoration: none;
-  font-size: 0.9rem;
-  border-bottom: 1px solid rgba(127, 54, 22, 0.2);
-  padding-bottom: 0.1rem;
-  transition: color 180ms ease, border-color 180ms ease;
-}
-
-.productCta:hover {
-  color: var(--accent);
-  border-color: rgba(180, 85, 45, 0.35);
 }
 
 .featuredWorks {
@@ -960,5 +1079,14 @@
   .primaryAction,
   .secondaryAction {
     text-align: center;
+  }
+
+  .contactMeta {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .founderLinks {
+    gap: 8px;
   }
 }

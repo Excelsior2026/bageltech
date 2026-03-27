@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     description:
       "Execution-time governance, ensemble decision systems, and domain-specific AI products built for traceability and accountability.",
     type: "website",
+    url: "https://www.bageltech.net",
   },
 };
 
@@ -75,35 +76,39 @@ const products = [
     label: "Governance engine",
     title: "ELEANOR",
     status: "Core platform",
-    body: "An execution-time governance engine for consequential AI systems. ELEANOR is about authority, uncertainty, escalation, and decision control before action happens.",
+    body: "An execution-time governance engine for consequential AI systems. ELEANOR intercepts decisions before they execute — applying constitutional rights-based reasoning, uncertainty routing, and multi-critic deliberation to determine whether a system should act, escalate, or stop.",
     bullets: [
-      "Interpretive governance instead of static after-the-fact explanation",
-      "Execution, escalation, and defer routing based on risk and authority",
-      "Designed for auditability, traceability, and human oversight",
+      "Six-critic lexicographic architecture: Rights → Autonomy → Fairness → Truth → Risk → Pragmatics",
+      "Execution, escalation, and defer routing based on risk and authority level",
+      "Fail-closed design with full precedent engine and audit trail",
+      "Built for regulated environments, public agencies, and high-stakes AI deployments",
     ],
-    cta: { label: "Read the spec", href: "https://doi.org/10.5281/zenodo.17605176" },
+    cta: { label: "Read the governance spec", href: "https://doi.org/10.5281/zenodo.17605176" },
+    ctaSecondary: { label: "View on GitHub", href: "https://github.com/Excelsior2026" },
   },
   {
     label: "Applied product",
     title: "CogniScribe",
     status: "Active development",
-    body: "A lecture transcription and study companion designed for health professions education with respectful handling of uncertainty.",
+    body: "A lecture transcription and study companion designed specifically for health professions education. Built around the principle that AI in clinical training must handle uncertainty honestly — never overstating confidence, always surfacing what it does not know.",
     bullets: [
-      "Structured notes and study outputs",
-      "Confidence-aware summaries",
-      "Education-first workflow design",
+      "Structured notes and evidence-graded study outputs",
+      "Confidence-aware summaries that flag low-certainty content",
+      "Education-first workflow: respects instructor intent and context",
+      "Designed for nursing, PA, medical, and allied health programs",
     ],
-    cta: { label: "Get early access", href: "mailto:info@bageltech.net?subject=CogniScribe early access" },
+    cta: { label: "Request early access", href: "mailto:bill@bageltech.net?subject=CogniScribe early access" },
   },
   {
     label: "Framework",
     title: "Ensemble Software Engineering",
     status: "Shipping",
-    body: "A reusable ensemble engine for running specialized AI roles over a task, diff, workflow, or domain-specific case with reruns, reports, and dashboards.",
+    body: "A reusable ensemble engine for running specialized AI roles over tasks, pull requests, workflows, or domain-specific cases. Each role has defined scope and authority. No single model quietly generates, judges, approves, and executes its own work.",
     bullets: [
-      "Framework mode with user-defined roles",
-      "Pack mode with fixed role catalogs",
+      "Framework mode with user-defined specialist roles",
+      "Pack mode with fixed role catalogs for common domains",
       "Task, PR, dashboard, export, and replay workflows",
+      "Reports, reruns, and structured comparison built in",
     ],
     cta: { label: "View on GitHub", href: "https://github.com/Excelsior2026" },
   },
@@ -111,22 +116,24 @@ const products = [
     label: "Domain intelligence",
     title: "Contract Management Intelligence",
     status: "Pilot",
-    body: "A contractor-side contract intelligence workflow for review, negotiation posture, obligation extraction, and ongoing management of construction agreements.",
+    body: "A contractor-side contract intelligence workflow for reviewing, negotiating, and managing construction and services agreements. Extracts obligations, flags risk, and monitors compliance across the full contract lifecycle.",
     bullets: [
-      "Bid and contract risk analysis",
-      "Insurance, funding, and compliance review",
-      "Obligation registers and lifecycle monitoring",
+      "Bid and contract risk analysis with structured findings",
+      "Insurance, bonding, funding, and compliance review",
+      "Obligation registers and lifecycle monitoring dashboards",
+      "Designed for subcontractors, GCs, and project owners",
     ],
-    cta: { label: "Inquire about pilot", href: "mailto:info@bageltech.net?subject=CMI pilot inquiry" },
+    cta: { label: "Inquire about pilot", href: "mailto:bill@bageltech.net?subject=CMI pilot inquiry" },
   },
 ];
 
 
 const fitAreas = [
-  "High-stakes internal operations",
-  "Regulated or auditable workflows",
-  "Decision support with human review",
-  "Domain-specific AI products that need traceability",
+  "High-stakes internal operations where mistakes are expensive",
+  "Regulated or auditable workflows requiring traceable decisions",
+  "Decision support systems with required human review checkpoints",
+  "Domain-specific AI products that need explainability and accountability",
+  "Public agencies deploying AI under institutional accountability pressure",
 ];
 
 const bagelCredentials = [
@@ -165,6 +172,7 @@ const founderFacts = [
   "$15M+ enterprise ERP programs led in California regional government",
   "PMP, CSM, DASSM, and Lean Six Sigma Yellow Belt",
   "Builder of governance frameworks, PMOs, and enterprise transformation programs",
+  "Published researcher: AI governance, constitutional AI, intelligence pluralism (Zenodo / ORCID)",
 ];
 
 const selectedWorks = [
@@ -230,10 +238,10 @@ const selectedWorks = [
     featured: false,
   },
   {
-    type: "Essay",
+    type: "Creative work",
     year: "2025",
-    title: "The AI Governance Crisis and the Case for Jurisprudential Oversight",
-    body: "A longer-form public argument that current governance patterns are too static and too brittle for AI systems with real institutional authority.",
+    title: "Shadows of Justice: Inverting Folklore",
+    body: "A parallel creative project exploring power, justice, narrative inversion, and the figures mythology usually flattens into villainy or warning.",
     featured: false,
   },
 ];
@@ -263,7 +271,7 @@ export default function HomePage() {
             <a className={styles.secondaryAction} href="#model">
               How it works
             </a>
-            <a className={styles.secondaryAction} href="mailto:info@bageltech.net">
+            <a className={styles.secondaryAction} href="mailto:bill@bageltech.net">
               Contact
             </a>
           </div>
@@ -388,11 +396,18 @@ export default function HomePage() {
                   <li key={bullet}>{bullet}</li>
                 ))}
               </ul>
-              {product.cta && (
-                <a className={styles.productCta} href={product.cta.href}>
-                  {product.cta.label}
-                </a>
-              )}
+              <div className={styles.productActions}>
+                {product.cta && (
+                  <a className={styles.productCta} href={product.cta.href}>
+                    {product.cta.label}
+                  </a>
+                )}
+                {product.ctaSecondary && (
+                  <a className={styles.productCtaSecondary} href={product.ctaSecondary.href}>
+                    {product.ctaSecondary.label}
+                  </a>
+                )}
+              </div>
             </article>
           ))}
         </div>
@@ -404,7 +419,8 @@ export default function HomePage() {
           <h2>Ideas with an actual paper trail</h2>
           <p>
             The BagelTech direction is backed by serious writing in AI governance, constitutional AI, and intelligence
-            pluralism. Start with these two, then explore the full archive.
+            pluralism. Published under the Jurisprudential AI Governance Initiative on Zenodo. Start with these two,
+            then explore the full archive via ORCID.
           </p>
         </div>
         <div className={styles.featuredWorks}>
@@ -458,6 +474,10 @@ export default function HomePage() {
             This is meant for organizations that need more than a chatbot front-end. The sweet spot is workflows that
             need structured judgment, evidence, and clear human accountability.
           </p>
+          <p>
+            Engagements typically begin with a scoping conversation — reach out to{" "}
+            <a href="mailto:bill@bageltech.net">bill@bageltech.net</a> to start that conversation.
+          </p>
         </div>
         <div className={styles.fitList}>
           {fitAreas.map((item) => (
@@ -488,6 +508,17 @@ export default function HomePage() {
               <li key={fact}>{fact}</li>
             ))}
           </ul>
+          <div className={styles.founderLinks}>
+            <a className={styles.founderLink} href="https://orcid.org/0009-0001-6994-6828">
+              ORCID
+            </a>
+            <a className={styles.founderLink} href="https://linkedin.com/in/billparris92120">
+              LinkedIn
+            </a>
+            <a className={styles.founderLink} href="https://github.com/Excelsior2026">
+              GitHub
+            </a>
+          </div>
         </div>
       </section>
 
@@ -508,6 +539,7 @@ export default function HomePage() {
               <span className={styles.bagelPillActive}>Active · On the couch</span>
               <span className={styles.bagelPill}>CMO since inception</span>
               <span className={styles.bagelPillMuted}>Open to bribery</span>
+              <a className={styles.bagelPillMuted} href="mailto:theboss@bageltech.net" style={{textDecoration:"none"}}>theboss@bageltech.net</a>
             </div>
           </div>
         </div>
@@ -596,11 +628,29 @@ export default function HomePage() {
           <h2>If your workflow cannot afford quiet failure, this is the right conversation.</h2>
           <p>
             BagelTech works best where escalation, auditability, and domain-specific reasoning are part of the product
-            requirement, not a later compliance patch.
+            requirement, not a later compliance patch. Engagements typically begin with a focused scoping
+            conversation — no lengthy RFP required to get started.
           </p>
+          <div className={styles.contactMeta}>
+            <div className={styles.contactMetaItem}>
+              <span className={styles.contactMetaLabel}>Email</span>
+              <a href="mailto:bill@bageltech.net" className={styles.contactMetaValue}>bill@bageltech.net</a>
+            </div>
+            <div className={styles.contactMetaItem}>
+              <span className={styles.contactMetaLabel}>LinkedIn</span>
+              <a href="https://linkedin.com/in/billparris92120" className={styles.contactMetaValue}>William Parris</a>
+            </div>
+            <div className={styles.contactMetaItem}>
+              <span className={styles.contactMetaLabel}>Research</span>
+              <a href="https://orcid.org/0009-0001-6994-6828" className={styles.contactMetaValue}>ORCID profile</a>
+            </div>
+          </div>
           <div className={styles.actions}>
-            <a className={styles.primaryAction} href="mailto:info@bageltech.net">
-              info@bageltech.net
+            <a className={styles.primaryAction} href="mailto:bill@bageltech.net?subject=Scoping conversation">
+              Start a scoping conversation
+            </a>
+            <a className={styles.secondaryAction} href="https://linkedin.com/in/billparris92120">
+              Connect on LinkedIn
             </a>
             <a className={styles.secondaryAction} href="https://github.com/Excelsior2026">
               GitHub
