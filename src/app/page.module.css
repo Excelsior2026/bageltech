@@ -12,6 +12,7 @@
 .researchSection,
 .fitSection,
 .leadershipSection,
+.bagelSection,
 .contactSection {
   margin-top: 24px;
   border: 1px solid var(--border);
@@ -208,6 +209,7 @@
 .researchSection,
 .fitSection,
 .leadershipSection,
+.bagelSection,
 .contactSection {
   padding: 30px 28px;
 }
@@ -596,45 +598,311 @@
 
 .leadershipSection {
   display: grid;
-  grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.7fr);
+  grid-template-columns: 1fr;
   gap: 16px;
 }
 
-.founderCard,
-.mischiefCard {
-  border: 1px solid var(--border);
-  border-radius: 24px;
-  background: var(--surface-strong);
-  padding: 22px;
+.bagelSection {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
-.founderCard h2,
-.mischiefCard h3 {
+.bagelHero {
+  display: flex;
+  gap: 20px;
+  align-items: flex-start;
+}
+
+.bagelAvatar {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(180, 85, 45, 0.1);
+  border: 1px solid rgba(180, 85, 45, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.8rem;
+}
+
+.bagelHeroCopy {
+  flex: 1;
+}
+
+.bagelName {
   font-family: var(--font-serif), serif;
-  letter-spacing: -0.03em;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  line-height: 1.0;
+  letter-spacing: -0.04em;
+  margin: 0.3rem 0 0.85rem;
 }
 
-.founderCard h2 {
-  font-size: clamp(1.9rem, 4vw, 3rem);
-  line-height: 1.06;
+.bagelLead {
+  font-size: 1rem;
+  line-height: 1.72;
+  color: rgba(23, 32, 51, 0.82);
+  max-width: 52rem;
   margin-bottom: 0.85rem;
 }
 
-.founderCard p,
-.mischiefCard p {
-  color: rgba(23, 32, 51, 0.8);
+.bagelPills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.bagelPillActive,
+.bagelPill,
+.bagelPillMuted {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+}
+
+.bagelPillActive {
+  background: rgba(59, 109, 17, 0.09);
+  border: 1px solid rgba(59, 109, 17, 0.22);
+  color: #3b6d11;
+}
+
+.bagelPill {
+  background: rgba(180, 85, 45, 0.09);
+  border: 1px solid rgba(180, 85, 45, 0.22);
+  color: #7f3616;
+}
+
+.bagelPillMuted {
+  background: var(--surface-strong);
+  border: 1px solid var(--border);
+  color: rgba(23, 32, 51, 0.6);
+}
+
+.bagelBody {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
+  gap: 16px;
+}
+
+.bagelDark {
+  border-radius: 24px;
+  background: rgba(20, 25, 36, 0.94);
+  color: #f4efe4;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bagelDarkTag {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(244, 239, 228, 0.55);
+  margin: 0;
+}
+
+.bagelDarkTitle {
+  font-family: var(--font-serif), serif;
+  font-size: 1.4rem;
+  letter-spacing: -0.03em;
+  color: #f4efe4;
+  margin: 0;
+}
+
+.bagelRouting {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.bagelRouteCard {
+  border: 1px solid rgba(244, 239, 228, 0.1);
+  border-radius: 18px;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.bagelRouteLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #f7b285;
+  margin: 0 0 0.4rem;
+}
+
+.bagelRouteTitle {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #f4efe4;
+  margin: 0 0 0.3rem;
+}
+
+.bagelRouteBody {
+  font-size: 0.78rem;
+  color: rgba(244, 239, 228, 0.65);
+  line-height: 1.55;
+  margin: 0;
+}
+
+.bagelStats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.bagelStat {
+  border: 1px solid rgba(244, 239, 228, 0.08);
+  border-radius: 18px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.bagelStatVal {
+  font-family: var(--font-serif), serif;
+  font-size: 2.2rem;
+  line-height: 1;
+  color: #f7b285;
+  margin: 0 0 0.25rem;
+}
+
+.bagelStatLabel {
+  font-size: 0.75rem;
+  color: rgba(244, 239, 228, 0.6);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.bagelRight {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.bagelCredCard,
+.bagelSeriousCard {
+  border: 1px solid var(--border);
+  border-radius: 24px;
+  background: var(--surface-strong);
+  padding: 20px;
+}
+
+.bagelCredCard h3,
+.bagelSeriousCard h3 {
+  font-family: var(--font-serif), serif;
+  font-size: 1.2rem;
+  letter-spacing: -0.03em;
+  margin: 0.3rem 0 0.85rem;
+}
+
+.bagelCredList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.bagelCredItem {
+  padding: 0.55rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.bagelCredItem:last-child {
+  border-bottom: none;
+}
+
+.bagelCredTitle {
+  font-size: 0.88rem;
+  font-weight: 500;
+  margin: 0 0 0.15rem;
+}
+
+.bagelCredInst {
+  font-size: 0.78rem;
+  color: rgba(23, 32, 51, 0.58);
+  margin: 0;
+}
+
+.bagelSeriousCard p {
+  font-size: 0.9rem;
   line-height: 1.7;
+  color: rgba(23, 32, 51, 0.8);
+  margin-bottom: 0.75rem;
 }
 
-.mischiefCard {
-  background:
-    linear-gradient(180deg, rgba(212, 138, 92, 0.18), rgba(255, 250, 241, 0.96)),
-    var(--surface-strong);
+.bagelQuote {
+  font-size: 0.82rem;
+  font-style: italic;
+  line-height: 1.65;
+  color: rgba(23, 32, 51, 0.72);
+  border-left: 2px solid rgba(180, 85, 45, 0.35);
+  margin: 0;
+  padding-left: 0.85rem;
 }
 
-.mischiefCard h3 {
-  font-size: 1.7rem;
-  margin-bottom: 0.7rem;
+.bagelQuote cite {
+  display: block;
+  font-style: normal;
+  font-size: 0.74rem;
+  opacity: 0.65;
+  margin-top: 0.4rem;
+}
+
+.bagelNotes {
+  border-radius: 24px;
+  background: rgba(20, 25, 36, 0.94);
+  color: #f4efe4;
+  padding: 22px;
+}
+
+.bagelNotesTag {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(244, 239, 228, 0.55);
+  margin: 0 0 0.4rem;
+}
+
+.bagelNotesTitle {
+  font-family: var(--font-serif), serif;
+  font-size: 1.4rem;
+  letter-spacing: -0.03em;
+  color: #f4efe4;
+  margin: 0 0 1rem;
+}
+
+.bagelNoteList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.bagelNoteItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.72rem 0;
+  border-bottom: 1px solid rgba(244, 239, 228, 0.08);
+  font-size: 0.9rem;
+  color: #f4efe4;
+  cursor: default;
+}
+
+.bagelNoteItem:last-child {
+  border-bottom: none;
+}
+
+.bagelNoteArrow {
+  font-size: 0.75rem;
+  color: rgba(244, 239, 228, 0.4);
+  flex-shrink: 0;
+  margin-left: 12px;
 }
 
 @media (max-width: 980px) {
@@ -644,7 +912,10 @@
   .cardGrid,
   .featuredWorks,
   .worksGrid,
-  .leadershipSection {
+  .leadershipSection,
+  .bagelBody,
+  .bagelRouting,
+  .bagelStats {
     grid-template-columns: 1fr;
   }
 }
@@ -663,6 +934,7 @@
   .researchSection,
   .fitSection,
   .leadershipSection,
+  .bagelSection,
   .contactSection {
     border-radius: 24px;
     padding: 22px 18px;

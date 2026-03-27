@@ -129,6 +129,37 @@ const fitAreas = [
   "Domain-specific AI products that need traceability",
 ];
 
+const bagelCredentials = [
+  {
+    title: "Certificate in Advanced Sock Retrieval",
+    inst: "Self-awarded · Ongoing field research · GPA: 4.0 (treats)",
+  },
+  {
+    title: "Lead Investigator, Snack Infrastructure Audit",
+    inst: "3-year longitudinal study · All cabinets · Findings: insufficient",
+  },
+  {
+    title: "Distinguished Fellow, Couch Governance Institute",
+    inst: "Founding member · Tenure track · No peer review",
+  },
+  {
+    title: "Practitioner, Selective Deafness as Escalation Policy",
+    inst: "Certified when called · Never when warranted",
+  },
+  {
+    title: "PMO — Primary Morale Officer",
+    inst: "BagelTech HQ · Concurrent with CMO role · No PMP required",
+  },
+];
+
+const bagelLabNotes = [
+  "AI's moral blind spot — and why a beagle could catch it",
+  "The art of chewing through bureaucracy (a field guide)",
+  "How to build a PMO without losing your sanity, or your socks",
+  "Uncertainty is not a confidence score — it is a routing instruction",
+  "Escalation theater: when the dog barks but no one is listening",
+];
+
 const founderFacts = [
   "25+ years of public-sector technology leadership",
   "$15M+ enterprise ERP programs led in California regional government",
@@ -451,11 +482,105 @@ export default function HomePage() {
             ))}
           </ul>
         </div>
-        <aside className={styles.mischiefCard}>
-          <p className={styles.sectionTag}>Executive corner</p>
-          <h3>Bagel Mischief</h3>
-          <p>Chief Mischief Officer, morale lead, and occasional executive presence.</p>
-        </aside>
+      </section>
+
+      <section className={styles.bagelSection} id="bagel">
+        <div className={styles.bagelHero}>
+          <div className={styles.bagelAvatar} aria-hidden="true">
+            <span>🐶</span>
+          </div>
+          <div className={styles.bagelHeroCopy}>
+            <p className={styles.sectionTag}>Executive corner · Chief Mischief Officer</p>
+            <h2 className={styles.bagelName}>Bagel Mischief<br />Parris Vargas</h2>
+            <p className={styles.bagelLead}>
+              Beagle. Governance theorist. Distinguished destroyer of USB infrastructure. Bagel holds no formal
+              credentials but has, through years of applied chaos, independently derived most of the principles
+              BagelTech charges for.
+            </p>
+            <div className={styles.bagelPills}>
+              <span className={styles.bagelPillActive}>Active · On the couch</span>
+              <span className={styles.bagelPill}>CMO since inception</span>
+              <span className={styles.bagelPillMuted}>Open to bribery</span>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.bagelBody}>
+          <div className={styles.bagelDark}>
+            <p className={styles.bagelDarkTag}>Bagel&rsquo;s governance doctrine</p>
+            <h3 className={styles.bagelDarkTitle}>Decision routing, as Bagel practices it</h3>
+            <div className={styles.bagelRouting}>
+              <div className={styles.bagelRouteCard}>
+                <p className={styles.bagelRouteLabel}>Execute</p>
+                <p className={styles.bagelRouteTitle}>Snack detected</p>
+                <p className={styles.bagelRouteBody}>Sufficient evidence. Scope clear. Counter within reach. No further review required.</p>
+              </div>
+              <div className={styles.bagelRouteCard}>
+                <p className={styles.bagelRouteLabel}>Escalate</p>
+                <p className={styles.bagelRouteTitle}>Leash materialized</p>
+                <p className={styles.bagelRouteBody}>Ambiguous authority. Outcome uncertain. Howl until a human reviews the situation.</p>
+              </div>
+              <div className={styles.bagelRouteCard}>
+                <p className={styles.bagelRouteLabel}>Defer</p>
+                <p className={styles.bagelRouteTitle}>The word &ldquo;bath&rdquo;</p>
+                <p className={styles.bagelRouteBody}>Insufficient confidence. Mission unclear. Relocate under the bed and await new information.</p>
+              </div>
+            </div>
+            <div className={styles.bagelStats}>
+              <div className={styles.bagelStat}>
+                <p className={styles.bagelStatVal}>3</p>
+                <p className={styles.bagelStatLabel}>USB cables chewed this week (conservative estimate)</p>
+              </div>
+              <div className={styles.bagelStat}>
+                <p className={styles.bagelStatVal}>∞</p>
+                <p className={styles.bagelStatLabel}>Hours of napping while governance papers were written nearby</p>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.bagelRight}>
+            <div className={styles.bagelCredCard}>
+              <p className={styles.sectionTag}>Credentials and distinguished service</p>
+              <h3>Official record</h3>
+              <ul className={styles.bagelCredList}>
+                {bagelCredentials.map((c) => (
+                  <li key={c.title} className={styles.bagelCredItem}>
+                    <p className={styles.bagelCredTitle}>{c.title}</p>
+                    <p className={styles.bagelCredInst}>{c.inst}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className={styles.bagelSeriousCard}>
+              <p className={styles.sectionTag}>Why this matters to you</p>
+              <h3>The serious point</h3>
+              <p>
+                BagelTech works on systems where failure has real consequences. Bagel is here because the
+                organizations that handle consequential work best are the ones secure enough to laugh at themselves.
+                We joke because we know what we&rsquo;re doing.
+              </p>
+              <blockquote className={styles.bagelQuote}>
+                &ldquo;A governance system that cannot explain itself in plain language to a distracted beagle is
+                not yet legible enough for a public agency.&rdquo;
+                <cite>— W. Parris, probably</cite>
+              </blockquote>
+            </div>
+          </div>
+        </div>
+
+        <div className={styles.bagelNotes}>
+          <p className={styles.bagelNotesTag}>Bagel&rsquo;s lab notes · Field observations on AI governance</p>
+          <h3 className={styles.bagelNotesTitle}>Mischief with footnotes</h3>
+          <ul className={styles.bagelNoteList}>
+            {bagelLabNotes.map((note) => (
+              <li key={note} className={styles.bagelNoteItem}>
+                <span>{note}</span>
+                <span className={styles.bagelNoteArrow}>↗</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </section>
 
       <section className={styles.contactSection} id="contact">
