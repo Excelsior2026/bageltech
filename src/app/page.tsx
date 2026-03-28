@@ -113,6 +113,20 @@ const products = [
     cta: { label: "View on GitHub", href: "https://github.com/Excelsior2026" },
   },
   {
+    label: "Research tool",
+    title: "AIRA — AI-Induced Risk Audit",
+    status: "Live",
+    body: "A static analysis framework and live web scanner that detects failure patterns systematically introduced by AI-generated code. Grounded in the Reward-Shaped Failure Hypothesis: AI coding agents are trained to suppress visible failure, producing a predictable, non-random class of silent errors that standard code review misses.",
+    bullets: [
+      "15 structured audit checks across Python and JavaScript/TypeScript",
+      "Detects silent exception suppression, ambiguous return contracts, bypass paths, and more",
+      "Live web scanner — paste code, upload a file, or point at a GitHub repo",
+      "Open-source CLI and VS Code extension · Research dataset collection underway",
+    ],
+    cta: { label: "Try the scanner", href: "https://aira.bageltech.net" },
+    ctaSecondary: { label: "View on GitHub", href: "https://github.com/bageltech/aira-scanner" },
+  },
+  {
     label: "Domain intelligence",
     title: "Contract Management Intelligence",
     status: "Pilot",
@@ -176,6 +190,15 @@ const founderFacts = [
 ];
 
 const selectedWorks = [
+  {
+    type: "Framework · Tool",
+    year: "2026",
+    title: "AIRA v1.2 — AI-Induced Risk Audit",
+    body: "A structured inspection framework and live scanning tool for detecting training-incentive-driven failure patterns in AI-generated code. Introduces the Reward-Shaped Failure Hypothesis as a testable empirical claim about how RLHF shapes failure distribution in codebases.",
+    href: "https://aira.bageltech.net",
+    linkLabel: "Try the scanner",
+    featured: true,
+  },
   {
     type: "Journal article",
     year: "2026",
