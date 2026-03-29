@@ -278,3 +278,35 @@ export default function HomePage() {
           </div>
         </aside>
       </section>
+
+      <section className={styles.principles}>
+        <div className={styles.sectionIntro}>
+          <p className={styles.sectionTag}>Core stance</p>
+          <h2>We care less about AI theater and more about operational behavior.</h2>
+          <p>BagelTech is built around a simple idea: the hardest failures happen at execution time. That is where systems need better judgment, cleaner boundaries, and safer escalation paths.</p>
+        </div>
+        <div className={styles.cardGrid}>
+          {principles.map((principle) => (
+            <article className={styles.infoCard} key={principle.title}>
+              <h3>{principle.title}</h3>
+              <p>{principle.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section className={styles.servicesSection} id="services">
+        <div className={styles.sectionIntro}>
+          <p className={styles.sectionTag}>Consulting and advisory</p>
+          <h2>Where BagelTech can help directly</h2>
+          <p>The consulting side of BagelTech sits at the intersection of governance, AI, digital transformation, and product strategy. The through-line is simple: make complex systems more legible, more responsible, and more operationally useful.</p>
+        </div>
+        <div className={styles.cardGrid}>
+          {services.map((service) => (
+            <article className={styles.infoCard} key={service.title}>
+              <h3>{service.title}</h3>
+              <p>{service.body}</p>
+            </article>
+          ))}
+        </div>
+      </section>
