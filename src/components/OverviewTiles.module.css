@@ -1,0 +1,34 @@
+.wrapper {
+  padding: 28px 0;
+}
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  align-items: stretch;
+}
+.tile {
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  text-decoration: none;
+  color: var(--foreground);
+  background: rgba(255, 255, 255, 0.04);
+  display: flex;
+  flex-direction: column;
+}
+.tileTitle {
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 6px;
+}
+.tileSubtitle {
+  font-size: 0.92rem;
+  color: rgba(23, 32, 51, 0.7);
+  margin-bottom: auto;
+}
+.tileCTA {
+  font-size: 0.9rem;
+  color: var(--accent-deep);
+  margin-top: 6px;
+}
