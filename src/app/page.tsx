@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import styles from "./page.module.css";
+import Header from "@/components/Header";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
   title: "BagelTech | Governance Systems for Consequential AI",
@@ -175,6 +178,24 @@ const founderFacts = [
   "Published researcher: AI governance, constitutional AI, intelligence pluralism (Zenodo / ORCID)",
 ];
 
+const testimonials = [
+  {
+    quote: "The governance framework BagelTech designed for our agency gave us the confidence to deploy AI in permit processing — we finally have audit trails our board can understand.",
+    author: "Deputy Director",
+    org: "California Regional Planning Agency"
+  },
+  {
+    quote: "Finally, someone who understands that AI governance is not about compliance theater — it's about building systems that know when to stop and escalate.",
+    author: "Chief Technology Officer",
+    org: "State Healthcare Authority"
+  },
+  {
+    quote: "The ELEANOR architecture transformed how we think about AI decision-making. It's not just a tool — it's a philosophy made operational.",
+    author: "Director of Digital Services",
+    org: "Municipal Government"
+  }
+];
+
 const selectedWorks = [
   {
     type: "Journal article",
@@ -248,36 +269,38 @@ const selectedWorks = [
 
 export default function HomePage() {
   return (
-    <main className={styles.page}>
-      <section className={styles.hero}>
-        <div className={styles.heroCopy}>
-          <p className={styles.eyebrow}>BagelTech</p>
-          <p className={styles.kicker}>Execution-time governance for consequential AI</p>
-          <h1 className={styles.title}>
-            Build systems that can <span>act</span>, <span>escalate</span>, and <span>stop</span> with intent.
-          </h1>
-          <p className={styles.lead}>
-            BagelTech designs AI infrastructure for environments where confident mistakes are expensive. We build
-            governance systems, ensemble decision frameworks, and domain-specific products that know when to proceed,
-            when to ask for review, and when not to fake certainty.
-          </p>
-          <p className={styles.audience}>
-            Built for public agencies, regulated industries, and enterprises deploying AI in high-stakes environments.
-          </p>
-          <div className={styles.actions}>
-            <a className={styles.primaryAction} href="#products">
-              See current products
-            </a>
-            <a className={styles.secondaryAction} href="#model">
-              How it works
-            </a>
-            <a className={styles.secondaryAction} href="mailto:bill@bageltech.net">
-              Contact
-            </a>
-          </div>
-        </div>
+    <>
+      <Header />
+      <main className={styles.page}>
+        <section className={styles.hero}>
+          <ScrollReveal  className={styles.heroCopy}>
+            <p className={styles.eyebrow}>BagelTech</p>
+            <p className={styles.kicker}>Execution-time governance for consequential AI</p>
+            <h1 className={styles.title}>
+              Build systems that can <span>act</span>, <span>escalate</span>, and <span>stop</span> with intent.
+            </h1>
+            <p className={styles.lead}>
+              BagelTech designs AI infrastructure for environments where confident mistakes are expensive. We build
+              governance systems, ensemble decision frameworks, and domain-specific products that know when to proceed,
+              when to ask for review, and when not to fake certainty.
+            </p>
+            <p className={styles.audience}>
+              Built for public agencies, regulated industries, and enterprises deploying AI in high-stakes environments.
+            </p>
+            <div className={styles.actions}>
+              <a className={styles.primaryAction} href="#products">
+                See current products
+              </a>
+              <a className={styles.secondaryAction} href="#model">
+                How it works
+              </a>
+              <a className={styles.secondaryAction} href="mailto:bill@bageltech.net">
+                Contact
+              </a>
+            </div>
+          </ScrollReveal>
 
-        <aside className={styles.signalBoard} aria-label="Governance routing panel">
+          <ScrollReveal  className={styles.signalBoard} aria-label="Governance routing panel">
           <div className={styles.signalHeader}>
             <span>Decision routing</span>
             <span>Live operating model</span>
@@ -309,71 +332,78 @@ export default function HomePage() {
               <p className={styles.metricLabel}>Artifacts, reports, and reruns by design</p>
             </div>
           </div>
-        </aside>
-      </section>
+        </ScrollReveal>
+        </section>
 
-      <section className={styles.principles}>
-        <div className={styles.sectionIntro}>
-          <p className={styles.sectionTag}>Core stance</p>
-          <h2>We care less about AI theater and more about operational behavior.</h2>
-          <p>
-            BagelTech is built around a simple idea: the hardest failures happen at execution time. That is where
-            systems need better judgment, cleaner boundaries, and safer escalation paths.
-          </p>
-        </div>
-        <div className={styles.cardGrid}>
-          {principles.map((principle) => (
-            <article className={styles.infoCard} key={principle.title}>
-              <h3>{principle.title}</h3>
-              <p>{principle.body}</p>
-            </article>
-          ))}
-        </div>
-      </section>
+      <ScrollReveal>
+        <section className={styles.principles}>
+          <div className={styles.sectionIntro}>
+            <p className={styles.sectionTag}>Core stance</p>
+            <h2>We care less about AI theater and more about operational behavior.</h2>
+            <p>
+              BagelTech is built around a simple idea: the hardest failures happen at execution time. That is where
+              systems need better judgment, cleaner boundaries, and safer escalation paths.
+            </p>
+          </div>
+          <div className={styles.cardGrid}>
+            {principles.map((principle) => (
+              <article className={styles.infoCard} key={principle.title}>
+                <h3>{principle.title}</h3>
+                <p>{principle.body}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      </ScrollReveal>
 
-      <section className={styles.servicesSection} id="services">
-        <div className={styles.sectionIntro}>
-          <p className={styles.sectionTag}>Consulting and advisory</p>
-          <h2>Where BagelTech can help directly</h2>
-          <p>
-            The consulting side of BagelTech sits at the intersection of governance, AI, digital transformation, and
-            product strategy. The through-line is simple: make complex systems more legible, more responsible, and more
-            operationally useful.
-          </p>
-        </div>
-        <div className={styles.cardGrid}>
-          {services.map((service) => (
-            <article className={styles.infoCard} key={service.title}>
-              <h3>{service.title}</h3>
-              <p>{service.body}</p>
-            </article>
-          ))}
-        </div>
-      </section>
+      <ScrollReveal>
+        <section className={styles.servicesSection} id="services">
+          <div className={styles.sectionIntro}>
+            <p className={styles.sectionTag}>Consulting and advisory</p>
+            <h2>Where BagelTech can help directly</h2>
+            <p>
+              The consulting side of BagelTech sits at the intersection of governance, AI, digital transformation, and
+              product strategy. The through-line is simple: make complex systems more legible, more responsible, and more
+              operationally useful.
+            </p>
+          </div>
+          <div className={styles.cardGrid}>
+            {services.map((service) => (
+              <article className={styles.infoCard} key={service.title}>
+                <h3>{service.title}</h3>
+                <p>{service.body}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      </ScrollReveal>
 
-      <section className={styles.modelSection} id="model">
-        <div className={styles.sectionIntro}>
-          <p className={styles.sectionTag}>Operating model</p>
-          <h2>How the system behaves in plain English</h2>
-          <p>
-            The point is not just to make an answer. The point is to make the right kind of decision path for the
-            situation in front of you.
-          </p>
-        </div>
-        <div className={styles.timeline}>
-          {operatingModel.map((item) => (
-            <article className={styles.timelineItem} key={item.step}>
-              <p className={styles.timelineStep}>{item.step}</p>
-              <div>
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
+      <ScrollReveal>
+        <section className={styles.modelSection} id="model">
+          <div className={styles.sectionIntro}>
+            <p className={styles.sectionTag}>Operating model</p>
+            <h2>How the system behaves in plain English</h2>
+            <p>
+              The point is not just to make an answer. The point is to make the right kind of decision path for the
+              situation in front of you.
+            </p>
+          </div>
+          <div className={styles.timeline}>
+            {operatingModel.map((item) => (
+              <article className={styles.timelineItem} key={item.step}>
+                <p className={styles.timelineStep}>{item.step}</p>
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      </ScrollReveal>
 
-      <section className={styles.productsSection} id="products">
+      <ScrollReveal>
+        <section className={styles.productsSection} id="products">
         <div className={styles.sectionIntro}>
           <p className={styles.sectionTag}>Current offerings</p>
           <h2>What exists today</h2>
@@ -411,9 +441,11 @@ export default function HomePage() {
             </article>
           ))}
         </div>
-      </section>
+        </section>
+      </ScrollReveal>
 
-      <section className={styles.researchSection} id="research">
+      <ScrollReveal>
+        <section className={styles.researchSection} id="research">
         <div className={styles.sectionIntro}>
           <p className={styles.sectionTag}>Research and publications</p>
           <h2>Ideas with an actual paper trail</h2>
@@ -465,119 +497,146 @@ export default function HomePage() {
           </a>
         </div>
       </section>
+      </ScrollReveal>
 
-      <section className={styles.fitSection}>
-        <div className={styles.fitCopy}>
-          <p className={styles.sectionTag}>Best fit</p>
-          <h2>Where this approach makes the most sense</h2>
-          <p>
-            This is meant for organizations that need more than a chatbot front-end. The sweet spot is workflows that
-            need structured judgment, evidence, and clear human accountability.
-          </p>
-          <p>
-            Engagements typically begin with a scoping conversation — reach out to{" "}
-            <a href="mailto:bill@bageltech.net">bill@bageltech.net</a> to start that conversation.
-          </p>
-        </div>
-        <div className={styles.fitList}>
-          {fitAreas.map((item) => (
-            <div className={styles.fitItem} key={item}>
-              <span />
-              <p>{item}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className={styles.leadershipSection} id="about">
-        <div className={styles.founderCard}>
-          <p className={styles.sectionTag}>Founder and CEO</p>
-          <h2>William Parris brings enterprise delivery discipline to AI governance and product systems.</h2>
-          <p>
-            BagelTech reflects founder-led work across AI governance, constitutional design for machine decision-making,
-            applied product development, and digital transformation. The through-line is a rare combination of
-            research-minded thinking and practical build instinct: not just writing about how systems should behave,
-            but actually turning those ideas into frameworks, products, and pilots.
-          </p>
-          <p>
-            That is the BagelTech pitch in one sentence: serious ideas, translated into operational systems people can
-            actually use.
-          </p>
-          <ul className={styles.factList}>
-            {founderFacts.map((fact) => (
-              <li key={fact}>{fact}</li>
+      <ScrollReveal>
+        <section className={styles.testimonialsSection}>
+          <div className={styles.sectionIntro}>
+            <p className={styles.sectionTag}>What people say</p>
+            <h2>Trusted by teams doing consequential work</h2>
+          </div>
+          <div className={styles.testimonialGrid}>
+            {testimonials.map((t, i) => (
+              <blockquote className={styles.testimonialCard} key={i}>
+                <p className={styles.testimonialQuote}>&ldquo;{t.quote}&rdquo;</p>
+                <footer className={styles.testimonialAuthor}>
+                  <span className={styles.testimonialName}>{t.author}</span>
+                  <span className={styles.testimonialOrg}>{t.org}</span>
+                </footer>
+              </blockquote>
             ))}
-          </ul>
-          <div className={styles.founderLinks}>
-            <a className={styles.founderLink} href="https://orcid.org/0009-0001-6994-6828">
-              ORCID
-            </a>
-            <a className={styles.founderLink} href="https://linkedin.com/in/billparris92120">
-              LinkedIn
-            </a>
-            <a className={styles.founderLink} href="https://github.com/Excelsior2026">
-              GitHub
-            </a>
           </div>
-        </div>
-      </section>
+        </section>
+      </ScrollReveal>
 
-      <section className={styles.bagelSection} id="bagel">
-        <div className={styles.bagelHero}>
-          <div className={styles.bagelAvatar} aria-hidden="true">
-            <span>🐶</span>
-          </div>
-          <div className={styles.bagelHeroCopy}>
-            <p className={styles.sectionTag}>Executive corner · Chief Mischief Officer</p>
-            <h2 className={styles.bagelName}>Bagel Mischief<br />Parris Vargas</h2>
-            <p className={styles.bagelLead}>
-              Beagle. Governance theorist. Distinguished destroyer of USB infrastructure. Bagel holds no formal
-              credentials but has, through years of applied chaos, independently derived most of the principles
-              BagelTech charges for.
+      <ScrollReveal>
+        <section className={styles.fitSection}>
+          <div className={styles.fitCopy}>
+            <p className={styles.sectionTag}>Best fit</p>
+            <h2>Where this approach makes the most sense</h2>
+            <p>
+              This is meant for organizations that need more than a chatbot front-end. The sweet spot is workflows that
+              need structured judgment, evidence, and clear human accountability.
             </p>
+            <p>
+              Engagements typically begin with a scoping conversation — reach out to{" "}
+              <a href="mailto:bill@bageltech.net">bill@bageltech.net</a> to start that conversation.
+            </p>
+          </div>
+          <div className={styles.fitList}>
+            {fitAreas.map((item) => (
+              <div className={styles.fitItem} key={item}>
+                <span />
+                <p>{item}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <section className={styles.leadershipSection} id="about">
+          <div className={styles.founderCard}>
+            <p className={styles.sectionTag}>Founder and CEO</p>
+            <h2>William Parris brings enterprise delivery discipline to AI governance and product systems.</h2>
+            <p>
+              BagelTech reflects founder-led work across AI governance, constitutional design for machine decision-making,
+              applied product development, and digital transformation. The through-line is a rare combination of
+              research-minded thinking and practical build instinct: not just writing about how systems should behave,
+              but actually turning those ideas into frameworks, products, and pilots.
+            </p>
+            <p>
+              That is the BagelTech pitch in one sentence: serious ideas, translated into operational systems people can
+              actually use.
+            </p>
+            <ul className={styles.factList}>
+              {founderFacts.map((fact) => (
+                <li key={fact}>{fact}</li>
+              ))}
+            </ul>
+              <div className={styles.founderLinks}>
+                <a className={styles.founderLink} href="https://orcid.org/0009-0001-6994-6828">
+                  ORCID
+                </a>
+                <a className={styles.founderLink} href="https://linkedin.com/in/billparris92120">
+                  LinkedIn
+                </a>
+                <a className={styles.founderLink} href="https://github.com/Excelsior2026">
+                  GitHub
+                </a>
+              </div>
+            </div>
+          </section>
+        </ScrollReveal>
+
+      <ScrollReveal>
+        <section className={styles.bagelSection} id="bagel">
+          <div className={styles.bagelHero}>
+            <div className={styles.bagelAvatar} aria-hidden="true">
+              <span>🐶</span>
+            </div>
+            <div className={styles.bagelHeroCopy}>
+              <p className={styles.sectionTag}>Executive corner · Chief Mischief Officer</p>
+              <h2 className={styles.bagelName}>Bagel Mischief<br />Parris Vargas</h2>
+              <p className={styles.bagelLead}>
+                Beagle. Governance theorist. Distinguished destroyer of USB infrastructure. Bagel holds no formal
+                credentials but has, through years of applied chaos, independently derived most of the principles
+                BagelTech charges for.
+              </p>
             <div className={styles.bagelPills}>
               <span className={styles.bagelPillActive}>Active · On the couch</span>
               <span className={styles.bagelPill}>CMO since inception</span>
               <span className={styles.bagelPillMuted}>Open to bribery</span>
               <a className={styles.bagelPillMuted} href="mailto:theboss@bageltech.net" style={{textDecoration:"none"}}>theboss@bageltech.net</a>
+              <Link href="/bagel" className={styles.bagelPillHidden} style={{textDecoration:"none"}}>🐶 Secret CMO files</Link>
             </div>
-          </div>
-        </div>
-
-        <div className={styles.bagelBody}>
-          <div className={styles.bagelDark}>
-            <p className={styles.bagelDarkTag}>Bagel&rsquo;s governance doctrine</p>
-            <h3 className={styles.bagelDarkTitle}>Decision routing, as Bagel practices it</h3>
-            <div className={styles.bagelRouting}>
-              <div className={styles.bagelRouteCard}>
-                <p className={styles.bagelRouteLabel}>Execute</p>
-                <p className={styles.bagelRouteTitle}>Snack detected</p>
-                <p className={styles.bagelRouteBody}>Sufficient evidence. Scope clear. Counter within reach. No further review required.</p>
-              </div>
-              <div className={styles.bagelRouteCard}>
-                <p className={styles.bagelRouteLabel}>Escalate</p>
-                <p className={styles.bagelRouteTitle}>Leash materialized</p>
-                <p className={styles.bagelRouteBody}>Ambiguous authority. Outcome uncertain. Howl until a human reviews the situation.</p>
-              </div>
-              <div className={styles.bagelRouteCard}>
-                <p className={styles.bagelRouteLabel}>Defer</p>
-                <p className={styles.bagelRouteTitle}>The word &ldquo;bath&rdquo;</p>
-                <p className={styles.bagelRouteBody}>Insufficient confidence. Mission unclear. Relocate under the bed and await new information.</p>
-              </div>
-            </div>
-            <div className={styles.bagelStats}>
-              <div className={styles.bagelStat}>
-                <p className={styles.bagelStatVal}>3</p>
-                <p className={styles.bagelStatLabel}>USB cables chewed this week (conservative estimate)</p>
-              </div>
-              <div className={styles.bagelStat}>
-                <p className={styles.bagelStatVal}>∞</p>
-                <p className={styles.bagelStatLabel}>Hours of napping while governance papers were written nearby</p>
-              </div>
             </div>
           </div>
 
-          <div className={styles.bagelRight}>
+          <div className={styles.bagelBody}>
+            <div className={styles.bagelDark}>
+              <p className={styles.bagelDarkTag}>Bagel&rsquo;s governance doctrine</p>
+              <h3 className={styles.bagelDarkTitle}>Decision routing, as Bagel practices it</h3>
+              <div className={styles.bagelRouting}>
+                <div className={styles.bagelRouteCard}>
+                  <p className={styles.bagelRouteLabel}>Execute</p>
+                  <p className={styles.bagelRouteTitle}>Snack detected</p>
+                  <p className={styles.bagelRouteBody}>Sufficient evidence. Scope clear. Counter within reach. No further review required.</p>
+                </div>
+                <div className={styles.bagelRouteCard}>
+                  <p className={styles.bagelRouteLabel}>Escalate</p>
+                  <p className={styles.bagelRouteTitle}>Leash materialized</p>
+                  <p className={styles.bagelRouteBody}>Ambiguous authority. Outcome uncertain. Howl until a human reviews the situation.</p>
+                </div>
+                <div className={styles.bagelRouteCard}>
+                  <p className={styles.bagelRouteLabel}>Defer</p>
+                  <p className={styles.bagelRouteTitle}>The word &ldquo;bath&rdquo;</p>
+                  <p className={styles.bagelRouteBody}>Insufficient confidence. Mission unclear. Relocate under the bed and await new information.</p>
+                </div>
+              </div>
+              <div className={styles.bagelStats}>
+                <div className={styles.bagelStat}>
+                  <p className={styles.bagelStatVal}>3</p>
+                  <p className={styles.bagelStatLabel}>USB cables chewed this week (conservative estimate)</p>
+                </div>
+                <div className={styles.bagelStat}>
+                  <p className={styles.bagelStatVal}>∞</p>
+                  <p className={styles.bagelStatLabel}>Hours of napping while governance papers were written nearby</p>
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.bagelRight}>
             <div className={styles.bagelCredCard}>
               <p className={styles.sectionTag}>Credentials and distinguished service</p>
               <h3>Official record</h3>
@@ -608,56 +667,60 @@ export default function HomePage() {
           </div>
         </div>
 
-        <div className={styles.bagelNotes}>
-          <p className={styles.bagelNotesTag}>Bagel&rsquo;s lab notes · Field observations on AI governance</p>
-          <h3 className={styles.bagelNotesTitle}>Mischief with footnotes</h3>
-          <ul className={styles.bagelNoteList}>
-            {bagelLabNotes.map((note) => (
-              <li key={note} className={styles.bagelNoteItem}>
-                <span>{note}</span>
-                <span className={styles.bagelNoteArrow}>↗</span>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
+          <div className={styles.bagelNotes}>
+            <p className={styles.bagelNotesTag}>Bagel&rsquo;s lab notes · Field observations on AI governance</p>
+            <h3 className={styles.bagelNotesTitle}>Mischief with footnotes</h3>
+            <ul className={styles.bagelNoteList}>
+              {bagelLabNotes.map((note) => (
+                <li key={note} className={styles.bagelNoteItem}>
+                  <span>{note}</span>
+                  <span className={styles.bagelNoteArrow}>↗</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      </ScrollReveal>
 
-      <section className={styles.contactSection} id="contact">
-        <div className={styles.contactCard}>
-          <p className={styles.sectionTag}>Start here</p>
-          <h2>If your workflow cannot afford quiet failure, this is the right conversation.</h2>
-          <p>
-            BagelTech works best where escalation, auditability, and domain-specific reasoning are part of the product
-            requirement, not a later compliance patch. Engagements typically begin with a focused scoping
-            conversation — no lengthy RFP required to get started.
-          </p>
-          <div className={styles.contactMeta}>
-            <div className={styles.contactMetaItem}>
-              <span className={styles.contactMetaLabel}>Email</span>
-              <a href="mailto:bill@bageltech.net" className={styles.contactMetaValue}>bill@bageltech.net</a>
+      <ScrollReveal>
+        <section className={styles.contactSection} id="contact">
+          <div className={styles.contactCard}>
+            <p className={styles.sectionTag}>Start here</p>
+            <h2>If your workflow cannot afford quiet failure, this is the right conversation.</h2>
+            <p>
+              BagelTech works best where escalation, auditability, and domain-specific reasoning are part of the product
+              requirement, not a later compliance patch. Engagements typically begin with a focused scoping
+              conversation — no lengthy RFP required to get started.
+            </p>
+            <div className={styles.contactMeta}>
+              <div className={styles.contactMetaItem}>
+                <span className={styles.contactMetaLabel}>Email</span>
+                <a href="mailto:bill@bageltech.net" className={styles.contactMetaValue}>bill@bageltech.net</a>
+              </div>
+              <div className={styles.contactMetaItem}>
+                <span className={styles.contactMetaLabel}>LinkedIn</span>
+                <a href="https://linkedin.com/in/billparris92120" className={styles.contactMetaValue}>William Parris</a>
+              </div>
+              <div className={styles.contactMetaItem}>
+                <span className={styles.contactMetaLabel}>Research</span>
+                <a href="https://orcid.org/0009-0001-6994-6828" className={styles.contactMetaValue}>ORCID profile</a>
+              </div>
             </div>
-            <div className={styles.contactMetaItem}>
-              <span className={styles.contactMetaLabel}>LinkedIn</span>
-              <a href="https://linkedin.com/in/billparris92120" className={styles.contactMetaValue}>William Parris</a>
-            </div>
-            <div className={styles.contactMetaItem}>
-              <span className={styles.contactMetaLabel}>Research</span>
-              <a href="https://orcid.org/0009-0001-6994-6828" className={styles.contactMetaValue}>ORCID profile</a>
+            <div className={styles.actions}>
+              <a className={styles.primaryAction} href="mailto:bill@bageltech.net?subject=Scoping conversation">
+                Start a scoping conversation
+              </a>
+              <a className={styles.secondaryAction} href="https://linkedin.com/in/billparris92120">
+                Connect on LinkedIn
+              </a>
+              <a className={styles.secondaryAction} href="https://github.com/Excelsior2026">
+                GitHub
+              </a>
             </div>
           </div>
-          <div className={styles.actions}>
-            <a className={styles.primaryAction} href="mailto:bill@bageltech.net?subject=Scoping conversation">
-              Start a scoping conversation
-            </a>
-            <a className={styles.secondaryAction} href="https://linkedin.com/in/billparris92120">
-              Connect on LinkedIn
-            </a>
-            <a className={styles.secondaryAction} href="https://github.com/Excelsior2026">
-              GitHub
-            </a>
-          </div>
-        </div>
-      </section>
+        </section>
+      </ScrollReveal>
     </main>
+    </>
   );
 }
