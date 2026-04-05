@@ -1,0 +1,10 @@
+.page { padding: 2rem; }
+.header { margin-bottom: 1rem; }
+.grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1rem; }
+.card { border: 1px solid var(--border); border-radius: 12px; padding: 1rem; background: rgba(255,255,255,0.04); }
+.cardHeader { display:flex; align-items:center; justify-content: space-between; margin-bottom: .5rem; }
+.icon { font-size: 1.4rem; }
+.cardTitle { font-size: 1.05rem; margin: 0; }
+.cardBody { font-size: .95rem; color: rgba(0,0,0,.85); }
+.cardFooter { margin-top: .5rem; }
+.resultsList { margin: .25rem 0 0; padding-left: 1.1rem; }
