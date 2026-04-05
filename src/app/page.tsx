@@ -31,6 +31,11 @@ const principles = [
     body: "Every consequential decision should leave behind evidence, rationale, and a clean human handoff.",
   },
 ];
+const caseStudies = [
+  { title: "Permit Processing Efficiency", challenge: "High-volume permits with inconsistent decisions and missing audit trails", solution: "Applied ELEANOR governance to route decisions with audit trails", results: ["90% faster processing", "Audit-ready decisions", "Reduced retries by 40%"], icon: "🏛️" },
+  { title: "Public Safety AI Deployment", challenge: "Uncertain routing during crises", solution: "Ensembled decision framework with escalation to human operator", results: ["50% faster response", "97% accuracy in triage"], icon: "🚨" },
+  { title: "Healthcare Education Transcript", challenge: "Uncertain outputs and inconsistent note-taking", solution: "CogniScribe with uncertainty flags", results: ["Improved study notes", "Higher student satisfaction"], icon: "🏥" }
+];
 
 const operatingModel = [
   {
@@ -377,7 +382,6 @@ export default function HomePage() {
               <p className={styles.metricLabel}>Artifacts, reports, and reruns by design</p>
             </div>
           </div>
-      </ScrollReveal>
         </section>
       </ScrollReveal>
 
