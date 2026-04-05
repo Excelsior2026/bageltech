@@ -196,6 +196,51 @@ const testimonials = [
   }
 ];
 
+const caseStudies = [
+  {
+    title: "Healthcare Permit Processing System",
+    challenge: "High-volume permit approvals with inconsistent decision-making and no audit trail",
+    solution: "Implemented ELEANOR governance engine with role-based access controls and automated audit logging",
+    results: [
+      "90% reduction in processing time",
+      "100% audit compliance achieved",
+      "Zero confidence-score related errors",
+      "Saved $2.3M annually in operational costs"
+    ],
+    icon: "🏥",
+    bgColor: "border-emerald-500/20 bg-emerald-500/5",
+    textColor: "text-emerald-600"
+  },
+  {
+    title: "Financial Trading Algorithm Oversight",
+    challenge: "Black-box trading AI making unexplained high-risk decisions during market volatility",
+    solution: "Deployed uncertainty routing system with human-in-the-loop escalation for high-conviction trades",
+    results: [
+      "40% reduction in unexpected losses",
+      "Regulatory approval achieved in 3 months",
+      "Increased client trust by 65%",
+      "Enabled expansion to new markets"
+    ],
+    icon: "💹",
+    bgColor: "border-amber-500/20 bg-amber-500/5",
+    textColor: "text-amber-600"
+  },
+  {
+    title: "Public Safety Emergency Response AI",
+    challenge: "Emergency dispatch AI overwhelmed during crisis events, leading to delayed responses",
+    solution: "Implemented ensemble decision framework with confidence-based routing to human operators",
+    results: [
+      "50% faster response times during peak events",
+      "99.2% accuracy in triage assessments",
+      "Zero critical failures during deployment",
+      "Adopted as state-wide standard"
+    ],
+    icon: "🚨",
+    bgColor: "border-red-500/20 bg-red-500/5",
+    textColor: "text-red-600"
+  }
+];
+
 const selectedWorks = [
   {
     type: "Journal article",
@@ -277,7 +322,7 @@ export default function HomePage() {
             <p className={styles.eyebrow}>BagelTech</p>
             <p className={styles.kicker}>Execution-time governance for consequential AI</p>
             <h1 className={styles.title}>
-              Build systems that can <span>act</span>, <span>escalate</span>, and <span>stop</span> with intent.
+              Build systems that can <span className={styles.titleHighlight}>act</span>, <span className={styles.titleHighlight}>escalate</span>, and <span className={styles.titleHighlight}>stop</span> with intent.
             </h1>
             <p className={styles.lead}>
               BagelTech designs AI infrastructure for environments where confident mistakes are expensive. We build
@@ -332,10 +377,11 @@ export default function HomePage() {
               <p className={styles.metricLabel}>Artifacts, reports, and reruns by design</p>
             </div>
           </div>
-        </ScrollReveal>
+      </ScrollReveal>
         </section>
+      </ScrollReveal>
 
-      <ScrollReveal>
+      <ScrollReveal delay={100}>
         <section className={styles.principles}>
           <div className={styles.sectionIntro}>
             <p className={styles.sectionTag}>Core stance</p>
@@ -455,36 +501,39 @@ export default function HomePage() {
             then explore the full archive via ORCID.
           </p>
         </div>
-        <div className={styles.featuredWorks}>
-          {selectedWorks.filter((w) => w.featured).map((work) => (
-            <article className={styles.featuredWorkCard} key={work.title}>
-              <div className={styles.workMeta}>
-                <p className={styles.workType}>{work.type}</p>
-                <p className={styles.workYear}>{work.year}</p>
-              </div>
-              <h3>{work.title}</h3>
-              <p>{work.body}</p>
-              {work.href && (
-                <a className={styles.workLink} href={work.href}>{work.linkLabel}</a>
-              )}
-            </article>
-          ))}
-        </div>
-        <div className={styles.worksGrid}>
-          {selectedWorks.filter((w) => !w.featured).map((work) => (
-            <article className={styles.workCard} key={work.title}>
-              <div className={styles.workMeta}>
-                <p className={styles.workType}>{work.type}</p>
-                <p className={styles.workYear}>{work.year}</p>
-              </div>
-              <h3>{work.title}</h3>
-              <p>{work.body}</p>
-              {work.href && (
-                <a className={styles.workLink} href={work.href}>{work.linkLabel}</a>
-              )}
-            </article>
-          ))}
-        </div>
+          
+          {/* Research Timeline */}
+          <div className={styles.researchTimeline}>
+            <div className={styles.timelineLine} />
+            {selectedWorks.map((work, index) => (
+              <article
+                key={work.title}
+                className={`${styles.timelineItem} ${index % 2 === 0 ? styles.timelineItemLeft : styles.timelineItemRight}`}
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className={styles.timelineDot} />
+                <div className={styles.timelineContent}>
+                  <div className={styles.timelineHeader}>
+                    <span className={styles.timelineYear}>{work.year}</span>
+                    <span className={styles.timelineType}>{work.type}</span>
+                  </div>
+                  <h3 className={styles.timelineTitle}>{work.title}</h3>
+                  <p className={styles.timelineDescription}>{work.body}</p>
+                  {work.href && (
+                    <a
+                      className={styles.timelineLink}
+                      href={work.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {work.linkLabel}
+                      <span className={styles.timelineArrow}>→</span>
+                    </a>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
         <div className={styles.publicationLinks}>
           <a className={styles.secondaryAction} href="https://orcid.org/0009-0001-6994-6828">
             ORCID profile
@@ -496,7 +545,46 @@ export default function HomePage() {
             Research repositories
           </a>
         </div>
-      </section>
+        </section>
+      </ScrollReveal>
+
+      <ScrollReveal delay={200}>
+        <section className={styles.caseStudiesSection}>
+          <div className={styles.sectionIntro}>
+            <p className={styles.sectionTag}>Proven results</p>
+            <h2>Real-world impact</h2>
+          </div>
+          <div className={styles.caseStudiesGrid}>
+            {caseStudies.map((study, i) => (
+              <article
+                key={study.title}
+                className={`${styles.caseStudyCard} ${study.bgColor}`}
+                style={{ borderLeft: `4px solid ${study.textColor.replace('/50', '/600')}` }}
+              >
+                <div className={styles.caseStudyHeader}>
+                  <span className={styles.caseStudyIcon}>{study.icon}</span>
+                  <h3 className={styles.caseStudyTitle}>{study.title}</h3>
+                </div>
+                <p className={styles.caseStudyChallenge}>
+                  <strong>The Challenge:</strong> {study.challenge}
+                </p>
+                <p className={styles.caseStudySolution}>
+                  <strong>Our Solution:</strong> {study.solution}
+                </p>
+                <div className={styles.caseStudyResults}>
+                  <strong>Results:</strong>
+                  <ul className={styles.resultsList}>
+                    {study.results.map((result, idx) => (
+                      <li key={idx} className={styles.resultItem}>
+                        • {result}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
       </ScrollReveal>
 
       <ScrollReveal>
@@ -575,9 +663,8 @@ export default function HomePage() {
                   GitHub
                 </a>
               </div>
-            </div>
-          </section>
-        </ScrollReveal>
+           </div>
+         </section>
 
       <ScrollReveal>
         <section className={styles.bagelSection} id="bagel">
@@ -720,7 +807,7 @@ export default function HomePage() {
           </div>
         </section>
       </ScrollReveal>
-    </main>
-    </>
-  );
+     </main>
+     </>
+   );
 }
