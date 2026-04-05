@@ -1,0 +1,14 @@
+.caseStudiesSection { padding: 40px 28px; }
+.sectionIntro { margin-bottom: 1rem; }
+.sectionTag { font-size: 0.8rem; color: var(--accent-deep); text-transform: uppercase; letter-spacing: 0.08em; }
+.sectionTitle { font-family: var(--font-serif), serif; font-size: 1.5rem; margin: 0; }
+.sectionDesc { color: rgba(0,0,0,.75); }
+.caseStudiesGrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.caseStudyCard { border: 1px solid var(--border); border-radius: 20px; padding: 20px; display: flex; flex-direction: column; gap: 8px; background: rgba(255,255,255,0.04); }
+.caseStudyHeader { display: flex; align-items: center; gap: 8px; }
+.caseStudyIcon { font-size: 1.4rem; }
+.caseStudyTitle { font-family: var(--font-serif), serif; font-size: 1.05rem; margin: 0; }
+.caseStudyChallenge, .caseStudySolution { font-size: 0.95rem; }
+.caseStudySolutions { font-size: 0.95rem; }
+.caseStudyResults { margin-top: auto; padding-top: 6px; border-top: 1px solid var(--border); }
+.resultsList { margin: 0; padding-left: 1.2rem; }
