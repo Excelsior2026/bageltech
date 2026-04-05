@@ -380,6 +380,7 @@ export default function HomePage() {
       </ScrollReveal>
         </section>
       </ScrollReveal>
+      <OverviewTiles />
 
       <ScrollReveal delay={100}>
         <section className={styles.principles}>
