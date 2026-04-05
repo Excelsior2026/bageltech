@@ -1,19 +1,15 @@
 "use client";
-import { RESEARCH } from "@/content/research";
-import styles from "./page.module.css";
-
-export const metadata = {
-  title: "BagelTech Research",
-  description: "Research and publications in AI governance, jurisprudence, and related topics.",
-};
+import React from 'react';
+import { RESEARCH } from '@/content/research';
+import styles from './page.module.css';
 
 export default function ResearchPage() {
   return (
     <main className={styles.page}>
       <section className={styles.sectionIntro}>
         <p className={styles.sectionTag}>Research</p>
-        <h2 className={styles.sectionTitle}>Ideas with an actual paper trail</h2>
-        <p className={styles.sectionDesc}>Selected writings and publishes with full references.</p>
+        <h2 className={styles.sectionTitle}>Ideas with a paper trail</h2>
+        <p className={styles.sectionDesc}>Selected writings and publications across governance, AI, and policy.</p>
       </section>
       <section className={styles.grid}>
         {RESEARCH.map((r) => (
@@ -25,14 +21,11 @@ export default function ResearchPage() {
             <h3 className={styles.cardTitle}>{r.title}</h3>
             <p className={styles.cardBody}>{r.body}</p>
             {r.href && (
-              <a href={r.href} className={styles.cardLink} target="_blank" rel="noreferrer">
-                {r.linkLabel}
-              </a>
+              <a href={r.href} className={styles.cardLink} target="_blank" rel="noreferrer">{r.linkLabel}</a>
             )}
           </article>
         ))}
       </section>
-      <p className={styles.backLinkWrap}><a href="/">Back to home</a></p>
     </main>
   );
 }
