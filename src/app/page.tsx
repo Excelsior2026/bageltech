@@ -382,7 +382,7 @@ export default function HomePage() {
               <p className={styles.metricLabel}>Artifacts, reports, and reruns by design</p>
             </div>
           </div>
-        </section>
+        </div>
       </ScrollReveal>
       <OverviewTiles />
 
