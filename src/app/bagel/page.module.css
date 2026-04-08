@@ -1,0 +1,453 @@
+.page {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #f4efe4 0%, #fff8f2 50%, #f4efe4 100%);
+  background-attachment: fixed;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 24px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.backLink {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.82rem;
+  color: rgba(23, 32, 51, 0.7);
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  transition: color 180ms ease;
+}
+
+.backLink:hover {
+  color: var(--accent-deep);
+}
+
+.headerBadge {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.72rem;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(180, 85, 45, 0.1);
+  border: 1px solid rgba(180, 85, 45, 0.2);
+  color: var(--accent-deep);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
+}
+
+.main {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 24px 60px;
+}
+
+.hero {
+  text-align: center;
+  padding: 40px 0 32px;
+}
+
+.avatar {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 24px;
+}
+
+.avatarEmoji {
+  font-size: 5rem;
+  line-height: 1;
+  display: block;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+.avatarRing {
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 3px solid rgba(180, 85, 45, 0.3);
+  animation: ring-pulse 2s ease-in-out infinite;
+}
+
+@keyframes ring-pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50% { transform: scale(1.05); opacity: 0.7; }
+}
+
+.title {
+  font-family: var(--font-serif), serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  letter-spacing: -0.04em;
+  color: var(--foreground);
+  margin: 0 0 8px;
+}
+
+.subtitle {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.82rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: rgba(23, 32, 51, 0.6);
+  margin: 0 0 16px;
+}
+
+.moodStatus {
+  font-size: 1rem;
+  color: rgba(23, 32, 51, 0.8);
+  max-width: 400px;
+  margin: 0 auto 24px;
+  line-height: 1.6;
+}
+
+.moodSelector {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.moodButton {
+  font-size: 1.8rem;
+  padding: 12px;
+  border: 2px solid transparent;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.6);
+  cursor: pointer;
+  transition: transform 200ms ease, border-color 200ms ease, background 200ms ease;
+}
+
+.moodButton:hover {
+  transform: scale(1.1);
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.moodActive {
+  border-color: var(--accent);
+  background: rgba(180, 85, 45, 0.1);
+}
+
+.moodIndicator {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.actionPill {
+  font-size: 0.78rem;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(23, 32, 51, 0.06);
+  color: rgba(23, 32, 51, 0.8);
+  animation: fadeInUp 400ms ease forwards;
+  opacity: 0;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.navTabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  padding: 6px;
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 16px;
+  border: 1px solid rgba(23, 32, 51, 0.08);
+}
+
+.tabButton {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 12px;
+  background: transparent;
+  font-family: var(--font-ui-sans), sans-serif;
+  font-size: 0.9rem;
+  color: rgba(23, 32, 51, 0.7);
+  cursor: pointer;
+  transition: background 200ms ease, color 200ms ease;
+}
+
+.tabButton:hover {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.tabActive {
+  background: white;
+  color: var(--foreground);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.content {
+  background: white;
+  border-radius: 24px;
+  padding: 28px;
+  border: 1px solid rgba(23, 32, 51, 0.08);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.04);
+  min-height: 400px;
+}
+
+.tricksGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.trickCard {
+  padding: 20px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(244, 239, 228, 0.5), rgba(255, 255, 255, 0.8));
+  border: 1px solid rgba(23, 32, 51, 0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+.trickCard:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.trickEmoji {
+  font-size: 2.5rem;
+}
+
+.trickCard h3 {
+  font-family: var(--font-serif), serif;
+  font-size: 1.2rem;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.trickCard p {
+  font-size: 0.85rem;
+  color: rgba(23, 32, 51, 0.7);
+  margin: 0;
+  line-height: 1.5;
+}
+
+.difficulty {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 10px;
+  border-radius: 999px;
+  margin-top: auto;
+}
+
+.easy {
+  background: rgba(59, 109, 17, 0.1);
+  color: #3b6d11;
+}
+
+.medium {
+  background: rgba(180, 85, 45, 0.1);
+  color: var(--accent-deep);
+}
+
+.impossible {
+  background: rgba(180, 85, 45, 0.15);
+  color: #a33d10;
+}
+
+.snackList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.snackItem {
+  display: grid;
+  grid-template-columns: 50px 1fr auto;
+  gap: 16px;
+  align-items: center;
+  padding: 16px;
+  border-radius: 16px;
+  background: rgba(244, 239, 228, 0.3);
+  animation: fadeInUp 400ms ease forwards;
+  opacity: 0;
+}
+
+.snackRank {
+  font-family: var(--font-serif), serif;
+  font-size: 1.5rem;
+  color: var(--accent);
+  font-weight: 600;
+}
+
+.snackInfo h3 {
+  font-family: var(--font-ui-sans), sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  margin: 0 0 4px;
+}
+
+.snackInfo p {
+  font-size: 0.82rem;
+  color: rgba(23, 32, 51, 0.6);
+  margin: 0;
+}
+
+.snackScore {
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  font-family: var(--font-serif), serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--accent-deep);
+}
+
+.snackScore small {
+  font-size: 0.75rem;
+  color: rgba(23, 32, 51, 0.5);
+}
+
+.labNotes {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.labNote {
+  padding: 20px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(20, 25, 36, 0.03), rgba(244, 239, 228, 0.3));
+  border: 1px solid rgba(23, 32, 51, 0.06);
+}
+
+.labNote h3 {
+  font-family: var(--font-serif), serif;
+  font-size: 1.1rem;
+  letter-spacing: -0.02em;
+  margin: 0 0 8px;
+  color: var(--foreground);
+}
+
+.labNote p {
+  font-size: 0.9rem;
+  color: rgba(23, 32, 51, 0.75);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.secret {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.secretTrigger {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.82rem;
+  padding: 14px 24px;
+  border: 1px dashed rgba(23, 32, 51, 0.3);
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(23, 32, 51, 0.6);
+  cursor: pointer;
+  transition: all 200ms ease;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.secretTrigger:hover {
+  border-color: var(--accent);
+  color: var(--accent-deep);
+  background: rgba(180, 85, 45, 0.05);
+}
+
+.secretContent {
+  margin-top: 20px;
+  padding: 24px;
+  border-radius: 16px;
+  background: rgba(20, 25, 36, 0.94);
+  color: #f4efe4;
+  text-align: left;
+  animation: fadeInUp 400ms ease;
+}
+
+.secretContent h3 {
+  font-family: var(--font-serif), serif;
+  font-size: 1.3rem;
+  margin: 0 0 12px;
+  color: #f7b285;
+}
+
+.secretContent p {
+  font-size: 0.92rem;
+  line-height: 1.7;
+  color: rgba(244, 239, 228, 0.85);
+  margin: 0 0 12px;
+}
+
+.secretContent p:last-child {
+  margin-bottom: 0;
+}
+
+.classified {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #f7b285;
+  margin-top: 16px !important;
+  padding-top: 16px;
+  border-top: 1px solid rgba(244, 239, 228, 0.1);
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 1.8rem;
+  }
+
+  .avatarEmoji {
+    font-size: 4rem;
+  }
+
+  .moodSelector {
+    gap: 8px;
+  }
+
+  .moodButton {
+    font-size: 1.4rem;
+    padding: 10px;
+  }
+
+  .tricksGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .snackItem {
+    grid-template-columns: 40px 1fr;
+    gap: 12px;
+  }
+
+  .snackScore {
+    display: none;
+  }
+
+  .navTabs {
+    flex-direction: column;
+  }
+}

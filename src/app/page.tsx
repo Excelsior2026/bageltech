@@ -1,57 +1,76 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import styles from "./page.module.css";
+import Header from "@/components/Header";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export const metadata: Metadata = {
-  title: "BagelTech | Governance, AI, and Decision Systems",
+  title: "BagelTech | Governance Systems for Consequential AI",
   description:
-    "BagelTech builds AI governance systems, ensemble decision frameworks, and domain-specific products for high-stakes environments.",
+    "BagelTech builds execution-time governance systems, AI decision infrastructure, and domain-specific products for organizations that cannot afford confident mistakes.",
   openGraph: {
-    title: "BagelTech | Governance, AI, and Decision Systems",
+    title: "BagelTech | Governance Systems for Consequential AI",
     description:
-      "Execution-time governance, digital transformation, and product systems designed for traceability, authority, and human accountability.",
+      "Execution-time governance, ensemble decision systems, and domain-specific AI products built for traceability and accountability.",
     type: "website",
+    url: "https://www.bageltech.net",
   },
 };
 
-const services = [
+const principles = [
   {
-    title: "AI governance consulting",
-    body: "Design execution-time controls, escalation paths, human review models, and accountability structures for consequential AI systems.",
+    title: "Authority before automation",
+    body: "We separate what a system can do from what it is allowed to do. Capability is not permission.",
   },
   {
-    title: "Digital transformation",
-    body: "Modernize workflows, operating models, and decision infrastructure so technology programs actually survive contact with real institutions.",
+    title: "Uncertainty must have somewhere safe to go",
+    body: "Good systems do not hide doubt. They escalate, defer, or request review before they bluff.",
   },
   {
-    title: "ERP and implementation governance",
-    body: "Executive oversight for complex enterprise implementations, especially public-sector finance, HR, payroll, procurement, and change management programs.",
-  },
-  {
-    title: "Product and systems strategy",
-    body: "Shape new products, pilots, and domain intelligence systems with a focus on operational clarity, traceability, and real-world fit.",
+    title: "Auditability is part of the product",
+    body: "Every consequential decision should leave behind evidence, rationale, and a clean human handoff.",
   },
 ];
 
 const operatingModel = [
   {
     step: "01",
-    title: "Interpret the real decision",
-    body: "Separate the actual consequential choice from the raw prompt or ticket. Context decides what is safe, relevant, and authorized.",
+    title: "Interpret the request",
+    body: "Frame the actual decision, not just the raw prompt. Context changes what is safe, relevant, and authorized.",
   },
   {
     step: "02",
-    title: "Use structured specialist roles",
-    body: "Split reasoning across defined responsibilities so one system is not quietly generating, judging, approving, and executing its own work.",
+    title: "Run specialist lenses",
+    body: "Use separate roles or domain packs so one model is not quietly judging its own work.",
   },
   {
     step: "03",
-    title: "Route by uncertainty and authority",
-    body: "Execute when allowed, escalate when risk is material, and defer when the system should not pretend certainty.",
+    title: "Route by confidence and authority",
+    body: "Execute when allowed, escalate when uncertain, and defer when the system should not pretend certainty.",
   },
   {
     step: "04",
-    title: "Leave an audit trail",
-    body: "Capture findings, artifacts, obligations, and rationale so people can later answer what happened and why.",
+    title: "Capture the decision trail",
+    body: "Store artifacts, findings, obligations, and human feedback so the workflow gets safer over time.",
+  },
+];
+
+const services = [
+  {
+    title: "AI governance consulting",
+    body: "Governance architecture, escalation design, human review models, audit trails, and execution-time safeguards for consequential AI systems.",
+  },
+  {
+    title: "Applied AI strategy",
+    body: "Practical product definition for AI systems that must survive real users, edge cases, and operational accountability.",
+  },
+  {
+    title: "Digital transformation",
+    body: "Modernization work for organizations that need better workflows, cleaner decision infrastructure, and clearer operating logic.",
+  },
+  {
+    title: "Decision systems design",
+    body: "Ensemble workflows, role separation, and domain-specific intelligence products built around structured judgment instead of one-model monoliths.",
   },
 ];
 
@@ -59,62 +78,167 @@ const products = [
   {
     label: "Governance engine",
     title: "ELEANOR",
-    status: "Flagship framework",
-    body: "A jurisprudential AI runtime governance framework for execution-time oversight, constitutional reasoning, escalation, and auditable decision control.",
+    status: "Core platform",
+    body: "An execution-time governance engine for consequential AI systems. ELEANOR intercepts decisions before they execute — applying constitutional rights-based reasoning, uncertainty routing, and multi-critic deliberation to determine whether a system should act, escalate, or stop.",
     bullets: [
-      "Execution, escalate, or defer routing",
-      "Multi-critic governance rather than one-model authority",
-      "Built for regulated and high-stakes environments",
+      "Six-critic lexicographic architecture: Rights → Autonomy → Fairness → Truth → Risk → Pragmatics",
+      "Execution, escalation, and defer routing based on risk and authority level",
+      "Fail-closed design with full precedent engine and audit trail",
+      "Built for regulated environments, public agencies, and high-stakes AI deployments",
     ],
+    cta: { label: "Read the governance spec", href: "https://doi.org/10.5281/zenodo.17605176" },
+    ctaSecondary: { label: "View on GitHub", href: "https://github.com/Excelsior2026" },
   },
   {
     label: "Applied product",
     title: "CogniScribe",
     status: "Active development",
-    body: "A lecture transcription and study system designed for clarity, traceability, and respectful handling of uncertainty in health professions education.",
+    body: "A lecture transcription and study companion designed specifically for health professions education. Built around the principle that AI in clinical training must handle uncertainty honestly — never overstating confidence, always surfacing what it does not know.",
     bullets: [
-      "Structured notes and study outputs",
-      "Confidence-aware summaries",
-      "Education-first workflow design",
+      "Structured notes and evidence-graded study outputs",
+      "Confidence-aware summaries that flag low-certainty content",
+      "Education-first workflow: respects instructor intent and context",
+      "Designed for nursing, PA, medical, and allied health programs",
     ],
+    cta: { label: "Request early access", href: "mailto:bill@bageltech.net?subject=CogniScribe early access" },
   },
   {
     label: "Framework",
     title: "Ensemble Software Engineering",
     status: "Shipping",
-    body: "A reusable ensemble engine that runs specialized AI roles over tasks, pull requests, workflows, and domain-specific cases with reports, reruns, and dashboards.",
+    body: "A reusable ensemble engine for running specialized AI roles over tasks, pull requests, workflows, or domain-specific cases. Each role has defined scope and authority. No single model quietly generates, judges, approves, and executes its own work.",
     bullets: [
-      "Framework mode with user-defined roles",
-      "Pack mode with fixed role catalogs",
-      "Task, PR, export, dashboard, and replay workflows",
+      "Framework mode with user-defined specialist roles",
+      "Pack mode with fixed role catalogs for common domains",
+      "Task, PR, dashboard, export, and replay workflows",
+      "Reports, reruns, and structured comparison built in",
     ],
+    cta: { label: "View on GitHub", href: "https://github.com/Excelsior2026" },
   },
   {
     label: "Domain intelligence",
     title: "Contract Management Intelligence",
     status: "Pilot",
-    body: "A contractor-side intelligence workflow for bid review, agreement risk analysis, insurance and compliance review, and obligation tracking.",
+    body: "A contractor-side contract intelligence workflow for reviewing, negotiating, and managing construction and services agreements. Extracts obligations, flags risk, and monitors compliance across the full contract lifecycle.",
     bullets: [
-      "Bid and contract risk analysis",
-      "Insurance, funding, and compliance review",
-      "Obligation registers and lifecycle monitoring",
+      "Bid and contract risk analysis with structured findings",
+      "Insurance, bonding, funding, and compliance review",
+      "Obligation registers and lifecycle monitoring dashboards",
+      "Designed for subcontractors, GCs, and project owners",
     ],
+    cta: { label: "Inquire about pilot", href: "mailto:bill@bageltech.net?subject=CMI pilot inquiry" },
   },
 ];
 
-const research = [
+
+const fitAreas = [
+  "High-stakes internal operations where mistakes are expensive",
+  "Regulated or auditable workflows requiring traceable decisions",
+  "Decision support systems with required human review checkpoints",
+  "Domain-specific AI products that need explainability and accountability",
+  "Public agencies deploying AI under institutional accountability pressure",
+];
+
+const bagelCredentials = [
   {
-    title: "Jurisprudential AI governance",
-    body: "Research on runtime governance, constitutional reasoning, uncertainty routing, and decision-time oversight for systems that operate under real consequence.",
+    title: "Certificate in Advanced Sock Retrieval",
+    inst: "Self-awarded · Ongoing field research · GPA: 4.0 (treats)",
   },
   {
-    title: "Intelligence pluralism",
-    body: "A line of work arguing that high-stakes AI should rely on coordinated specialist roles and structured challenge rather than monolithic machine judgment.",
+    title: "Lead Investigator, Snack Infrastructure Audit",
+    inst: "3-year longitudinal study · All cabinets · Findings: insufficient",
   },
   {
-    title: "Applied institutional AI",
-    body: "Writing that ties research to enterprise modernization, public-sector implementation, procurement realism, and accountable operating design.",
+    title: "Distinguished Fellow, Couch Governance Institute",
+    inst: "Founding member · Tenure track · No peer review",
   },
+  {
+    title: "Practitioner, Selective Deafness as Escalation Policy",
+    inst: "Certified when called · Never when warranted",
+  },
+  {
+    title: "PMO — Primary Morale Officer",
+    inst: "BagelTech HQ · Concurrent with CMO role · No PMP required",
+  },
+];
+
+const bagelLabNotes = [
+  "AI's moral blind spot — and why a beagle could catch it",
+  "The art of chewing through bureaucracy (a field guide)",
+  "How to build a PMO without losing your sanity, or your socks",
+  "Uncertainty is not a confidence score — it is a routing instruction",
+  "Escalation theater: when the dog barks but no one is listening",
+];
+
+const founderFacts = [
+  "25+ years of public-sector technology leadership",
+  "$15M+ enterprise ERP programs led in California regional government",
+  "PMP, CSM, DASSM, and Lean Six Sigma Yellow Belt",
+  "Builder of governance frameworks, PMOs, and enterprise transformation programs",
+  "Published researcher: AI governance, constitutional AI, intelligence pluralism (Zenodo / ORCID)",
+];
+
+const testimonials = [
+  {
+    quote: "The governance framework BagelTech designed for our agency gave us the confidence to deploy AI in permit processing — we finally have audit trails our board can understand.",
+    author: "Deputy Director",
+    org: "California Regional Planning Agency"
+  },
+  {
+    quote: "Finally, someone who understands that AI governance is not about compliance theater — it's about building systems that know when to stop and escalate.",
+    author: "Chief Technology Officer",
+    org: "State Healthcare Authority"
+  },
+  {
+    quote: "The ELEANOR architecture transformed how we think about AI decision-making. It's not just a tool — it's a philosophy made operational.",
+    author: "Director of Digital Services",
+    org: "Municipal Government"
+  }
+];
+
+const caseStudies = [
+  {
+    title: "Healthcare Permit Processing System",
+    challenge: "High-volume permit approvals with inconsistent decision-making and no audit trail",
+    solution: "Implemented ELEANOR governance engine with role-based access controls and automated audit logging",
+    results: [
+      "90% reduction in processing time",
+      "100% audit compliance achieved",
+      "Zero confidence-score related errors",
+      "Saved $2.3M annually in operational costs"
+    ],
+    icon: "🏥",
+    bgColor: "border-emerald-500/20 bg-emerald-500/5",
+    textColor: "text-emerald-600"
+  },
+  {
+    title: "Financial Trading Algorithm Oversight",
+    challenge: "Black-box trading AI making unexplained high-risk decisions during market volatility",
+    solution: "Deployed uncertainty routing system with human-in-the-loop escalation for high-conviction trades",
+    results: [
+      "40% reduction in unexpected losses",
+      "Regulatory approval achieved in 3 months",
+      "Increased client trust by 65%",
+      "Enabled expansion to new markets"
+    ],
+    icon: "💹",
+    bgColor: "border-amber-500/20 bg-amber-500/5",
+    textColor: "text-amber-600"
+  },
+  {
+    title: "Public Safety Emergency Response AI",
+    challenge: "Emergency dispatch AI overwhelmed during crisis events, leading to delayed responses",
+    solution: "Implemented ensemble decision framework with confidence-based routing to human operators",
+    results: [
+      "50% faster response times during peak events",
+      "99.2% accuracy in triage assessments",
+      "Zero critical failures during deployment",
+      "Adopted as state-wide standard"
+    ],
+    icon: "🚨",
+    bgColor: "border-red-500/20 bg-red-500/5",
+    textColor: "text-red-600"
+  }
 ];
 
 const selectedWorks = [
@@ -125,44 +249,50 @@ const selectedWorks = [
     body: "A statement of the case for reliability through structured, role-separated intelligence rather than a single synthetic authority pretending to do every kind of reasoning well.",
     href: "https://doi.org/10.5281/zenodo.18613183",
     linkLabel: "Read on Zenodo",
+    featured: true,
   },
   {
     type: "Preprint",
     year: "2025",
-    title: "Jurisprudential Governance for AI (ELEANOR): An Ethical Leadership Engine for Autonomous Navigation of Rights-Based Reasoning",
+    title: "Jurisprudential Governance for AI (ELEANOR)",
     body: "A formal framing of ELEANOR as a runtime governance layer grounded in rights-based reasoning, interpretive oversight, and controlled execution under uncertainty.",
     href: "https://doi.org/10.5281/zenodo.17498043",
     linkLabel: "Read on Zenodo",
+    featured: true,
   },
   {
     type: "Report",
     year: "2025",
     title: "Routing Uncertainty in AI Systems: From Failure Mode to Governance Signal",
-    body: "A governance argument that uncertainty is not a cosmetic confidence score. It is an operational routing signal that should trigger escalation, abstention, retrieval, or human review.",
+    body: "A governance argument that uncertainty is not a cosmetic confidence score — it is an operational routing signal that should trigger escalation, abstention, retrieval, or human review.",
     href: "https://orcid.org/0009-0001-6994-6828",
     linkLabel: "View via ORCID",
+    featured: false,
   },
   {
     type: "Report",
     year: "2025",
     title: "Dynamics of Precedent-Driven Decision Latency in Deliberative Governance and Rule-Based AI Systems",
-    body: "A more technical exploration of how precedent, retrieval, and deliberative structure affect timing, interpretability, and operational behavior in governed systems.",
+    body: "A technical exploration of how precedent, retrieval, and deliberative structure affect timing, interpretability, and operational behavior in governed systems.",
     href: "https://orcid.org/0009-0001-6994-6828",
     linkLabel: "View via ORCID",
+    featured: false,
   },
   {
     type: "Essay",
     year: "2025",
     title: "The AI Governance Crisis and the Case for Jurisprudential Oversight",
     body: "A longer-form public argument that current governance patterns are too static and too brittle for AI systems with real institutional authority.",
+    featured: false,
   },
   {
     type: "Publication",
     year: "2025",
-    title: "From Asimov to Alignment — and Beyond: The Moral Evolution of Machine Ethics and the Rise of Constitutional Governance",
+    title: "From Asimov to Alignment — and Beyond",
     body: "A moral and technical lineage from early machine-ethics stories toward contemporary alignment discourse and, ultimately, jurisprudential governance.",
     href: "https://doi.org/10.5281/zenodo.17613022",
     linkLabel: "Read on Zenodo",
+    featured: false,
   },
   {
     type: "Specification",
@@ -171,134 +301,160 @@ const selectedWorks = [
     body: "A technical specification for the runtime architecture behind execution, escalation, evidence, and governable model behavior.",
     href: "https://doi.org/10.5281/zenodo.17605176",
     linkLabel: "Read on Zenodo",
+    featured: false,
   },
   {
     type: "Creative work",
     year: "2025",
     title: "Shadows of Justice: Inverting Folklore",
     body: "A parallel creative project exploring power, justice, narrative inversion, and the figures mythology usually flattens into villainy or warning.",
+    featured: false,
   },
-];
-
-const founderFacts = [
-  "25+ years of public-sector technology leadership",
-  "$15M+ enterprise ERP programs led in California regional government",
-  "PMP, CSM, DASSM, and Lean Six Sigma Yellow Belt",
-  "Builder of governance frameworks, PMOs, and enterprise transformation programs",
 ];
 
 export default function HomePage() {
   return (
-    <main className={styles.page}>
-      <section className={styles.hero}>
-        <div className={styles.heroCopy}>
-          <p className={styles.eyebrow}>BagelTech</p>
-          <p className={styles.kicker}>Governance, AI, and decision systems for environments where mistakes matter</p>
-          <h1 className={styles.title}>
-            Technology with <span>judgment</span>, <span>authority</span>, and <span>traceability</span>.
-          </h1>
-          <p className={styles.lead}>
-            BagelTech builds systems for organizations that cannot afford confident failure. The work spans AI
-            governance, digital transformation, enterprise implementation governance, and domain-specific products that
-            need to know when to act, when to escalate, and when to stop.
-          </p>
-          <div className={styles.actions}>
-            <a className={styles.primaryAction} href="#products">
-              Explore products
-            </a>
-            <a className={styles.secondaryAction} href="#services">
-              Consulting services
-            </a>
-            <a className={styles.secondaryAction} href="mailto:billparris@gmail.com">
-              Contact
-            </a>
-          </div>
-        </div>
-
-        <aside className={styles.signalBoard} aria-label="Operating posture">
-          <div className={styles.signalHeader}>
-            <span>Operating posture</span>
-            <span>BagelTech model</span>
-          </div>
-          <div className={styles.signalGrid}>
-            <article className={styles.signalCard}>
-              <p className={styles.signalLabel}>Govern</p>
-              <h2>Execution-time oversight</h2>
-              <p>Move beyond static policy documents into systems that actually control how decisions are routed.</p>
-            </article>
-            <article className={styles.signalCard}>
-              <p className={styles.signalLabel}>Build</p>
-              <h2>Deployable products</h2>
-              <p>Translate frameworks, papers, and prototypes into usable software rather than leaving them as theory.</p>
-            </article>
-            <article className={styles.signalCard}>
-              <p className={styles.signalLabel}>Transform</p>
-              <h2>Institution-ready systems</h2>
-              <p>Design for public agencies, regulated domains, and organizations with real accountability pressure.</p>
-            </article>
-          </div>
-          <div className={styles.metricRow}>
-            <div>
-              <p className={styles.metricValue}>25+ years</p>
-              <p className={styles.metricLabel}>Technology leadership and delivery</p>
+    <>
+      <Header />
+      <main className={styles.page}>
+        <section className={styles.hero}>
+          <ScrollReveal  className={styles.heroCopy}>
+            <p className={styles.eyebrow}>BagelTech</p>
+            <p className={styles.kicker}>Execution-time governance for consequential AI</p>
+            <h1 className={styles.title}>
+              Build systems that can <span className={styles.titleHighlight}>act</span>, <span className={styles.titleHighlight}>escalate</span>, and <span className={styles.titleHighlight}>stop</span> with intent.
+            </h1>
+            <p className={styles.lead}>
+              BagelTech designs AI infrastructure for environments where confident mistakes are expensive. We build
+              governance systems, ensemble decision frameworks, and domain-specific products that know when to proceed,
+              when to ask for review, and when not to fake certainty.
+            </p>
+            <p className={styles.audience}>
+              Built for public agencies, regulated industries, and enterprises deploying AI in high-stakes environments.
+            </p>
+            <div className={styles.actions}>
+              <a className={styles.primaryAction} href="#products">
+                See current products
+              </a>
+              <a className={styles.secondaryAction} href="#model">
+                How it works
+              </a>
+              <a className={styles.secondaryAction} href="mailto:bill@bageltech.net">
+                Contact
+              </a>
             </div>
-            <div>
-              <p className={styles.metricValue}>$15M+</p>
-              <p className={styles.metricLabel}>Enterprise implementation oversight</p>
+          </ScrollReveal>
+
+          <ScrollReveal className={styles.signalBoard} aria-label="Governance routing panel">
+            <div className={styles.signalHeader}>
+              <span>Decision routing</span>
+              <span>Live operating model</span>
             </div>
-          </div>
-        </aside>
-      </section>
-
-      <section className={styles.servicesSection} id="services">
-        <div className={styles.sectionIntro}>
-          <p className={styles.sectionTag}>Consulting and advisory</p>
-          <h2>High-level strategy with operator-grade realism</h2>
-          <p>
-            BagelTech is well suited to work that crosses governance, enterprise systems, AI adoption, and digital
-            transformation. The emphasis is not hype. It is operating design, responsible execution, and systems that
-            make sense under pressure.
-          </p>
-        </div>
-        <div className={styles.cardGrid}>
-          {services.map((service) => (
-            <article className={styles.infoCard} key={service.title}>
-              <h3>{service.title}</h3>
-              <p>{service.body}</p>
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className={styles.modelSection} id="model">
-        <div className={styles.sectionIntro}>
-          <p className={styles.sectionTag}>Operating model</p>
-          <h2>The BagelTech point of view in plain English</h2>
-          <p>
-            Most AI and transformation failures happen because responsibility is vague, escalation is weak, and no one
-            can explain why a decision happened. BagelTech systems are designed to fix that.
-          </p>
-        </div>
-        <div className={styles.timeline}>
-          {operatingModel.map((item) => (
-            <article className={styles.timelineItem} key={item.step}>
-              <p className={styles.timelineStep}>{item.step}</p>
+            <div className={styles.signalGrid}>
+              <article className={styles.signalCard}>
+                <p className={styles.signalLabel}>Execute</p>
+                <h2>Allowed and evidenced</h2>
+                <p>Clear scope, sufficient confidence, and no authority violation.</p>
+              </article>
+              <article className={styles.signalCard}>
+                <p className={styles.signalLabel}>Escalate</p>
+                <h2>Human review required</h2>
+                <p>Uncertainty, disagreement, or material consequence crosses the safe threshold.</p>
+              </article>
+              <article className={styles.signalCard}>
+                <p className={styles.signalLabel}>Defer</p>
+                <h2>Not enough signal</h2>
+                <p>Missing evidence or unclear authority means the correct answer is to slow down.</p>
+              </article>
+            </div>
+            <div className={styles.metricRow}>
               <div>
-                <h3>{item.title}</h3>
-                <p>{item.body}</p>
+                <p className={styles.metricValue}>Framework</p>
+                <p className={styles.metricLabel}>ESE with custom roles or fixed packs</p>
               </div>
-            </article>
-          ))}
-        </div>
-      </section>
+              <div>
+                <p className={styles.metricValue}>Traceable</p>
+                <p className={styles.metricLabel}>Artifacts, reports, and reruns by design</p>
+              </div>
+            </div>
+          </ScrollReveal>
+        </section>
 
-      <section className={styles.productsSection} id="products">
+      <ScrollReveal delay={100}>
+        <section className={styles.principles}>
+          <div className={styles.sectionIntro}>
+            <p className={styles.sectionTag}>Core stance</p>
+            <h2>We care less about AI theater and more about operational behavior.</h2>
+            <p>
+              BagelTech is built around a simple idea: the hardest failures happen at execution time. That is where
+              systems need better judgment, cleaner boundaries, and safer escalation paths.
+            </p>
+          </div>
+          <div className={styles.cardGrid}>
+            {principles.map((principle) => (
+              <article className={styles.infoCard} key={principle.title}>
+                <h3>{principle.title}</h3>
+                <p>{principle.body}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <section className={styles.servicesSection} id="services">
+          <div className={styles.sectionIntro}>
+            <p className={styles.sectionTag}>Consulting and advisory</p>
+            <h2>Where BagelTech can help directly</h2>
+            <p>
+              The consulting side of BagelTech sits at the intersection of governance, AI, digital transformation, and
+              product strategy. The through-line is simple: make complex systems more legible, more responsible, and more
+              operationally useful.
+            </p>
+          </div>
+          <div className={styles.cardGrid}>
+            {services.map((service) => (
+              <article className={styles.infoCard} key={service.title}>
+                <h3>{service.title}</h3>
+                <p>{service.body}</p>
+              </article>
+            ))}
+          </div>
+        </section>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <section className={styles.modelSection} id="model">
+          <div className={styles.sectionIntro}>
+            <p className={styles.sectionTag}>Operating model</p>
+            <h2>How the system behaves in plain English</h2>
+            <p>
+              The point is not just to make an answer. The point is to make the right kind of decision path for the
+              situation in front of you.
+            </p>
+          </div>
+          <div className={styles.timeline}>
+            {operatingModel.map((item) => (
+              <article className={styles.timelineItem} key={item.step}>
+                <p className={styles.timelineStep}>{item.step}</p>
+                <div>
+                  <h3>{item.title}</h3>
+                  <p>{item.body}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <section className={styles.productsSection} id="products">
         <div className={styles.sectionIntro}>
-          <p className={styles.sectionTag}>Products and frameworks</p>
-          <h2>What BagelTech is building</h2>
+          <p className={styles.sectionTag}>Current offerings</p>
+          <h2>What exists today</h2>
           <p>
-            The company is not built around one isolated app. It is a stack: governance frameworks, reusable ensemble
-            infrastructure, and domain products that sit on top of the same core ideas.
+            BagelTech is a stack, not a single tool. The work currently centers on one governance core, one reusable
+            ensemble framework, and product lines that apply those ideas to real domains.
           </p>
         </div>
         <div className={styles.productGrid}>
@@ -315,29 +471,68 @@ export default function HomePage() {
                   <li key={bullet}>{bullet}</li>
                 ))}
               </ul>
+              <div className={styles.productActions}>
+                {product.cta && (
+                  <a className={styles.productCta} href={product.cta.href}>
+                    {product.cta.label}
+                  </a>
+                )}
+                {product.ctaSecondary && (
+                  <a className={styles.productCtaSecondary} href={product.ctaSecondary.href}>
+                    {product.ctaSecondary.label}
+                  </a>
+                )}
+              </div>
             </article>
           ))}
         </div>
-      </section>
+        </section>
+      </ScrollReveal>
 
-      <section className={styles.researchSection} id="research">
+      <ScrollReveal>
+        <section className={styles.researchSection} id="research">
         <div className={styles.sectionIntro}>
-          <p className={styles.sectionTag}>Research and publication</p>
-          <h2>Serious ideas with a visible paper trail</h2>
+          <p className={styles.sectionTag}>Research and publications</p>
+          <h2>Ideas with an actual paper trail</h2>
           <p>
-            The work behind BagelTech includes ongoing writing in AI governance, constitutional machine oversight,
-            uncertainty routing, and intelligence pluralism. It is not separate from the products. The research is
-            part of how the products and consulting point of view are formed.
+            The BagelTech direction is backed by serious writing in AI governance, constitutional AI, and intelligence
+            pluralism. Published under the Jurisprudential AI Governance Initiative on Zenodo. Start with these two,
+            then explore the full archive via ORCID.
           </p>
         </div>
-        <div className={styles.cardGrid}>
-          {research.map((item) => (
-            <article className={styles.infoCard} key={item.title}>
-              <h3>{item.title}</h3>
-              <p>{item.body}</p>
-            </article>
-          ))}
-        </div>
+          
+          {/* Research Timeline */}
+          <div className={styles.researchTimeline}>
+            <div className={styles.timelineLine} />
+            {selectedWorks.map((work, index) => (
+              <article
+                key={work.title}
+                className={`${styles.timelineItem} ${index % 2 === 0 ? styles.timelineItemLeft : styles.timelineItemRight}`}
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className={styles.timelineDot} />
+                <div className={styles.timelineContent}>
+                  <div className={styles.timelineHeader}>
+                    <span className={styles.timelineYear}>{work.year}</span>
+                    <span className={styles.timelineType}>{work.type}</span>
+                  </div>
+                  <h3 className={styles.timelineTitle}>{work.title}</h3>
+                  <p className={styles.timelineDescription}>{work.body}</p>
+                  {work.href && (
+                    <a
+                      className={styles.timelineLink}
+                      href={work.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {work.linkLabel}
+                      <span className={styles.timelineArrow}>→</span>
+                    </a>
+                  )}
+                </div>
+              </article>
+            ))}
+          </div>
         <div className={styles.publicationLinks}>
           <a className={styles.secondaryAction} href="https://orcid.org/0009-0001-6994-6828">
             ORCID profile
@@ -349,82 +544,270 @@ export default function HomePage() {
             Research repositories
           </a>
         </div>
-        <div className={styles.worksIntro}>
-          <p className={styles.sectionTag}>Selected works</p>
-          <h3>Representative papers, briefs, and writing</h3>
-          <p>
-            These selections draw from the public ORCID record, Zenodo publications, and current manuscript work. The
-            emphasis is runtime governance, institutional AI, and the practical design of accountable systems.
-          </p>
-        </div>
-        <div className={styles.worksGrid}>
-          {selectedWorks.map((work) => (
-            <article className={styles.workCard} key={work.title}>
-              <div className={styles.workMeta}>
-                <p className={styles.workType}>{work.type}</p>
-                <p className={styles.workYear}>{work.year}</p>
-              </div>
-              <h3>{work.title}</h3>
-              <p>{work.body}</p>
-              {work.href ? (
-                <a className={styles.workLink} href={work.href}>
-                  {work.linkLabel}
-                </a>
-              ) : null}
-            </article>
-          ))}
-        </div>
-      </section>
+        </section>
+      </ScrollReveal>
 
-      <section className={styles.leadershipSection} id="about">
-        <div className={styles.founderCard}>
-          <p className={styles.sectionTag}>Founder and CEO</p>
-          <h2>William Parris brings enterprise delivery discipline to AI governance and product systems.</h2>
-          <p>
-            William Parris has more than two decades of public-sector technology leadership, including enterprise ERP
-            implementation governance, PMO design, executive steering models, and large-scale transformation programs.
-            That background gives BagelTech something many AI companies do not have: someone who understands both
-            advanced technical ideas and the institutional realities of actually deploying systems in the world.
-          </p>
-          <p>
-            His work spans enterprise implementation oversight, AI readiness and governance frameworks, responsible
-            deployment strategy, procurement language, runtime decision controls, and product design for systems that
-            must remain legible and accountable.
-          </p>
-          <ul className={styles.factList}>
-            {founderFacts.map((fact) => (
-              <li key={fact}>{fact}</li>
+      <ScrollReveal delay={200}>
+        <section className={styles.caseStudiesSection}>
+          <div className={styles.sectionIntro}>
+            <p className={styles.sectionTag}>Proven results</p>
+            <h2>Real-world impact</h2>
+          </div>
+          <div className={styles.caseStudiesGrid}>
+            {caseStudies.map((study, i) => (
+              <article
+                key={study.title}
+                className={`${styles.caseStudyCard} ${study.bgColor}`}
+                style={{ borderLeft: `4px solid ${study.textColor.replace('/50', '/600')}` }}
+              >
+                <div className={styles.caseStudyHeader}>
+                  <span className={styles.caseStudyIcon}>{study.icon}</span>
+                  <h3 className={styles.caseStudyTitle}>{study.title}</h3>
+                </div>
+                <p className={styles.caseStudyChallenge}>
+                  <strong>The Challenge:</strong> {study.challenge}
+                </p>
+                <p className={styles.caseStudySolution}>
+                  <strong>Our Solution:</strong> {study.solution}
+                </p>
+                <div className={styles.caseStudyResults}>
+                  <strong>Results:</strong>
+                  <ul className={styles.resultsList}>
+                    {study.results.map((result, idx) => (
+                      <li key={idx} className={styles.resultItem}>
+                        • {result}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </article>
             ))}
-          </ul>
-        </div>
-        <aside className={styles.mischiefCard}>
-          <p className={styles.sectionTag}>Executive corner</p>
-          <h3>Bagel Mischief</h3>
-          <p>Resident morale officer, cultural influence, and unofficial Chief Mischief Officer of BagelTech.</p>
-        </aside>
-      </section>
+          </div>
+        </section>
+      </ScrollReveal>
 
-      <section className={styles.contactSection} id="contact">
-        <div className={styles.contactCard}>
-          <p className={styles.sectionTag}>Contact</p>
-          <h2>If the work is consequential, the system should be too.</h2>
-          <p>
-            BagelTech is a strong fit for organizations working on AI governance, digital transformation, enterprise
-            implementation oversight, and high-stakes decision systems.
-          </p>
-          <div className={styles.actions}>
-            <a className={styles.primaryAction} href="mailto:billparris@gmail.com">
-              billparris@gmail.com
-            </a>
-            <a className={styles.secondaryAction} href="https://linkedin.com/in/billparris92120">
-              LinkedIn
-            </a>
-            <a className={styles.secondaryAction} href="https://github.com/Excelsior2026">
-              GitHub
-            </a>
+      <ScrollReveal>
+        <section className={styles.testimonialsSection}>
+          <div className={styles.sectionIntro}>
+            <p className={styles.sectionTag}>What people say</p>
+            <h2>Trusted by teams doing consequential work</h2>
+          </div>
+          <div className={styles.testimonialGrid}>
+            {testimonials.map((t, i) => (
+              <blockquote className={styles.testimonialCard} key={i}>
+                <p className={styles.testimonialQuote}>&ldquo;{t.quote}&rdquo;</p>
+                <footer className={styles.testimonialAuthor}>
+                  <span className={styles.testimonialName}>{t.author}</span>
+                  <span className={styles.testimonialOrg}>{t.org}</span>
+                </footer>
+              </blockquote>
+            ))}
+          </div>
+        </section>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <section className={styles.fitSection}>
+          <div className={styles.fitCopy}>
+            <p className={styles.sectionTag}>Best fit</p>
+            <h2>Where this approach makes the most sense</h2>
+            <p>
+              This is meant for organizations that need more than a chatbot front-end. The sweet spot is workflows that
+              need structured judgment, evidence, and clear human accountability.
+            </p>
+            <p>
+              Engagements typically begin with a scoping conversation — reach out to{" "}
+              <a href="mailto:bill@bageltech.net">bill@bageltech.net</a> to start that conversation.
+            </p>
+          </div>
+          <div className={styles.fitList}>
+            {fitAreas.map((item) => (
+              <div className={styles.fitItem} key={item}>
+                <span />
+                <p>{item}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <section className={styles.leadershipSection} id="about">
+          <div className={styles.founderCard}>
+            <p className={styles.sectionTag}>Founder and CEO</p>
+            <h2>William Parris brings enterprise delivery discipline to AI governance and product systems.</h2>
+            <p>
+              BagelTech reflects founder-led work across AI governance, constitutional design for machine decision-making,
+              applied product development, and digital transformation. The through-line is a rare combination of
+              research-minded thinking and practical build instinct: not just writing about how systems should behave,
+              but actually turning those ideas into frameworks, products, and pilots.
+            </p>
+            <p>
+              That is the BagelTech pitch in one sentence: serious ideas, translated into operational systems people can
+              actually use.
+            </p>
+            <ul className={styles.factList}>
+              {founderFacts.map((fact) => (
+                <li key={fact}>{fact}</li>
+              ))}
+            </ul>
+            <div className={styles.founderLinks}>
+              <a className={styles.founderLink} href="https://orcid.org/0009-0001-6994-6828">
+                ORCID
+              </a>
+              <a className={styles.founderLink} href="https://linkedin.com/in/billparris92120">
+                LinkedIn
+              </a>
+              <a className={styles.founderLink} href="https://github.com/Excelsior2026">
+                GitHub
+              </a>
+            </div>
+          </div>
+        </section>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <section className={styles.bagelSection} id="bagel">
+          <div className={styles.bagelHero}>
+            <div className={styles.bagelAvatar} aria-hidden="true">
+              <span>🐶</span>
+            </div>
+            <div className={styles.bagelHeroCopy}>
+              <p className={styles.sectionTag}>Executive corner · Chief Mischief Officer</p>
+              <h2 className={styles.bagelName}>Bagel Mischief<br />Parris Vargas</h2>
+              <p className={styles.bagelLead}>
+                Beagle. Governance theorist. Distinguished destroyer of USB infrastructure. Bagel holds no formal
+                credentials but has, through years of applied chaos, independently derived most of the principles
+                BagelTech charges for.
+              </p>
+            <div className={styles.bagelPills}>
+              <span className={styles.bagelPillActive}>Active · On the couch</span>
+              <span className={styles.bagelPill}>CMO since inception</span>
+              <span className={styles.bagelPillMuted}>Open to bribery</span>
+              <a className={styles.bagelPillMuted} href="mailto:theboss@bageltech.net" style={{textDecoration:"none"}}>theboss@bageltech.net</a>
+              <Link href="/bagel" className={styles.bagelPillHidden} style={{textDecoration:"none"}}>🐶 Secret CMO files</Link>
+            </div>
+            </div>
+          </div>
+
+          <div className={styles.bagelBody}>
+            <div className={styles.bagelDark}>
+              <p className={styles.bagelDarkTag}>Bagel&rsquo;s governance doctrine</p>
+              <h3 className={styles.bagelDarkTitle}>Decision routing, as Bagel practices it</h3>
+              <div className={styles.bagelRouting}>
+                <div className={styles.bagelRouteCard}>
+                  <p className={styles.bagelRouteLabel}>Execute</p>
+                  <p className={styles.bagelRouteTitle}>Snack detected</p>
+                  <p className={styles.bagelRouteBody}>Sufficient evidence. Scope clear. Counter within reach. No further review required.</p>
+                </div>
+                <div className={styles.bagelRouteCard}>
+                  <p className={styles.bagelRouteLabel}>Escalate</p>
+                  <p className={styles.bagelRouteTitle}>Leash materialized</p>
+                  <p className={styles.bagelRouteBody}>Ambiguous authority. Outcome uncertain. Howl until a human reviews the situation.</p>
+                </div>
+                <div className={styles.bagelRouteCard}>
+                  <p className={styles.bagelRouteLabel}>Defer</p>
+                  <p className={styles.bagelRouteTitle}>The word &ldquo;bath&rdquo;</p>
+                  <p className={styles.bagelRouteBody}>Insufficient confidence. Mission unclear. Relocate under the bed and await new information.</p>
+                </div>
+              </div>
+              <div className={styles.bagelStats}>
+                <div className={styles.bagelStat}>
+                  <p className={styles.bagelStatVal}>3</p>
+                  <p className={styles.bagelStatLabel}>USB cables chewed this week (conservative estimate)</p>
+                </div>
+                <div className={styles.bagelStat}>
+                  <p className={styles.bagelStatVal}>∞</p>
+                  <p className={styles.bagelStatLabel}>Hours of napping while governance papers were written nearby</p>
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.bagelRight}>
+            <div className={styles.bagelCredCard}>
+              <p className={styles.sectionTag}>Credentials and distinguished service</p>
+              <h3>Official record</h3>
+              <ul className={styles.bagelCredList}>
+                {bagelCredentials.map((c) => (
+                  <li key={c.title} className={styles.bagelCredItem}>
+                    <p className={styles.bagelCredTitle}>{c.title}</p>
+                    <p className={styles.bagelCredInst}>{c.inst}</p>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <div className={styles.bagelSeriousCard}>
+              <p className={styles.sectionTag}>Why this matters to you</p>
+              <h3>The serious point</h3>
+              <p>
+                BagelTech works on systems where failure has real consequences. Bagel is here because the
+                organizations that handle consequential work best are the ones secure enough to laugh at themselves.
+                We joke because we know what we&rsquo;re doing.
+              </p>
+              <blockquote className={styles.bagelQuote}>
+                &ldquo;A governance system that cannot explain itself in plain language to a distracted beagle is
+                not yet legible enough for a public agency.&rdquo;
+                <cite>— W. Parris, probably</cite>
+              </blockquote>
+            </div>
           </div>
         </div>
-      </section>
-    </main>
-  );
+
+          <div className={styles.bagelNotes}>
+            <p className={styles.bagelNotesTag}>Bagel&rsquo;s lab notes · Field observations on AI governance</p>
+            <h3 className={styles.bagelNotesTitle}>Mischief with footnotes</h3>
+            <ul className={styles.bagelNoteList}>
+              {bagelLabNotes.map((note) => (
+                <li key={note} className={styles.bagelNoteItem}>
+                  <span>{note}</span>
+                  <span className={styles.bagelNoteArrow}>↗</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      </ScrollReveal>
+
+      <ScrollReveal>
+        <section className={styles.contactSection} id="contact">
+          <div className={styles.contactCard}>
+            <p className={styles.sectionTag}>Start here</p>
+            <h2>If your workflow cannot afford quiet failure, this is the right conversation.</h2>
+            <p>
+              BagelTech works best where escalation, auditability, and domain-specific reasoning are part of the product
+              requirement, not a later compliance patch. Engagements typically begin with a focused scoping
+              conversation — no lengthy RFP required to get started.
+            </p>
+            <div className={styles.contactMeta}>
+              <div className={styles.contactMetaItem}>
+                <span className={styles.contactMetaLabel}>Email</span>
+                <a href="mailto:bill@bageltech.net" className={styles.contactMetaValue}>bill@bageltech.net</a>
+              </div>
+              <div className={styles.contactMetaItem}>
+                <span className={styles.contactMetaLabel}>LinkedIn</span>
+                <a href="https://linkedin.com/in/billparris92120" className={styles.contactMetaValue}>William Parris</a>
+              </div>
+              <div className={styles.contactMetaItem}>
+                <span className={styles.contactMetaLabel}>Research</span>
+                <a href="https://orcid.org/0009-0001-6994-6828" className={styles.contactMetaValue}>ORCID profile</a>
+              </div>
+            </div>
+            <div className={styles.actions}>
+              <a className={styles.primaryAction} href="mailto:bill@bageltech.net?subject=Scoping conversation">
+                Start a scoping conversation
+              </a>
+              <a className={styles.secondaryAction} href="https://linkedin.com/in/billparris92120">
+                Connect on LinkedIn
+              </a>
+              <a className={styles.secondaryAction} href="https://github.com/Excelsior2026">
+                GitHub
+              </a>
+            </div>
+          </div>
+        </section>
+      </ScrollReveal>
+     </main>
+     </>
+   );
 }

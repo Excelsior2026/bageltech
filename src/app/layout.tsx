@@ -19,15 +19,8 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "BagelTech | Governance, AI, and Decision Systems",
-  description:
-    "BagelTech builds governance systems, ensemble AI frameworks, and decision infrastructure for high-stakes environments.",
-  openGraph: {
-    title: "BagelTech | Governance, AI, and Decision Systems",
-    description:
-      "Execution-time governance, digital transformation, and product systems designed for traceability, authority, and human accountability.",
-    type: "website",
-  },
+  title: "BagelTech",
+  description: "Governance systems, ensemble decision frameworks, and domain-specific AI products.",
 };
 
 export default function RootLayout({
