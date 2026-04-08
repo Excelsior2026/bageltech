@@ -123,7 +123,7 @@
 }
 
 .title {
-  max-width: 9ch;
+  max-width: 11ch;
   margin: 0;
   font-family: var(--font-serif), serif;
   font-size: clamp(3.1rem, 8vw, 6.2rem);

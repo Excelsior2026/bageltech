@@ -57,6 +57,7 @@ interface TelemetryCard {
 }
 
 const operationName = "Operation Dennis";
+const pageTitle = "Mischief Enterprise Operations";
 
 const moodProfiles: Record<Mood, MoodProfile> = {
   happy: {
@@ -392,7 +393,7 @@ export default function BagelPage() {
           ← Return to BagelTech
         </Link>
         <div className={styles.headerBadges}>
-          <span className={styles.headerBadge}>Operation Dennis live</span>
+          <span className={styles.headerBadge}>Chief Hug Officer</span>
           <span className={styles.headerBadgeMuted}>Dennis escort division</span>
         </div>
       </header>
@@ -401,7 +402,7 @@ export default function BagelPage() {
         <section className={styles.hero}>
           <div className={styles.heroCopy}>
             <p className={styles.eyebrow}>BagelTech loyalty protocol</p>
-            <h1 className={styles.title}>{operationName}</h1>
+            <h1 className={styles.title}>{pageTitle}</h1>
             <p className={styles.nameplate}>Filed by Bagel Mischief Parris Vargas</p>
             <p className={styles.subtitle}>{activeMood.title}</p>
             <p className={styles.moodStatus}>{activeMood.description}</p>
