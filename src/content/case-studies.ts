@@ -8,24 +8,36 @@ export interface CaseStudy {
 
 export const CASE_STUDIES: CaseStudy[] = [
   {
-    title: "Permit Processing Efficiency",
-    challenge: "High-volume permits with inconsistent decisions and missing audit trails",
-    solution: "Applied ELEANOR governance to route decisions with audit trails",
-    results: ["90% faster processing", "Audit-ready decisions", "Reduced retries by 40%"],
+    title: "Permitting and licensing workflows",
+    challenge: "Operational teams need consistent decision rights, escalation logic, and auditability before automation goes live.",
+    solution: "Map the governance path: who can decide, what evidence is required, and when a case must move to human review.",
+    results: [
+      "Decision thresholds defined up front",
+      "Escalation and exception paths made explicit",
+      "Review artifacts structured for later audit",
+    ],
     icon: "🏛️",
   },
   {
-    title: "Public Safety AI Deployment",
-    challenge: "Uncertain routing during crises",
-    solution: "Ensembled decision framework with escalation to human operator",
-    results: ["50% faster response", "97% accuracy in triage"],
+    title: "Public-safety and consequential routing",
+    challenge: "High-stakes workflows cannot rely on one opaque output when urgency, consequence, and ambiguity collide.",
+    solution: "Separate machine assistance from operational authority and define when uncertainty must trigger human intervention.",
+    results: [
+      "Authority boundaries clarified",
+      "Human review checkpoints embedded in the flow",
+      "Fallback behavior defined for uncertain conditions",
+    ],
     icon: "🚨",
   },
   {
-    title: "Healthcare Education Transcript",
-    challenge: "Uncertain outputs and inconsistent note-taking",
-    solution: "CogniScribe with uncertainty flags",
-    results: ["Improved study notes", "Higher student satisfaction"],
+    title: "Health-professions education tooling",
+    challenge: "Educational AI has to handle ambiguity honestly without flattening nuance or overstating confidence.",
+    solution: "Design study and transcription systems that surface uncertainty, preserve context, and keep instructors in control.",
+    results: [
+      "Confidence-aware output patterns",
+      "Instructor intent preserved in workflow design",
+      "Clear distinction between notes, inference, and advice",
+    ],
     icon: "🏥",
   },
 ];

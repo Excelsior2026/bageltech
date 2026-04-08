@@ -1,27 +1,47 @@
 "use client";
-import React from 'react';
-import { CASE_STUDIES } from '@/content/case-studies';
-import styles from './page.module.css';
+
+import Link from "next/link";
+import { CASE_STUDIES } from "@/content/case-studies";
+import styles from "./page.module.css";
 
 export default function CaseStudiesPage() {
   return (
     <main className={styles.page}>
-      <section className={styles.header}>
-        <h1>Case Studies</h1>
+      <section className={styles.hero}>
+        <p className={styles.eyebrow}>Representative use cases</p>
+        <h1>Where governed decision systems matter most.</h1>
+        <p className={styles.lead}>
+          These are representative engagement patterns, not confidential client writeups. They show the kinds of
+          operational environments BagelTech is built to support.
+        </p>
+        <Link className={styles.backLink} href="/">
+          Return to BagelTech
+        </Link>
       </section>
+
       <section className={styles.grid}>
-        {CASE_STUDIES.map((cs) => (
-          <article key={cs.title} className={styles.card}>
+        {CASE_STUDIES.map((item) => (
+          <article className={styles.card} key={item.title}>
             <div className={styles.cardHeader}>
-              <span className={styles.icon}>{cs.icon}</span>
-              <h3 className={styles.cardTitle}>{cs.title}</h3>
+              <span className={styles.icon}>{item.icon}</span>
+              <div>
+                <p className={styles.cardLabel}>Use case</p>
+                <h2>{item.title}</h2>
+              </div>
             </div>
-            <p className={styles.cardBody}><strong>The Challenge:</strong> {cs.challenge}</p>
-            <p className={styles.cardBody}><strong>Solution:</strong> {cs.solution}</p>
-            <div className={styles.cardFooter}>
-              <strong>Results:</strong>
-              <ul className={styles.resultsList}>{cs.results.map((r, idx) => <li key={idx}>{r}</li>)}</ul>
-            </div>
+            <p>
+              <strong>Problem</strong>
+              {item.challenge}
+            </p>
+            <p>
+              <strong>Approach</strong>
+              {item.solution}
+            </p>
+            <ul className={styles.resultsList}>
+              {item.results.map((result) => (
+                <li key={result}>{result}</li>
+              ))}
+            </ul>
           </article>
         ))}
       </section>

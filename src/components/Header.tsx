@@ -4,13 +4,11 @@ import { useState, useEffect } from "react";
 import styles from "./Header.module.css";
 
 const navLinks = [
-  { href: "#principles", label: "Principles" },
   { href: "#services", label: "Services" },
-  { href: "#model", label: "Model" },
+  { href: "#model", label: "Method" },
   { href: "#products", label: "Products" },
-  { href: "#research", label: "Research" },
+  { href: "#research", label: "Publications" },
   { href: "#about", label: "About" },
-  { href: "#bagel", label: "Bagel" },
 ];
 
 export default function Header() {
@@ -39,7 +37,7 @@ export default function Header() {
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}>
       <div className={styles.headerInner}>
-        <a href="#" className={styles.logo}>
+        <a href="/" className={styles.logo}>
           <span className={styles.logoIcon}>BT</span>
           <span className={styles.logoText}>BagelTech</span>
         </a>
