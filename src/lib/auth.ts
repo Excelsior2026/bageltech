@@ -2,7 +2,6 @@ import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://verify.bageltech.net";
-
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
     Credentials({
