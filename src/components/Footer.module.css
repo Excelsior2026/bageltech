@@ -1,0 +1,86 @@
+.footer {
+  border-top: 1px solid var(--border);
+  background: #111a16;
+  color: #f8faf7;
+  padding: 3.5rem 1.25rem 2.4rem;
+}
+
+.inner {
+  width: min(1180px, calc(100vw - 2.5rem));
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.4fr) minmax(180px, 0.6fr);
+  gap: 2rem;
+}
+
+.kicker {
+  margin: 0 0 0.75rem;
+  font-family: var(--font-mono), monospace;
+  font-size: 0.76rem;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: #85d7cf;
+}
+
+.brandBlock p:last-child {
+  max-width: 24rem;
+  margin: 0;
+  color: rgba(248, 250, 247, 0.72);
+  line-height: 1.7;
+}
+
+.workstreams {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.workstreamLink {
+  display: grid;
+  gap: 0.22rem;
+  padding: 0.9rem;
+  border: 1px solid rgba(248, 250, 247, 0.12);
+  border-radius: 8px;
+  text-decoration: none;
+  transition: border-color 160ms ease, transform 160ms ease;
+}
+
+.workstreamLink:hover {
+  border-color: rgba(133, 215, 207, 0.5);
+  transform: translateY(-1px);
+}
+
+.workstreamLink span {
+  font-weight: 600;
+}
+
+.workstreamLink small {
+  color: rgba(248, 250, 247, 0.62);
+  font-size: 0.82rem;
+}
+
+.links {
+  display: grid;
+  align-content: start;
+  gap: 0.65rem;
+}
+
+.links a {
+  color: rgba(248, 250, 247, 0.72);
+  text-decoration: none;
+  transition: color 160ms ease;
+}
+
+.links a:hover {
+  color: #ffffff;
+}
+
+.links .bmoLink {
+  margin-top: 0.5rem;
+  color: #85d7cf;
+}
+
+@media (max-width: 840px) {
+  .inner {
+    grid-template-columns: 1fr;
+  }
+}

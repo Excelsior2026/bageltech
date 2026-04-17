@@ -1,0 +1,648 @@
+.page {
+  min-height: 100vh;
+  padding-top: 6rem;
+  color: var(--foreground);
+}
+
+.hero,
+.section {
+  padding: 4.5rem 1.25rem;
+}
+
+.hero {
+  min-height: 88vh;
+  display: grid;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  background:
+    linear-gradient(135deg, rgba(15, 118, 110, 0.08), transparent 34%),
+    linear-gradient(180deg, #fbfdf9 0%, #eef5f0 100%);
+}
+
+.sectionAlt {
+  background: rgba(255, 255, 255, 0.58);
+}
+
+.sectionDark {
+  background: #111a16;
+  color: #f8faf7;
+}
+
+.inner,
+.heroInner {
+  width: min(1180px, calc(100vw - 2.5rem));
+  margin: 0 auto;
+}
+
+.heroInner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.02fr) minmax(320px, 0.78fr);
+  gap: 3rem;
+  align-items: center;
+}
+
+.heroCopy {
+  max-width: 47rem;
+}
+
+.eyebrow,
+.kicker,
+.cardLabel,
+.meta,
+.tag,
+.metricLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.eyebrow,
+.kicker,
+.cardLabel {
+  color: var(--accent-deep);
+}
+
+.sectionDark .eyebrow,
+.sectionDark .kicker,
+.sectionDark .cardLabel,
+.sectionDark .meta {
+  color: #85d7cf;
+}
+
+.heroTitle,
+.sectionTitle,
+.cardTitle,
+.ctaTitle,
+.pageTitle {
+  font-family: var(--font-serif), serif;
+  letter-spacing: 0;
+  color: var(--foreground);
+}
+
+.heroTitle {
+  max-width: 13ch;
+  margin: 0;
+  font-size: 5.1rem;
+  line-height: 0.96;
+}
+
+.pageTitle {
+  max-width: 16ch;
+  margin: 0;
+  font-size: 4.2rem;
+  line-height: 1;
+}
+
+.heroLead,
+.sectionLead,
+.bodyText,
+.cardText,
+.list,
+.muted {
+  color: var(--muted);
+  line-height: 1.72;
+}
+
+.heroLead {
+  max-width: 41rem;
+  margin: 1.4rem 0 0;
+  font-size: 1.18rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.85rem;
+  margin-top: 2rem;
+}
+
+.buttonPrimary,
+.buttonSecondary,
+.textLink {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.9rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition:
+    transform 160ms ease,
+    border-color 160ms ease,
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+.buttonPrimary,
+.buttonSecondary {
+  padding: 0.78rem 1rem;
+  border: 1px solid transparent;
+}
+
+.buttonPrimary {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.buttonSecondary {
+  border-color: var(--border);
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--foreground);
+}
+
+.sectionDark .buttonSecondary {
+  border-color: rgba(248, 250, 247, 0.16);
+  background: rgba(248, 250, 247, 0.06);
+  color: #f8faf7;
+}
+
+.buttonPrimary:hover,
+.buttonSecondary:hover,
+.textLink:hover,
+.cardLink:hover,
+.imageCard:hover {
+  transform: translateY(-1px);
+}
+
+.textLink {
+  color: var(--accent-deep);
+  border-bottom: 1px solid rgba(15, 118, 110, 0.24);
+}
+
+.imagePanel,
+.imageCard {
+  position: relative;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  background: #ffffff;
+}
+
+.imagePanel {
+  min-height: 30rem;
+}
+
+.imagePanel img,
+.imageCard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.imagePanel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 20%, rgba(17, 26, 22, 0.5) 100%);
+}
+
+.imageCaption {
+  position: absolute;
+  inset: auto 1rem 1rem;
+  z-index: 1;
+  padding: 1rem;
+  border-radius: 8px;
+  background: rgba(17, 26, 22, 0.78);
+  color: #f8faf7;
+  line-height: 1.55;
+}
+
+.sectionHeader {
+  display: grid;
+  grid-template-columns: minmax(0, 0.82fr) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: end;
+  margin-bottom: 2rem;
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: 3.2rem;
+  line-height: 1.02;
+}
+
+.sectionDark .sectionTitle,
+.sectionDark .cardTitle,
+.sectionDark .ctaTitle {
+  color: #f8faf7;
+}
+
+.sectionLead {
+  margin: 0;
+  font-size: 1.02rem;
+}
+
+.threeGrid,
+.cardGrid,
+.writingGrid,
+.metricGrid,
+.splitGrid,
+.offerGrid {
+  display: grid;
+  gap: 1rem;
+}
+
+.threeGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.cardGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.writingGrid,
+.splitGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.metricGrid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.offerGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.card,
+.routeCard,
+.featureCard,
+.metricTile,
+.callout,
+.ctaBand,
+.archiveItem,
+.contactCard {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface-strong);
+  box-shadow: var(--shadow);
+}
+
+.card,
+.routeCard,
+.featureCard,
+.archiveItem,
+.contactCard {
+  padding: 1.2rem;
+}
+
+.routeCard,
+.featureCard,
+.archiveItem,
+.contactCard {
+  display: grid;
+  gap: 1rem;
+  align-content: start;
+}
+
+.cardTitle {
+  margin: 0;
+  font-size: 1.58rem;
+  line-height: 1.1;
+}
+
+.routeCard .cardTitle {
+  font-size: 1.85rem;
+}
+
+.cardText {
+  margin: 0;
+}
+
+.list {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list li {
+  position: relative;
+  padding-left: 1rem;
+}
+
+.list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72rem;
+  width: 0.36rem;
+  height: 0.36rem;
+  border-radius: 4px;
+  background: var(--accent);
+}
+
+.cardFooter {
+  align-self: end;
+}
+
+.cardLink {
+  color: var(--accent-deep);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.imageCard {
+  display: grid;
+  grid-template-rows: 13rem auto;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 160ms ease;
+}
+
+.imageCardBody {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1.1rem;
+}
+
+.featureCard {
+  min-height: 18rem;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  color: rgba(17, 26, 22, 0.58);
+}
+
+.tagRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tag {
+  padding: 0.4rem 0.55rem;
+  border-radius: 8px;
+  border: 1px solid rgba(15, 118, 110, 0.16);
+  background: rgba(15, 118, 110, 0.08);
+  color: var(--accent-deep);
+}
+
+.metricTile {
+  padding: 1rem;
+}
+
+.metricValue {
+  margin: 0 0 0.4rem;
+  font-family: var(--font-serif), serif;
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.metricLabel {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.methodGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.methodList {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.methodItem {
+  padding: 1rem 0;
+  border-top: 1px solid rgba(248, 250, 247, 0.14);
+}
+
+.methodItem h3 {
+  margin: 0 0 0.45rem;
+  font-family: var(--font-serif), serif;
+  font-size: 1.35rem;
+  letter-spacing: 0;
+}
+
+.methodItem p {
+  margin: 0;
+  color: rgba(248, 250, 247, 0.72);
+  line-height: 1.7;
+}
+
+.proofPanel {
+  padding: 1.2rem;
+  border: 1px solid rgba(248, 250, 247, 0.14);
+  border-radius: 8px;
+  background: rgba(248, 250, 247, 0.06);
+}
+
+.proofPanel .metricGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.proofPanel .metricTile {
+  border-color: rgba(248, 250, 247, 0.12);
+  background: rgba(248, 250, 247, 0.08);
+  box-shadow: none;
+}
+
+.proofPanel .metricLabel {
+  color: rgba(248, 250, 247, 0.68);
+}
+
+.proofPanel .metricValue {
+  color: #f8faf7;
+}
+
+.ctaBand {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 2rem;
+  background:
+    linear-gradient(135deg, rgba(15, 118, 110, 0.14), transparent 45%),
+    #ffffff;
+}
+
+.ctaTitle {
+  margin: 0;
+  font-size: 2.6rem;
+  line-height: 1.04;
+}
+
+.ctaText {
+  max-width: 44rem;
+  margin: 0.85rem 0 0;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.pageHero {
+  padding: 9rem 1.25rem 4.5rem;
+  border-bottom: 1px solid var(--border);
+  background:
+    linear-gradient(135deg, rgba(15, 118, 110, 0.08), transparent 36%),
+    #fbfdf9;
+}
+
+.pageHeroGrid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.82fr);
+  gap: 3rem;
+  align-items: center;
+}
+
+.pageHero .bodyText {
+  max-width: 45rem;
+  margin: 1.3rem 0 0;
+  font-size: 1.12rem;
+}
+
+.archiveList {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.archiveItem {
+  grid-template-columns: minmax(140px, 0.24fr) minmax(0, 1fr) auto;
+  display: grid;
+  align-items: start;
+}
+
+.archiveBody {
+  display: grid;
+  gap: 0.55rem;
+}
+
+.archiveBody h2 {
+  margin: 0;
+  font-family: var(--font-serif), serif;
+  font-size: 1.45rem;
+  letter-spacing: 0;
+}
+
+.archiveBody p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.contactCard {
+  text-decoration: none;
+  color: inherit;
+  transition: transform 160ms ease, border-color 160ms ease;
+}
+
+.contactCard:hover {
+  transform: translateY(-1px);
+  border-color: rgba(15, 118, 110, 0.36);
+}
+
+.contactCard h2 {
+  margin: 0;
+  font-family: var(--font-serif), serif;
+  font-size: 1.35rem;
+  letter-spacing: 0;
+}
+
+.contactCard p {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+@media (max-width: 980px) {
+  .heroInner,
+  .sectionHeader,
+  .methodGrid,
+  .pageHeroGrid,
+  .ctaBand {
+    grid-template-columns: 1fr;
+  }
+
+  .threeGrid,
+  .cardGrid,
+  .writingGrid,
+  .splitGrid,
+  .offerGrid,
+  .metricGrid,
+  .contactGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .archiveItem {
+    grid-template-columns: 1fr;
+  }
+
+  .heroTitle {
+    font-size: 3.6rem;
+  }
+
+  .pageTitle {
+    font-size: 3.3rem;
+  }
+
+  .sectionTitle {
+    font-size: 2.55rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding-top: 5rem;
+  }
+
+  .hero,
+  .section,
+  .pageHero {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .inner,
+  .heroInner {
+    width: calc(100vw - 2rem);
+  }
+
+  .hero {
+    min-height: auto;
+    padding-top: 3.5rem;
+  }
+
+  .heroTitle,
+  .pageTitle {
+    font-size: 2.8rem;
+  }
+
+  .sectionTitle,
+  .ctaTitle {
+    font-size: 2.15rem;
+  }
+
+  .threeGrid,
+  .cardGrid,
+  .writingGrid,
+  .splitGrid,
+  .offerGrid,
+  .metricGrid,
+  .proofPanel .metricGrid,
+  .contactGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .imagePanel {
+    min-height: 22rem;
+  }
+
+  .ctaBand {
+    padding: 1.2rem;
+  }
+}

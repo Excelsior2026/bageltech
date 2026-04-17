@@ -17,10 +17,15 @@ export default function ScrollReveal({
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    const fallback = window.setTimeout(() => {
+      setIsVisible(true);
+    }, delay + 900);
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           setIsVisible(true);
+          window.clearTimeout(fallback);
           observer.disconnect();
         }
       },
@@ -28,8 +33,11 @@ export default function ScrollReveal({
     );
 
     if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, []);
+    return () => {
+      window.clearTimeout(fallback);
+      observer.disconnect();
+    };
+  }, [delay]);
 
   return (
     <div

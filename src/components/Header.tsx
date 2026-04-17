@@ -1,14 +1,17 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Link from "next/link";
 import styles from "./Header.module.css";
 
 const navLinks = [
-  { href: "#services", label: "Services" },
-  { href: "#model", label: "Method" },
-  { href: "#products", label: "Products" },
-  { href: "#research", label: "Publications" },
-  { href: "#about", label: "About" },
+  { href: "/", label: "Home" },
+  { href: "/bageltech", label: "BagelTech" },
+  { href: "/bdb-labs", label: "BDB Labs" },
+  { href: "/bagelle-parris-vargas", label: "Advisory" },
+  { href: "/publications", label: "Publications" },
+  { href: "/insights", label: "Insights" },
+  { href: "/about", label: "About" },
 ];
 
 export default function Header() {
@@ -37,22 +40,22 @@ export default function Header() {
   return (
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}>
       <div className={styles.headerInner}>
-        <a href="/" className={styles.logo}>
+        <Link href="/" className={styles.logo}>
           <span className={styles.logoIcon}>BT</span>
           <span className={styles.logoText}>BagelTech</span>
-        </a>
+        </Link>
 
         <nav className={styles.desktopNav} aria-label="Main navigation">
           {navLinks.map((link) => (
-            <a key={link.href} href={link.href} className={styles.navLink}>
+            <Link key={link.href} href={link.href} className={styles.navLink}>
               {link.label}
-            </a>
+            </Link>
           ))}
         </nav>
 
-        <a href="#contact" className={styles.ctaButton}>
-          Get in touch
-        </a>
+        <Link href="/contact" className={styles.ctaButton}>
+          Contact
+        </Link>
 
         <button
           className={`${styles.mobileMenuButton} ${isMobileMenuOpen ? styles.open : ""}`}
@@ -69,22 +72,22 @@ export default function Header() {
       <div className={`${styles.mobileMenu} ${isMobileMenuOpen ? styles.mobileMenuOpen : ""}`}>
         <nav className={styles.mobileNav} aria-label="Mobile navigation">
           {navLinks.map((link) => (
-            <a
+            <Link
               key={link.href}
               href={link.href}
               className={styles.mobileNavLink}
               onClick={() => setIsMobileMenuOpen(false)}
             >
               {link.label}
-            </a>
+            </Link>
           ))}
-          <a
-            href="#contact"
+          <Link
+            href="/contact"
             className={styles.mobileCta}
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            Get in touch
-          </a>
+            Contact
+          </Link>
         </nav>
       </div>
     </header>

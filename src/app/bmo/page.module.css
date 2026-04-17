@@ -1,0 +1,279 @@
+.page {
+  padding-top: 6rem;
+  background:
+    linear-gradient(135deg, rgba(15, 118, 110, 0.08), transparent 32%),
+    #f4f7f2;
+  color: var(--foreground);
+}
+
+.inner {
+  width: min(1180px, calc(100vw - 2.5rem));
+  margin: 0 auto;
+}
+
+.hero,
+.section,
+.sectionAlt {
+  padding: 4.5rem 1.25rem;
+}
+
+.hero {
+  min-height: 86vh;
+  display: grid;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+}
+
+.hero .inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.78fr);
+  gap: 2rem;
+  align-items: center;
+}
+
+.heroCopy {
+  max-width: 48rem;
+}
+
+.kicker,
+.metricLabel,
+.profileCard dt {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.78rem;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+}
+
+.hero h1,
+.sectionHeader h2,
+.panel h2,
+.opsBand h2 {
+  margin: 0;
+  font-family: var(--font-serif), serif;
+  letter-spacing: 0;
+  color: var(--foreground);
+}
+
+.hero h1 {
+  max-width: 12ch;
+  font-size: 4.8rem;
+  line-height: 0.98;
+}
+
+.heroCopy p:last-of-type,
+.sectionHeader p,
+.panel li,
+.opsBand p,
+.opsBand li,
+.metricCard p,
+.profileCard dd {
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.heroCopy p:last-of-type {
+  max-width: 42rem;
+  margin-top: 1.2rem;
+  font-size: 1.08rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  margin-top: 1.8rem;
+}
+
+.primary,
+.secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2.9rem;
+  padding: 0.78rem 1rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+.primary {
+  background: var(--accent);
+  color: #ffffff;
+}
+
+.secondary {
+  border: 1px solid var(--border);
+  background: #ffffff;
+  color: var(--foreground);
+}
+
+.profileCard,
+.metricCard,
+.panel,
+.opsBand {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: var(--shadow);
+}
+
+.profileCard {
+  padding: 1.25rem;
+}
+
+.avatar {
+  display: grid;
+  place-items: center;
+  width: 10rem;
+  height: 10rem;
+  margin: 1rem 0;
+  border-radius: 8px;
+  background:
+    linear-gradient(135deg, rgba(15, 118, 110, 0.16), rgba(185, 63, 50, 0.12)),
+    #f4f7f2;
+  border: 1px solid var(--border);
+  font-family: var(--font-serif), serif;
+  font-size: 2.1rem;
+}
+
+.profileCard dl {
+  display: grid;
+  gap: 0.8rem;
+  margin: 0;
+}
+
+.profileCard div {
+  display: grid;
+  gap: 0.2rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--border);
+}
+
+.profileCard dd {
+  margin: 0;
+}
+
+.sectionHeader {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: end;
+  margin-bottom: 2rem;
+}
+
+.sectionHeader h2,
+.panel h2,
+.opsBand h2 {
+  font-size: 2.6rem;
+  line-height: 1.05;
+}
+
+.sectionAlt {
+  background: rgba(255, 255, 255, 0.58);
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.metricGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.metricCard {
+  padding: 1rem;
+}
+
+.metricCard strong {
+  display: block;
+  margin: 0.5rem 0;
+  font-family: var(--font-serif), serif;
+  font-size: 2rem;
+  letter-spacing: 0;
+}
+
+.twoColumn {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.panel {
+  padding: 1.25rem;
+}
+
+.panel ul,
+.opsBand ul {
+  display: grid;
+  gap: 0.8rem;
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.panel li,
+.opsBand li {
+  position: relative;
+  padding-left: 1rem;
+}
+
+.panel li::before,
+.opsBand li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.72rem;
+  width: 0.36rem;
+  height: 0.36rem;
+  border-radius: 4px;
+  background: var(--signal);
+}
+
+.opsBand {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
+  gap: 2rem;
+  padding: 1.5rem;
+}
+
+@media (max-width: 920px) {
+  .hero .inner,
+  .sectionHeader,
+  .metricGrid,
+  .twoColumn,
+  .opsBand {
+    grid-template-columns: 1fr;
+  }
+
+  .hero h1 {
+    font-size: 3.4rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .inner {
+    width: calc(100vw - 2rem);
+  }
+
+  .hero,
+  .section,
+  .sectionAlt {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .hero {
+    min-height: auto;
+  }
+
+  .hero h1 {
+    font-size: 2.65rem;
+  }
+
+  .sectionHeader h2,
+  .panel h2,
+  .opsBand h2 {
+    font-size: 2rem;
+  }
+}
