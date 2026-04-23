@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import BrandMark from "@/components/BrandMark";
 import MarketingLayout from "@/components/MarketingLayout";
 import ScrollReveal from "@/components/ScrollReveal";
 import SmartLink from "@/components/SmartLink";
@@ -74,6 +75,7 @@ export default function AboutPage() {
             <div className={styles.threeGrid}>
               {WORKSTREAMS.map((stream) => (
                 <article className={styles.routeCard} key={stream.slug}>
+                  <BrandMark brand={stream.brand} variant="icon" size="compact" className={styles.routeMark} />
                   <p className={styles.cardLabel}>{stream.role}</p>
                   <h3 className={styles.cardTitle}>{stream.title}</h3>
                   <p className={styles.cardText}>{stream.description}</p>

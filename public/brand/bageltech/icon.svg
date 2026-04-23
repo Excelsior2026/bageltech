@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="BagelTech icon">
+  <defs>
+    <linearGradient id="bt-gold" x1="24" y1="18" x2="96" y2="104" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#D4A94D"/>
+      <stop offset="1" stop-color="#A87B22"/>
+    </linearGradient>
+  </defs>
+  <circle cx="60" cy="60" r="54" fill="#F7F5F1" stroke="#0A2747" stroke-width="4"/>
+  <circle cx="60" cy="60" r="36" fill="none" stroke="url(#bt-gold)" stroke-width="12"/>
+  <path d="M36 60h17m14 0h17M60 36v17m0 14v17M42 42l12 12m12 12 12 12M78 42 66 54M54 66 42 78" fill="none" stroke="#0A2747" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="60" cy="60" r="8" fill="#25D6C8" stroke="#0A2747" stroke-width="3"/>
+  <circle cx="36" cy="60" r="5" fill="#25D6C8"/>
+  <circle cx="84" cy="60" r="5" fill="#25D6C8"/>
+  <circle cx="60" cy="36" r="5" fill="#25D6C8"/>
+  <circle cx="60" cy="84" r="5" fill="#25D6C8"/>
+</svg>

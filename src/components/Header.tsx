@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import BrandMark from "./BrandMark";
 import styles from "./Header.module.css";
 
 const navLinks = [
@@ -41,8 +42,7 @@ export default function Header() {
     <header className={`${styles.header} ${isScrolled ? styles.scrolled : ""}`}>
       <div className={styles.headerInner}>
         <Link href="/" className={styles.logo}>
-          <span className={styles.logoIcon}>BT</span>
-          <span className={styles.logoText}>BagelTech</span>
+          <BrandMark brand="bageltech" variant="light" size="header" priority />
         </Link>
 
         <nav className={styles.desktopNav} aria-label="Main navigation">

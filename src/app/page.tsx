@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import BrandMark from "@/components/BrandMark";
 import MarketingLayout from "@/components/MarketingLayout";
 import MarketingImage from "@/components/MarketingImage";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -34,6 +35,7 @@ export default function HomePage() {
         <section className={styles.hero}>
           <div className={styles.heroInner}>
             <ScrollReveal className={styles.heroCopy}>
+              <BrandMark brand="bageltech" variant="light" size="hero" className={styles.heroMark} priority />
               <p className={styles.eyebrow}>BagelTech</p>
               <h1 className={styles.heroTitle}>Products, research, and advisory for consequential systems.</h1>
               <p className={styles.heroLead}>
@@ -75,6 +77,7 @@ export default function HomePage() {
             <div className={styles.threeGrid}>
               {WORKSTREAMS.map((stream, index) => (
                 <ScrollReveal className={styles.routeCard} delay={index * 90} key={stream.slug}>
+                  <BrandMark brand={stream.brand} variant="icon" size="compact" className={styles.routeMark} />
                   <p className={styles.cardLabel}>{stream.role}</p>
                   <h3 className={styles.cardTitle}>{stream.title}</h3>
                   <p className={styles.cardText}>{stream.summary}</p>
@@ -109,6 +112,7 @@ export default function HomePage() {
 
             <div className={styles.cardGrid}>
               <article className={styles.featureCard}>
+                <BrandMark brand="bageltech" variant="icon" size="compact" className={styles.cardMark} />
                 <p className={styles.cardLabel}>Flagship product</p>
                 <h3 className={styles.cardTitle}>{featuredProduct.title}</h3>
                 <p className={styles.cardText}>{featuredProduct.summary}</p>
@@ -118,6 +122,7 @@ export default function HomePage() {
               </article>
 
               <article className={styles.featureCard}>
+                <BrandMark brand="bdb-labs" variant="icon" size="compact" className={styles.cardMark} />
                 <p className={styles.cardLabel}>Publication / framework</p>
                 <h3 className={styles.cardTitle}>{featuredPublication.title}</h3>
                 <p className={styles.cardText}>{featuredPublication.summary}</p>
@@ -127,6 +132,7 @@ export default function HomePage() {
               </article>
 
               <article className={styles.featureCard}>
+                <BrandMark brand="bpv" variant="icon" size="compact" className={styles.cardMark} />
                 <p className={styles.cardLabel}>Advisory offer</p>
                 <h3 className={styles.cardTitle}>{featuredAdvisory.title}</h3>
                 <p className={styles.cardText}>{featuredAdvisory.summary}</p>

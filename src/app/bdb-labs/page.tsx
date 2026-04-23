@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import BrandMark from "@/components/BrandMark";
 import MarketingLayout from "@/components/MarketingLayout";
 import MarketingImage from "@/components/MarketingImage";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -43,9 +44,10 @@ export default function BdbLabsPage() {
   return (
     <MarketingLayout>
       <main className={styles.page}>
-        <section className={styles.pageHero}>
+        <section className={`${styles.pageHero} ${styles.pageHeroLabs}`}>
           <div className={`${styles.inner} ${styles.pageHeroGrid}`}>
             <ScrollReveal>
+              <BrandMark brand="bdb-labs" variant="light" size="hero" className={styles.heroMark} priority />
               <p className={styles.eyebrow}>{labs.role}</p>
               <h1 className={styles.pageTitle}>BDB Labs develops the ideas before they become offers.</h1>
               <p className={styles.bodyText}>

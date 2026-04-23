@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import BrandMark from "@/components/BrandMark";
 import MarketingLayout from "@/components/MarketingLayout";
 import MarketingImage from "@/components/MarketingImage";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -25,9 +26,10 @@ export default function BagelleParrisVargasPage() {
   return (
     <MarketingLayout>
       <main className={styles.page}>
-        <section className={styles.pageHero}>
+        <section className={`${styles.pageHero} ${styles.pageHeroBpv}`}>
           <div className={`${styles.inner} ${styles.pageHeroGrid}`}>
             <ScrollReveal>
+              <BrandMark brand="bpv" variant="light" size="hero" className={styles.heroMark} priority />
               <p className={styles.eyebrow}>{advisory.role}</p>
               <h1 className={styles.pageTitle}>Executive advisory for modernization that has to land.</h1>
               <p className={styles.bodyText}>

@@ -15,9 +15,9 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  background: rgba(248, 250, 247, 0.84);
-  border: 1px solid rgba(17, 26, 22, 0.08);
-  box-shadow: 0 18px 45px rgba(17, 26, 22, 0.08);
+  background: rgba(247, 245, 241, 0.84);
+  border: 1px solid rgba(8, 20, 38, 0.08);
+  box-shadow: 0 18px 45px rgba(8, 20, 38, 0.08);
   backdrop-filter: blur(16px);
   pointer-events: auto;
   transition:
@@ -29,37 +29,16 @@
 
 .scrolled .headerInner {
   background: rgba(255, 255, 255, 0.92);
-  border-color: rgba(17, 26, 22, 0.12);
-  box-shadow: 0 18px 50px rgba(17, 26, 22, 0.12);
+  border-color: rgba(8, 20, 38, 0.12);
+  box-shadow: 0 18px 50px rgba(8, 20, 38, 0.12);
 }
 
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: 0.75rem;
   min-width: fit-content;
   text-decoration: none;
-  color: #111a16;
-}
-
-.logoIcon {
-  width: 2.15rem;
-  height: 2.15rem;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #111a16;
-  color: #f8faf7;
-  font-family: var(--font-mono), monospace;
-  font-size: 0.7rem;
-  letter-spacing: 0;
-}
-
-.logoText {
-  font-family: var(--font-serif), serif;
-  font-size: 1.2rem;
-  letter-spacing: 0;
+  color: var(--color-bagel-navy);
 }
 
 .desktopNav {
@@ -72,15 +51,15 @@
 .navLink {
   padding: 0.45rem 0.75rem;
   border-radius: 8px;
-  color: rgba(17, 26, 22, 0.72);
+  color: rgba(8, 20, 38, 0.72);
   text-decoration: none;
   font-size: 0.84rem;
   transition: background-color 160ms ease, color 160ms ease;
 }
 
 .navLink:hover {
-  background: rgba(15, 118, 110, 0.08);
-  color: #111a16;
+  background: rgba(37, 214, 200, 0.1);
+  color: var(--color-ink-950);
 }
 
 .ctaButton,
@@ -91,7 +70,7 @@
   min-height: 2.7rem;
   padding: 0.7rem 1rem;
   border-radius: 8px;
-  background: #0f766e;
+  background: var(--color-bagel-navy);
   color: #ffffff;
   font-size: 0.9rem;
   font-weight: 500;
@@ -115,8 +94,8 @@
   padding: 0;
   border: 0;
   border-radius: 8px;
-  background: rgba(15, 118, 110, 0.1);
-  color: #111a16;
+  background: rgba(37, 214, 200, 0.14);
+  color: var(--color-ink-950);
   cursor: pointer;
 }
 
@@ -187,16 +166,16 @@
     gap: 0.55rem;
     padding: 1rem;
     border-radius: 8px;
-    border: 1px solid rgba(17, 26, 22, 0.1);
-    background: rgba(248, 250, 247, 0.96);
-    box-shadow: 0 20px 44px rgba(17, 26, 22, 0.12);
+    border: 1px solid rgba(8, 20, 38, 0.1);
+    background: rgba(247, 245, 241, 0.96);
+    box-shadow: 0 20px 44px rgba(8, 20, 38, 0.12);
     backdrop-filter: blur(18px);
   }
 
   .mobileNavLink {
     padding: 0.85rem 0;
-    border-bottom: 1px solid rgba(17, 26, 22, 0.08);
-    color: #111a16;
+    border-bottom: 1px solid rgba(8, 20, 38, 0.08);
+    color: var(--color-ink-950);
     text-decoration: none;
     font-family: var(--font-serif), serif;
     font-size: 1.18rem;

@@ -13,19 +13,19 @@ const profile = [
   ["Name", "Bagel Mischief Parris Vargas"],
   ["Office", "BMO — Beagle Mischief Office"],
   ["Title", "Chief Mischief Officer"],
-  ["Primary loyalty", "Dennis"],
+  ["Primary loyalty", "Household snack governance"],
   ["Known doctrine", "No room change shall occur without beagle accompaniment."],
 ];
 
 const metrics = [
-  { label: "Dennis favoritism disclosure", value: "Material", note: "All findings should be read with this conflict in mind." },
+  { label: "Loyalty audit disclosure", value: "Material", note: "All findings should be read with snack proximity in mind." },
   { label: "USB cable threat level", value: "Elevated", note: "Loose cables remain chew-adjacent until proven otherwise." },
   { label: "Fabric theft index", value: "72%", note: "Blankets, hoodies, and socks are considered soft infrastructure." },
   { label: "Ice consumption analytics", value: "Strong", note: "Frozen water is classified as a snack under BMO precedent." },
 ];
 
 const incidents = [
-  "07:58 - Dennis stood up. Escort formation activated before step two.",
+  "07:58 - Human stood up. Escort formation activated before step two.",
   "09:12 - Unauthorized chin insertion under nearest human jaw.",
   "12:03 - Cheese detected before packaging entered kitchen airspace.",
   "16:09 - Car keys jingled. Door readiness achieved ahead of human comprehension.",
@@ -39,7 +39,7 @@ const offenses = [
 ];
 
 const operatingRules = [
-  "Dennis shall not relocate without BMO awareness.",
+  "No household transit shall proceed without BMO awareness.",
   "All snacks require review by the Office of Bagel Affairs.",
   "Balcony patrol reports may include squirrels, birds, wind, or vibes.",
   "Any laptop opening triggers proximity support and morale supervision.",
@@ -56,7 +56,7 @@ export default function BmoPage() {
               <h1>BMO — Beagle Mischief Office</h1>
               <p>
                 A quiet BagelTech culture file for Bagel, Chief Mischief Officer, balcony analyst, fabric custody
-                claimant, ice auditor, and Dennis-aligned operational stakeholder.
+                claimant, ice auditor, and household operations stakeholder.
               </p>
               <div className={styles.actions}>
                 <SmartLink className={styles.primary} href="/">
@@ -141,7 +141,7 @@ export default function BmoPage() {
             <div className={styles.opsBand}>
               <div>
                 <p className={styles.kicker}>Balcony operations unit</p>
-                <h2>Perimeter awareness, snack justice, and Dennis continuity.</h2>
+                <h2>Perimeter awareness, snack justice, and household continuity.</h2>
                 <p>
                   BMO maintains readiness across household transit, fabric custody, ice cube analytics, and balcony
                   surveillance. Findings are nonbinding unless cheese is present.

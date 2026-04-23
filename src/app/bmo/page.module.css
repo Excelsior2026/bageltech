@@ -1,8 +1,8 @@
 .page {
   padding-top: 6rem;
   background:
-    linear-gradient(135deg, rgba(15, 118, 110, 0.08), transparent 32%),
-    #f4f7f2;
+    linear-gradient(135deg, rgba(37, 214, 200, 0.08), transparent 32%),
+    var(--color-paper-50);
   color: var(--foreground);
 }
 
@@ -98,7 +98,7 @@
 }
 
 .primary {
-  background: var(--accent);
+  background: var(--accent-deep);
   color: #ffffff;
 }
 
@@ -130,8 +130,8 @@
   margin: 1rem 0;
   border-radius: 8px;
   background:
-    linear-gradient(135deg, rgba(15, 118, 110, 0.16), rgba(185, 63, 50, 0.12)),
-    #f4f7f2;
+    linear-gradient(135deg, rgba(37, 214, 200, 0.16), rgba(212, 169, 77, 0.16)),
+    var(--color-paper-100);
   border: 1px solid var(--border);
   font-family: var(--font-serif), serif;
   font-size: 2.1rem;

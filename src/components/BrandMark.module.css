@@ -1,0 +1,43 @@
+.mark {
+  display: inline-flex;
+  align-items: center;
+  line-height: 0;
+}
+
+.mark img {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+
+.header img {
+  width: 9.2rem;
+}
+
+.compact img {
+  width: 10.5rem;
+}
+
+.hero img {
+  width: 15rem;
+}
+
+.footer img {
+  width: 11.5rem;
+}
+
+.mark[data-variant="icon"].header img,
+.mark[data-variant="icon"].compact img {
+  width: 2.4rem;
+}
+
+@media (max-width: 640px) {
+  .header img {
+    width: 8.2rem;
+  }
+
+  .hero img {
+    width: 12rem;
+  }
+}

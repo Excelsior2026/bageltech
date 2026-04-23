@@ -15,8 +15,8 @@
   align-items: center;
   border-bottom: 1px solid var(--border);
   background:
-    linear-gradient(135deg, rgba(15, 118, 110, 0.08), transparent 34%),
-    linear-gradient(180deg, #fbfdf9 0%, #eef5f0 100%);
+    linear-gradient(135deg, rgba(37, 214, 200, 0.08), transparent 34%),
+    linear-gradient(180deg, var(--color-paper-50) 0%, var(--color-paper-100) 100%);
 }
 
 .sectionAlt {
@@ -24,8 +24,8 @@
 }
 
 .sectionDark {
-  background: #111a16;
-  color: #f8faf7;
+  background: var(--color-ink-950);
+  color: var(--color-bpv-ivory);
 }
 
 .inner,
@@ -43,6 +43,10 @@
 
 .heroCopy {
   max-width: 47rem;
+}
+
+.heroMark {
+  margin-bottom: 1.1rem;
 }
 
 .eyebrow,
@@ -67,7 +71,7 @@
 .sectionDark .kicker,
 .sectionDark .cardLabel,
 .sectionDark .meta {
-  color: #85d7cf;
+  color: var(--color-bagel-teal-soft);
 }
 
 .heroTitle,
@@ -141,7 +145,7 @@
 }
 
 .buttonPrimary {
-  background: var(--accent);
+  background: var(--accent-deep);
   color: #ffffff;
 }
 
@@ -152,9 +156,9 @@
 }
 
 .sectionDark .buttonSecondary {
-  border-color: rgba(248, 250, 247, 0.16);
-  background: rgba(248, 250, 247, 0.06);
-  color: #f8faf7;
+  border-color: rgba(244, 240, 232, 0.16);
+  background: rgba(244, 240, 232, 0.06);
+  color: var(--color-bpv-ivory);
 }
 
 .buttonPrimary:hover,
@@ -167,7 +171,7 @@
 
 .textLink {
   color: var(--accent-deep);
-  border-bottom: 1px solid rgba(15, 118, 110, 0.24);
+  border-bottom: 1px solid rgba(37, 214, 200, 0.3);
 }
 
 .imagePanel,
@@ -195,7 +199,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 20%, rgba(17, 26, 22, 0.5) 100%);
+  background: linear-gradient(180deg, transparent 20%, rgba(8, 20, 38, 0.5) 100%);
 }
 
 .imageCaption {
@@ -204,8 +208,8 @@
   z-index: 1;
   padding: 1rem;
   border-radius: 8px;
-  background: rgba(17, 26, 22, 0.78);
-  color: #f8faf7;
+  background: rgba(8, 20, 38, 0.78);
+  color: var(--color-bpv-ivory);
   line-height: 1.55;
 }
 
@@ -226,7 +230,7 @@
 .sectionDark .sectionTitle,
 .sectionDark .cardTitle,
 .sectionDark .ctaTitle {
-  color: #f8faf7;
+  color: var(--color-bpv-ivory);
 }
 
 .sectionLead {
@@ -294,6 +298,22 @@
   display: grid;
   gap: 1rem;
   align-content: start;
+}
+
+.routeMark,
+.cardMark,
+.contactCardMark {
+  min-height: 2.7rem;
+}
+
+.routeMark img,
+.cardMark img,
+.contactCardMark img {
+  width: 2.7rem;
+}
+
+.cardMark {
+  align-self: start;
 }
 
 .cardTitle {
@@ -366,7 +386,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
-  color: rgba(17, 26, 22, 0.58);
+  color: rgba(8, 20, 38, 0.58);
 }
 
 .tagRow {
@@ -378,8 +398,8 @@
 .tag {
   padding: 0.4rem 0.55rem;
   border-radius: 8px;
-  border: 1px solid rgba(15, 118, 110, 0.16);
-  background: rgba(15, 118, 110, 0.08);
+  border: 1px solid rgba(37, 214, 200, 0.22);
+  background: rgba(37, 214, 200, 0.1);
   color: var(--accent-deep);
 }
 
@@ -432,9 +452,9 @@
 
 .proofPanel {
   padding: 1.2rem;
-  border: 1px solid rgba(248, 250, 247, 0.14);
+  border: 1px solid rgba(244, 240, 232, 0.14);
   border-radius: 8px;
-  background: rgba(248, 250, 247, 0.06);
+  background: rgba(244, 240, 232, 0.06);
 }
 
 .proofPanel .metricGrid {
@@ -442,17 +462,17 @@
 }
 
 .proofPanel .metricTile {
-  border-color: rgba(248, 250, 247, 0.12);
-  background: rgba(248, 250, 247, 0.08);
+  border-color: rgba(244, 240, 232, 0.12);
+  background: rgba(244, 240, 232, 0.08);
   box-shadow: none;
 }
 
 .proofPanel .metricLabel {
-  color: rgba(248, 250, 247, 0.68);
+  color: rgba(244, 240, 232, 0.68);
 }
 
 .proofPanel .metricValue {
-  color: #f8faf7;
+  color: var(--color-bpv-ivory);
 }
 
 .ctaBand {
@@ -462,7 +482,7 @@
   align-items: center;
   padding: 2rem;
   background:
-    linear-gradient(135deg, rgba(15, 118, 110, 0.14), transparent 45%),
+    linear-gradient(135deg, rgba(37, 214, 200, 0.14), transparent 45%),
     #ffffff;
 }
 
@@ -483,8 +503,26 @@
   padding: 9rem 1.25rem 4.5rem;
   border-bottom: 1px solid var(--border);
   background:
-    linear-gradient(135deg, rgba(15, 118, 110, 0.08), transparent 36%),
-    #fbfdf9;
+    linear-gradient(135deg, rgba(37, 214, 200, 0.08), transparent 36%),
+    var(--color-paper-50);
+}
+
+.pageHeroBageltech {
+  background:
+    linear-gradient(135deg, rgba(212, 169, 77, 0.18), transparent 34%),
+    linear-gradient(180deg, var(--color-paper-50) 0%, var(--color-paper-50) 100%);
+}
+
+.pageHeroLabs {
+  background:
+    linear-gradient(135deg, rgba(160, 107, 255, 0.14), transparent 34%),
+    linear-gradient(180deg, var(--color-paper-50) 0%, var(--color-paper-50) 100%);
+}
+
+.pageHeroBpv {
+  background:
+    linear-gradient(135deg, rgba(201, 164, 90, 0.18), transparent 34%),
+    linear-gradient(180deg, var(--color-paper-50) 0%, var(--color-paper-50) 100%);
 }
 
 .pageHeroGrid {
@@ -543,7 +581,7 @@
 
 .contactCard:hover {
   transform: translateY(-1px);
-  border-color: rgba(15, 118, 110, 0.36);
+  border-color: rgba(37, 214, 200, 0.44);
 }
 
 .contactCard h2 {

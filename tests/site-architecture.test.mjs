@@ -50,3 +50,39 @@ test("homepage is a router for the three workstreams", () => {
     assert.match(homepage, new RegExp(label), `homepage should route visitors to ${label}`);
   });
 });
+
+test("implements the shared brand family system", () => {
+  [
+    "public/brand/bageltech/icon.svg",
+    "public/brand/bageltech/lockup-light.svg",
+    "public/brand/bageltech/lockup-dark.svg",
+    "public/brand/bdb-labs/icon.svg",
+    "public/brand/bdb-labs/lockup-light.svg",
+    "public/brand/bdb-labs/lockup-dark.svg",
+    "public/brand/bpv/icon.svg",
+    "public/brand/bpv/lockup-light.svg",
+    "public/brand/bpv/lockup-dark.svg",
+    "src/content/brand-tokens.ts",
+    "src/components/BrandMark.tsx",
+  ].forEach((path) => {
+    assert.equal(exists(path), true, `${path} should exist`);
+  });
+
+  const tokens = read("src/content/brand-tokens.ts");
+  [
+    "#081426",
+    "#D4A94D",
+    "#25D6C8",
+    "#A06BFF",
+    "#4D7CFF",
+    "#C9A45A",
+  ].forEach((value) => {
+    assert.match(tokens, new RegExp(value), `brand token ${value} should be exported`);
+  });
+
+  const homepage = read("src/app/page.tsx");
+  assert.match(homepage, /BrandMark/, "homepage should use shared brand marks");
+
+  const header = read("src/components/Header.tsx");
+  assert.match(header, /BrandMark/, "header should use the BagelTech lockup");
+});

@@ -1,6 +1,9 @@
+import type { BrandKey } from "./brand-tokens";
+
 export interface Workstream {
   title: string;
   slug: string;
+  brand: BrandKey;
   href: string;
   role: string;
   summary: string;
@@ -55,6 +58,7 @@ export const WORKSTREAMS: Workstream[] = [
   {
     title: "BagelTech",
     slug: "bageltech",
+    brand: "bageltech",
     href: "/bageltech",
     role: "Products and platforms",
     summary: "Governable AI systems, decision workflows, and institution-facing commercial offerings.",
@@ -71,6 +75,7 @@ export const WORKSTREAMS: Workstream[] = [
   {
     title: "BDB Labs",
     slug: "bdb-labs",
+    brand: "bdb-labs",
     href: "/bdb-labs",
     role: "Research and incubation",
     summary: "Research, publications, frameworks, prototypes, and emerging methods.",
@@ -87,6 +92,7 @@ export const WORKSTREAMS: Workstream[] = [
   {
     title: "Bagelle Parris Vargas",
     slug: "bagelle-parris-vargas",
+    brand: "bpv",
     href: "/bagelle-parris-vargas",
     role: "Executive advisory",
     summary: "Executive advisory, modernization, transformation, ERP/PMO oversight, and speaking.",

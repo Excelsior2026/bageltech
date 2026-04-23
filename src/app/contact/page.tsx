@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import BrandMark from "@/components/BrandMark";
 import MarketingLayout from "@/components/MarketingLayout";
 import ScrollReveal from "@/components/ScrollReveal";
 import SmartLink from "@/components/SmartLink";
 import styles from "@/components/Marketing.module.css";
+import type { BrandKey } from "@/content/brand-tokens";
 import { CONTACT_OPTIONS, EXTERNAL_LINKS } from "@/content/site";
 
 export const metadata: Metadata = {
@@ -10,6 +12,17 @@ export const metadata: Metadata = {
   description:
     "Route a product, research, advisory, speaking, or general inquiry to the right BagelTech workstream.",
 };
+
+const contactBrands: Record<string, BrandKey | undefined> = {
+  "Product or platform": "bageltech",
+  "Research or collaboration": "bdb-labs",
+  "Advisory or speaking": "bpv",
+};
+
+const brandedContactOptions = CONTACT_OPTIONS.map((option) => ({
+  ...option,
+  brand: contactBrands[option.title],
+}));
 
 export default function ContactPage() {
   return (
@@ -42,8 +55,11 @@ export default function ContactPage() {
             </ScrollReveal>
 
             <div className={styles.contactGrid}>
-              {CONTACT_OPTIONS.map((option) => (
+              {brandedContactOptions.map((option) => (
                 <SmartLink className={styles.contactCard} href={option.href} key={option.title}>
+                  {option.brand ? (
+                    <BrandMark brand={option.brand} variant="icon" size="compact" className={styles.contactCardMark} />
+                  ) : null}
                   <p className={styles.cardLabel}>Inquiry</p>
                   <h2>{option.title}</h2>
                   <p>{option.summary}</p>

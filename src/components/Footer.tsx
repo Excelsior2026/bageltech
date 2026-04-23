@@ -1,4 +1,5 @@
 import SmartLink from "./SmartLink";
+import BrandMark from "./BrandMark";
 import styles from "./Footer.module.css";
 import { EXTERNAL_LINKS, WORKSTREAMS } from "@/content/site";
 
@@ -17,7 +18,7 @@ export default function Footer() {
     <footer className={styles.footer}>
       <div className={styles.inner}>
         <div className={styles.brandBlock}>
-          <p className={styles.kicker}>BagelTech</p>
+          <BrandMark brand="bageltech" variant="dark" size="footer" />
           <p>
             Products, research, and advisory work for institutions building consequence-aware systems.
           </p>
@@ -26,7 +27,7 @@ export default function Footer() {
         <div className={styles.workstreams} aria-label="Workstreams">
           {WORKSTREAMS.map((stream) => (
             <SmartLink key={stream.href} href={stream.href} className={styles.workstreamLink}>
-              <span>{stream.title}</span>
+              <BrandMark brand={stream.brand} variant="dark" size="footer" />
               <small>{stream.role}</small>
             </SmartLink>
           ))}

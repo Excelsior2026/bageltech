@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import BrandMark from "@/components/BrandMark";
 import MarketingLayout from "@/components/MarketingLayout";
 import ScrollReveal from "@/components/ScrollReveal";
 import SmartLink from "@/components/SmartLink";
@@ -26,9 +27,10 @@ export default function PublicationsPage() {
   return (
     <MarketingLayout>
       <main className={styles.page}>
-        <section className={styles.pageHero}>
+        <section className={`${styles.pageHero} ${styles.pageHeroLabs}`}>
           <div className={styles.inner}>
             <ScrollReveal>
+              <BrandMark brand="bdb-labs" variant="light" size="hero" className={styles.heroMark} priority />
               <p className={styles.eyebrow}>Publications</p>
               <h1 className={styles.pageTitle}>Formal writing, research notes, frameworks, and specifications.</h1>
               <p className={styles.bodyText}>

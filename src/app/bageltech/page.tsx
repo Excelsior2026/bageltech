@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import BrandMark from "@/components/BrandMark";
 import MarketingLayout from "@/components/MarketingLayout";
 import MarketingImage from "@/components/MarketingImage";
 import ScrollReveal from "@/components/ScrollReveal";
@@ -40,9 +41,10 @@ export default function BagelTechPage() {
   return (
     <MarketingLayout>
       <main className={styles.page}>
-        <section className={styles.pageHero}>
+        <section className={`${styles.pageHero} ${styles.pageHeroBageltech}`}>
           <div className={`${styles.inner} ${styles.pageHeroGrid}`}>
             <ScrollReveal>
+              <BrandMark brand="bageltech" variant="light" size="hero" className={styles.heroMark} priority />
               <p className={styles.eyebrow}>{bageltech.role}</p>
               <h1 className={styles.pageTitle}>BagelTech builds systems institutions can actually govern.</h1>
               <p className={styles.bodyText}>

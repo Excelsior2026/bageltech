@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="Bagelle Parris Vargas monogram">
+  <circle cx="60" cy="60" r="54" fill="#F7F5F1" stroke="#0C1930" stroke-width="4"/>
+  <circle cx="60" cy="60" r="39" fill="none" stroke="#C9A45A" stroke-width="5"/>
+  <path d="M35 82V38h16c9 0 15 5 15 12 0 5-3 9-8 11 7 2 11 6 11 12 0 6-5 9-13 9H35Zm12-26h6c4 0 7-2 7-6s-3-6-7-6h-6v12Zm0 20h8c5 0 8-2 8-6s-3-7-8-7h-8v13Z" fill="#0C1930"/>
+  <path d="M76 38h9L69 82h-9l16-44Z" fill="#C9A45A"/>
+</svg>

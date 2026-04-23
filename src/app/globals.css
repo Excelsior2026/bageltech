@@ -1,17 +1,36 @@
 @import "tailwindcss";
 
 :root {
-  --background: #f4f7f2;
-  --foreground: #111a16;
-  --muted: rgba(17, 26, 22, 0.72);
+  --color-ink-950: #081426;
+  --color-ink-900: #0e223d;
+  --color-paper-50: #f7f5f1;
+  --color-paper-100: #eeeae3;
+  --color-bagel-gold: #d4a94d;
+  --color-bagel-gold-dark: #a87b22;
+  --color-bagel-teal: #25d6c8;
+  --color-bagel-teal-soft: #7feae1;
+  --color-bagel-navy: #0a2747;
+  --color-labs-violet: #a06bff;
+  --color-labs-purple: #8b4fe0;
+  --color-labs-blue: #4d7cff;
+  --color-labs-lilac: #d8c4ff;
+  --color-labs-navy: #14254a;
+  --color-bpv-gold: #c9a45a;
+  --color-bpv-ivory: #f4f0e8;
+  --color-bpv-navy: #0c1930;
+  --color-bpv-charcoal: #213047;
+
+  --background: var(--color-paper-50);
+  --foreground: var(--color-ink-950);
+  --muted: rgba(8, 20, 38, 0.72);
   --surface: rgba(255, 255, 255, 0.78);
   --surface-strong: #ffffff;
-  --border: rgba(17, 26, 22, 0.12);
-  --accent: #0f766e;
-  --accent-deep: #0b4f4a;
-  --accent-soft: #d8ebe7;
-  --signal: #b93f32;
-  --shadow: 0 24px 60px rgba(17, 26, 22, 0.08);
+  --border: rgba(8, 20, 38, 0.12);
+  --accent: var(--color-bagel-teal);
+  --accent-deep: var(--color-bagel-navy);
+  --accent-soft: rgba(37, 214, 200, 0.16);
+  --signal: var(--color-bagel-gold-dark);
+  --shadow: 0 24px 60px rgba(8, 20, 38, 0.08);
 }
 
 @theme inline {
@@ -34,7 +53,7 @@ body {
   margin: 0;
   min-height: 100vh;
   background:
-    radial-gradient(circle at top left, rgba(15, 118, 110, 0.1), transparent 26rem),
+    radial-gradient(circle at top left, rgba(37, 214, 200, 0.1), transparent 26rem),
     linear-gradient(180deg, #fbfdf9 0%, var(--background) 100%);
   color: var(--foreground);
   font-family: var(--font-sans), sans-serif;
@@ -58,7 +77,7 @@ select {
 }
 
 ::selection {
-  background: rgba(15, 118, 110, 0.18);
+  background: rgba(37, 214, 200, 0.22);
 }
 
 h1,
