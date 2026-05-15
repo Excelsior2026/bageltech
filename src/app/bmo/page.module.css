@@ -1,9 +1,8 @@
 .page {
   padding-top: 6rem;
-  background:
-    linear-gradient(135deg, rgba(37, 214, 200, 0.08), transparent 32%),
-    var(--color-paper-50);
+  background: var(--color-paper-50);
   color: var(--foreground);
+  overflow-x: hidden;
 }
 
 .inner {
@@ -11,71 +10,74 @@
   margin: 0 auto;
 }
 
-.hero,
-.section,
-.sectionAlt {
-  padding: 4.5rem 1.25rem;
-}
+/* ── HERO ─────────────────────────────────── */
 
 .hero {
-  min-height: 86vh;
-  display: grid;
-  align-items: center;
+  position: relative;
+  padding: 5rem 1.25rem 4rem;
   border-bottom: 1px solid var(--border);
+  background:
+    radial-gradient(ellipse 60% 40% at 80% 50%, rgba(37, 214, 200, 0.14) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 10% 80%, rgba(212, 169, 77, 0.12) 0%, transparent 60%),
+    var(--color-paper-50);
 }
 
-.hero .inner {
+.heroGrid {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(320px, 0.78fr);
-  gap: 2rem;
+  grid-template-columns: 1fr auto;
+  gap: 3rem;
+  align-items: start;
+}
+
+.badge {
+  display: inline-flex;
   align-items: center;
-}
-
-.heroCopy {
-  max-width: 48rem;
-}
-
-.kicker,
-.metricLabel,
-.profileCard dt {
+  gap: 0.45rem;
+  padding: 0.4rem 0.85rem;
+  border-radius: 999px;
+  border: 1.5px solid rgba(37, 214, 200, 0.4);
+  background: rgba(37, 214, 200, 0.1);
   font-family: var(--font-mono), monospace;
-  font-size: 0.78rem;
-  letter-spacing: 0;
+  font-size: 0.74rem;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
   color: var(--accent-deep);
+  margin-bottom: 1.2rem;
 }
 
-.hero h1,
-.sectionHeader h2,
-.panel h2,
-.opsBand h2 {
-  margin: 0;
+.badgeDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+.heroTitle {
+  margin: 0 0 0.5rem;
   font-family: var(--font-serif), serif;
-  letter-spacing: 0;
+  font-size: 4.8rem;
+  line-height: 0.96;
+  letter-spacing: -0.01em;
   color: var(--foreground);
 }
 
-.hero h1 {
-  max-width: 12ch;
-  font-size: 4.8rem;
-  line-height: 0.98;
+.heroTitle em {
+  font-style: normal;
+  color: var(--accent-deep);
 }
 
-.heroCopy p:last-of-type,
-.sectionHeader p,
-.panel li,
-.opsBand p,
-.opsBand li,
-.metricCard p,
-.profileCard dd {
-  color: var(--muted);
-  line-height: 1.7;
-}
-
-.heroCopy p:last-of-type {
-  max-width: 42rem;
-  margin-top: 1.2rem;
+.heroSub {
+  margin: 1rem 0 0;
   font-size: 1.08rem;
+  line-height: 1.7;
+  color: var(--muted);
+  max-width: 42rem;
 }
 
 .actions {
@@ -90,83 +92,134 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 2.9rem;
-  padding: 0.78rem 1rem;
+  min-height: 2.75rem;
+  padding: 0.7rem 1.1rem;
   border-radius: 8px;
   text-decoration: none;
   font-weight: 700;
+  font-size: 0.9rem;
+  transition: transform 160ms ease;
 }
 
 .primary {
   background: var(--accent-deep);
-  color: #ffffff;
+  color: #fff;
 }
 
 .secondary {
   border: 1px solid var(--border);
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.72);
   color: var(--foreground);
 }
 
-.profileCard,
-.metricCard,
-.panel,
-.opsBand {
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  background: #ffffff;
-  box-shadow: var(--shadow);
+.primary:hover,
+.secondary:hover {
+  transform: translateY(-1px);
 }
 
-.profileCard {
-  padding: 1.25rem;
+/* ── BAGEL CARD ────────────────────────────── */
+
+.bagelCard {
+  position: relative;
+  width: 260px;
+  min-width: 240px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  background: #fff;
+  box-shadow: 0 24px 60px rgba(8, 20, 38, 0.08);
+  overflow: hidden;
+}
+
+.bagelCardTop {
+  padding: 1.5rem 1.5rem 1rem;
+  background:
+    radial-gradient(circle at 60% 30%, rgba(37, 214, 200, 0.2), transparent 60%),
+    radial-gradient(circle at 20% 80%, rgba(212, 169, 77, 0.15), transparent 50%),
+    var(--color-paper-100);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  border-bottom: 1px solid var(--border);
 }
 
 .avatar {
-  display: grid;
-  place-items: center;
-  width: 10rem;
-  height: 10rem;
-  margin: 1rem 0;
-  border-radius: 8px;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
   background:
-    linear-gradient(135deg, rgba(37, 214, 200, 0.16), rgba(212, 169, 77, 0.16)),
-    var(--color-paper-100);
-  border: 1px solid var(--border);
+    linear-gradient(135deg, rgba(37, 214, 200, 0.3), rgba(212, 169, 77, 0.2));
+  border: 3px solid rgba(37, 214, 200, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: var(--font-serif), serif;
-  font-size: 2.1rem;
+  font-size: 1.9rem;
+  color: var(--accent-deep);
+  flex-shrink: 0;
 }
 
-.profileCard dl {
-  display: grid;
-  gap: 0.8rem;
+.bagelCardName {
+  font-family: var(--font-serif), serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--foreground);
+  text-align: center;
   margin: 0;
 }
 
-.profileCard div {
-  display: grid;
-  gap: 0.2rem;
-  padding-top: 0.8rem;
-  border-top: 1px solid var(--border);
-}
-
-.profileCard dd {
+.bagelCardTitle {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.68rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  text-align: center;
   margin: 0;
 }
 
-.sectionHeader {
+.bagelCardStats {
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
-  gap: 2rem;
-  align-items: end;
-  margin-bottom: 2rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 0;
 }
 
-.sectionHeader h2,
-.panel h2,
-.opsBand h2 {
-  font-size: 2.6rem;
-  line-height: 1.05;
+.bagelStat {
+  padding: 0.8rem 1rem;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+}
+
+.bagelStat:nth-child(even) {
+  border-right: none;
+}
+
+.bagelStat:nth-last-child(-n+2) {
+  border-bottom: none;
+}
+
+.bagelStatVal {
+  font-family: var(--font-serif), serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--foreground);
+  line-height: 1;
+}
+
+.bagelStatLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.64rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  margin-top: 0.2rem;
+}
+
+/* ── SECTION BASE ─────────────────────────── */
+
+.section,
+.sectionAlt {
+  padding: 4.5rem 1.25rem;
 }
 
 .sectionAlt {
@@ -175,105 +228,315 @@
   border-bottom: 1px solid var(--border);
 }
 
-.metricGrid {
+.kicker {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.76rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent-deep);
+  margin: 0 0 0.6rem;
+}
+
+.sectionTitle {
+  font-family: var(--font-serif), serif;
+  font-size: 2.6rem;
+  line-height: 1.04;
+  letter-spacing: -0.01em;
+  color: var(--foreground);
+  margin: 0 0 0.75rem;
+}
+
+.sectionLead {
+  color: var(--muted);
+  line-height: 1.72;
+  max-width: 50rem;
+  margin: 0 0 2.5rem;
+}
+
+/* ── METRICS STRIP ────────────────────────── */
+
+.metricsStrip {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 1rem;
 }
 
 .metricCard {
-  padding: 1rem;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  padding: 1.2rem;
+  box-shadow: 0 8px 24px rgba(8, 20, 38, 0.05);
+  position: relative;
+  overflow: hidden;
 }
 
-.metricCard strong {
-  display: block;
-  margin: 0.5rem 0;
+.metricCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent), rgba(212, 169, 77, 0.6));
+  border-radius: 12px 12px 0 0;
+}
+
+.metricValue {
   font-family: var(--font-serif), serif;
   font-size: 2rem;
-  letter-spacing: 0;
+  line-height: 1;
+  color: var(--foreground);
+  margin: 0 0 0.35rem;
 }
 
-.twoColumn {
+.metricLabel {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--accent-deep);
+  margin: 0 0 0.5rem;
+}
+
+.metricNote {
+  font-size: 0.82rem;
+  color: var(--muted);
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* ── INCIDENT & OFFENSES ──────────────────── */
+
+.twoCol {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr 1fr;
   gap: 1rem;
 }
 
-.panel {
-  padding: 1.25rem;
+.logPanel {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 8px 24px rgba(8, 20, 38, 0.05);
+  overflow: hidden;
 }
 
-.panel ul,
-.opsBand ul {
-  display: grid;
-  gap: 0.8rem;
-  margin: 1rem 0 0;
+.logPanelHeader {
+  padding: 1rem 1.25rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--color-paper-100);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.logPanelHeaderDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-bagel-gold);
+  flex-shrink: 0;
+}
+
+.logPanelTitle {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent-deep);
+  margin: 0;
+}
+
+.logPanelBody {
   padding: 0;
+  margin: 0;
   list-style: none;
 }
 
-.panel li,
-.opsBand li {
+.logItem {
+  padding: 0.85rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--muted);
   position: relative;
-  padding-left: 1rem;
+  padding-left: 2rem;
 }
 
-.panel li::before,
-.opsBand li::before {
-  content: "";
+.logItem::before {
+  content: '';
   position: absolute;
-  left: 0;
-  top: 0.72rem;
-  width: 0.36rem;
-  height: 0.36rem;
-  border-radius: 4px;
-  background: var(--signal);
+  left: 1.05rem;
+  top: 1.1rem;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
 }
+
+.logItem:last-child {
+  border-bottom: none;
+}
+
+.logItem strong {
+  color: var(--foreground);
+  font-weight: 600;
+}
+
+/* ── OPS BAND ─────────────────────────────── */
 
 .opsBand {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--color-ink-950);
+  color: var(--color-bpv-ivory);
+  padding: 2.5rem;
   display: grid;
-  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
-  gap: 2rem;
-  padding: 1.5rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+  position: relative;
+  overflow: hidden;
 }
 
-@media (max-width: 920px) {
-  .hero .inner,
-  .sectionHeader,
-  .metricGrid,
-  .twoColumn,
+.opsBand::before {
+  content: '';
+  position: absolute;
+  top: -40px;
+  right: -40px;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(37, 214, 200, 0.15), transparent 70%);
+  pointer-events: none;
+}
+
+.opsBandKicker {
+  font-family: var(--font-mono), monospace;
+  font-size: 0.74rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--color-bagel-teal-soft);
+  margin: 0 0 0.7rem;
+}
+
+.opsBandTitle {
+  font-family: var(--font-serif), serif;
+  font-size: 2rem;
+  line-height: 1.08;
+  color: var(--color-bpv-ivory);
+  margin: 0 0 0.8rem;
+}
+
+.opsBandLead {
+  color: rgba(244, 240, 232, 0.72);
+  line-height: 1.7;
+  margin: 0;
+}
+
+.rulesList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.rulesItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: rgba(244, 240, 232, 0.82);
+}
+
+.rulesItemDot {
+  flex-shrink: 0;
+  margin-top: 0.5rem;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-bagel-teal);
+}
+
+/* ── SANDWICH EASTER EGG ─────────────────── */
+
+.sandwichSection {
+  padding: 4.5rem 1.25rem;
+  text-align: center;
+}
+
+.sandwichWrap {
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.sandwichTitle {
+  font-family: var(--font-serif), serif;
+  font-size: 1.6rem;
+  color: var(--foreground);
+  margin: 1.5rem 0 0.5rem;
+}
+
+.sandwichNote {
+  color: var(--muted);
+  font-size: 0.92rem;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.sandwichSvg {
+  display: block;
+  margin: 0 auto;
+}
+
+/* ── RESPONSIVE ───────────────────────────── */
+
+@media (max-width: 980px) {
+  .heroGrid,
+  .twoCol,
   .opsBand {
     grid-template-columns: 1fr;
   }
 
-  .hero h1 {
-    font-size: 3.4rem;
+  .metricsStrip {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .bagelCard {
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .heroTitle {
+    font-size: 3.5rem;
   }
 }
 
 @media (max-width: 640px) {
-  .inner {
-    width: calc(100vw - 2rem);
-  }
+  .page { padding-top: 5rem; }
 
   .hero,
   .section,
-  .sectionAlt {
+  .sectionAlt,
+  .sandwichSection {
     padding-left: 1rem;
     padding-right: 1rem;
   }
 
-  .hero {
-    min-height: auto;
+  .metricsStrip {
+    grid-template-columns: 1fr;
   }
 
-  .hero h1 {
-    font-size: 2.65rem;
+  .heroTitle {
+    font-size: 2.6rem;
   }
 
-  .sectionHeader h2,
-  .panel h2,
-  .opsBand h2 {
-    font-size: 2rem;
+  .sectionTitle,
+  .opsBandTitle {
+    font-size: 1.9rem;
   }
 }
