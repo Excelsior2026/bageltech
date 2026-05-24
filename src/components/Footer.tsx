@@ -4,6 +4,7 @@ import styles from "./Footer.module.css";
 import { EXTERNAL_LINKS, WORKSTREAMS } from "@/content/site";
 
 const footerLinks = [
+  { href: "/repository", label: "Repository" },
   { href: "/publications", label: "Publications" },
   { href: "/insights", label: "Insights" },
   { href: "/about", label: "About" },

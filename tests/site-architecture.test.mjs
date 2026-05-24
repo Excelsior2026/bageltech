@@ -13,6 +13,7 @@ test("implements the required public route structure", () => {
     "src/app/bageltech/page.tsx",
     "src/app/bdb-labs/page.tsx",
     "src/app/bagelle-parris-vargas/page.tsx",
+    "src/app/repository/page.tsx",
     "src/app/publications/page.tsx",
     "src/app/insights/page.tsx",
     "src/app/about/page.tsx",
@@ -43,12 +44,29 @@ test("separates publications and insights into distinct curated content sources"
   assert.doesNotMatch(insights, /export const PUBLICATIONS/, "insights should not export publications");
 });
 
-test("homepage is a router for the three workstreams", () => {
+test("homepage orients visitors to the three workstreams", () => {
   const homepage = read("src/app/page.tsx");
 
   ["BagelTech", "BDB Labs", "Bagelle Parris Vargas"].forEach((label) => {
     assert.match(homepage, new RegExp(label), `homepage should route visitors to ${label}`);
   });
+});
+
+test("implements a document repository surface", () => {
+  [
+    "src/content/document-repository.ts",
+    "src/lib/repository-storage.ts",
+    "src/components/repository/RepositoryBrowser.tsx",
+    "src/components/dashboard/RepositoryManager.tsx",
+    "src/app/dashboard/(protected)/layout.tsx",
+    "src/app/dashboard/(protected)/repository/page.tsx",
+  ].forEach((path) => {
+    assert.equal(exists(path), true, `${path} should exist`);
+  });
+
+  const repository = read("src/content/document-repository.ts");
+  assert.match(repository, /CURATED_REPOSITORY_DOCUMENTS/, "repository content should expose curated documents");
+  assert.match(repository, /DOCUMENT_KIND_OPTIONS/, "repository content should expose document kinds");
 });
 
 test("implements the shared brand family system", () => {

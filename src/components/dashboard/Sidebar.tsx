@@ -11,6 +11,7 @@ interface Props {
 const navItems = [
   { href: "/dashboard", label: "Monitor", icon: "◉", roles: ["super_admin", "reviewer", "observer"] },
   { href: "/dashboard/reviews", label: "Reviews", icon: "⚑", roles: ["super_admin", "reviewer"] },
+  { href: "/dashboard/repository", label: "Repository", icon: "□", roles: ["super_admin"] },
   { href: "/dashboard/config", label: "Config", icon: "⚙", roles: ["super_admin"] },
   { href: "/dashboard/users", label: "Users", icon: "◈", roles: ["super_admin"] },
 ];

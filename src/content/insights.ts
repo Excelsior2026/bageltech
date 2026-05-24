@@ -80,8 +80,8 @@ export const INSIGHTS: InsightItem[] = [
     workstream: "BagelTech",
   },
   {
-    title: "Leadership is a routing problem",
-    slug: "leadership-is-a-routing-problem",
+    title: "Leadership is a decision design problem",
+    slug: "leadership-is-decision-design",
     excerpt:
       "The strongest leaders do not absorb every decision. They define where decisions belong and what evidence must travel with them.",
     category: "Leadership",

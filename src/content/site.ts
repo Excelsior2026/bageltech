@@ -118,7 +118,7 @@ export const PRODUCTS: ProductItem[] = [
       "A runtime governance engine for consequential AI systems built around rights-based reasoning, escalation, and controlled execution.",
     audience: "Regulated teams and institution-facing AI systems.",
     problem: "Model output often reaches users before authority, evidence, and escalation paths are clear.",
-    approach: "Separate execution from oversight and route uncertainty through explicit controls.",
+    approach: "Separate execution from oversight and move uncertainty through explicit controls.",
     href: "https://doi.org/10.5281/zenodo.17605176",
   },
   {
@@ -221,7 +221,7 @@ export const CONTACT_OPTIONS = [
   },
   {
     title: "General inquiry",
-    summary: "Start with a short note and route the conversation from there.",
+    summary: "Start with a short note and the conversation can be directed from there.",
     href: EXTERNAL_LINKS.email,
   },
 ];

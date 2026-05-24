@@ -10,7 +10,7 @@ import { CONTACT_OPTIONS, EXTERNAL_LINKS } from "@/content/site";
 export const metadata: Metadata = {
   title: "Contact | BagelTech",
   description:
-    "Route a product, research, advisory, speaking, or general inquiry to the right BagelTech workstream.",
+    "Start a product, research, advisory, speaking, or general inquiry with the right BagelTech workstream.",
 };
 
 const contactBrands: Record<string, BrandKey | undefined> = {
@@ -34,8 +34,8 @@ export default function ContactPage() {
               <p className={styles.eyebrow}>Contact</p>
               <h1 className={styles.pageTitle}>Start with the conversation type.</h1>
               <p className={styles.bodyText}>
-                The fastest path is to route the inquiry by lane: product or platform, research collaboration, advisory
-                or speaking, or a general note.
+                The fastest path is to choose the context closest to the work: product or platform, research
+                collaboration, advisory or speaking, or a general note.
               </p>
             </ScrollReveal>
           </div>

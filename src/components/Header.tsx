@@ -10,6 +10,7 @@ const navLinks = [
   { href: "/bageltech", label: "BagelTech" },
   { href: "/bdb-labs", label: "BDB Labs" },
   { href: "/bagelle-parris-vargas", label: "Advisory" },
+  { href: "/repository", label: "Repository" },
   { href: "/publications", label: "Publications" },
   { href: "/insights", label: "Insights" },
   { href: "/about", label: "About" },

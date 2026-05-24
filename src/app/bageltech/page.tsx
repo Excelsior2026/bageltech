@@ -77,7 +77,7 @@ export default function BagelTechPage() {
                 <h2 className={styles.sectionTitle}>Governance is treated as product behavior, not after-the-fact policy.</h2>
               </div>
               <p className={styles.sectionLead}>
-                BagelTech products focus on decision workflows that need scope control, uncertainty routing, evidence
+                BagelTech products focus on decision workflows that need scope control, uncertainty handling, evidence
                 capture, and accountable human authority.
               </p>
             </ScrollReveal>

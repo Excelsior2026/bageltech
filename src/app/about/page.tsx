@@ -44,7 +44,7 @@ export default function AboutPage() {
                 <h2 className={styles.cardTitle}>A technology and delivery leader focused on governable systems.</h2>
                 <p className={styles.cardText}>
                   The work joins practical implementation experience with published thinking on AI governance,
-                  uncertainty routing, institutional authority, and decision infrastructure.
+                  uncertainty handling, institutional authority, and decision infrastructure.
                 </p>
               </ScrollReveal>
 

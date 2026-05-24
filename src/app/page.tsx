@@ -65,12 +65,12 @@ export default function HomePage() {
           <div className={styles.inner}>
             <ScrollReveal className={styles.sectionHeader}>
               <div>
-                <p className={styles.kicker}>Choose the right lane</p>
-                <h2 className={styles.sectionTitle}>The site is a router, not a mixed pile of good ideas.</h2>
+                <p className={styles.kicker}>Choose the right workstream</p>
+                <h2 className={styles.sectionTitle}>Three distinct workstreams keep the work easy to understand.</h2>
               </div>
               <p className={styles.sectionLead}>
-                Each workstream has a distinct job. Product conversations belong in BagelTech. Research and prototypes
-                belong in BDB Labs. Executive modernization and delivery work belongs in Bagelle Parris Vargas.
+                Product conversations start in BagelTech. Research, papers, and prototypes live with BDB Labs.
+                Executive modernization and delivery work belongs in Bagelle Parris Vargas.
               </p>
             </ScrollReveal>
 
@@ -149,10 +149,10 @@ export default function HomePage() {
             <div className={styles.methodGrid}>
               <ScrollReveal>
                 <p className={styles.kicker}>Method and credibility</p>
-                <h2 className={styles.sectionTitle}>Evidence first. Uncertainty routed. Authority made visible.</h2>
+                <h2 className={styles.sectionTitle}>Evidence first. Uncertainty surfaced. Authority made visible.</h2>
                 <p className={styles.sectionLead}>
                   The same operating doctrine supports the product, research, and advisory lanes: define the decision,
-                  make the evidence reviewable, and route work by consequence and authority.
+                  make the evidence reviewable, and match the work to the right consequence and authority.
                 </p>
               </ScrollReveal>
 
@@ -237,12 +237,12 @@ export default function HomePage() {
               <div>
                 <h2 className={styles.ctaTitle}>Start with the lane that matches the work.</h2>
                 <p className={styles.ctaText}>
-                  Product, research, and advisory conversations begin differently. The contact page routes the inquiry
-                  so the first conversation is useful.
+                  Product, research, and advisory conversations begin differently. The contact page frames the inquiry
+                  so the first conversation starts in the right context.
                 </p>
               </div>
               <SmartLink className={styles.buttonPrimary} href="/contact">
-                Route an inquiry
+                Start an inquiry
               </SmartLink>
             </ScrollReveal>
           </div>

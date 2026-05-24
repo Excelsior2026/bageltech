@@ -19,7 +19,7 @@ export const CASE_STUDIES: CaseStudy[] = [
     icon: "🏛️",
   },
   {
-    title: "Public-safety and consequential routing",
+    title: "Public-safety and consequential escalation",
     challenge: "High-stakes workflows cannot rely on one opaque output when urgency, consequence, and ambiguity collide.",
     solution: "Separate machine assistance from operational authority and define when uncertainty must trigger human intervention.",
     results: [
