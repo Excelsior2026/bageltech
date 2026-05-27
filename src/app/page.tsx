@@ -5,28 +5,20 @@ import MarketingImage from "@/components/MarketingImage";
 import ScrollReveal from "@/components/ScrollReveal";
 import SmartLink from "@/components/SmartLink";
 import styles from "@/components/Marketing.module.css";
-import { ADVISORY_OFFERS, HERO_IMAGE, METHOD_TILES, PRODUCTS, PROOF_POINTS, WORKSTREAMS } from "@/content/site";
-import { INSIGHTS } from "@/content/insights";
-import { PUBLICATIONS } from "@/content/publications";
+import { HERO_IMAGE, METHOD_TILES, PROOF_POINTS, WORKSTREAMS } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "BagelTech | Products, Research, and Advisory for Consequence-Aware Systems",
+  title: "BagelTech | Governance and Consequence-Aware Systems",
   description:
-    "BagelTech brings together governable AI products, BDB Labs research, and Bagelle Parris Vargas executive advisory.",
+    "BagelTech delivers institution-ready products, BDB Labs research, and executive advisory grounded in evidence, auditability, and operational credibility.",
   openGraph: {
-    title: "BagelTech | Products, Research, and Advisory",
+    title: "BagelTech | Governance Systems",
     description:
-      "A clearer front door for products, research, and advisory work built around evidence, escalation, auditability, and operational credibility.",
+      "A unified platform for products, research, and advisory work built around evidence, escalation, auditability, and operational credibility.",
     type: "website",
     url: "https://www.bageltech.net",
   },
 };
-
-const featuredProduct = PRODUCTS[0];
-const featuredPublication = PUBLICATIONS.find((item) => item.featured) ?? PUBLICATIONS[0];
-const featuredAdvisory = ADVISORY_OFFERS[0];
-const selectedPublications = PUBLICATIONS.filter((item) => item.featured).slice(0, 2);
-const selectedInsights = INSIGHTS.filter((item) => item.featured).slice(0, 2);
 
 export default function HomePage() {
   return (
@@ -37,17 +29,17 @@ export default function HomePage() {
             <ScrollReveal className={styles.heroCopy}>
               <BrandMark brand="bageltech" variant="light" size="hero" className={styles.heroMark} priority />
               <p className={styles.eyebrow}>BagelTech</p>
-              <h1 className={styles.heroTitle}>Products, research, and advisory for consequential systems.</h1>
+              <h1 className={styles.heroTitle}>Design systems that surface consequence and gain trust.</h1>
               <p className={styles.heroLead}>
-                BagelTech brings together institution-ready products, BDB Labs research, and Bagelle Parris Vargas
-                advisory work for organizations that need evidence, escalation, auditability, and leadership judgment.
+                We provide the architecture for consequential systems, ensuring decisions are grounded in evidence,
+                authority is visible, and uncertainty triggers explicit, auditable escalation.
               </p>
               <div className={styles.actions}>
                 <SmartLink className={styles.buttonPrimary} href="/contact">
                   Start a scoping conversation
                 </SmartLink>
                 <SmartLink className={styles.buttonSecondary} href="#workstreams">
-                  Explore the work
+                  Explore the lanes
                 </SmartLink>
               </div>
             </ScrollReveal>
@@ -55,7 +47,7 @@ export default function HomePage() {
             <ScrollReveal className={styles.imagePanel} delay={120}>
               <MarketingImage src={HERO_IMAGE.src} alt={HERO_IMAGE.alt} priority />
               <p className={styles.imageCaption}>
-                Three lanes, one operating thesis: make consequential systems easier to inspect, govern, and lead.
+                The operating thesis: Consequence demands clear authority, reviewable evidence, and structured escalation.
               </p>
             </ScrollReveal>
           </div>
@@ -65,34 +57,41 @@ export default function HomePage() {
           <div className={styles.inner}>
             <ScrollReveal className={styles.sectionHeader}>
               <div>
-                <p className={styles.kicker}>Choose the right workstream</p>
-                <h2 className={styles.sectionTitle}>Three distinct workstreams keep the work easy to understand.</h2>
+                <p className={styles.kicker}>Choose the right lane</p>
+                <h2 className={styles.sectionTitle}>Three distinct workstreams keep the focus clear.</h2>
               </div>
               <p className={styles.sectionLead}>
-                Product conversations start in BagelTech. Research, papers, and prototypes live with BDB Labs.
-                Executive modernization and delivery work belongs in Bagelle Parris Vargas.
+                Products live in BagelTech. Research and frameworks are incubated in BDB Labs. Executive experience is
+                delivered via Bagelle Parris Vargas.
               </p>
             </ScrollReveal>
 
             <div className={styles.threeGrid}>
-              {WORKSTREAMS.map((stream, index) => (
-                <ScrollReveal className={styles.routeCard} delay={index * 90} key={stream.slug}>
-                  <BrandMark brand={stream.brand} variant="icon" size="compact" className={styles.routeMark} />
-                  <p className={styles.cardLabel}>{stream.role}</p>
-                  <h3 className={styles.cardTitle}>{stream.title}</h3>
-                  <p className={styles.cardText}>{stream.summary}</p>
-                  <ul className={styles.list}>
-                    {stream.bullets.map((bullet) => (
-                      <li key={bullet}>{bullet}</li>
-                    ))}
-                  </ul>
-                  <div className={styles.cardFooter}>
-                    <SmartLink className={styles.cardLink} href={stream.href}>
-                      {stream.cta}
-                    </SmartLink>
-                  </div>
-                </ScrollReveal>
-              ))}
+              {WORKSTREAMS.map((stream, index) => {
+                let href = stream.href;
+                if (stream.slug === "bageltech") href = "/products";
+                if (stream.slug === "bdb-labs") href = "/research";
+                if (stream.slug === "bagelle-parris-vargas") href = "/advisory";
+
+                return (
+                  <ScrollReveal className={styles.routeCard} delay={index * 90} key={stream.slug}>
+                    <BrandMark brand={stream.brand} variant="icon" size="compact" className={styles.routeMark} />
+                    <p className={styles.cardLabel}>{stream.role}</p>
+                    <h3 className={styles.cardTitle}>{stream.title}</h3>
+                    <p className={styles.cardText}>{stream.summary}</p>
+                    <ul className={styles.list}>
+                      {stream.bullets.map((bullet) => (
+                        <li key={bullet}>{bullet}</li>
+                      ))}
+                    </ul>
+                    <div className={styles.cardFooter}>
+                      <SmartLink className={styles.cardLink} href={href}>
+                        {stream.cta}
+                      </SmartLink>
+                    </div>
+                  </ScrollReveal>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -101,45 +100,21 @@ export default function HomePage() {
           <div className={styles.inner}>
             <ScrollReveal className={styles.sectionHeader}>
               <div>
-                <p className={styles.kicker}>Featured work</p>
-                <h2 className={styles.sectionTitle}>One current signal from each lane.</h2>
+                <p className={styles.kicker}>Durable insight</p>
+                <h2 className={styles.sectionTitle}>All papers, notes, and case materials in one library.</h2>
               </div>
               <p className={styles.sectionLead}>
-                The architecture keeps products, research, and advisory legible while showing how they inform each
-                other.
+                See the research, frameworks, and operational experience that inform the products and advisory offers.
               </p>
             </ScrollReveal>
 
-            <div className={styles.cardGrid}>
-              <article className={styles.featureCard}>
-                <BrandMark brand="bageltech" variant="icon" size="compact" className={styles.cardMark} />
-                <p className={styles.cardLabel}>Flagship product</p>
-                <h3 className={styles.cardTitle}>{featuredProduct.title}</h3>
-                <p className={styles.cardText}>{featuredProduct.summary}</p>
-                <SmartLink className={styles.cardLink} href="/bageltech#products">
-                  View products
-                </SmartLink>
-              </article>
-
-              <article className={styles.featureCard}>
-                <BrandMark brand="bdb-labs" variant="icon" size="compact" className={styles.cardMark} />
-                <p className={styles.cardLabel}>Publication / framework</p>
-                <h3 className={styles.cardTitle}>{featuredPublication.title}</h3>
-                <p className={styles.cardText}>{featuredPublication.summary}</p>
-                <SmartLink className={styles.cardLink} href={featuredPublication.sourceUrl}>
-                  Read the piece
-                </SmartLink>
-              </article>
-
-              <article className={styles.featureCard}>
-                <BrandMark brand="bpv" variant="icon" size="compact" className={styles.cardMark} />
-                <p className={styles.cardLabel}>Advisory offer</p>
-                <h3 className={styles.cardTitle}>{featuredAdvisory.title}</h3>
-                <p className={styles.cardText}>{featuredAdvisory.summary}</p>
-                <SmartLink className={styles.cardLink} href="/bagelle-parris-vargas#offers">
-                  See advisory options
-                </SmartLink>
-              </article>
+            <div className={styles.actions}>
+              <SmartLink className={styles.buttonPrimary} href="/writing">
+                Explore the full Writing Library
+              </SmartLink>
+              <SmartLink className={styles.buttonSecondary} href="/contact">
+                Discuss a use case
+              </SmartLink>
             </div>
           </div>
         </section>
@@ -175,58 +150,6 @@ export default function HomePage() {
                   ))}
                 </div>
               </ScrollReveal>
-            </div>
-          </div>
-        </section>
-
-        <section className={styles.section}>
-          <div className={styles.inner}>
-            <ScrollReveal className={styles.sectionHeader}>
-              <div>
-                <p className={styles.kicker}>Selected writing</p>
-                <h2 className={styles.sectionTitle}>Durable papers and shorter public signals, kept in their lanes.</h2>
-              </div>
-              <p className={styles.sectionLead}>
-                Formal publications live in the research archive. Short-form field notes and LinkedIn-style thinking
-                live in Insights. The homepage only carries a curated strip.
-              </p>
-            </ScrollReveal>
-
-            <div className={styles.writingGrid}>
-              {selectedPublications.map((item) => (
-                <article className={styles.archiveItem} key={item.slug}>
-                  <p className={styles.meta}>{item.category}</p>
-                  <div className={styles.archiveBody}>
-                    <h2>{item.title}</h2>
-                    <p>{item.summary}</p>
-                  </div>
-                  <SmartLink className={styles.cardLink} href={item.sourceUrl}>
-                    {item.source}
-                  </SmartLink>
-                </article>
-              ))}
-
-              {selectedInsights.map((item) => (
-                <article className={styles.archiveItem} key={item.slug}>
-                  <p className={styles.meta}>{item.category}</p>
-                  <div className={styles.archiveBody}>
-                    <h2>{item.title}</h2>
-                    <p>{item.excerpt}</p>
-                  </div>
-                  <SmartLink className={styles.cardLink} href={item.sourceUrl}>
-                    {item.source}
-                  </SmartLink>
-                </article>
-              ))}
-            </div>
-
-            <div className={styles.actions}>
-              <SmartLink className={styles.buttonSecondary} href="/publications">
-                View publications
-              </SmartLink>
-              <SmartLink className={styles.buttonSecondary} href="/insights">
-                View insights
-              </SmartLink>
             </div>
           </div>
         </section>

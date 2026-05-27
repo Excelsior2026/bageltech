@@ -4,9 +4,9 @@ import styles from "./Footer.module.css";
 import { EXTERNAL_LINKS, WORKSTREAMS } from "@/content/site";
 
 const footerLinks = [
-  { href: "/repository", label: "Repository" },
-  { href: "/publications", label: "Publications" },
-  { href: "/insights", label: "Insights" },
+  { href: "/products", label: "Products" },
+  { href: "/research", label: "Research" },
+  { href: "/writing", label: "Writing" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },
   { href: EXTERNAL_LINKS.orcid, label: "ORCID" },
@@ -26,12 +26,19 @@ export default function Footer() {
         </div>
 
         <div className={styles.workstreams} aria-label="Workstreams">
-          {WORKSTREAMS.map((stream) => (
-            <SmartLink key={stream.href} href={stream.href} className={styles.workstreamLink}>
-              <BrandMark brand={stream.brand} variant="dark" size="footer" />
-              <small>{stream.role}</small>
-            </SmartLink>
-          ))}
+          {WORKSTREAMS.map((stream) => {
+            let href = stream.href;
+            if (stream.slug === "bageltech") href = "/products";
+            if (stream.slug === "bdb-labs") href = "/research";
+            if (stream.slug === "bagelle-parris-vargas") href = "/advisory";
+
+            return (
+              <SmartLink key={stream.slug} href={href} className={styles.workstreamLink}>
+                <BrandMark brand={stream.brand} variant="dark" size="footer" />
+                <small>{stream.role}</small>
+              </SmartLink>
+            );
+          })}
         </div>
 
         <nav className={styles.links} aria-label="Footer navigation">
@@ -40,8 +47,9 @@ export default function Footer() {
               {link.label}
             </SmartLink>
           ))}
-          <SmartLink href="/bmo" className={styles.bmoLink}>
-            BMO
+          {/* Easter Egg for BMO - Hidden Dog Head */}
+          <SmartLink href="/bmo" style={{ fontSize: "0.8rem", opacity: 0.1 }} aria-label="Beagle Mischief Office Access">
+            🐾
           </SmartLink>
         </nav>
       </div>

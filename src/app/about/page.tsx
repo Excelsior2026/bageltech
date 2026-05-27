@@ -73,17 +73,17 @@ export default function AboutPage() {
             </ScrollReveal>
 
             <div className={styles.threeGrid}>
-              {WORKSTREAMS.map((stream) => (
-                <article className={styles.routeCard} key={stream.slug}>
-                  <BrandMark brand={stream.brand} variant="icon" size="compact" className={styles.routeMark} />
-                  <p className={styles.cardLabel}>{stream.role}</p>
-                  <h3 className={styles.cardTitle}>{stream.title}</h3>
-                  <p className={styles.cardText}>{stream.description}</p>
-                  <SmartLink className={styles.cardLink} href={stream.href}>
-                    Go to {stream.title}
-                  </SmartLink>
-                </article>
-              ))}
+               {WORKSTREAMS.map((stream) => (
+                 <article className={styles.routeCard} key={stream.slug}>
+                   <BrandMark brand={stream.brand} variant="icon" size="compact" className={styles.routeMark} />
+                   <p className={styles.cardLabel}>{stream.role}</p>
+                   <h3 className={styles.cardTitle}>{stream.title}</h3>
+                   <p className={styles.cardText}>{stream.description}</p>
+                   <SmartLink className={styles.cardLink} href={stream.href === "/bagelle-parris-vargas" ? "/advisory" : stream.href === "/bageltech" ? "/products" : stream.href === "/bdb-labs" ? "/research" : stream.href}>
+                     Go to {stream.title}
+                   </SmartLink>
+                 </article>
+               ))}
             </div>
           </div>
         </section>

@@ -7,10 +7,10 @@ import SmartLink from "@/components/SmartLink";
 import styles from "@/components/Marketing.module.css";
 import { ADVISORY_OFFERS, EXTERNAL_LINKS, PROOF_POINTS, WORKSTREAMS } from "@/content/site";
 
-const advisory = WORKSTREAMS.find((stream) => stream.slug === "bagelle-parris-vargas") ?? WORKSTREAMS[2];
+const advisoryStream = WORKSTREAMS.find((stream) => stream.slug === "bagelle-parris-vargas") ?? WORKSTREAMS[2];
 
 export const metadata: Metadata = {
-  title: "Bagelle Parris Vargas | Executive Advisory",
+  title: "Advisory | Executive Leadership",
   description:
     "Executive advisory for enterprise modernization, ERP and PMO oversight, delivery leadership, AI governance, speaking, and workshops.",
 };
@@ -22,7 +22,7 @@ const leadershipContext = [
   "Published research across AI governance, institutional systems, and decision design",
 ];
 
-export default function BagelleParrisVargasPage() {
+export default function AdvisoryPage() {
   return (
     <MarketingLayout>
       <main className={styles.page}>
@@ -30,11 +30,11 @@ export default function BagelleParrisVargasPage() {
           <div className={`${styles.inner} ${styles.pageHeroGrid}`}>
             <ScrollReveal>
               <BrandMark brand="bpv" variant="light" size="hero" className={styles.heroMark} priority />
-              <p className={styles.eyebrow}>{advisory.role}</p>
+              <p className={styles.eyebrow}>{advisoryStream.role}</p>
               <h1 className={styles.pageTitle}>Executive advisory for modernization that has to land.</h1>
               <p className={styles.bodyText}>
-                {advisory.description} This lane centers William Parris as an advisor, operator, speaker, and delivery
-                leader for consequential institutional change.
+                {advisoryStream.description} This lane centers executive support, experienced operations, speaking, and
+                judgement for consequential institutional change.
               </p>
               <div className={styles.actions}>
                 <SmartLink className={styles.buttonPrimary} href={EXTERNAL_LINKS.advisory}>
@@ -46,7 +46,7 @@ export default function BagelleParrisVargasPage() {
               </div>
             </ScrollReveal>
             <ScrollReveal className={styles.imagePanel} delay={120}>
-              <MarketingImage src={advisory.image.src} alt={advisory.image.alt} priority />
+              <MarketingImage src={advisoryStream.image.src} alt={advisoryStream.image.alt} priority />
               <p className={styles.imageCaption}>
                 Advisory work belongs here: enterprise modernization, ERP oversight, PMO design, speaking, and workshops.
               </p>
@@ -58,18 +58,18 @@ export default function BagelleParrisVargasPage() {
           <div className={styles.inner}>
             <ScrollReveal className={styles.sectionHeader}>
               <div>
-                <p className={styles.kicker}>William Parris</p>
+                <p className={styles.kicker}>Executive background</p>
                 <h2 className={styles.sectionTitle}>A delivery leader for programs where ambiguity is expensive.</h2>
               </div>
               <p className={styles.sectionLead}>
-                The advisory lane is intentionally not a subparagraph of About. It is where direct executive support,
-                leadership experience, and transformation judgment are presented as a clear offer.
+                The advisory lane is where direct operational support, leadership experience, and transformation
+                judgment are presented as a clear offer.
               </p>
             </ScrollReveal>
 
             <div className={styles.splitGrid}>
               <article className={styles.card}>
-                <p className={styles.cardLabel}>Leadership background</p>
+                <p className={styles.cardLabel}>Leadership context</p>
                 <ul className={styles.list}>
                   {leadershipContext.map((item) => (
                     <li key={item}>{item}</li>

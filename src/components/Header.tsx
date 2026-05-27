@@ -7,12 +7,10 @@ import styles from "./Header.module.css";
 
 const navLinks = [
   { href: "/", label: "Home" },
-  { href: "/bageltech", label: "BagelTech" },
-  { href: "/bdb-labs", label: "BDB Labs" },
-  { href: "/bagelle-parris-vargas", label: "Advisory" },
-  { href: "/repository", label: "Repository" },
-  { href: "/publications", label: "Publications" },
-  { href: "/insights", label: "Insights" },
+  { href: "/products", label: "Products" },
+  { href: "/research", label: "Research" },
+  { href: "/advisory", label: "Advisory" },
+  { href: "/writing", label: "Writing" },
   { href: "/about", label: "About" },
 ];
 
