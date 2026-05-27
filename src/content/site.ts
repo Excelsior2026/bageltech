@@ -59,7 +59,7 @@ export const WORKSTREAMS: Workstream[] = [
     title: "BagelTech",
     slug: "bageltech",
     brand: "bageltech",
-    href: "/bageltech",
+    href: "/products",
     role: "Products and platforms",
     summary: "Governable AI systems, decision workflows, and institution-facing commercial offerings.",
     description:
@@ -76,7 +76,7 @@ export const WORKSTREAMS: Workstream[] = [
     title: "BDB Labs",
     slug: "bdb-labs",
     brand: "bdb-labs",
-    href: "/bdb-labs",
+    href: "/research",
     role: "Research and incubation",
     summary: "Research, publications, frameworks, prototypes, and emerging methods.",
     description:
@@ -93,7 +93,7 @@ export const WORKSTREAMS: Workstream[] = [
     title: "Bagelle Parris Vargas",
     slug: "bagelle-parris-vargas",
     brand: "bpv",
-    href: "/bagelle-parris-vargas",
+    href: "/advisory",
     role: "Executive advisory",
     summary: "Executive advisory, modernization, transformation, ERP/PMO oversight, and speaking.",
     description:

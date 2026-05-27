@@ -91,6 +91,73 @@ export const WRITING: WritingItem[] = [
     type: "publication"
   },
   
+  {
+    title: "The ELEANOR Governance Specification - Runtime Architecture v2.1",
+    slug: "eleanor-governance-specification",
+    summary: "A technical specification for execution, escalation, evidence capture, and governable model behavior.",
+    category: "Specification",
+    publishedAt: "2025-12-10",
+    source: "Zenodo",
+    sourceUrl: "https://doi.org/10.5281/zenodo.17605176",
+    featured: true,
+    external: true,
+    workstream: "BDB Labs",
+    tags: ["runtime governance", "auditability", "specification"],
+    type: "publication"
+  },
+  {
+    title: "Jurisprudential Governance for AI (ELEANOR)",
+    slug: "jurisprudential-governance-for-ai",
+    summary: "A rights-based governance framing for controlled AI execution under uncertainty and institutional authority.",
+    category: "Framework",
+    publishedAt: "2025-11-20",
+    source: "Zenodo",
+    sourceUrl: "https://doi.org/10.5281/zenodo.17498043",
+    external: true,
+    workstream: "BDB Labs",
+    tags: ["ELEANOR", "rights", "oversight"],
+    type: "publication"
+  },
+  {
+    title: "Routing Uncertainty in AI Systems",
+    slug: "routing-uncertainty-in-ai-systems",
+    summary: "An argument that uncertainty should trigger routing, escalation, abstention, retrieval, or human review.",
+    category: "Report",
+    publishedAt: "2025-10-05",
+    source: "ORCID",
+    sourceUrl: "https://orcid.org/0009-0001-6994-6828",
+    external: true,
+    workstream: "BDB Labs",
+    tags: ["uncertainty", "human review", "operations"],
+    type: "publication"
+  },
+  {
+    title: "Ensemble Software Engineering",
+    slug: "ensemble-software-engineering",
+    summary: "A practical method for using specialist roles, repeatable packs, and comparative review in AI-assisted engineering.",
+    category: "Framework",
+    publishedAt: "2025-09-18",
+    source: "GitHub",
+    sourceUrl: "https://github.com/Excelsior2026",
+    external: true,
+    workstream: "BDB Labs",
+    tags: ["engineering", "roles", "review"],
+    type: "publication"
+  },
+  {
+    title: "Governance Systems for Consequential Decisions",
+    slug: "governance-systems-for-consequential-decisions",
+    summary: "A concise operating thesis for designing decision systems around authority, evidence, escalation, and review.",
+    category: "Essay",
+    publishedAt: "2025-08-21",
+    source: "BagelTech",
+    sourceUrl: "/writing",
+    external: false,
+    workstream: "BagelTech",
+    tags: ["governance", "product strategy", "institutions"],
+    type: "publication"
+  },
+
   // Insights (merged from insights.ts)
   {
     title: "Confidence is not governance",
@@ -154,7 +221,68 @@ export const WRITING: WritingItem[] = [
     workstream: "BagelTech",
     type: "insight"
   },
-  
+  {
+    title: "The PMO is where strategy becomes evidence",
+    slug: "pmo-strategy-becomes-evidence",
+    excerpt: "Modernization programs fail when decision rights, assumptions, risks, and tradeoffs do not survive contact with delivery.",
+    category: "Delivery",
+    publishedAt: "2026-01-24",
+    source: "LinkedIn",
+    sourceUrl: "https://linkedin.com/in/billparris92120",
+    featured: true,
+    external: true,
+    workstream: "Bagelle Parris Vargas",
+    type: "insight"
+  },
+  {
+    title: "Research only matters if it changes the operating model",
+    slug: "research-changes-operating-model",
+    excerpt: "A useful framework should clarify what gets built, what gets deferred, and what evidence a real institution needs.",
+    category: "Systems",
+    publishedAt: "2025-12-19",
+    source: "LinkedIn",
+    sourceUrl: "https://linkedin.com/in/billparris92120",
+    external: true,
+    workstream: "BDB Labs",
+    type: "insight"
+  },
+  {
+    title: "ERP oversight is not ceremony",
+    slug: "erp-oversight-is-not-ceremony",
+    excerpt: "Large modernization efforts need visible ownership, disciplined escalation, and program controls that decision-makers actually use.",
+    category: "Modernization",
+    publishedAt: "2025-11-08",
+    source: "LinkedIn",
+    sourceUrl: "https://linkedin.com/in/billparris92120",
+    external: true,
+    workstream: "Bagelle Parris Vargas",
+    type: "insight"
+  },
+  {
+    title: "Build the path for uncertainty before launch",
+    slug: "build-the-path-for-uncertainty",
+    excerpt: "If a system does not know how to pause, escalate, ask for evidence, or hand off authority, the demo is not the design.",
+    category: "AI Governance",
+    publishedAt: "2025-10-16",
+    source: "LinkedIn",
+    sourceUrl: "https://linkedin.com/in/billparris92120",
+    external: true,
+    workstream: "BagelTech",
+    type: "insight"
+  },
+  {
+    title: "Leadership is a decision design problem",
+    slug: "leadership-is-decision-design",
+    excerpt: "The strongest leaders do not absorb every decision. They define where decisions belong and what evidence must travel with them.",
+    category: "Leadership",
+    publishedAt: "2025-09-30",
+    source: "LinkedIn",
+    sourceUrl: "https://linkedin.com/in/billparris92120",
+    external: true,
+    workstream: "Bagelle Parris Vargas",
+    type: "insight"
+  },
+
   // Case Studies (merged from case-studies.ts)
   {
     title: "Permitting and licensing workflows",

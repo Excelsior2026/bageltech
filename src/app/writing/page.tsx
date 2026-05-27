@@ -20,27 +20,21 @@ function formatDate(value: string) {
 }
 
 function WritingCard({ item }: { item: typeof WRITING[0] }) {
-  const isPublication = item.type === "publication";
-  const isInsight = item.type === "insight";
-  const isCaseStudy = item.type === "case-study";
+  const label = item.type === "case-study" ? "View case study" :
+    item.type === "insight" ? "Read insight" : "Read publication";
 
   return (
-    <article className={`${styles.archiveItem} ${item.type}`} id={item.slug}>
+    <article className={styles.archiveItem} id={item.slug}>
       <div>
         <p className={styles.meta}>{formatDate(item.publishedAt)}</p>
         <div className={styles.tagRow}>
           <span className={styles.tag}>{item.category}</span>
-          {item.workstream && (
-            <span className={styles.tag} style={{ opacity: 0.7 }}>{item.workstream}</span>
-          )}
+          <span className={styles.tag} style={{ opacity: 0.7 }}>{item.workstream}</span>
         </div>
       </div>
       <div className={styles.archiveBody}>
         <h2>{item.title}</h2>
         <p>{item.excerpt || item.summary}</p>
-        {isCaseStudy && item.icon && (
-          <div className={styles.caseStudyIcon}>{item.icon}</div>
-        )}
         {item.tags && item.tags.length > 0 && (
           <div className={styles.tagRow}>
             {item.tags.map((tag) => (
@@ -51,13 +45,36 @@ function WritingCard({ item }: { item: typeof WRITING[0] }) {
           </div>
         )}
       </div>
-      <SmartLink 
-        className={styles.cardLink} 
-        href={item.sourceUrl}
-      >
-        {item.external ? `Open on ${item.source}` : 
-         isCaseStudy ? "View case study" :
-         isInsight ? "Read insight" : "Read publication"}
+      <SmartLink className={styles.cardLink} href={item.sourceUrl}>
+        {item.external ? `Open on ${item.source}` : label}
+      </SmartLink>
+    </article>
+  );
+}
+
+function FeatureCard({ item }: { item: typeof WRITING[0] }) {
+  const label = item.type === "case-study" ? "View case study" :
+    item.type === "insight" ? "Read insight" : "Read publication";
+
+  return (
+    <article className={styles.featureCard} key={item.slug}>
+      <div className={styles.meta}>
+        <span>{item.category}</span>
+        <span>{formatDate(item.publishedAt)}</span>
+      </div>
+      <h3 className={styles.cardTitle}>{item.title}</h3>
+      <p className={styles.cardText}>{item.excerpt || item.summary}</p>
+      {item.tags && item.tags.length > 0 && (
+        <div className={styles.tagRow}>
+          {item.tags.map((tag) => (
+            <span className={styles.tag} key={tag} style={{ fontSize: "0.75rem" }}>
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+      <SmartLink className={styles.cardLink} href={item.sourceUrl}>
+        {item.external ? `Open on ${item.source}` : label}
       </SmartLink>
     </article>
   );
@@ -67,7 +84,6 @@ export default function WritingPage() {
   const publications = WRITING.filter(item => item.type === "publication");
   const insights = WRITING.filter(item => item.type === "insight");
   const caseStudies = WRITING.filter(item => item.type === "case-study");
-
   const featured = WRITING.filter(item => item.featured);
   const archive = WRITING.filter(item => !item.featured);
 
@@ -80,7 +96,7 @@ export default function WritingPage() {
               <p className={styles.eyebrow}>Writing Hub</p>
               <h1 className={styles.pageTitle}>Curated thinking on AI governance and consequence-aware systems.</h1>
               <p className={styles.bodyText}>
-                A unified collection of publications, insights, and case studies exploring how to design systems 
+                A unified collection of publications, insights, and case studies exploring how to design systems
                 that surface consequence and gain trust through thoughtful governance.
               </p>
               <div className={styles.tagRow} aria-label="Writing categories">
@@ -94,7 +110,6 @@ export default function WritingPage() {
           </div>
         </section>
 
-        {/* Featured Writing */}
         {featured.length > 0 && (
           <section className={styles.section}>
             <div className={styles.inner}>
@@ -104,111 +119,19 @@ export default function WritingPage() {
                   <h2 className={styles.sectionTitle}>Selected pieces with special relevance.</h2>
                 </div>
                 <p className={styles.sectionLead}>
-                  These items represent the core thinking behind BagelTech's approach to governance and consequence awareness.
+                  These items represent the core thinking behind BagelTech's approach to governance.
                 </p>
               </ScrollReveal>
 
               <div className={styles.writingGrid}>
                 {featured.map((item) => (
-                  <article className={styles.featureCard} key={item.slug}>
-                    <div className={styles.meta}>
-                      <span>{item.category}</span>
-                      <span>{formatDate(item.publishedAt)}</span>
-                    </div>
-                    <h3 className={styles.cardTitle}>{item.title}</h3>
-                    <p className={styles.cardText}>{item.excerpt || item.summary}</p>
-                    <div className={styles.tagRow}>
-                      {item.tags?.map((tag) => (
-                        <span className={styles.tag} key={tag} style={{ fontSize: "0.75rem" }}>
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                    <SmartLink className={styles.cardLink} href={item.sourceUrl}>
-                      {item.external ? `Open on ${item.source}` : "Read more"}
-                    </SmartLink>
-                  </article>
+                  <FeatureCard key={item.slug} item={item} />
                 ))}
               </div>
             </div>
           </section>
         )}
 
-        {/* Writing Sections */}
-        <section className={`${styles.section} ${styles.sectionAlt}`}>
-          <div className={styles.inner}>
-            <ScrollReveal className={styles.sectionHeader}>
-              <div>
-                <p className={styles.kicker}>By Type</p>
-                <h2 className={styles.sectionTitle}>Explore writing by format and purpose.</h2>
-              </div>
-              <p className={styles.sectionLead}>
-                Different formats serve different purposes in the governance ecosystem.
-              </p>
-            </ScrollReveal>
-
-            <div className={styles.writingTypes}>
-              {/* Publications */}
-              <div className={styles.writingTypeSection}>
-                <h3 className={styles.writingTypeTitle}>📚 Publications</h3>
-                <p className={styles.writingTypeDescription}>
-                  Formal papers, frameworks, specifications, and research notes that form the durable foundation of our work.
-                </p>
-                <div className={styles.subItemGrid}>
-                  {publications.slice(0, 3).map((item) => (
-                    <div key={item.slug} className={styles.subItem}>
-                      <h4>{item.title}</h4>
-                      <p className={styles.subItemMeta}>{item.category} • {formatDate(item.publishedAt)}</p>
-                    </div>
-                  ))}
-                </div>
-                <SmartLink className={styles.buttonSecondary} href="/writing#publications">
-                  View all publications
-                </SmartLink>
-              </div>
-
-              {/* Insights */}
-              <div className={styles.writingTypeSection}>
-                <h3 className={styles.writingTypeTitle}>💡 Insights</h3>
-                <p className={styles.writingTypeDescription}>
-                  Curated public thinking, field notes, and short-form observations on AI governance and delivery.
-                </p>
-                <div className={styles.subItemGrid}>
-                  {insights.slice(0, 3).map((item) => (
-                    <div key={item.slug} className={styles.subItem}>
-                      <h4>{item.title}</h4>
-                      <p className={styles.subItemMeta}>{item.category} • {formatDate(item.publishedAt)}</p>
-                    </div>
-                  ))}
-                </div>
-                <SmartLink className={styles.buttonSecondary} href="/writing#insights">
-                  View all insights
-                </SmartLink>
-              </div>
-
-              {/* Case Studies */}
-              <div className={styles.writingTypeSection}>
-                <h3 className={styles.writingTypeTitle}>🎯 Case Studies</h3>
-                <p className={styles.writingTypeDescription}>
-                  Representative use cases showing where governed decision systems matter most in practice.
-                </p>
-                <div className={styles.subItemGrid}>
-                  {caseStudies.slice(0, 3).map((item) => (
-                    <div key={item.slug} className={styles.subItem}>
-                      <h4>{item.title}</h4>
-                      <p className={styles.subItemMeta}>{item.category} • {formatDate(item.publishedAt)}</p>
-                    </div>
-                  ))}
-                </div>
-                <SmartLink className={styles.buttonSecondary} href="/writing#case-studies">
-                  View all case studies
-                </SmartLink>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Publications Section */}
         <section id="publications" className={`${styles.section} ${styles.sectionAlt}`}>
           <div className={styles.inner}>
             <ScrollReveal className={styles.sectionHeader}>
@@ -229,7 +152,6 @@ export default function WritingPage() {
           </div>
         </section>
 
-        {/* Insights Section */}
         <section id="insights" className={styles.section}>
           <div className={styles.inner}>
             <ScrollReveal className={styles.sectionHeader}>
@@ -244,23 +166,12 @@ export default function WritingPage() {
 
             <div className={styles.writingGrid}>
               {insights.map((item) => (
-                <article className={styles.featureCard} key={item.slug}>
-                  <div className={styles.meta}>
-                    <span>{item.category}</span>
-                    <span>{formatDate(item.publishedAt)}</span>
-                  </div>
-                  <h3 className={styles.cardTitle}>{item.title}</h3>
-                  <p className={styles.cardText}>{item.excerpt}</p>
-                  <SmartLink className={styles.cardLink} href={item.sourceUrl}>
-                    {item.external ? `Open on ${item.source}` : "Read insight"}
-                  </SmartLink>
-                </article>
+                <FeatureCard key={item.slug} item={item} />
               ))}
             </div>
           </div>
         </section>
 
-        {/* Case Studies Section */}
         <section id="case-studies" className={`${styles.section} ${styles.sectionAlt}`}>
           <div className={styles.inner}>
             <ScrollReveal className={styles.sectionHeader}>
@@ -273,65 +184,28 @@ export default function WritingPage() {
               </p>
             </ScrollReveal>
 
-            <div className={styles.writingGrid}>
+            <div className={styles.archiveList}>
               {caseStudies.map((item) => (
-                <article className={styles.featureCard} key={item.slug}>
-                  <div className={styles.meta}>
-                    <span>{item.category}</span>
-                    <span>{formatDate(item.publishedAt)}</span>
-                  </div>
-                  <div className={styles.cardHeader}>
-                    {item.icon && <span className={styles.caseStudyIcon}>{item.icon}</span>}
-                    <h3 className={styles.cardTitle}>{item.title}</h3>
-                  </div>
-                  <div className={styles.cardContent}>
-                    <p><strong>Problem:</strong> {item.challenge}</p>
-                    <p><strong>Approach:</strong> {item.solution}</p>
-                    <div className={styles.resultsContainer}>
-                      <strong>Results:</strong>
-                      <ul className={styles.resultsList}>
-                        {item.results?.map((result, index) => (
-                          <li key={index}>{result}</li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                  <SmartLink className={styles.cardLink} href={item.sourceUrl}>
-                    View case study
-                  </SmartLink>
-                </article>
+                <WritingCard key={item.slug} item={item} />
               ))}
             </div>
           </div>
         </section>
 
-        {/* Full Archive */}
         <section className={styles.section}>
           <div className={styles.inner}>
-            <ScrollReveal className={styles.sectionHeader}>
+            <ScrollReveal className={styles.ctaBand}>
               <div>
-                <p className={styles.kicker}>Complete Archive</p>
-                <h2 className={styles.sectionTitle}>All writing in one place.</h2>
+                <h2 className={styles.ctaTitle}>The unifying through-line is operational consequence.</h2>
+                <p className={styles.ctaText}>
+                  Publications, insights, and case studies all explore how to design systems that surface consequence
+                  and gain trust through thoughtful governance.
+                </p>
               </div>
-              <p className={styles.sectionLead}>
-                Publications, insights, and case studies organized by category and date.
-              </p>
-            </ScrollReveal>
-
-            <div className={styles.archiveList}>
-              {archive.map((item) => (
-                <WritingCard key={item.slug} item={item} />
-              ))}
-            </div>
-
-            <div className={styles.actions}>
-              <SmartLink className={styles.buttonSecondary} href="/about">
+              <SmartLink className={styles.buttonPrimary} href="/about">
                 Learn about BagelTech
               </SmartLink>
-              <SmartLink className={styles.buttonSecondary} href="/contact">
-                Get in touch
-              </SmartLink>
-            </div>
+            </ScrollReveal>
           </div>
         </section>
       </main>

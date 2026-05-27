@@ -26,19 +26,12 @@ export default function Footer() {
         </div>
 
         <div className={styles.workstreams} aria-label="Workstreams">
-          {WORKSTREAMS.map((stream) => {
-            let href = stream.href;
-            if (stream.slug === "bageltech") href = "/products";
-            if (stream.slug === "bdb-labs") href = "/research";
-            if (stream.slug === "bagelle-parris-vargas") href = "/advisory";
-
-            return (
-              <SmartLink key={stream.slug} href={href} className={styles.workstreamLink}>
-                <BrandMark brand={stream.brand} variant="dark" size="footer" />
-                <small>{stream.role}</small>
-              </SmartLink>
-            );
-          })}
+          {WORKSTREAMS.map((stream) => (
+            <SmartLink key={stream.slug} href={stream.href} className={styles.workstreamLink}>
+              <BrandMark brand={stream.brand} variant="dark" size="footer" />
+              <small>{stream.role}</small>
+            </SmartLink>
+          ))}
         </div>
 
         <nav className={styles.links} aria-label="Footer navigation">
