@@ -559,13 +559,45 @@
 
 .archiveList {
   display: grid;
-  gap: 0.85rem;
+  gap: 0;
 }
 
 .archiveItem {
-  grid-template-columns: minmax(140px, 0.24fr) minmax(0, 1fr) auto;
+  position: relative;
+  grid-template-columns: minmax(140px, 0.22fr) minmax(0, 1fr) auto;
   display: grid;
-  align-items: start;
+  gap: 1.5rem;
+  align-items: baseline;
+  padding: 1.4rem 0;
+  border: 0;
+  border-top: 1px solid var(--color-line-2);
+  border-radius: 0;
+  background: transparent;
+  transition: background 200ms ease;
+}
+
+.archiveItem:first-child {
+  border-top: 1px solid var(--border);
+}
+
+.archiveItem::before {
+  content: "";
+  position: absolute;
+  left: -1rem;
+  top: -1px;
+  height: calc(100% + 1px);
+  width: 3px;
+  background: var(--accent);
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.archiveItem:hover {
+  background: var(--color-garnet-wash);
+}
+
+.archiveItem:hover::before {
+  opacity: 1;
 }
 
 .archiveBody {
