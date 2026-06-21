@@ -80,8 +80,17 @@
 .ctaTitle,
 .pageTitle {
   font-family: var(--font-serif), serif;
-  letter-spacing: 0;
+  font-weight: 400;
+  letter-spacing: -0.01em;
   color: var(--foreground);
+}
+
+.heroTitle em,
+.pageTitle em,
+.sectionTitle em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--accent);
 }
 
 .heroTitle {
@@ -328,6 +337,7 @@
 .cardTitle {
   margin: 0;
   font-size: 1.58rem;
+  font-weight: 500;
   line-height: 1.1;
 }
 
