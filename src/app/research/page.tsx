@@ -4,8 +4,7 @@ import MarketingLayout from "@/components/MarketingLayout";
 import ScrollReveal from "@/components/ScrollReveal";
 import SmartLink from "@/components/SmartLink";
 import styles from "@/components/Marketing.module.css";
-import { WRITING } from "@/content/writing";
-import { RESEARCH } from "@/content/research";
+import { PUBLICATIONS } from "@/content/publications";
 
 export const metadata: Metadata = {
   title: "Research | BDB Labs",
@@ -13,9 +12,7 @@ export const metadata: Metadata = {
     "Research, publications, frameworks, and prototypes from BDB Labs — the research and incubation arm of BagelTech.",
 };
 
-const bdbPublications = WRITING.filter(
-  (item) => item.type === "publication" && item.workstream === "BDB Labs"
-);
+const bdbPublications = PUBLICATIONS.filter((p) => p.workstream === "BDB Labs");
 
 function formatDate(value: string) {
   return new Intl.DateTimeFormat("en", { month: "short", year: "numeric", timeZone: "UTC" }).format(
@@ -62,23 +59,6 @@ export default function ResearchPage() {
             </ScrollReveal>
 
             <div className={styles.archiveList}>
-              {RESEARCH.map((item) => (
-                <article className={styles.archiveItem} key={item.title}>
-                  <div>
-                    <p className={styles.meta}>{item.year}</p>
-                    <p className={styles.cardLabel}>{item.type}</p>
-                  </div>
-                  <div className={styles.archiveBody}>
-                    <h2>{item.title}</h2>
-                    <p>{item.body}</p>
-                  </div>
-                  {item.href && (
-                    <SmartLink className={styles.cardLink} href={item.href}>
-                      {item.linkLabel ?? "Read"}
-                    </SmartLink>
-                  )}
-                </article>
-              ))}
               {bdbPublications.map((item) => (
                 <article className={styles.archiveItem} key={item.slug}>
                   <div>
