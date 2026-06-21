@@ -23,18 +23,25 @@
   /* Unified "record" palette — garnet on warm paper, warm ink */
   --color-garnet: #7e2d2d;
   --color-garnet-deep: #5a1f1f;
+  --color-garnet-2: #9a3838;
   --color-garnet-soft: rgba(126, 45, 45, 0.12);
+  --color-garnet-wash: rgba(126, 45, 45, 0.07);
   --color-paper: #fbfaf7;
-  --color-paper-warm: #f3efe7;
+  --color-paper-warm: #f2f0e9;
   --color-ink: #181b22;
+  --color-ink-2: #252a33;
   --color-ink-soft: rgba(24, 27, 34, 0.66);
+  --color-stone: #62666d;
+  --color-stone-2: #9a9da3;
+  --color-line: #e4e1d9;
+  --color-line-2: #d7d3c8;
 
   --background: var(--color-paper);
   --foreground: var(--color-ink);
   --muted: var(--color-ink-soft);
   --surface: rgba(255, 255, 255, 0.82);
   --surface-strong: #ffffff;
-  --border: rgba(24, 27, 34, 0.12);
+  --border: var(--color-line);
   --accent: var(--color-garnet);
   --accent-deep: var(--color-garnet-deep);
   --accent-soft: var(--color-garnet-soft);
