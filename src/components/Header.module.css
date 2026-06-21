@@ -10,14 +10,14 @@
   width: min(1180px, calc(100vw - 3rem));
   margin: 0 auto;
   padding: 0.75rem 0.85rem;
-  border-radius: 8px;
+  border-radius: 2px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  background: rgba(247, 245, 241, 0.84);
-  border: 1px solid rgba(8, 20, 38, 0.08);
-  box-shadow: 0 18px 45px rgba(8, 20, 38, 0.08);
+  background: rgba(251, 250, 247, 0.84);
+  border: 1px solid rgba(24, 27, 34, 0.08);
+  box-shadow: 0 18px 45px rgba(24, 27, 34, 0.08);
   backdrop-filter: blur(16px);
   pointer-events: auto;
   transition:
@@ -29,8 +29,8 @@
 
 .scrolled .headerInner {
   background: rgba(255, 255, 255, 0.92);
-  border-color: rgba(8, 20, 38, 0.12);
-  box-shadow: 0 18px 50px rgba(8, 20, 38, 0.12);
+  border-color: rgba(24, 27, 34, 0.12);
+  box-shadow: 0 18px 50px rgba(24, 27, 34, 0.12);
 }
 
 .logo {
@@ -38,28 +38,43 @@
   align-items: center;
   min-width: fit-content;
   text-decoration: none;
-  color: var(--color-bagel-navy);
+  color: var(--color-ink);
 }
 
 .desktopNav {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 0.25rem;
+  gap: 1.3rem;
 }
 
 .navLink {
-  padding: 0.45rem 0.75rem;
-  border-radius: 8px;
-  color: rgba(8, 20, 38, 0.72);
+  position: relative;
+  padding: 0.4rem 0.3rem;
+  color: var(--color-stone);
   text-decoration: none;
-  font-size: 0.84rem;
-  transition: background-color 160ms ease, color 160ms ease;
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: color 160ms ease;
+}
+
+.navLink::after {
+  content: "";
+  position: absolute;
+  left: 0.3rem;
+  bottom: 0;
+  height: 2px;
+  width: 0;
+  background: var(--accent);
+  transition: width 200ms ease;
 }
 
 .navLink:hover {
-  background: rgba(37, 214, 200, 0.1);
-  color: var(--color-ink-950);
+  color: var(--color-ink);
+}
+
+.navLink:hover::after {
+  width: calc(100% - 0.6rem);
 }
 
 .ctaButton,
@@ -67,19 +82,25 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 2.7rem;
-  padding: 0.7rem 1rem;
-  border-radius: 8px;
-  background: var(--color-bagel-navy);
-  color: #ffffff;
-  font-size: 0.9rem;
+  min-height: 2.6rem;
+  padding: 0.6rem 1rem;
+  border-radius: 2px;
+  border: 1px solid var(--color-line-2);
+  background: transparent;
+  color: var(--color-ink);
+  font-family: var(--font-mono), monospace;
+  font-size: 0.76rem;
+  letter-spacing: 0.03em;
   font-weight: 500;
   text-decoration: none;
-  transition: transform 160ms ease, background-color 160ms ease;
+  transition: transform 160ms ease, background-color 160ms ease, color 160ms ease, border-color 160ms ease;
 }
 
 .ctaButton:hover,
 .mobileCta:hover {
+  background: var(--color-ink);
+  color: var(--color-paper);
+  border-color: var(--color-ink);
   transform: translateY(-1px);
 }
 
@@ -93,9 +114,9 @@
   gap: 0.28rem;
   padding: 0;
   border: 0;
-  border-radius: 8px;
-  background: rgba(37, 214, 200, 0.14);
-  color: var(--color-ink-950);
+  border-radius: 2px;
+  background: rgba(126, 45, 45, 0.14);
+  color: var(--color-ink);
   cursor: pointer;
 }
 
@@ -104,7 +125,7 @@
 .hamburgerLine {
   width: 1.15rem;
   height: 2px;
-  border-radius: 8px;
+  border-radius: 2px;
   background: currentColor;
   transition: transform 220ms ease, opacity 220ms ease;
 }
@@ -165,17 +186,17 @@
     display: grid;
     gap: 0.55rem;
     padding: 1rem;
-    border-radius: 8px;
-    border: 1px solid rgba(8, 20, 38, 0.1);
-    background: rgba(247, 245, 241, 0.96);
-    box-shadow: 0 20px 44px rgba(8, 20, 38, 0.12);
+    border-radius: 2px;
+    border: 1px solid rgba(24, 27, 34, 0.1);
+    background: rgba(251, 250, 247, 0.96);
+    box-shadow: 0 20px 44px rgba(24, 27, 34, 0.12);
     backdrop-filter: blur(18px);
   }
 
   .mobileNavLink {
     padding: 0.85rem 0;
-    border-bottom: 1px solid rgba(8, 20, 38, 0.08);
-    color: var(--color-ink-950);
+    border-bottom: 1px solid rgba(24, 27, 34, 0.08);
+    color: var(--color-ink);
     text-decoration: none;
     font-family: var(--font-serif), serif;
     font-size: 1.18rem;
