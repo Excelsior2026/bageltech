@@ -1,269 +1,176 @@
-import Link from "next/link";
+import type { Metadata } from "next";
+import BrandMark from "@/components/BrandMark";
+import MarketingLayout from "@/components/MarketingLayout";
+import MarketingImage from "@/components/MarketingImage";
+import ScrollReveal from "@/components/ScrollReveal";
+import SmartLink from "@/components/SmartLink";
+import styles from "@/components/Marketing.module.css";
+import { HERO_IMAGE, METHOD_TILES, PROOF_POINTS, WORKSTREAMS } from "@/content/site";
 
-const principles = [
-  {
-    title: "Context interpretation",
-    body:
-      "Decisions aren’t judged in isolation. We evaluate situational risk, affected parties, downstream consequences, and what the system is actually about to do.",
+export const metadata: Metadata = {
+  title: "BagelTech | Governance and Consequence-Aware Systems",
+  description:
+    "BagelTech delivers institution-ready products, BDB Labs research, and executive advisory grounded in evidence, auditability, and operational credibility.",
+  openGraph: {
+    title: "BagelTech | Governance Systems",
+    description:
+      "A unified platform for products, research, and advisory work built around evidence, escalation, auditability, and operational credibility.",
+    type: "website",
+    url: "https://www.bageltech.net",
   },
-  {
-    title: "Uncertainty routing",
-    body:
-      "Uncertainty is treated as a signal, not a defect. When confidence drops, the system pauses, escalates, or defers — so \"I don’t know\" becomes safe and enforceable.",
-  },
-  {
-    title: "Authority enforcement",
-    body:
-      "Capability is not permission. Execution is gated by role, scope, and responsibility — so systems can’t quietly act beyond what’s allowed.",
-  },
-];
-
-const capabilities = [
-  {
-    title: "AI governance & oversight",
-    body:
-      "Execution-time controls that route uncertainty, enforce authority boundaries, and require escalation when risk is high.",
-  },
-  {
-    title: "Applied AI systems",
-    body:
-      "Product-grade AI features that prioritize reliability over theatrics: transcription, summarization, decision support, and human-in-the-loop interfaces.",
-  },
-  {
-    title: "Data & decision infrastructure",
-    body:
-      "Clean pipelines, traceable logic, and decision provenance — so teams can answer \"why did this happen?\" without guessing.",
-  },
-  {
-    title: "Advisory & prototyping",
-    body:
-      "Fast, pragmatic design-to-proof builds: scoping, architecture, prototypes, and governance patterns ready for implementation.",
-  },
-];
-
-const outcomes = [
-  "Reduced risky automation events",
-  "Clearer human escalation ownership",
-  "Faster audit and incident response",
-];
-
-function ExecutionDiagram() {
-  return (
-    <svg viewBox="0 0 760 310" role="img" aria-label="Execution-time governance flow diagram" className="flowGraphic">
-      <defs>
-        <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto-start-reverse">
-          <path d="M 0 0 L 10 5 L 0 10 z" fill="currentColor" />
-        </marker>
-      </defs>
-
-      <g className="flowNode">
-        <rect x="260" y="16" width="240" height="44" rx="12" />
-        <text x="380" y="43" textAnchor="middle">Request / Input</text>
-      </g>
-
-      <g className="flowNode">
-        <rect x="260" y="82" width="240" height="44" rx="12" />
-        <text x="380" y="109" textAnchor="middle">Context Interpretation</text>
-      </g>
-
-      <g className="flowNode">
-        <rect x="260" y="148" width="240" height="44" rx="12" />
-        <text x="380" y="175" textAnchor="middle">Uncertainty Evaluation</text>
-      </g>
-
-      <g className="flowNode">
-        <rect x="260" y="214" width="240" height="44" rx="12" />
-        <text x="380" y="241" textAnchor="middle">Authority &amp; Scope Check</text>
-      </g>
-
-      <g className="flowOutcome outcomeExecute">
-        <rect x="32" y="266" width="220" height="36" rx="10" />
-        <text x="142" y="289" textAnchor="middle">Execute</text>
-      </g>
-      <g className="flowOutcome outcomeEscalate">
-        <rect x="270" y="266" width="220" height="36" rx="10" />
-        <text x="380" y="289" textAnchor="middle">Escalate</text>
-      </g>
-      <g className="flowOutcome outcomeDefer">
-        <rect x="508" y="266" width="220" height="36" rx="10" />
-        <text x="618" y="289" textAnchor="middle">Defer</text>
-      </g>
-
-      <g className="flowArrow">
-        <line x1="380" y1="60" x2="380" y2="82" markerEnd="url(#arrow)" />
-        <line x1="380" y1="126" x2="380" y2="148" markerEnd="url(#arrow)" />
-        <line x1="380" y1="192" x2="380" y2="214" markerEnd="url(#arrow)" />
-        <line x1="380" y1="258" x2="142" y2="266" markerEnd="url(#arrow)" />
-        <line x1="380" y1="258" x2="380" y2="266" markerEnd="url(#arrow)" />
-        <line x1="380" y1="258" x2="618" y2="266" markerEnd="url(#arrow)" />
-      </g>
-    </svg>
-  );
-}
+};
 
 export default function HomePage() {
   return (
-    <main>
-      <a className="skipLink" href="#content">
-        Skip to content
-      </a>
-
-      <header className="siteHeader">
-        <div className="container navWrap">
-          <a className="brand" href="#top" aria-label="BagelTech home">
-            BagelTech
-          </a>
-          <nav className="navLinks" aria-label="Primary">
-            <a href="#framework">Framework</a>
-            <a href="#build">What we build</a>
-            <a href="#products">Products</a>
-            <a href="#contact">Contact</a>
-            <Link href="/insights">Insights</Link>
-            <Link href="/bagels-corner">Bagel&apos;s Corner</Link>
-          </nav>
-        </div>
-      </header>
-
-      <section id="top" className="hero section">
-        <div className="container">
-          <p className="kicker">Human-centered systems for AI, data, and governance</p>
-          <h1>Beautiful systems are responsible systems.</h1>
-          <p className="lede">
-            Governance for autonomous systems at the moment decisions are made — not just when rules are
-            written. We build environments that know when to act, when to escalate, and when to say:{" "}
-            <strong>“I’m not sure.”</strong>
-          </p>
-          <div className="ctaRow">
-            <a href="#framework" className="btn btnPrimary">
-              Explore framework
-            </a>
-            <Link href="/insights" className="btn btnGhost">
-              Read insights
-            </Link>
-          </div>
-          <ul className="outcomes" aria-label="Key outcomes">
-            {outcomes.map((outcome) => (
-              <li key={outcome}>{outcome}</li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <div id="content">
-        <section className="section">
-          <div className="container prose">
-            <h2>The problem isn’t intelligence. It’s authority.</h2>
-            <p>
-              Most governance efforts focus on model behavior during training or static guardrails after
-              deployment. Both matter. Neither is sufficient when systems operate in messy, high-stakes
-              reality.
-            </p>
-            <p>
-              The failure mode isn’t “AI is evil.” It’s “AI is confidently wrong” — and still allowed to
-              execute. When uncertainty has nowhere safe to go, systems guess.
-            </p>
-          </div>
-        </section>
-
-        <section id="framework" className="section sectionAlt">
-          <div className="container prose">
-            <h2>Governance at execution time</h2>
-            <p>
-              Instead of asking whether a model is aligned, we ask:{" "}
-              <strong>who may act, on what, under which conditions — and who is accountable</strong>.
-            </p>
-
-            <article className="diagramCard">
-              <h3>Ethical governance at the moment of execution</h3>
-              <ExecutionDiagram />
-              <p className="caption">
-                Decisions are governed <strong>before</strong> execution — not explained after harm.
+    <MarketingLayout>
+      <main className={styles.page}>
+        <section className={styles.hero}>
+          <div className={styles.heroInner}>
+            <ScrollReveal className={styles.heroCopy}>
+              <BrandMark brand="bageltech" variant="light" size="hero" className={styles.heroMark} priority />
+              <p className={styles.eyebrow}>BagelTech</p>
+              <h1 className={styles.heroTitle}>Design systems that surface consequence and gain trust.</h1>
+              <p className={styles.heroLead}>
+                We provide the architecture for consequential systems, ensuring decisions are grounded in evidence,
+                authority is visible, and uncertainty triggers explicit, auditable escalation.
               </p>
-            </article>
-
-            <div className="cardGrid">
-              {principles.map((principle) => (
-                <article className="card" key={principle.title}>
-                  <h3>{principle.title}</h3>
-                  <p>{principle.body}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="build" className="section">
-          <div className="container prose">
-            <h2>What we build</h2>
-            <p>
-              Practical systems that hold up in the real world — where edge cases are normal,
-              accountability matters, and trust is earned.
-            </p>
-
-            <div className="cardGrid">
-              {capabilities.map((capability) => (
-                <article className="card" key={capability.title}>
-                  <h3>{capability.title}</h3>
-                  <p>{capability.body}</p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section id="products" className="section sectionAlt">
-          <div className="container prose">
-            <h2>Products</h2>
-
-            <article className="productCard">
-              <div>
-                <h3>CogniScribe</h3>
-                <p>
-                  A lecture transcription and study companion designed for health professions education —
-                  built for clarity, traceability, and respectful handling of uncertainty.
-                </p>
-                <ul>
-                  <li>High-quality transcription + structured notes</li>
-                  <li>Study questions generated from lecture content</li>
-                  <li>Confidence-aware outputs (knows when it’s not sure)</li>
-                </ul>
+              <div className={styles.actions}>
+                <SmartLink className={styles.buttonPrimary} href="/contact">
+                  Start a scoping conversation
+                </SmartLink>
+                <SmartLink className={styles.buttonSecondary} href="#workstreams">
+                  Explore the lanes
+                </SmartLink>
               </div>
-              <aside className="productMeta">
-                <p>
-                  <strong>Status:</strong> Active development
-                </p>
-                <p>
-                  <strong>Focus:</strong> Education-first (not clinical deployment)
-                </p>
-              </aside>
-            </article>
+            </ScrollReveal>
+
+            <ScrollReveal className={styles.imagePanel} delay={120}>
+              <MarketingImage src={HERO_IMAGE.src} alt={HERO_IMAGE.alt} priority />
+              <p className={styles.imageCaption}>
+                The operating thesis: Consequence demands clear authority, reviewable evidence, and structured escalation.
+              </p>
+            </ScrollReveal>
           </div>
         </section>
 
-        <section id="contact" className="section">
-          <div className="container prose">
-            <h2>Contact</h2>
-            <p>
-              If you want systems that can slow down safely, escalate responsibly, and enforce authority
-              boundaries — let’s talk.
-            </p>
+        <section className={styles.section} id="workstreams">
+          <div className={styles.inner}>
+            <ScrollReveal className={styles.sectionHeader}>
+              <div>
+                <p className={styles.kicker}>Choose the right lane</p>
+                <h2 className={styles.sectionTitle}>Three distinct workstreams keep the focus clear.</h2>
+              </div>
+              <p className={styles.sectionLead}>
+                Products live in BagelTech. Research and frameworks are incubated in BDB Labs. Executive experience is
+                delivered via Bagelle Parris Vargas.
+              </p>
+            </ScrollReveal>
 
-            <div className="ctaRow">
-              <a href="mailto:info@bageltech.net" className="btn btnPrimary">
-                Email us
-              </a>
-              <a href="https://github.com/bageltech" className="btn btnGhost">
-                GitHub
-              </a>
-              <a href="https://www.linkedin.com/company/bageltech" className="btn btnGhost">
-                LinkedIn
-              </a>
+            <div className={styles.threeGrid}>
+              {WORKSTREAMS.map((stream, index) => {
+                let href = stream.href;
+                if (stream.slug === "bageltech") href = "/products";
+                if (stream.slug === "bdb-labs") href = "/research";
+                if (stream.slug === "bagelle-parris-vargas") href = "/advisory";
+
+                return (
+                  <ScrollReveal className={styles.routeCard} delay={index * 90} key={stream.slug}>
+                    <BrandMark brand={stream.brand} variant="icon" size="compact" className={styles.routeMark} />
+                    <p className={styles.cardLabel}>{stream.role}</p>
+                    <h3 className={styles.cardTitle}>{stream.title}</h3>
+                    <p className={styles.cardText}>{stream.summary}</p>
+                    <ul className={styles.list}>
+                      {stream.bullets.map((bullet) => (
+                        <li key={bullet}>{bullet}</li>
+                      ))}
+                    </ul>
+                    <div className={styles.cardFooter}>
+                      <SmartLink className={styles.cardLink} href={href}>
+                        {stream.cta}
+                      </SmartLink>
+                    </div>
+                  </ScrollReveal>
+                );
+              })}
             </div>
-
-            <p className="footerNote">© {new Date().getFullYear()} BagelTech. Built for clarity, not hype.</p>
           </div>
         </section>
-      </div>
-    </main>
+
+        <section className={`${styles.section} ${styles.sectionAlt}`}>
+          <div className={styles.inner}>
+            <ScrollReveal className={styles.sectionHeader}>
+              <div>
+                <p className={styles.kicker}>Durable insight</p>
+                <h2 className={styles.sectionTitle}>All papers, notes, and case materials in one library.</h2>
+              </div>
+              <p className={styles.sectionLead}>
+                See the research, frameworks, and operational experience that inform the products and advisory offers.
+              </p>
+            </ScrollReveal>
+
+            <div className={styles.actions}>
+              <SmartLink className={styles.buttonPrimary} href="/writing">
+                Explore the full Writing Library
+              </SmartLink>
+              <SmartLink className={styles.buttonSecondary} href="/contact">
+                Discuss a use case
+              </SmartLink>
+            </div>
+          </div>
+        </section>
+
+        <section className={`${styles.section} ${styles.sectionDark}`}>
+          <div className={styles.inner}>
+            <div className={styles.methodGrid}>
+              <ScrollReveal>
+                <p className={styles.kicker}>Method and credibility</p>
+                <h2 className={styles.sectionTitle}>Evidence first. Uncertainty surfaced. Authority made visible.</h2>
+                <p className={styles.sectionLead}>
+                  The same operating doctrine supports the product, research, and advisory lanes: define the decision,
+                  make the evidence reviewable, and match the work to the right consequence and authority.
+                </p>
+              </ScrollReveal>
+
+              <ScrollReveal className={styles.proofPanel} delay={120}>
+                <div className={styles.methodList}>
+                  {METHOD_TILES.map((tile) => (
+                    <article className={styles.methodItem} key={tile.title}>
+                      <h3>{tile.title}</h3>
+                      <p>{tile.body}</p>
+                    </article>
+                  ))}
+                </div>
+
+                <div className={styles.metricGrid}>
+                  {PROOF_POINTS.map((point) => (
+                    <article className={styles.metricTile} key={point.label}>
+                      <p className={styles.metricValue}>{point.value}</p>
+                      <p className={styles.metricLabel}>{point.label}</p>
+                    </article>
+                  ))}
+                </div>
+              </ScrollReveal>
+            </div>
+          </div>
+        </section>
+
+        <section className={styles.section}>
+          <div className={styles.inner}>
+            <ScrollReveal className={styles.ctaBand}>
+              <div>
+                <h2 className={styles.ctaTitle}>Start with the lane that matches the work.</h2>
+                <p className={styles.ctaText}>
+                  Product, research, and advisory conversations begin differently. The contact page frames the inquiry
+                  so the first conversation starts in the right context.
+                </p>
+              </div>
+              <SmartLink className={styles.buttonPrimary} href="/contact">
+                Start an inquiry
+              </SmartLink>
+            </ScrollReveal>
+          </div>
+        </section>
+      </main>
+    </MarketingLayout>
   );
 }

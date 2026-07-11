@@ -1,29 +1,49 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #f5f7ff;
-  --surface: #ffffff;
-  --surface-alt: #f1f4ff;
-  --text: #13213b;
-  --muted: #4b5d7a;
-  --border: #d8e1f3;
-  --brand: #3359e0;
-  --brand-strong: #243ea8;
-  --brand-soft: #e4ebff;
+  --color-ink-950: #081426;
+  --color-ink-900: #0e223d;
+  --color-paper-50: #f7f5f1;
+  --color-paper-100: #eeeae3;
+  --color-bagel-gold: #d4a94d;
+  --color-bagel-gold-dark: #a87b22;
+  --color-bagel-teal: #25d6c8;
+  --color-bagel-teal-soft: #7feae1;
+  --color-bagel-navy: #0a2747;
+  --color-labs-violet: #a06bff;
+  --color-labs-purple: #8b4fe0;
+  --color-labs-blue: #4d7cff;
+  --color-labs-lilac: #d8c4ff;
+  --color-labs-navy: #14254a;
+  --color-bpv-gold: #c9a45a;
+  --color-bpv-ivory: #f4f0e8;
+  --color-bpv-navy: #0c1930;
+  --color-bpv-charcoal: #213047;
+
+  --background: var(--color-paper-50);
+  --foreground: var(--color-ink-950);
+  --muted: rgba(8, 20, 38, 0.72);
+  --surface: rgba(255, 255, 255, 0.78);
+  --surface-strong: #ffffff;
+  --surface-alt: rgba(255, 255, 255, 0.55);
+  --border: rgba(8, 20, 38, 0.12);
+  --accent: var(--color-bagel-teal);
+  --accent-deep: var(--color-bagel-navy);
+  --accent-soft: rgba(37, 214, 200, 0.16);
+  --signal: var(--color-bagel-gold-dark);
+  --shadow: 0 24px 60px rgba(8, 20, 38, 0.08);
+  --brand: var(--color-bagel-teal);
+  --brand-strong: var(--color-bagel-navy);
+  --brand-soft: var(--accent-soft);
+  --text: var(--foreground);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0f1628;
-    --surface: #151f36;
-    --surface-alt: #1a2744;
-    --text: #edf1ff;
-    --muted: #b5c1df;
-    --border: #2b3a62;
-    --brand: #7a92ff;
-    --brand-strong: #a8b8ff;
-    --brand-soft: #202d4f;
-  }
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-ui-sans);
+  --font-serif: var(--font-editorial-serif);
+  --font-mono: var(--font-code-mono);
 }
 
 * {
@@ -36,257 +56,46 @@ html {
 
 body {
   margin: 0;
-  background: radial-gradient(circle at 10% -10%, #deebff 0%, var(--bg) 45%, var(--bg) 100%);
-  color: var(--text);
-  font-family: var(--font-geist-sans), Inter, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  line-height: 1.6;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(37, 214, 200, 0.1), transparent 26rem),
+    linear-gradient(180deg, #fbfdf9 0%, var(--background) 100%);
+  color: var(--foreground);
+  font-family: var(--font-sans), sans-serif;
+  text-rendering: optimizeLegibility;
 }
 
 a {
   color: inherit;
 }
 
-a:focus-visible,
-button:focus-visible {
-  outline: 3px solid var(--brand);
-  outline-offset: 2px;
+img {
+  display: block;
+  max-width: 100%;
 }
 
-.skipLink {
-  position: absolute;
-  left: -9999px;
-  top: auto;
+button,
+input,
+textarea,
+select {
+  font: inherit;
 }
 
-.skipLink:focus {
-  left: 1rem;
-  top: 1rem;
-  z-index: 100;
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 0.5rem;
-  padding: 0.4rem 0.7rem;
+::selection {
+  background: rgba(37, 214, 200, 0.22);
 }
 
-.container {
-  max-width: 1080px;
-  margin: 0 auto;
-  padding: 0 1.25rem;
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+blockquote {
+  margin-top: 0;
 }
 
-.section {
-  padding: 4.5rem 0;
-}
-
-.sectionAlt {
-  background: linear-gradient(180deg, color-mix(in oklab, var(--brand-soft) 70%, transparent), transparent);
-}
-
-.siteHeader {
-  position: sticky;
-  top: 0;
-  backdrop-filter: blur(10px);
-  background: color-mix(in oklab, var(--bg) 86%, transparent);
-  border-bottom: 1px solid color-mix(in oklab, var(--border) 80%, transparent);
-  z-index: 20;
-}
-
-.navWrap {
-  min-height: 64px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-}
-
-.brand {
-  font-weight: 800;
-  text-decoration: none;
-  letter-spacing: 0.02em;
-  color: var(--brand-strong);
-}
-
-.navLinks {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.navLinks a {
-  text-decoration: none;
-  color: var(--muted);
-  font-size: 0.95rem;
-}
-
-.navLinks a:hover {
-  color: var(--brand-strong);
-}
-
-.hero h1 {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  line-height: 1.06;
-  margin: 0 0 1rem;
-  max-width: 16ch;
-}
-
-.kicker {
-  color: var(--brand-strong);
-  font-weight: 700;
-  margin-bottom: 0.6rem;
-}
-
-.lede {
-  font-size: clamp(1rem, 2vw, 1.2rem);
-  color: var(--muted);
-  max-width: 70ch;
-}
-
-.outcomes {
-  margin: 1.2rem 0 0;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.65rem;
-}
-
-.outcomes li {
-  border: 1px solid var(--border);
-  background: var(--surface);
-  border-radius: 999px;
-  padding: 0.35rem 0.75rem;
-  color: var(--muted);
-  font-size: 0.9rem;
-}
-
-.prose h2 {
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  margin: 0 0 0.8rem;
-}
-
-.prose h3 {
-  margin: 0 0 0.5rem;
-  font-size: 1.1rem;
-}
-
-.prose p,
-.prose li {
-  color: var(--muted);
-}
-
-.ctaRow {
-  margin-top: 1.25rem;
-  display: flex;
-  gap: 0.75rem;
-  flex-wrap: wrap;
-}
-
-.btn {
-  text-decoration: none;
-  border-radius: 999px;
-  padding: 0.65rem 1rem;
-  border: 1px solid transparent;
-  font-weight: 650;
-  transition: 160ms ease;
-}
-
-.btnPrimary {
-  background: linear-gradient(135deg, var(--brand), var(--brand-strong));
-  color: white;
-  box-shadow: 0 10px 26px color-mix(in srgb, var(--brand) 35%, transparent);
-}
-
-.btnPrimary:hover {
-  transform: translateY(-1px);
-}
-
-.btnGhost {
-  background: var(--surface);
-  border-color: var(--border);
-  color: var(--brand-strong);
-}
-
-.btnGhost:hover {
-  border-color: var(--brand);
-  background: var(--brand-soft);
-}
-
-.diagramCard,
-.card,
-.productCard {
-  background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 1rem;
-  box-shadow: 0 10px 30px rgba(17, 24, 39, 0.08);
-}
-
-.diagramCard {
-  margin-top: 1rem;
-  padding: 1rem;
-}
-
-.diagramCard pre {
-  background: var(--surface-alt);
-  border-radius: 0.75rem;
-  padding: 0.8rem;
-  overflow: auto;
-  font-size: 0.8rem;
-  color: var(--text);
-}
-
-.caption {
-  font-size: 0.9rem;
-}
-
-.cardGrid {
-  display: grid;
-  gap: 0.9rem;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  margin-top: 1rem;
-}
-
-.card {
-  padding: 1rem;
-}
-
-.card p {
-  margin: 0;
-}
-
-.productCard {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 1rem;
-  padding: 1rem;
-}
-
-.productMeta {
-  background: var(--brand-soft);
-  border: 1px solid color-mix(in oklab, var(--brand) 28%, var(--border));
-  border-radius: 0.75rem;
-  padding: 0.8rem;
-}
-
-.footerNote {
-  margin-top: 1.25rem;
-  font-size: 0.85rem;
-}
-
-@media (max-width: 700px) {
-  .productCard {
-    grid-template-columns: 1fr;
-  }
-
-  .navWrap {
-    padding: 0.65rem 1.25rem;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .section {
-    padding: 3.8rem 0;
-  }
-}
+/* ─── Bagel Corner & Article styles (from PR #2) ─── */
 
 .flowGraphic {
   width: 100%;
@@ -350,6 +159,93 @@ button:focus-visible {
 .articleBody h2 {
   margin-top: 1.4rem;
   margin-bottom: 0.45rem;
+}
+
+.section {
+  padding: 4.5rem 0;
+}
+
+.container {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+.prose h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin: 0 0 0.8rem;
+}
+
+.prose h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+}
+
+.prose p,
+.prose li {
+  color: var(--muted);
+}
+
+.kicker {
+  color: var(--brand-strong);
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.lede {
+  font-size: clamp(1rem, 2vw, 1.2rem);
+  color: var(--muted);
+  max-width: 70ch;
+}
+
+.ctaRow {
+  margin-top: 1.25rem;
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.btn {
+  text-decoration: none;
+  border-radius: 999px;
+  padding: 0.65rem 1rem;
+  border: 1px solid transparent;
+  font-weight: 650;
+  transition: 160ms ease;
+}
+
+.btnPrimary {
+  background: linear-gradient(135deg, var(--brand), var(--brand-strong));
+  color: white;
+}
+
+.btnGhost {
+  background: var(--surface);
+  border-color: var(--border);
+  color: var(--brand-strong);
+}
+
+.btnGhost:hover {
+  border-color: var(--brand);
+  background: var(--brand-soft);
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  padding: 1rem;
+}
+
+.cardGrid {
+  display: grid;
+  gap: 0.9rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  margin-top: 1rem;
+}
+
+.caption {
+  font-size: 0.9rem;
 }
 
 .bagelCorner {
