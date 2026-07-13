@@ -2,45 +2,30 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { useSession } from "next-auth/react";
-import { apiRequest } from "@/lib/api";
-
-interface Decision {
-  session_id: string;
-  decision: string;
-  human_probability: number;
-  confidence: number;
-  risk_factors: string[];
-  timestamp?: string;
-}
-
-const decisionBadge: Record<string, string> = {
-  allow: "badge-green",
-  challenge: "badge-amber",
-  block: "badge-red",
-  review: "badge-blue",
-};
+import { apiRequest, getErrorMessage } from "@/lib/api";
+import type { DashboardReview, HealthResponse, ReviewsResponse } from "@/lib/dashboard-types";
 
 export default function MonitorPage() {
   const { data: session } = useSession();
-  const [health, setHealth] = useState<any>(null);
-  const [reviews, setReviews] = useState<any[]>([]);
+  const [health, setHealth] = useState<HealthResponse | null>(null);
+  const [reviews, setReviews] = useState<DashboardReview[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
-  const token = (session?.user as any)?.access_token;
+  const token = session?.user?.access_token;
 
   const fetchData = useCallback(async () => {
     if (!token) return;
     try {
       const [healthData, reviewData] = await Promise.all([
-        apiRequest("/health", token),
-        apiRequest("/telegram/reviews", token),
+        apiRequest<HealthResponse>("/health", token),
+        apiRequest<ReviewsResponse>("/telegram/reviews", token),
       ]);
       setHealth(healthData);
       setReviews(reviewData.pending_reviews || []);
       setError("");
-    } catch (e: any) {
-      setError(e.message);
+    } catch (error: unknown) {
+      setError(getErrorMessage(error));
     } finally {
       setLoading(false);
     }

@@ -2,28 +2,27 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { useSession } from "next-auth/react";
-import { apiRequest } from "@/lib/api";
-
-const DECISIONS = ["allow", "warn", "kick", "ban"];
+import { apiRequest, getErrorMessage } from "@/lib/api";
+import type { DashboardReview, ReviewsResponse } from "@/lib/dashboard-types";
 
 export default function ReviewsPage() {
   const { data: session } = useSession();
-  const [reviews, setReviews] = useState<any[]>([]);
+  const [reviews, setReviews] = useState<DashboardReview[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [acting, setActing] = useState<string | null>(null);
   const [notes, setNotes] = useState<Record<string, string>>({});
 
-  const token = (session?.user as any)?.access_token;
+  const token = session?.user?.access_token;
 
   const fetchReviews = useCallback(async () => {
     if (!token) return;
     try {
-      const data = await apiRequest("/telegram/reviews", token);
+      const data = await apiRequest<ReviewsResponse>("/telegram/reviews", token);
       setReviews(data.pending_reviews || []);
       setError("");
-    } catch (e: any) {
-      setError(e.message);
+    } catch (error: unknown) {
+      setError(getErrorMessage(error));
     } finally {
       setLoading(false);
     }
@@ -47,8 +46,8 @@ export default function ReviewsPage() {
         method: "POST",
       });
       await fetchReviews();
-    } catch (e: any) {
-      setError(e.message);
+    } catch (error: unknown) {
+      setError(getErrorMessage(error));
     } finally {
       setActing(null);
     }

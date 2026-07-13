@@ -4,12 +4,6 @@ import DashboardSessionProvider from "@/components/dashboard/DashboardSessionPro
 import DashboardSidebar from "@/components/dashboard/Sidebar";
 import "@/app/dashboard/dashboard.css";
 
-type DashboardUser = {
-  name?: string | null;
-  email?: string | null;
-  role?: string;
-};
-
 export default async function DashboardLayout({
   children,
 }: {
@@ -17,7 +11,7 @@ export default async function DashboardLayout({
 }) {
   const session = await auth();
   if (!session) redirect("/dashboard/login");
-  const user = session.user as DashboardUser | undefined;
+  const user = session.user;
 
   return (
     <DashboardSessionProvider session={session}>

@@ -2,7 +2,7 @@ import { auth } from "@/lib/auth";
 import { NextResponse } from "next/server";
 
 export default auth((req) => {
-  const isLoggedIn = !!req.auth;
+  const isLoggedIn = Boolean(req.auth);
   const isDashboard = req.nextUrl.pathname.startsWith("/dashboard");
   const isLoginPage = req.nextUrl.pathname === "/dashboard/login";
 

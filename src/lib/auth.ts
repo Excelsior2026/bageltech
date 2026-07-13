@@ -1,6 +1,17 @@
 import NextAuth from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 
+interface LoginResponse {
+  access_token: string;
+  user: {
+    id: string | number;
+    email: string;
+    name: string;
+    role: string;
+    tenant_id: string;
+  };
+}
+
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "https://verify.bageltech.net";
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [
@@ -25,7 +36,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
 
           if (!res.ok) return null;
 
-          const data = await res.json();
+          const data: LoginResponse = await res.json();
           return {
             id: String(data.user.id),
             email: data.user.email,
@@ -43,17 +54,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.role = (user as any).role;
-        token.tenant_id = (user as any).tenant_id;
-        token.access_token = (user as any).access_token;
+        token.role = user.role;
+        token.tenant_id = user.tenant_id;
+        token.access_token = user.access_token;
       }
       return token;
     },
     async session({ session, token }) {
       if (session.user) {
-        (session.user as any).role = token.role;
-        (session.user as any).tenant_id = token.tenant_id;
-        (session.user as any).access_token = token.access_token;
+        session.user.role = token.role;
+        session.user.tenant_id = token.tenant_id;
+        session.user.access_token = token.access_token;
       }
       return session;
     },
