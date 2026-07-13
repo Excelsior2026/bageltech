@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import { Fraunces, IBM_Plex_Mono, Space_Grotesk } from "next/font/google";
+import { IBM_Plex_Mono, Public_Sans, Spectral } from "next/font/google";
 import "./globals.css";
 
-const sans = Space_Grotesk({
+const sans = Public_Sans({
   variable: "--font-ui-sans",
   subsets: ["latin"],
 });
 
-const serif = Fraunces({
+const serif = Spectral({
   variable: "--font-editorial-serif",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  style: ["normal", "italic"],
 });
 
 const mono = IBM_Plex_Mono({
