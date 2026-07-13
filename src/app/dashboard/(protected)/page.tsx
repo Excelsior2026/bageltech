@@ -104,7 +104,7 @@ export default function MonitorPage() {
                   <td>
                     {(r.threat_categories || []).length > 0 ? (
                       <span className="badge badge-red">
-                        {r.threat_categories.join(", ")}
+                        {(r.threat_categories ?? []).join(", ")}
                       </span>
                     ) : (
                       <span className="badge badge-gray">none</span>
