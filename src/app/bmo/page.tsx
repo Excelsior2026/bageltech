@@ -156,7 +156,7 @@ export default function BmoPage() {
               <div className={styles.logPanel}>
                 <div className={styles.logPanelHeader}>
                   <div className={styles.logPanelHeaderDot} />
-                  <p className={styles.logPanelTitle}>Today's incident log</p>
+                  <p className={styles.logPanelTitle}>Today&apos;s incident log</p>
                 </div>
                 <ul className={styles.logPanelBody}>
                   {incidents.map((item) => (

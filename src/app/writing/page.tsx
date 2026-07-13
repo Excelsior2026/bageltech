@@ -91,7 +91,6 @@ export default function WritingPage() {
   const caseStudies = allItems.filter(item => item.type === "case-study");
 
   const featured = allItems.filter(item => item.featured && item.workstream !== "BDB Labs");
-  const archive = allItems.filter(item => !item.featured);
 
   return (
     <MarketingLayout>

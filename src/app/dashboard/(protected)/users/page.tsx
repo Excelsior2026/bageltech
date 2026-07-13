@@ -2,35 +2,52 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { useSession } from "next-auth/react";
-import { apiRequest } from "@/lib/api";
+import { apiRequest, getErrorMessage } from "@/lib/api";
+import type { DashboardUser } from "@/lib/dashboard-types";
 
 const ROLES = ["super_admin", "reviewer", "observer"];
-const roleColor: Record<string, string> = {
-  super_admin: "badge-red",
-  reviewer: "badge-blue",
-  observer: "badge-gray",
+
+type UserForm = {
+  email: string;
+  name: string;
+  password: string;
+  role: string;
+  tenant_id: string;
 };
+
+type UserFormField = {
+  key: keyof Pick<UserForm, "name" | "email" | "password" | "tenant_id">;
+  label: string;
+  type: string;
+};
+
+const USER_FORM_FIELDS: UserFormField[] = [
+  { key: "name", label: "Full name", type: "text" },
+  { key: "email", label: "Email", type: "email" },
+  { key: "password", label: "Password", type: "password" },
+  { key: "tenant_id", label: "Tenant ID", type: "text" },
+];
 
 export default function UsersPage() {
   const { data: session } = useSession();
-  const [users, setUsers] = useState<any[]>([]);
+  const [users, setUsers] = useState<DashboardUser[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
   const [creating, setCreating] = useState(false);
-  const [form, setForm] = useState({ email: "", name: "", password: "", role: "reviewer", tenant_id: "default" });
+  const [form, setForm] = useState<UserForm>({ email: "", name: "", password: "", role: "reviewer", tenant_id: "default" });
   const [showForm, setShowForm] = useState(false);
 
-  const token = (session?.user as any)?.access_token;
-  const currentUserId = (session?.user as any)?.id;
+  const token = session?.user?.access_token;
+  const currentUserId = session?.user?.id;
 
   const fetchUsers = useCallback(async () => {
     if (!token) return;
     try {
-      const data = await apiRequest("/auth/users", token);
+      const data = await apiRequest<DashboardUser[]>("/auth/users", token);
       setUsers(data);
       setError("");
-    } catch (e: any) {
-      setError(e.message);
+    } catch (error: unknown) {
+      setError(getErrorMessage(error));
     } finally {
       setLoading(false);
     }
@@ -50,14 +67,14 @@ export default function UsersPage() {
       setForm({ email: "", name: "", password: "", role: "reviewer", tenant_id: "default" });
       setShowForm(false);
       await fetchUsers();
-    } catch (e: any) {
-      setError(e.message);
+    } catch (error: unknown) {
+      setError(getErrorMessage(error));
     } finally {
       setCreating(false);
     }
   }
 
-  async function handleRoleChange(userId: number, role: string) {
+  async function handleRoleChange(userId: string | number, role: string) {
     if (!token) return;
     try {
       await apiRequest(`/auth/users/${userId}`, token, {
@@ -65,18 +82,18 @@ export default function UsersPage() {
         body: JSON.stringify({ role }),
       });
       await fetchUsers();
-    } catch (e: any) {
-      setError(e.message);
+    } catch (error: unknown) {
+      setError(getErrorMessage(error));
     }
   }
 
-  async function handleDeactivate(userId: number) {
+  async function handleDeactivate(userId: string | number) {
     if (!token || !confirm("Deactivate this user?")) return;
     try {
       await apiRequest(`/auth/users/${userId}`, token, { method: "DELETE" });
       await fetchUsers();
-    } catch (e: any) {
-      setError(e.message);
+    } catch (error: unknown) {
+      setError(getErrorMessage(error));
     }
   }
 
@@ -105,18 +122,13 @@ export default function UsersPage() {
           <p className="dash-section-title" style={{ marginBottom: "1.25rem" }}>New user</p>
           <form onSubmit={handleCreate}>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1rem", marginBottom: "1rem" }}>
-              {[
-                { key: "name", label: "Full name", type: "text" },
-                { key: "email", label: "Email", type: "email" },
-                { key: "password", label: "Password", type: "password" },
-                { key: "tenant_id", label: "Tenant ID", type: "text" },
-              ].map(({ key, label, type }) => (
+              {USER_FORM_FIELDS.map(({ key, label, type }) => (
                 <div key={key}>
                   <label style={{ display: "block", fontSize: "0.78rem", color: "#9aa0a6", marginBottom: "0.3rem" }}>{label}</label>
                   <input
                     type={type}
                     required={key !== "tenant_id"}
-                    value={(form as any)[key]}
+                    value={form[key]}
                     onChange={(e) => setForm({ ...form, [key]: e.target.value })}
                     style={{
                       width: "100%", background: "#13151e", border: "1px solid #2d3142",
