@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import BrandMark from "@/components/BrandMark";
 import MarketingLayout from "@/components/MarketingLayout";
 import SmartLink from "@/components/SmartLink";
 import { PUBLICATIONS } from "@/content/publications";
@@ -34,6 +35,7 @@ export default function HomePage() {
         {/* HERO */}
         <section className={styles.hero}>
           <div className={styles.wrap}>
+            <BrandMark brand="bageltech" variant="light" size="hero" className={styles.heroMark} priority />
             <span className={styles.eyebrow}>Governance for consequential systems</span>
             <h1>
               Consequential systems should be able to <em>show their work.</em>
