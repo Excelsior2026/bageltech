@@ -2,7 +2,23 @@
 
 import { useEffect, useState, useCallback } from "react";
 import { useSession } from "next-auth/react";
-import { apiRequest } from "@/lib/api";
+import { apiRequest, getErrorMessage } from "@/lib/api";
+
+type Thresholds = {
+  ban: number;
+  kick: number;
+  review: number;
+};
+
+type DetectorConfiguration = Record<string, { enabled?: boolean }>;
+
+interface ConfigResponse {
+  tenant_id?: string;
+  configuration?: {
+    detectors?: DetectorConfiguration;
+    response_thresholds?: Partial<Thresholds>;
+  };
+}
 
 const DETECTORS = [
   { key: "copyright_violation", label: "Copyright violation", tier: "policy" },
@@ -18,7 +34,7 @@ const CORE = [
 
 export default function ConfigPage() {
   const { data: session } = useSession();
-  const [config, setConfig] = useState<any>(null);
+  const [config, setConfig] = useState<ConfigResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [saved, setSaved] = useState(false);
@@ -26,12 +42,12 @@ export default function ConfigPage() {
   const [detectorState, setDetectorState] = useState<Record<string, boolean>>({});
   const [thresholds, setThresholds] = useState({ ban: 0.8, kick: 0.6, review: 0.4 });
 
-  const token = (session?.user as any)?.access_token;
+  const token = session?.user?.access_token;
 
   const fetchConfig = useCallback(async () => {
     if (!token) return;
     try {
-      const data = await apiRequest("/telegram/config", token);
+      const data = await apiRequest<ConfigResponse>("/telegram/config", token);
       setConfig(data);
       const detectors = data.configuration?.detectors || {};
       const state: Record<string, boolean> = {};
@@ -45,8 +61,8 @@ export default function ConfigPage() {
         kick:   t.kick   ?? 0.6,
         review: t.review ?? 0.4,
       });
-    } catch (e: any) {
-      setError(e.message);
+    } catch (error: unknown) {
+      setError(getErrorMessage(error));
     } finally {
       setLoading(false);
     }
@@ -59,7 +75,7 @@ export default function ConfigPage() {
     setSaving(true);
     setError("");
     try {
-      const detectors: Record<string, any> = {};
+      const detectors: Record<string, { enabled: boolean }> = {};
       DETECTORS.forEach((d) => {
         detectors[d.key] = { enabled: detectorState[d.key] };
       });
@@ -69,8 +85,8 @@ export default function ConfigPage() {
       });
       setSaved(true);
       setTimeout(() => setSaved(false), 3000);
-    } catch (e: any) {
-      setError(e.message);
+    } catch (error: unknown) {
+      setError(getErrorMessage(error));
     } finally {
       setSaving(false);
     }
