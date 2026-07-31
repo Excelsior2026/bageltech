@@ -110,6 +110,20 @@ export const WORKSTREAMS: Workstream[] = [
 
 export const PRODUCTS: ProductItem[] = [
   {
+    title: "Electrical Contractor Platform",
+    slug: "electrical-contractor-platform",
+    status: "Managed setup requests open",
+    category: "Contractor operations",
+    summary:
+      "A configurable public site and private office workflow for electrical service intake, customers, estimates, jobs, invoices, and manual receipt records.",
+    audience: "U.S. electrical contractors seeking a managed, dedicated operating platform.",
+    problem:
+      "Public intake, customer records, estimates, jobs, and invoices are often split across disconnected tools and mutable documents.",
+    approach:
+      "One release line, structured company configuration, immutable customer documents, and explicit managed launch gates.",
+    href: "/contractors",
+  },
+  {
     title: "ELEANOR",
     slug: "eleanor",
     status: "Core framework",

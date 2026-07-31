@@ -5,6 +5,7 @@ import { EXTERNAL_LINKS, WORKSTREAMS } from "@/content/site";
 
 const footerLinks = [
   { href: "/products", label: "Products" },
+  { href: "/contractors", label: "Contractors" },
   { href: "/research", label: "Research" },
   { href: "/writing", label: "Writing" },
   { href: "/insights", label: "Insights" },

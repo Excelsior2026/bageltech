@@ -19,9 +19,38 @@ test("implements the required public route structure", () => {
     "src/app/about/page.tsx",
     "src/app/contact/page.tsx",
     "src/app/bmo/page.tsx",
+    "src/app/contractors/page.tsx",
+    "src/app/get-started/page.tsx",
+    "src/app/contractors/privacy/page.tsx",
+    "src/app/contractors/terms/page.tsx",
   ].forEach((path) => {
     assert.equal(exists(path), true, `${path} should exist`);
   });
+});
+
+test("publishes the contractor template gallery and request-only onboarding path", () => {
+  const catalog = read("src/content/contractor-templates.ts");
+  const gallery = read("src/components/onboarding/TemplateGallery.tsx");
+  const wizard = read("src/components/onboarding/OnboardingWizard.tsx");
+
+  [
+    "heritage-craft",
+    "modern-grid",
+    "neighborly-warm",
+    "industrial-pro",
+    "premium-home",
+    "direct-response",
+  ].forEach((templateId) => {
+    assert.match(catalog, new RegExp(templateId), `catalog should include ${templateId}`);
+  });
+
+  assert.match(gallery, /Choose \{selected\.name\}/, "gallery should route the selected template into setup");
+  assert.match(wizard, /does not automatically/, "wizard should disclose the request-only boundary");
+  assert.match(
+    wizard,
+    /contractor-platform-onboarding-v1/,
+    "wizard should bind consent to the published terms version",
+  );
 });
 
 test("keeps the legacy Bagel URL as a redirect to BMO", () => {

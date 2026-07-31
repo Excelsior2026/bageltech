@@ -8,6 +8,7 @@ import styles from "./Header.module.css";
 const navLinks = [
   { href: "/", label: "Home" },
   { href: "/products", label: "Products" },
+  { href: "/contractors", label: "Contractors" },
   { href: "/research", label: "Research" },
   { href: "/advisory", label: "Advisory" },
   { href: "/writing", label: "Writing" },
@@ -54,8 +55,8 @@ export default function Header() {
           ))}
         </nav>
 
-        <Link href="/contact" className={styles.ctaButton}>
-          Contact
+        <Link href="/get-started" className={styles.ctaButton}>
+          Get started
         </Link>
 
         <button
@@ -83,11 +84,11 @@ export default function Header() {
             </Link>
           ))}
           <Link
-            href="/contact"
+            href="/get-started"
             className={styles.mobileCta}
             onClick={() => setIsMobileMenuOpen(false)}
           >
-            Contact
+            Get started
           </Link>
         </nav>
       </div>

@@ -72,6 +72,25 @@ export default function HomePage() {
           </div>
         </section>
 
+        <section className={styles.contractorCallout}>
+          <div className={styles.wrap}>
+            <div className={styles.contractorCalloutLabel}>
+              <span className={styles.eyebrow}>Managed setup requests open</span>
+              <span>Contractor operations</span>
+            </div>
+            <div className={styles.contractorCalloutCopy}>
+              <h2>A working platform for electrical contractors—not another disconnected brochure site.</h2>
+              <p>
+                Compare six customer-facing templates, then build a reviewable setup brief for service intake,
+                customers, estimates, jobs, invoices, and manual receipt records.
+              </p>
+            </div>
+            <SmartLink className={styles.contractorCalloutLink} href="/contractors">
+              Explore the contractor platform <span className={styles.arrow}>&#8594;</span>
+            </SmartLink>
+          </div>
+        </section>
+
         {/* THREE MODES */}
         <section className={styles.modes} id="modes">
           <div className={styles.wrap}>
