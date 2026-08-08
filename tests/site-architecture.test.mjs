@@ -53,6 +53,48 @@ test("publishes the contractor template gallery and request-only onboarding path
   );
 });
 
+test("offers a structured custom-site path without bypassing managed onboarding", () => {
+  [
+    "src/components/onboarding/CustomerPaths.tsx",
+    "src/components/onboarding/CustomSiteWizard.tsx",
+    "src/components/onboarding/CustomSiteWizard.module.css",
+    "src/app/api/custom-site-blueprints/route.ts",
+  ].forEach((path) => {
+    assert.equal(exists(path), true, `${path} should exist`);
+  });
+
+  const contractors = read("src/app/contractors/page.tsx");
+  const getStarted = read("src/app/get-started/page.tsx");
+  const studio = read("src/components/onboarding/CustomSiteWizard.tsx");
+  const studioStyles = read("src/components/onboarding/CustomSiteWizard.module.css");
+
+  assert.match(contractors, /CustomerPaths/, "contractor page should explain both starting paths");
+  assert.match(getStarted, /path === ["']custom["']/, "custom query should select the studio");
+  assert.match(getStarted, /initialTemplate=\{template/, "template query should remain supported");
+  assert.match(studio, /POST|method: ["']POST["']/, "studio should generate through a POST request");
+  assert.match(studio, /siteBlueprint:/, "managed onboarding should carry the structured blueprint");
+  assert.match(studio, /Review ready · not live/, "draft readiness should be explicit");
+  assert.match(studio, /Guided fallback draft/, "fallback provenance should be visible");
+  [
+    "organization-configuration",
+    "deterministic-safety-triage",
+    "service-request-v1",
+    "private-photo-uploads",
+    "customer-document-links",
+    "staff-workspace",
+  ].forEach((binding) => {
+    assert.match(studio, new RegExp(binding), `studio should declare ${binding}`);
+  });
+  [
+    "editorial-split",
+    "precision-grid",
+    "immersive-service",
+    "conversion-stack",
+  ].forEach((composition) => {
+    assert.match(studioStyles, new RegExp(composition), `preview should style ${composition}`);
+  });
+});
+
 test("keeps the legacy Bagel URL as a redirect to BMO", () => {
   assert.equal(exists("src/app/bagel/page.tsx"), true, "legacy /bagel route should exist");
 

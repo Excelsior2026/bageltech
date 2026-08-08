@@ -15,7 +15,7 @@ export default function ContractorTermsPage() {
         <article className={styles.noticeInner}>
           <p className={styles.wizardEyebrow}>contractor-platform-onboarding-v1</p>
           <h1>Contractor setup request terms</h1>
-          <p>Effective July 30, 2026.</p>
+          <p>Effective July 30, 2026; clarified August 7, 2026.</p>
           <p>
             These terms govern submission of the BagelTech electrical-contractor setup
             request. By submitting, you confirm that you are authorized to provide the
@@ -38,13 +38,23 @@ export default function ContractorTermsPage() {
             Provisioning can begin only after BagelTech separately accepts the request.
           </p>
 
-          <h2>Templates and submitted material</h2>
+          <h2>Templates, custom drafts, and submitted material</h2>
           <p>
             A template selection is a starting direction and may be changed during
-            review. You confirm that BagelTech may use the submitted business
-            information, service descriptions, colors, and requested domain details to
-            evaluate and prepare the proposed setup. Do not submit confidential customer
-            records, payment information, passwords, or secret keys.
+            review. A Custom Studio blueprint is also a draft: AI assistance may propose
+            its structured presentation and copy, or a guided fallback may produce it
+            when AI assistance is unavailable. Every draft requires human review and does
+            not publish a site, connect field-application resources, or verify a technical
+            integration. You are responsible for confirming that business descriptions,
+            qualifications, availability, service claims, and other factual statements
+            are accurate and supportable before launch.
+          </p>
+          <p>
+            You confirm that BagelTech may use the submitted business information,
+            service descriptions, colors, brief, generated blueprint, and requested
+            domain details to evaluate and prepare the proposed setup. Do not submit
+            confidential customer records, sensitive personal data, payment information,
+            passwords, or secret keys.
           </p>
 
           <h2>No emergency-service promise</h2>
@@ -65,7 +75,7 @@ export default function ContractorTermsPage() {
           </p>
 
           <p>
-            <Link href="/get-started">Return to the setup request</Link>
+            <Link href="/contractors">Return to the contractor platform</Link>
           </p>
         </article>
       </main>

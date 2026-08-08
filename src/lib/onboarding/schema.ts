@@ -1,3 +1,8 @@
+import {
+  parseCustomSiteBlueprint,
+  type CustomSiteBlueprint,
+} from "../custom-site/contract.ts";
+
 export const ONBOARDING_CONTRACT_VERSION = 1 as const;
 export const TEMPLATE_CATALOG_VERSION = 1 as const;
 export const MAX_ONBOARDING_BODY_BYTES = 32 * 1024;
@@ -61,6 +66,7 @@ export interface NormalizedOnboardingInput {
   termsVersion: typeof TERMS_VERSION;
   privacyVersion: typeof PRIVACY_VERSION;
   consentAcceptedAt: string;
+  siteBlueprint?: CustomSiteBlueprint;
 }
 
 export type OnboardingParseResult =
@@ -81,6 +87,7 @@ const ROOT_KEYS = new Set([
   "launchGoal",
   "consent",
   "companyWebsite",
+  "siteBlueprint",
 ]);
 
 const TEMPLATE_KEYS = new Set(["id", "catalogVersion"]);
@@ -495,6 +502,26 @@ export function parseOnboardingRequest(input: unknown): OnboardingParseResult {
     ? readColor(brand.accentColor, "brand.accentColor", errors)
     : undefined;
 
+  let siteBlueprint: CustomSiteBlueprint | undefined;
+  if (Object.hasOwn(input, "siteBlueprint")) {
+    const parsedBlueprint = parseCustomSiteBlueprint(input.siteBlueprint);
+    if (!parsedBlueprint.ok) {
+      errors.push(...parsedBlueprint.errors);
+    } else {
+      siteBlueprint = parsedBlueprint.value;
+      if (
+        primaryColor &&
+        accentColor &&
+        (siteBlueprint.design.primaryColor !== primaryColor ||
+          siteBlueprint.design.accentColor !== accentColor)
+      ) {
+        errors.push(
+          "siteBlueprint colors must match the selected brand colors.",
+        );
+      }
+    }
+  }
+
   let domainChoice: DomainMode | undefined;
   if (
     domain &&
@@ -643,6 +670,7 @@ export function parseOnboardingRequest(input: unknown): OnboardingParseResult {
       termsVersion,
       privacyVersion,
       consentAcceptedAt,
+      ...(siteBlueprint ? { siteBlueprint } : {}),
     },
   };
 }

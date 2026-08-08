@@ -303,6 +303,9 @@ export async function POST(request: Request) {
       accepted: value.termsAccepted,
       acceptedAt: value.consentAcceptedAt,
     },
+    ...(value.siteBlueprint
+      ? { siteBlueprint: value.siteBlueprint }
+      : {}),
     companyWebsite: "",
   };
   const rawBody = JSON.stringify(signedBody);

@@ -58,6 +58,72 @@ const validRequest = () => ({
   companyWebsite: "",
 });
 
+const validSiteBlueprint = () => ({
+  blueprintVersion: 1,
+  fieldIntegrationVersion: 1,
+  design: {
+    composition: "precision-grid",
+    tone: "modern",
+    density: "balanced",
+    headingStyle: "geometric",
+    cornerStyle: "soft",
+    primaryColor: "#0A2B4C",
+    accentColor: "#F5A623",
+    surfaceColor: "#F7F4ED",
+  },
+  content: {
+    eyebrow: "Electrical service, thoughtfully presented",
+    headline: "Clear electrical help for San Diego County",
+    subheadline:
+      "Tell Northline Electric what you need and the office can follow up with the right next step.",
+    servicesTitle: "Services built around your property",
+    servicesLead:
+      "Explore the electrical work Northline Electric is prepared to discuss.",
+    aboutTitle: "A straightforward way to start",
+    aboutBody:
+      "Share the property, the electrical concern, and the timing that matters to you.",
+    processTitle: "What happens next",
+    processSteps: [
+      {
+        title: "Describe the work",
+        body: "Use the guided request to share the important details.",
+      },
+      {
+        title: "Add private photos",
+        body: "Upload useful photos through the protected request flow.",
+      },
+      {
+        title: "Hear from the office",
+        body: "The contractor reviews the request and follows up directly.",
+      },
+    ],
+    serviceAreaTitle: "Serving San Diego County",
+    serviceAreaLead:
+      "Start with your location so the team can confirm service-area fit.",
+    requestTitle: "Start your electrical request",
+    requestLead:
+      "The safety-first form keeps urgent conditions separate from routine scheduling.",
+  },
+  conversionGoal: "balanced",
+  integration: {
+    requiredBindings: [
+      "organization-configuration",
+      "deterministic-safety-triage",
+      "service-request-v1",
+      "private-photo-uploads",
+      "customer-document-links",
+      "staff-workspace",
+    ],
+  },
+  provenance: {
+    generator: "guided-fallback",
+    modelId: null,
+    promptVersion: "contractor-site-blueprint-v1",
+    generatedAt: "2026-07-30T19:30:00.000Z",
+    briefHash: "d".repeat(64),
+  },
+});
+
 test("locks the v1 onboarding catalog and request size", () => {
   assert.equal(ONBOARDING_CONTRACT_VERSION, 1);
   assert.equal(TEMPLATE_CATALOG_VERSION, 1);
@@ -129,6 +195,47 @@ test("silently traps a populated honeypot before validating personal data", () =
       companyWebsite: "https://spam.example",
     }),
     { ok: true, trapped: true },
+  );
+});
+
+test("accepts a validated custom-site blueprint without changing the v1 template fallback", () => {
+  const body = {
+    ...validRequest(),
+    siteBlueprint: validSiteBlueprint(),
+  };
+  const result = parseOnboardingRequest(body);
+  assert.equal(result.ok, true);
+  assert.equal(result.trapped, false);
+  if (!result.ok || result.trapped) return;
+
+  assert.equal(result.value.templateId, "modern-grid");
+  assert.equal(result.value.siteBlueprint?.blueprintVersion, 1);
+  assert.deepEqual(
+    result.value.siteBlueprint?.integration.requiredBindings,
+    [
+      "organization-configuration",
+      "deterministic-safety-triage",
+      "service-request-v1",
+      "private-photo-uploads",
+      "customer-document-links",
+      "staff-workspace",
+    ],
+  );
+});
+
+test("rejects a custom-site blueprint that diverges from selected brand colors", () => {
+  const blueprint = validSiteBlueprint();
+  blueprint.design.primaryColor = "#FFFFFF";
+  const result = parseOnboardingRequest({
+    ...validRequest(),
+    siteBlueprint: blueprint,
+  });
+  assert.equal(result.ok, false);
+  if (result.ok) return;
+  assert.ok(
+    result.errors.includes(
+      "siteBlueprint colors must match the selected brand colors.",
+    ),
   );
 });
 

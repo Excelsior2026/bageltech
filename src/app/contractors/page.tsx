@@ -2,20 +2,21 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import MarketingLayout from "@/components/MarketingLayout";
+import CustomerPaths from "@/components/onboarding/CustomerPaths";
 import TemplateGallery from "@/components/onboarding/TemplateGallery";
 import styles from "@/components/onboarding/Onboarding.module.css";
 
 export const metadata: Metadata = {
   title: "Electrical Contractor Platform | BagelTech",
   description:
-    "Choose a public-site template and request a managed BagelTech setup for electrical service intake, customers, estimates, jobs, invoices, and receipts.",
+    "Choose a proven template or use an AI-assisted studio to shape a custom, field-ready website direction for BagelTech's managed electrical-contractor platform.",
   alternates: {
     canonical: "https://www.bageltech.net/contractors",
   },
   openGraph: {
     title: "A managed operating platform for electrical contractors",
     description:
-      "Six customer-facing templates, one safety-first intake and office workflow, and a guided path to managed setup.",
+      "Six customer-facing templates or a structured custom-site studio, one safety-first intake and office workflow, and a guided path to managed setup.",
     url: "https://www.bageltech.net/contractors",
     type: "website",
   },
@@ -23,8 +24,8 @@ export const metadata: Metadata = {
 
 const workflow = [
   {
-    title: "Choose a direction",
-    body: "Compare six distinct public-site compositions. Your selection changes presentation, not the underlying service and safety controls.",
+    title: "Choose a starting path",
+    body: "Pick a proven template for speed or create a custom structured blueprint with the AI-assisted studio.",
   },
   {
     title: "Describe the business",
@@ -75,11 +76,11 @@ export default function ContractorsPage() {
               invoices, and manually recorded receipts.
             </p>
             <div className={styles.launchActions}>
-              <Link className={styles.launchPrimary} href="#templates">
-                Compare six templates <span aria-hidden="true">↓</span>
+              <Link className={styles.launchPrimary} href="#choose-a-path">
+                Compare both paths <span aria-hidden="true">↓</span>
               </Link>
-              <Link className={styles.launchSecondary} href="/get-started">
-                Start the setup request <span aria-hidden="true">→</span>
+              <Link className={styles.launchSecondary} href="/get-started?path=custom">
+                Open Custom Studio <span aria-hidden="true">→</span>
               </Link>
             </div>
           </div>
@@ -92,16 +93,18 @@ export default function ContractorsPage() {
           </div>
         </section>
 
+        <CustomerPaths />
+
         <section className={styles.platformSection} id="templates">
           <header className={styles.sectionHeader}>
             <div>
-              <p className={styles.sectionEyebrow}>Six public-site directions</p>
-              <h2>A real choice of character, without six different products.</h2>
+              <p className={styles.sectionEyebrow}>Fast Start · Six public-site directions</p>
+              <h2>Start from a proven composition.</h2>
             </div>
             <p>
               Each direction uses the same structured company information and the same
-              deterministic safety and intake workflow. Switch the presentation without
-              forking the operating system behind it.
+              deterministic safety and intake workflow. Choose this path when speed
+              matters more than creating a new composition.
             </p>
           </header>
           <TemplateGallery />
@@ -115,9 +118,9 @@ export default function ContractorsPage() {
                 <h2>A guided request, followed by a managed handoff.</h2>
               </div>
               <p>
-                The wizard captures what BagelTech needs to begin. Submission records a
-                request; it does not create accounts, reserve a domain, or declare the
-                business live.
+                Either wizard captures what BagelTech needs to begin. A custom blueprint
+                is a review-ready draft, and submission records a request; neither path
+                creates accounts, reserves a domain, or declares the business live.
               </p>
             </header>
             <div className={styles.workflow}>
@@ -156,14 +159,19 @@ export default function ContractorsPage() {
 
         <section className={styles.finalCta}>
           <p className={styles.sectionEyebrow}>Setup requests are open</p>
-          <h2>Pick a direction. Give us the operating context.</h2>
+          <h2>Choose a starting path. Keep the operating system underneath.</h2>
           <p>
             The guided request takes a few minutes. BagelTech will review it before any
             infrastructure or commercial commitment is created.
           </p>
-          <Link className={styles.finalAction} href="/get-started">
-            Start the guided request <span aria-hidden="true">→</span>
-          </Link>
+          <div className={styles.launchActions} style={{ justifyContent: "center" }}>
+            <Link className={styles.finalAction} href="/get-started">
+              Start with a template <span aria-hidden="true">→</span>
+            </Link>
+            <Link className={styles.launchSecondary} href="/get-started?path=custom">
+              Open Custom Studio <span aria-hidden="true">→</span>
+            </Link>
+          </div>
         </section>
       </main>
     </MarketingLayout>
