@@ -143,7 +143,13 @@ export default function ContractorsPage() {
               Managed setup includes human review and explicit verification. Domain,
               sender, identity, backup, and launch checks cannot be skipped by the public
               form. Paris Electric is the current dedicated canary and can be viewed at{" "}
-              <a href="https://pariselectric.bageltech.net">pariselectric.bageltech.net</a>.
+              <a
+                href="https://pariselectric.bageltech.net"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                pariselectric.bageltech.net
+              </a>.
             </p>
           </div>
           <div className={styles.gateList}>

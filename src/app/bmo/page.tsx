@@ -124,7 +124,7 @@ export default function BmoPage() {
         <section className={styles.section}>
           <div className={styles.inner}>
             <p className={styles.kicker}>Mischief dashboard</p>
-            <h2 className={styles.sectionTitle}>Operational status, Q2</h2>
+            <h2 className={styles.sectionTitle}>Operational status, Q3</h2>
             <p className={styles.sectionLead}>
               Live readings from the Office of Bagel Affairs. Findings are nonbinding
               unless cheese is present.

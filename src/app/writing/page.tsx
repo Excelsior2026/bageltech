@@ -158,45 +158,49 @@ export default function WritingPage() {
           </div>
         </section>
 
-        <section id="case-studies" className={styles.section}>
-          <div className={styles.inner}>
-            <ScrollReveal className={styles.sectionHeader}>
-              <div>
-                <p className={styles.kicker}>Case Studies</p>
-                <h2 className={styles.sectionTitle}>Representative use cases and patterns.</h2>
+        {caseStudies.length > 0 && (
+          <section id="case-studies" className={styles.section}>
+            <div className={styles.inner}>
+              <ScrollReveal className={styles.sectionHeader}>
+                <div>
+                  <p className={styles.kicker}>Case Studies</p>
+                  <h2 className={styles.sectionTitle}>Representative use cases and patterns.</h2>
+                </div>
+                <p className={styles.sectionLead}>
+                  Where governed decision systems matter most in practice.
+                </p>
+              </ScrollReveal>
+
+              <div className={styles.archiveList}>
+                {caseStudies.map((item) => (
+                  <WritingCard key={item.slug} item={item} />
+                ))}
               </div>
-              <p className={styles.sectionLead}>
-                Where governed decision systems matter most in practice.
-              </p>
-            </ScrollReveal>
-
-            <div className={styles.archiveList}>
-              {caseStudies.map((item) => (
-                <WritingCard key={item.slug} item={item} />
-              ))}
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
-        <section id="publications" className={`${styles.section} ${styles.sectionAlt}`}>
-          <div className={styles.inner}>
-            <ScrollReveal className={styles.sectionHeader}>
-              <div>
-                <p className={styles.kicker}>Publications</p>
-                <h2 className={styles.sectionTitle}>Essays and writing on governance.</h2>
+        {publications.length > 0 && (
+          <section id="publications" className={`${styles.section} ${styles.sectionAlt}`}>
+            <div className={styles.inner}>
+              <ScrollReveal className={styles.sectionHeader}>
+                <div>
+                  <p className={styles.kicker}>Publications</p>
+                  <h2 className={styles.sectionTitle}>Essays and writing on governance.</h2>
+                </div>
+                <p className={styles.sectionLead}>
+                  Select publications from BagelTech and BDB Labs are available on the research page.
+                </p>
+              </ScrollReveal>
+
+              <div className={styles.archiveList}>
+                {publications.map((item) => (
+                  <WritingCard key={item.slug} item={item} />
+                ))}
               </div>
-              <p className={styles.sectionLead}>
-                Select publications from BagelTech and BDB Labs are available on the research page.
-              </p>
-            </ScrollReveal>
-
-            <div className={styles.archiveList}>
-              {publications.map((item) => (
-                <WritingCard key={item.slug} item={item} />
-              ))}
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         <section className={styles.section}>
           <div className={styles.inner}>

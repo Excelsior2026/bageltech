@@ -7,7 +7,9 @@ import SmartLink from "@/components/SmartLink";
 import styles from "@/components/Marketing.module.css";
 import { ADVISORY_OFFERS, EXTERNAL_LINKS, PROOF_POINTS, WORKSTREAMS } from "@/content/site";
 
-const advisoryStream = WORKSTREAMS.find((stream) => stream.slug === "bagelle-parris-vargas") ?? WORKSTREAMS[2];
+const advisoryStream =
+  WORKSTREAMS.find((stream) => stream.slug === "bagelle-parris-vargas") ??
+  (() => { throw new Error("bagelle-parris-vargas workstream not found in WORKSTREAMS"); })();
 
 export const metadata: Metadata = {
   title: "Advisory | Bagelle Parris Vargas",
