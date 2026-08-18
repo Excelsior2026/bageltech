@@ -1,9 +1,29 @@
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import MarketingLayout from "@/components/MarketingLayout";
 import { getAllArticles, getArticleBySlug } from "@/lib/articles";
 
 export function generateStaticParams() {
   return getAllArticles().map((article) => ({ slug: article.slug }));
+}
+
+export async function generateMetadata(
+  { params }: { params: Promise<{ slug: string }> }
+): Promise<Metadata> {
+  const { slug } = await params;
+  const article = getArticleBySlug(slug);
+  if (!article) return {};
+  return {
+    title: article.title,
+    description: article.summary,
+    openGraph: {
+      title: article.title,
+      description: article.summary,
+      type: "article",
+      publishedTime: article.date,
+      authors: [article.author],
+    },
+  };
 }
 
 function renderMarkdown(content: string) {

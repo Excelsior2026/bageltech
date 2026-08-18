@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import MarketingLayout from "@/components/MarketingLayout";
@@ -5,6 +6,23 @@ import { getAllBagelNotes, getBagelNoteBySlug } from "@/lib/bagelNotes";
 
 export function generateStaticParams() {
   return getAllBagelNotes().map((note) => ({ slug: note.slug }));
+}
+
+export async function generateMetadata(
+  { params }: { params: Promise<{ slug: string }> }
+): Promise<Metadata> {
+  const { slug } = await params;
+  const note = getBagelNoteBySlug(slug);
+  if (!note) return {};
+  return {
+    title: note.title,
+    description: note.summary,
+    openGraph: {
+      title: note.title,
+      description: note.summary,
+      type: "article",
+    },
+  };
 }
 
 function renderMarkdown(content: string) {

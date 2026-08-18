@@ -21,8 +21,22 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "BagelTech",
-  description: "Governance systems, ensemble decision frameworks, and domain-specific AI products.",
+  title: {
+    default: "BagelTech | Governance for Consequential Systems",
+    template: "%s | BagelTech",
+  },
+  description:
+    "BagelTech is an independent research, systems, and advisory practice for consequential systems. Founded and led by Bill Parris.",
+  authors: [{ name: "William Parris" }],
+  robots: { index: true, follow: true },
+  openGraph: {
+    siteName: "BagelTech",
+    type: "website",
+    locale: "en_US",
+  },
+  twitter: {
+    card: "summary_large_image",
+  },
 };
 
 export default function RootLayout({

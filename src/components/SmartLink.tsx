@@ -14,7 +14,7 @@ export default function SmartLink({ href, children, target, rel, ...props }: Sma
       <a
         href={href}
         target={target ?? (isExternal ? "_blank" : undefined)}
-        rel={rel ?? (isExternal ? "noreferrer" : undefined)}
+        rel={rel ?? (isExternal ? "noopener noreferrer" : undefined)}
         {...props}
       >
         {children}

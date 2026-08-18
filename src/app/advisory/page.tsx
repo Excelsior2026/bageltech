@@ -10,9 +10,15 @@ import { ADVISORY_OFFERS, EXTERNAL_LINKS, PROOF_POINTS, WORKSTREAMS } from "@/co
 const advisoryStream = WORKSTREAMS.find((stream) => stream.slug === "bagelle-parris-vargas") ?? WORKSTREAMS[2];
 
 export const metadata: Metadata = {
-  title: "Advisory | Executive Leadership",
+  title: "Advisory | Bagelle Parris Vargas",
   description:
     "Executive advisory for enterprise modernization, ERP and PMO oversight, delivery leadership, AI governance, speaking, and workshops.",
+  openGraph: {
+    title: "Advisory | Bagelle Parris Vargas — BagelTech",
+    description:
+      "Executive advisory for enterprise modernization, ERP and PMO oversight, delivery leadership, AI governance, speaking, and workshops.",
+    type: "website",
+  },
 };
 
 const leadershipContext = [

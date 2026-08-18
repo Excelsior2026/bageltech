@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import MarketingLayout from "@/components/MarketingLayout";
 import { getAllBagelNotes } from "@/lib/bagelNotes";
@@ -6,21 +7,21 @@ const projects = [
   {
     title: "ZoomReset.app",
     description: "The app that refuses to let Zoom Error 1132 win.",
-    cta: "Read more",
+    cta: "Coming soon",
   },
   {
     title: "Protect, My Crown Kit",
     description: "Legal armor for the die-hard developer with style.",
-    cta: "Download",
+    cta: "Coming soon",
   },
   {
     title: "Constitutional AI Field Guide",
     description: "Because AI needs a bill of rights, too.",
-    cta: "Download",
+    cta: "Coming soon",
   },
 ];
 
-export const metadata = {
+export const metadata: Metadata = {
   title: "Bagel's Corner | BagelTech",
   description:
     "The playful side of BagelTech: stories, experiments, and Bagel Paris Vargas-approved mischief.",
@@ -28,6 +29,7 @@ export const metadata = {
 
 export default function BagelsCornerPage() {
   const notes = getAllBagelNotes();
+  const firstNote = notes[0];
 
   return (
     <MarketingLayout>
@@ -42,9 +44,13 @@ export default function BagelsCornerPage() {
               resilience, and the world&apos;s most determined dog.
             </p>
             <div className="ctaRow">
-              <Link href="/bagels-corner/notes/ai-moral-blind-spot" className="btn btnPrimary">
-                Read lab notes
-              </Link>
+              {firstNote ? (
+                <Link href={`/bagels-corner/notes/${firstNote.slug}`} className="btn btnPrimary">
+                  Read lab notes
+                </Link>
+              ) : (
+                <span className="btn btnPrimary" aria-disabled="true">Read lab notes</span>
+              )}
               <Link href="/" className="btn btnGhost">
                 Back to serious mode
               </Link>
@@ -65,9 +71,7 @@ export default function BagelsCornerPage() {
               <article className="card" key={project.title}>
                 <h3>{project.title}</h3>
                 <p>{project.description}</p>
-                <button className="btn btnGhost" type="button">
-                  {project.cta}
-                </button>
+                <p className="cardMeta">{project.cta}</p>
               </article>
             ))}
           </div>
