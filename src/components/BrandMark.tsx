@@ -1,4 +1,3 @@
-import Image from "next/image";
 import styles from "./BrandMark.module.css";
 import { brandNames, type BrandKey } from "@/content/brand-tokens";
 
@@ -13,35 +12,42 @@ interface BrandMarkProps {
   priority?: boolean;
 }
 
-const dimensions: Record<BrandMarkVariant, { width: number; height: number }> = {
-  light: { width: 360, height: 92 },
-  dark: { width: 360, height: 92 },
-  icon: { width: 92, height: 92 },
+const brandDetails: Record<BrandKey, { descriptor: string; monogram: string }> = {
+  bageltech: {
+    descriptor: "Governance and systems",
+    monogram: "BT",
+  },
+  "bdb-labs": {
+    descriptor: "Research",
+    monogram: "BDB",
+  },
+  bpv: {
+    descriptor: "Executive advisory",
+    monogram: "BPV",
+  },
 };
-
-function fileForVariant(variant: BrandMarkVariant) {
-  if (variant === "icon") return "icon.svg";
-  return `lockup-${variant}.svg`;
-}
 
 export default function BrandMark({
   brand,
   variant = "light",
   size = "compact",
   className = "",
-  priority = false,
 }: BrandMarkProps) {
-  const { width, height } = dimensions[variant];
+  const details = brandDetails[brand];
+  const classes = [styles.mark, styles[size], styles[variant], className].filter(Boolean).join(" ");
 
   return (
-    <span className={`${styles.mark} ${styles[size]} ${className}`} data-brand={brand} data-variant={variant}>
-      <Image
-        src={`/brand/${brand}/${fileForVariant(variant)}`}
-        alt={`${brandNames[brand]} logo`}
-        width={width}
-        height={height}
-        priority={priority}
-      />
+    <span className={classes} data-brand={brand} data-variant={variant}>
+      {variant === "icon" ? (
+        <span className={styles.monogram} aria-hidden="true">
+          {details.monogram}
+        </span>
+      ) : (
+        <>
+          <span className={styles.name}>{brandNames[brand]}</span>
+          <span className={styles.descriptor}>{details.descriptor}</span>
+        </>
+      )}
     </span>
   );
 }

@@ -8,11 +8,11 @@ import styles from "./home.module.css";
 export const metadata: Metadata = {
   title: "BagelTech | Governance for Consequential Systems",
   description:
-    "BagelTech is an independent research and engineering practice for the governance of consequential systems — AI that escalates instead of guessing, and public institutions that modernize without losing their memory. Founded and led by Bill Parris.",
+    "BagelTech is an independent research, systems, and advisory practice for consequential systems. Founded and led by Bill Parris.",
   openGraph: {
     title: "BagelTech | Governance for Consequential Systems",
     description:
-      "Independent research and engineering on the governance of consequential systems — AI and public-sector modernization. Founded and led by Bill Parris.",
+      "Independent research, systems, and advisory for institutions working through consequential change.",
     type: "website",
     url: "https://www.bageltech.net",
   },
@@ -20,146 +20,134 @@ export const metadata: Metadata = {
 
 const ORCID_URL = "https://orcid.org/0009-0001-6994-6828";
 
+const practices = [
+  {
+    name: "BDB Labs",
+    label: "Research",
+    description:
+      "Research and working frameworks for governable intelligence, institutional memory, and reviewable decision systems.",
+    detail: "Publications, frameworks, and prototypes",
+    href: "/research",
+  },
+  {
+    name: "BagelTech",
+    label: "Systems",
+    description:
+      "Products and operating patterns that give consequential workflows clear evidence, boundaries, and escalation paths.",
+    detail: "Products, pilots, and implementation",
+    href: "/products",
+  },
+  {
+    name: "Bagelle Parris Vargas",
+    label: "Advisory",
+    description:
+      "Executive support for modernization, delivery governance, and institutions that need change to land responsibly.",
+    detail: "Modernization, ERP/PMO, and workshops",
+    href: "/advisory",
+  },
+];
+
+const selectedWork = PUBLICATIONS.filter((publication) => publication.featured).slice(0, 3);
+
 function formatDate(value: string) {
   return new Intl.DateTimeFormat("en", { month: "short", year: "numeric", timeZone: "UTC" }).format(
     new Date(value),
   );
 }
 
-const selectedWork = PUBLICATIONS.filter((p) => p.featured).slice(0, 5);
-
 export default function HomePage() {
   return (
     <MarketingLayout>
       <main className={styles.home}>
-        {/* HERO */}
         <section className={styles.hero}>
           <div className={styles.wrap}>
-            <BrandMark brand="bageltech" variant="light" size="hero" className={styles.heroMark} priority />
-            <span className={styles.eyebrow}>Governance for consequential systems</span>
-            <h1>
-              Consequential systems should be able to <em>show their work.</em>
-            </h1>
-            <p className={styles.lede}>
-              BagelTech is an independent research and engineering practice working on the governance of
-              consequential systems — <b>AI that escalates instead of guessing, and public institutions that
-              modernize without losing their memory.</b> Founded and led by Bill Parris.
-            </p>
-            <div className={styles.heroActions}>
-              <SmartLink className={`${styles.btn} ${styles.btnPrimary}`} href="/research">
-                Explore the research <span className={styles.arrow}>&#8599;</span>
-              </SmartLink>
-              <a className={`${styles.btn} ${styles.btnGhost}`} href="#modes">
-                How the work moves
-              </a>
+            <div className={styles.heroCopy}>
+              <BrandMark brand="bageltech" variant="light" size="hero" className={styles.heroMark} priority />
+              <span className={styles.eyebrow}>Independent practice</span>
+              <h1>
+                Make consequential systems <em>answerable.</em>
+              </h1>
+              <p className={styles.lede}>
+                BagelTech helps institutions put evidence, authority, and escalation into the systems they depend on.
+              </p>
+              <div className={styles.heroActions}>
+                <SmartLink className={styles.btnPrimary} href="/research">
+                  Explore the research <span className={styles.arrow}>&#8599;</span>
+                </SmartLink>
+                <SmartLink className={styles.btnSecondary} href="/contact">
+                  Start a conversation <span className={styles.arrow}>&#8599;</span>
+                </SmartLink>
+              </div>
             </div>
-            <p className={styles.proofline}>
-              Peer-reviewed and preprinted on <b>arXiv &middot; Zenodo &middot; ORCID</b> — every reference
-              resolves to a permanent source.
-            </p>
+
+            <aside className={styles.heroStatement}>
+              <span className={styles.statementLabel}>A practical standard</span>
+              <p>
+                Important decisions should make clear what is known, what remains uncertain, and who is responsible
+                for the next step.
+              </p>
+            </aside>
           </div>
         </section>
 
-        {/* THESIS */}
         <section className={styles.thesis}>
           <div className={styles.wrap}>
-            <span className={styles.eyebrow}>The through-line</span>
+            <span className={styles.eyebrow}>The work</span>
             <p>
-              Across AI and public institutions, the same failure repeats: consequential decisions made by
-              systems no one can fully review. The answer isn&apos;t more trust — it&apos;s <b>structure</b>.
-              Visible authority, durable evidence, and uncertainty that escalates instead of hiding.
+              AI and modernization fail in a familiar way: the decision path becomes opaque just when its
+              consequences become real. The work here makes that path visible—through durable evidence, explicit
+              authority, and uncertainty that escalates rather than disappears.
             </p>
           </div>
         </section>
 
-        <section className={styles.contractorCallout}>
+        <section className={styles.practices} id="practice">
           <div className={styles.wrap}>
-            <div className={styles.contractorCalloutLabel}>
-              <span className={styles.eyebrow}>Managed setup requests open</span>
-              <span>Contractor operations</span>
+            <div className={styles.sectionHead}>
+              <span className={styles.eyebrow}>One practice, three applications</span>
+              <h2>A single standard, applied through research, systems, and advisory.</h2>
             </div>
-            <div className={styles.contractorCalloutCopy}>
-              <h2>A working platform for electrical contractors—not another disconnected brochure site.</h2>
-              <p>
-                Compare six customer-facing templates, then build a reviewable setup brief for service intake,
-                customers, estimates, jobs, invoices, and manual receipt records.
-              </p>
-            </div>
-            <SmartLink className={styles.contractorCalloutLink} href="/contractors">
-              Explore the contractor platform <span className={styles.arrow}>&#8594;</span>
-            </SmartLink>
-          </div>
-        </section>
-
-        {/* THREE MODES */}
-        <section className={styles.modes} id="modes">
-          <div className={styles.wrap}>
-            <div className={styles.modesHead}>
-              <span className={styles.eyebrow}>One practice, three modes</span>
-              <h2>
-                Three names, one body of work. Research develops the frameworks; engineering turns them into
-                systems institutions can run; advisory carries both into modernization work where the stakes are
-                real.
-              </h2>
-            </div>
-            <div className={styles.modesGrid}>
-              <div className={styles.mode}>
-                <span className={styles.tag}>BDB Labs</span>
-                <h3>Research &amp; frameworks</h3>
-                <p>
-                  Constitutional and jurisprudential approaches to governing AI — the ELEANOR engine, the AIRA
-                  inspection method, and the doctrine of intelligence pluralism.
-                </p>
-                <span className={styles.metaLine}>arXiv &middot; Zenodo &middot; peer review</span>
-              </div>
-              <div className={styles.mode}>
-                <span className={styles.tag}>BagelTech Systems</span>
-                <h3>Products &amp; platforms</h3>
-                <p>
-                  The frameworks turned into tools institutions can run — including the AIRA code-risk scanner and
-                  constitutional runtime tooling for governable AI.
-                </p>
-                <span className={styles.metaLine}>aira.bageltech.net</span>
-              </div>
-              <div className={styles.mode}>
-                <span className={styles.tag}>Bagelle Parris Vargas</span>
-                <h3>Advisory &amp; modernization</h3>
-                <p>
-                  Continuity-centered modernization, ERP and PMO oversight, and transformation work for
-                  public-sector institutions — with 25 years of delivery behind it.
-                </p>
-                <span className={styles.metaLine}>public sector &middot; governance &middot; PMO</span>
-              </div>
+            <div className={styles.practiceGrid}>
+              {practices.map((practice, index) => (
+                <SmartLink key={practice.name} href={practice.href} className={styles.practice}>
+                  <span className={styles.practiceNumber}>0{index + 1}</span>
+                  <span className={styles.practiceLabel}>{practice.label}</span>
+                  <h3>{practice.name}</h3>
+                  <p>{practice.description}</p>
+                  <span className={styles.practiceDetail}>
+                    {practice.detail} <span className={styles.arrow}>&#8594;</span>
+                  </span>
+                </SmartLink>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* SELECTED WORK */}
-        <section className={styles.work} id="work">
+        <section className={styles.work}>
           <div className={styles.wrap}>
             <div className={styles.workHead}>
-              <div className={styles.htext}>
-                <span className={styles.eyebrow}>Selected work</span>
-                <h2>A public record, not a pitch.</h2>
-                <p>A sample of the research behind the practice. The full record lives on the research page.</p>
+              <div>
+                <span className={styles.eyebrow}>Selected research</span>
+                <h2>A public record, not a sales deck.</h2>
               </div>
-              <SmartLink className={styles.seeall} href="/research">
-                All research &amp; publications <span className={styles.arrow}>&#8594;</span>
+              <SmartLink className={styles.textLink} href="/research">
+                View all research <span className={styles.arrow}>&#8594;</span>
               </SmartLink>
             </div>
-            <div>
-              {selectedWork.map((p) => (
-                <SmartLink className={styles.pub} href={p.sourceUrl} key={p.slug}>
-                  <div className={styles.pubMeta}>
-                    {formatDate(p.publishedAt)}
+
+            <div className={styles.publications}>
+              {selectedWork.map((publication) => (
+                <SmartLink className={styles.publication} href={publication.sourceUrl} key={publication.slug}>
+                  <span className={styles.publicationMeta}>
+                    {formatDate(publication.publishedAt)}
                     <br />
-                    <span className={styles.venue}>{p.source}</span>
+                    {publication.source}
+                  </span>
+                  <div>
+                    <h3>{publication.title}</h3>
+                    <p>{publication.summary}</p>
                   </div>
-                  <div className={styles.pubBody}>
-                    <h3>{p.title}</h3>
-                    <p>{p.summary}</p>
-                  </div>
-                  <span className={styles.pubLink}>
+                  <span className={styles.publicationAction}>
                     Read <span className={styles.arrow}>&#8599;</span>
                   </span>
                 </SmartLink>
@@ -168,79 +156,43 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* RECORD STRIP */}
         <section className={styles.record}>
           <div className={styles.wrap}>
+            <div className={styles.recordHead}>
+              <span className={styles.eyebrow}>The record</span>
+              <h2>Rigorous enough to review. Practical enough to run.</h2>
+            </div>
             <div className={styles.recordGrid}>
               <div>
-                <span className={styles.recN}>25+ yrs</span>
-                <span className={styles.recL}>public-sector technology &amp; operational leadership</span>
+                <span className={styles.recordValue}>25+ years</span>
+                <span className={styles.recordLabel}>public-sector technology and operational leadership</span>
               </div>
               <div>
-                <span className={styles.recN}>$15M+</span>
-                <span className={styles.recL}>enterprise ERP programs directed</span>
+                <span className={styles.recordValue}>$15M+</span>
+                <span className={styles.recordLabel}>enterprise ERP programs directed</span>
               </div>
               <div>
-                <span className={styles.recN}>PMP &middot; CSM &middot; DASSM</span>
-                <span className={styles.recL}>delivery &amp; agile leadership credentials</span>
+                <span className={styles.recordValue}>PMP · CSM · DASSM</span>
+                <span className={styles.recordLabel}>delivery and agile leadership credentials</span>
               </div>
               <div>
-                <span className={styles.recN}>12 works</span>
-                <span className={styles.recL}>
-                  on the public{" "}
-                  <a href={ORCID_URL} target="_blank" rel="noopener noreferrer">
-                    ORCID record
-                  </a>
-                </span>
+                <span className={styles.recordValue}>ORCID</span>
+                <a className={styles.recordLink} href={ORCID_URL} target="_blank" rel="noopener noreferrer">
+                  Review the public research record <span className={styles.arrow}>&#8599;</span>
+                </a>
               </div>
             </div>
           </div>
         </section>
 
-        {/* LEADERSHIP TEASER */}
-        <section className={styles.lead} id="leadership">
+        <section className={styles.cta}>
           <div className={styles.wrap}>
-            <div>
-              <span className={styles.eyebrow}>Leadership</span>
-              <h2>The work is led by a practitioner who turned the operating problem into a research program.</h2>
-            </div>
-            <div className={styles.leadBody}>
-              <p>
-                Bill Parris spent more than two decades leading technology in government — most recently as
-                Director of Business Information &amp; Technology Services at SANDAG, and before that in senior
-                roles at Riverside University Health System.
-              </p>
-              <p>
-                The same problem kept recurring: consequential decisions made by systems no one could fully
-                review. BagelTech is the research and practice built around solving it — bringing the discipline
-                of governance, evidence, and accountability to both AI and the institutions modernizing around
-                it.
-              </p>
-              <SmartLink className={styles.seeall} href="/about">
-                More on the leadership &amp; the record <span className={styles.arrow}>&#8594;</span>
-              </SmartLink>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA */}
-        <section className={styles.cta} id="contact">
-          <div className={styles.wrap}>
-            <span className={`${styles.eyebrow} ${styles.eyebrowCenter}`}>Start a conversation</span>
-            <h2>Modernization, governance, and AI work begins with the right context.</h2>
-            <div className={styles.heroActions}>
-              <SmartLink className={`${styles.btn} ${styles.btnPrimary}`} href="/contact">
-                Get in touch <span className={styles.arrow}>&#8599;</span>
-              </SmartLink>
-              <a
-                className={`${styles.btn} ${styles.btnGhost}`}
-                href={ORCID_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                View the ORCID record
-              </a>
-            </div>
+            <span className={styles.eyebrow}>Start with context</span>
+            <h2>Bring the system, program, or decision that needs a clearer path.</h2>
+            <p>We can begin with the evidence, authority, and operating conditions already on the table.</p>
+            <SmartLink className={styles.btnPrimary} href="/contact">
+              Contact BagelTech <span className={styles.arrow}>&#8599;</span>
+            </SmartLink>
           </div>
         </section>
       </main>
