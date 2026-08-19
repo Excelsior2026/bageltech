@@ -20,7 +20,7 @@
   --color-bpv-navy: #0c1930;
   --color-bpv-charcoal: #213047;
 
-  /* Unified "record" palette — garnet on warm paper, warm ink */
+  /* Unified "record" palette */
   --color-garnet: #7e2d2d;
   --color-garnet-deep: #5a1f1f;
   --color-garnet-2: #9a3838;
@@ -47,6 +47,16 @@
   --accent-soft: var(--color-garnet-soft);
   --signal: var(--color-garnet-deep);
   --shadow: 0 24px 60px rgba(24, 27, 34, 0.08);
+  --shadow-md: 0 8px 32px rgba(24, 27, 34, 0.10);
+  --shadow-lg: 0 24px 80px rgba(24, 27, 34, 0.14);
+
+  /* Visual depth tokens */
+  --glow-teal: 0 0 60px rgba(37, 214, 200, 0.18);
+  --glow-gold: 0 0 60px rgba(212, 169, 77, 0.15);
+  --gradient-hero: linear-gradient(135deg, var(--color-ink-950) 0%, var(--color-bagel-navy) 60%, #0d2d4a 100%);
+  --gradient-teal-wash: linear-gradient(180deg, rgba(37, 214, 200, 0.06) 0%, transparent 100%);
+  --gradient-gold-wash: linear-gradient(135deg, rgba(212, 169, 77, 0.08) 0%, transparent 100%);
+  --gradient-card: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(247,245,241,0.7));
 }
 
 @theme inline {
@@ -72,6 +82,7 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans), sans-serif;
   text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
 }
 
 a {
@@ -91,7 +102,8 @@ select {
 }
 
 ::selection {
-  background: rgba(126, 45, 45, 0.18);
+  background: rgba(37, 214, 200, 0.2);
+  color: var(--color-ink);
 }
 
 h1,
@@ -104,7 +116,7 @@ blockquote {
   margin-top: 0;
 }
 
-/* Editorial article and Bagel's Corner routes */
+/* ── Layout utilities ── */
 
 .container {
   width: min(1080px, calc(100% - 2.5rem));
@@ -116,8 +128,10 @@ blockquote {
 }
 
 .sectionAlt {
-  background: linear-gradient(180deg, rgba(37, 214, 200, 0.08), transparent);
+  background: var(--gradient-teal-wash);
 }
+
+/* ── Typography ── */
 
 .kicker,
 .articleMeta {
@@ -135,6 +149,8 @@ blockquote {
   font-size: clamp(1rem, 2vw, 1.2rem);
   line-height: 1.7;
 }
+
+/* ── Prose ── */
 
 .prose h1 {
   max-width: 18ch;
@@ -159,6 +175,8 @@ blockquote {
   line-height: 1.7;
 }
 
+/* ── Cards ── */
+
 .cardGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -167,16 +185,24 @@ blockquote {
 }
 
 .card {
-  padding: 1.25rem;
-  background: var(--surface);
+  padding: 1.5rem;
+  background: var(--gradient-card);
   border: 1px solid var(--border);
-  border-radius: 1rem;
-  box-shadow: var(--shadow);
+  border-radius: 1.25rem;
+  box-shadow: var(--shadow-md);
+  transition: transform 180ms ease, box-shadow 180ms ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
 }
 
 .card p {
   margin-bottom: 0;
 }
+
+/* ── Article route ── */
 
 .articleWrap {
   max-width: 760px;
@@ -196,6 +222,8 @@ blockquote {
   margin-top: 1.8rem;
 }
 
+/* ── Buttons ── */
+
 .ctaRow {
   display: flex;
   flex-wrap: wrap;
@@ -206,17 +234,17 @@ blockquote {
 .btn {
   display: inline-flex;
   align-items: center;
-  padding: 0.7rem 1rem;
+  padding: 0.7rem 1.25rem;
   border: 1px solid transparent;
   border-radius: 999px;
   font-weight: 650;
   text-decoration: none;
-  transition: transform 160ms ease, border-color 160ms ease;
+  transition: transform 160ms ease, box-shadow 160ms ease, opacity 160ms ease;
 }
 
 .btnPrimary {
-  background: linear-gradient(135deg, var(--color-bagel-teal), var(--color-bagel-navy));
-  color: white;
+  background: linear-gradient(135deg, var(--color-bagel-teal), #1ab8ac);
+  color: var(--color-ink-950);
 }
 
 .btnGhost {
@@ -226,8 +254,11 @@ blockquote {
 }
 
 .btn:hover {
-  transform: translateY(-1px);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
+
+/* ── Bagel's Corner ── */
 
 .bagelCorner {
   --bagel-surface: #fffdf6;
@@ -293,6 +324,11 @@ blockquote {
   border: 1px solid var(--border);
   border-radius: 0.7rem;
   font-weight: 600;
+  transition: border-color 160ms ease;
+}
+
+.bagelNoteItem:hover {
+  border-color: var(--color-bagel-teal);
 }
 
 .usbScore {
