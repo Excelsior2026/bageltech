@@ -1,18 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="BDB Labs icon">
-  <defs>
-    <linearGradient id="labs-grad" x1="22" y1="18" x2="98" y2="104" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#A06BFF"/>
-      <stop offset=".55" stop-color="#8B4FE0"/>
-      <stop offset="1" stop-color="#4D7CFF"/>
-    </linearGradient>
-  </defs>
-  <circle cx="60" cy="60" r="54" fill="#F7F5F1" stroke="#14254A" stroke-width="4"/>
-  <circle cx="60" cy="60" r="35" fill="url(#labs-grad)" opacity=".96"/>
-  <path d="M43 48l17-11 19 17-9 23-25-2-8-17 6-10Z" fill="none" stroke="#F7F5F1" stroke-width="4" stroke-linejoin="round"/>
-  <circle cx="43" cy="48" r="5" fill="#D8C4FF"/>
-  <circle cx="60" cy="37" r="5" fill="#D8C4FF"/>
-  <circle cx="79" cy="54" r="5" fill="#D8C4FF"/>
-  <circle cx="70" cy="77" r="5" fill="#D8C4FF"/>
-  <circle cx="45" cy="75" r="5" fill="#D8C4FF"/>
-  <circle cx="37" cy="58" r="5" fill="#D8C4FF"/>
+  <!-- Target / crosshair: outer ring split navy / garnet, inner rings -->
+  <circle cx="60" cy="60" r="44" fill="none" stroke="#FFFEF7" stroke-width="2"/>
+  <!-- Outer quadrants -->
+  <path d="M 16 60 A 44 44 0 0 1 60 16 L 60 38 A 22 22 0 0 0 38 60 Z" fill="#0F2F4D"/>
+  <path d="M 60 16 A 44 44 0 0 1 104 60 L 82 60 A 22 22 0 0 0 60 38 Z" fill="#8A1E33"/>
+  <path d="M 104 60 A 44 44 0 0 1 60 104 L 60 82 A 22 22 0 0 0 82 60 Z" fill="#8A1E33"/>
+  <path d="M 60 104 A 44 44 0 0 1 16 60 L 38 60 A 22 22 0 0 0 60 82 Z" fill="#0F2F4D"/>
+  <!-- Middle white ring gap -->
+  <circle cx="60" cy="60" r="28" fill="none" stroke="#FFFEF7" stroke-width="2.5"/>
+  <circle cx="60" cy="60" r="14.5" fill="none" stroke="#FFFEF7" stroke-width="2"/>
+  <!-- Crosshairs -->
+  <path d="M 16 60 H 104 M 60 16 V 104" stroke="#FFFEF7" stroke-width="1.6"/>
+  <path d="M 16 60 H 104 M 60 16 V 104" stroke="#0F2F4D" stroke-width="0.7" opacity="0.9"/>
+  <!-- Center dot split -->
+  <circle cx="60" cy="60" r="9" fill="#FFFEF7"/>
+  <path d="M 60 51 A 9 9 0 0 1 69 60 L 60 60 Z" fill="#8A1E33"/>
+  <path d="M 60 51 A 9 9 0 0 0 51 60 L 60 60 Z" fill="#0F2F4D"/>
+  <circle cx="60" cy="60" r="2.2" fill="#FFFEF7"/>
 </svg>

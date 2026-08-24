@@ -1,24 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 92" role="img" aria-label="BagelTech logo">
-  <rect width="360" height="92" rx="0" fill="none"/>
-  <g transform="translate(8 8) scale(.6333)">
-    <use href="#bt-icon"/>
-  </g>
-  <defs>
-    <linearGradient id="bt-gold-lockup" x1="24" y1="18" x2="96" y2="104" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#D4A94D"/>
-      <stop offset="1" stop-color="#A87B22"/>
-    </linearGradient>
-    <g id="bt-icon">
-      <circle cx="60" cy="60" r="54" fill="#F7F5F1" stroke="#0A2747" stroke-width="4"/>
-      <circle cx="60" cy="60" r="36" fill="none" stroke="url(#bt-gold-lockup)" stroke-width="12"/>
-      <path d="M36 60h17m14 0h17M60 36v17m0 14v17M42 42l12 12m12 12 12 12M78 42 66 54M54 66 42 78" fill="none" stroke="#0A2747" stroke-width="4" stroke-linecap="round"/>
-      <circle cx="60" cy="60" r="8" fill="#25D6C8" stroke="#0A2747" stroke-width="3"/>
-      <circle cx="36" cy="60" r="5" fill="#25D6C8"/>
-      <circle cx="84" cy="60" r="5" fill="#25D6C8"/>
-      <circle cx="60" cy="36" r="5" fill="#25D6C8"/>
-      <circle cx="60" cy="84" r="5" fill="#25D6C8"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 72" role="img" aria-label="BagelTech logo">
+  <!-- Icon -->
+  <g transform="translate(0 6)">
+    <g fill="none" stroke-width="15" stroke-linecap="butt">
+      <path d="M 12.5 36 A 25.5 25.5 0 1 0 62.8 23.2" stroke="#0F2F4D"/>
+      <path d="M 62.8 23.2 A 25.5 25.5 0 0 1 62.8 48.8" stroke="#8A1E33"/>
+      <path d="M 36 10.5 L 40.5 23" stroke="#FFFEF7" stroke-width="2.6"/>
+      <path d="M 12.5 36 L 26 36" stroke="#FFFEF7" stroke-width="2.6"/>
+      <path d="M 61 22 L 51 29" stroke="#FFFEF7" stroke-width="2.4"/>
+      <path d="M 61 50 L 51 43" stroke="#FFFEF7" stroke-width="2.4"/>
     </g>
-  </defs>
-  <text x="98" y="49" fill="#0A2747" font-family="Space Grotesk, Arial, sans-serif" font-size="31" font-weight="700">BagelTech</text>
-  <text x="100" y="68" fill="#0E223D" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1.6">SYSTEMS FOR CONSEQUENCE</text>
+  </g>
+  <text x="78" y="34" fill="#0F2F4D" font-family="Georgia, Times, serif" font-size="30" font-weight="600" letter-spacing="-0.02em">BagelTech</text>
+  <text x="78.5" y="50" fill="#0F2F4D" font-family="IBM Plex Mono, monospace" font-size="7.5" font-weight="600" letter-spacing="0.18em">TECHNOLOGY &amp; INTELLIGENCE</text>
 </svg>

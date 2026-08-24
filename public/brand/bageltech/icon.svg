@@ -1,16 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="BagelTech icon">
-  <defs>
-    <linearGradient id="bt-gold" x1="24" y1="18" x2="96" y2="104" gradientUnits="userSpaceOnUse">
-      <stop offset="0" stop-color="#D4A94D"/>
-      <stop offset="1" stop-color="#A87B22"/>
-    </linearGradient>
-  </defs>
-  <circle cx="60" cy="60" r="54" fill="#F7F5F1" stroke="#0A2747" stroke-width="4"/>
-  <circle cx="60" cy="60" r="36" fill="none" stroke="url(#bt-gold)" stroke-width="12"/>
-  <path d="M36 60h17m14 0h17M60 36v17m0 14v17M42 42l12 12m12 12 12 12M78 42 66 54M54 66 42 78" fill="none" stroke="#0A2747" stroke-width="4" stroke-linecap="round"/>
-  <circle cx="60" cy="60" r="8" fill="#25D6C8" stroke="#0A2747" stroke-width="3"/>
-  <circle cx="36" cy="60" r="5" fill="#25D6C8"/>
-  <circle cx="84" cy="60" r="5" fill="#25D6C8"/>
-  <circle cx="60" cy="36" r="5" fill="#25D6C8"/>
-  <circle cx="60" cy="84" r="5" fill="#25D6C8"/>
+  <!-- Mockup-accurate: split ring navy / garnet with white gutters -->
+  <g fill="none" stroke-width="22" stroke-linecap="butt">
+    <!-- Navy segment: ~240deg from 180deg around through top -->
+    <path d="M 18.5 60 A 41.5 41.5 0 1 0 101.2 38.2" stroke="#0F2F4D" />
+    <!-- Garnet segment: ~115deg on right -->
+    <path d="M 101.2 38.2 A 41.5 41.5 0 0 1 101.2 81.8" stroke="#8A1E33" />
+    <!-- White separators -->
+    <path d="M 60 18.5 L 68 38" stroke="#FFFEF7" stroke-width="4" />
+    <path d="M 18.5 60 L 40 60" stroke="#FFFEF7" stroke-width="4" />
+    <path d="M 98 36 L 82 46" stroke="#FFFEF7" stroke-width="3.5" />
+    <path d="M 98 84 L 82 74" stroke="#FFFEF7" stroke-width="3.5" />
+  </g>
 </svg>

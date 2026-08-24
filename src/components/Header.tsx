@@ -2,49 +2,33 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import BrandMark from "./BrandMark";
 import styles from "./Header.module.css";
 
 const navLinks = [
-  { href: "/bdb-labs", label: "Research" },
-  { href: "/products", label: "Systems" },
-  { href: "/bpv", label: "Services" },
+  { href: "/products", label: "Products" },
+  { href: "/bdb-labs/research", label: "BDB Labs" },
+  { href: "/bpv/advisory", label: "Services" },
   { href: "/insights", label: "Writing" },
   { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
 ];
 
 export default function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 24);
-    };
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
+    return () => { document.body.style.overflow = ""; };
   }, [isMobileMenuOpen]);
 
-  const headerClasses = [styles.header, isScrolled ? styles.scrolled : ""].filter(Boolean).join(" ");
-  const menuButtonClasses = [styles.mobileMenuButton, isMobileMenuOpen ? styles.open : ""]
-    .filter(Boolean)
-    .join(" ");
-  const mobileMenuClasses = [styles.mobileMenu, isMobileMenuOpen ? styles.mobileMenuOpen : ""]
-    .filter(Boolean)
-    .join(" ");
+  const mobileMenuClasses = [styles.mobileMenu, isMobileMenuOpen ? styles.mobileMenuOpen : ""].filter(Boolean).join(" ");
+  const menuBtnClasses = [styles.mobileMenuButton, isMobileMenuOpen ? styles.open : ""].filter(Boolean).join(" ");
 
   return (
-    <header className={headerClasses}>
+    <header className={styles.header}>
       <div className={styles.headerInner}>
         <Link href="/" className={styles.logo} aria-label="BagelTech home">
-          <BrandMark brand="bageltech" variant="light" size="header" priority />
+          <img src="/brand/bageltech/lockup-light.svg" alt="BagelTech" className={styles.logoImg} width={260} height={52} />
         </Link>
 
         <nav className={styles.desktopNav} aria-label="Main navigation">
@@ -55,13 +39,13 @@ export default function Header() {
           ))}
         </nav>
 
-        <Link href="/contact" className={styles.ctaButton}>
-          Start a conversation
-        </Link>
+        <button className={styles.hamburger} aria-label="Open menu" onClick={() => setIsMobileMenuOpen((v)=>!v)}>
+          <span /><span /><span />
+        </button>
 
         <button
-          className={menuButtonClasses}
-          onClick={() => setIsMobileMenuOpen((isOpen) => !isOpen)}
+          className={menuBtnClasses}
+          onClick={() => setIsMobileMenuOpen((v) => !v)}
           aria-expanded={isMobileMenuOpen}
           aria-label="Toggle navigation menu"
         >
@@ -74,18 +58,10 @@ export default function Header() {
       <div className={mobileMenuClasses}>
         <nav className={styles.mobileNav} aria-label="Mobile navigation">
           {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={styles.mobileNavLink}
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
+            <Link key={link.href} href={link.href} className={styles.mobileNavLink} onClick={() => setIsMobileMenuOpen(false)}>
               {link.label}
             </Link>
           ))}
-          <Link href="/contact" className={styles.mobileCta} onClick={() => setIsMobileMenuOpen(false)}>
-            Start a conversation
-          </Link>
         </nav>
       </div>
     </header>
