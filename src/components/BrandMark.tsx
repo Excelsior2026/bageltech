@@ -12,18 +12,21 @@ interface BrandMarkProps {
   priority?: boolean;
 }
 
-const brandDetails: Record<BrandKey, { descriptor: string; monogram: string }> = {
+const brandSrc: Record<BrandKey, Record<BrandMarkVariant, string>> = {
   bageltech: {
-    descriptor: "Governance and systems",
-    monogram: "BT",
+    light: "/brand/bageltech/lockup-light.svg",
+    dark: "/brand/bageltech/lockup-dark.svg",
+    icon: "/brand/bageltech/icon.svg",
   },
   "bdb-labs": {
-    descriptor: "Research",
-    monogram: "BDB",
+    light: "/brand/bdb-labs/lockup-light.svg",
+    dark: "/brand/bdb-labs/lockup-dark.svg",
+    icon: "/brand/bdb-labs/icon.svg",
   },
   bpv: {
-    descriptor: "Executive advisory",
-    monogram: "BPV",
+    light: "/brand/bpv/lockup-light.svg",
+    dark: "/brand/bpv/lockup-dark.svg",
+    icon: "/brand/bpv/icon.svg",
   },
 };
 
@@ -32,22 +35,22 @@ export default function BrandMark({
   variant = "light",
   size = "compact",
   className = "",
+  priority = false,
 }: BrandMarkProps) {
-  const details = brandDetails[brand];
+  const src = brandSrc[brand][variant];
+  const alt = brandNames[brand];
   const classes = [styles.mark, styles[size], styles[variant], className].filter(Boolean).join(" ");
 
   return (
     <span className={classes} data-brand={brand} data-variant={variant}>
-      {variant === "icon" ? (
-        <span className={styles.monogram} aria-hidden="true">
-          {details.monogram}
-        </span>
-      ) : (
-        <>
-          <span className={styles.name}>{brandNames[brand]}</span>
-          <span className={styles.descriptor}>{details.descriptor}</span>
-        </>
-      )}
+      <img
+        src={src}
+        alt={alt}
+        className={styles.img}
+        loading={priority ? "eager" : "lazy"}
+        decoding="async"
+        draggable={false}
+      />
     </span>
   );
 }

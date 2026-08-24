@@ -1,9 +1,22 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 120" role="img" aria-label="Bagelle Parris Vargas logo">
-  <g transform="translate(150 0) scale(0.68)">
-    <path d="M 92 42 C 88 18, 58 4, 36 14 C 16 24, 10 48, 26 66 C 38 80, 62 84, 76 70 C 86 60, 86 40, 72 32 C 62 26, 48 30, 44 42 C 41 52, 48 62, 60 64 C 70 66, 78 58, 77 48 C 76 36, 64 28, 52 32" fill="none" stroke="#0F2F4D" stroke-width="9" stroke-linecap="round"/>
-    <path d="M 28 78 C 32 100, 62 116, 84 106 C 104 96, 110 72, 94 54 C 82 40, 58 36, 44 50 C 34 60, 34 80, 48 88 C 58 94, 72 90, 76 78 C 79 68, 72 58, 60 56 C 50 54, 42 62, 43 72 C 44 84, 56 92, 68 88" fill="none" stroke="#8A1E33" stroke-width="9" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" role="img" aria-label="Bagelle Parris Vargas logo">
+  <rect width="640" height="420" fill="#FFFEF7"/>
+  <!-- Swirl icon top centered -->
+  <g transform="translate(220 18) scale(1.45)">
+    <path d="M 96.5 48.5 C 93 28, 71 8.5, 48 12.5 C 26.5 16.5, 14 36, 22.5 56 C 30.5 74, 52 89.5, 72.5 85 C 84 82.5, 91.5 71, 88 60.5 C 85 50.5, 75 44, 66 47.5 C 59 50, 55.5 58, 58.5 65 C 61 71.5, 68.5 73.5, 73.5 69.5" fill="none" stroke="#0F2F4D" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M 23.5 71.5 C 27 92, 49 111.5, 72 107.5 C 93.5 103.5, 106 84, 97.5 64 C 89.5 46, 68 30.5, 47.5 35 C 36 37.5, 28.5 49, 32 59.5 C 35 69.5, 45 76, 54 72.5 C 61 70, 64.5 62, 61.5 55" fill="none" stroke="#7B1D2F" stroke-width="8.5" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
-  <text x="210" y="96" text-anchor="middle" fill="#0F2F4D" font-family="Georgia, Times, serif" font-size="19" font-weight="500" letter-spacing="-0.01em">Bagelle Parris Vargas</text>
-  <text x="210" y="108" text-anchor="middle" fill="#0F2F4D" font-family="IBM Plex Mono, monospace" font-size="5.2" font-weight="600" letter-spacing="0.16em">ADVISORY &amp; PROFESSIONAL SERVICES</text>
-  <text x="210" y="118" text-anchor="middle" fill="#8A1E33" font-family="IBM Plex Mono, monospace" font-size="5" font-weight="600" letter-spacing="0.18em">A BAGELTECH COMPANY</text>
+  <!-- Wordmark -->
+  <text x="320" y="242" text-anchor="middle" fill="#0F2F4D" font-family="Georgia, 'Times New Roman', serif" font-size="54" font-weight="500" letter-spacing="-0.01em">Bagelle Parris Vargas</text>
+  <!-- ADVISORY line -->
+  <g transform="translate(320 278)">
+    <line x1="-204" y1="0" x2="-132" y2="0" stroke="#7B1D2F" stroke-width="1.6"/>
+    <line x1="132" y1="0" x2="204" y2="0" stroke="#7B1D2F" stroke-width="1.6"/>
+    <text x="0" y="5" text-anchor="middle" fill="#0F2F4D" font-family="Inter, Helvetica, Arial, sans-serif" font-size="12.5" font-weight="600" letter-spacing="0.24em">ADVISORY &amp; PROFESSIONAL SERVICES</text>
+  </g>
+  <!-- AN ARM OF BAGELTECH -->
+  <g transform="translate(320 308)">
+    <line x1="-168" y1="0" x2="-88" y2="0" stroke="#0F2F4D" stroke-width="1.2"/>
+    <line x1="88" y1="0" x2="168" y2="0" stroke="#0F2F4D" stroke-width="1.2"/>
+    <text x="0" y="5" text-anchor="middle" fill="#7B1D2F" font-family="Inter, Helvetica, Arial, sans-serif" font-size="11" font-weight="600" letter-spacing="0.28em">AN ARM OF BAGELTECH</text>
+  </g>
 </svg>

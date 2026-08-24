@@ -1,20 +1,27 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="BDB Labs icon">
-  <!-- Target / crosshair: outer ring split navy / garnet, inner rings -->
-  <circle cx="60" cy="60" r="44" fill="none" stroke="#FFFEF7" stroke-width="2"/>
-  <!-- Outer quadrants -->
-  <path d="M 16 60 A 44 44 0 0 1 60 16 L 60 38 A 22 22 0 0 0 38 60 Z" fill="#0F2F4D"/>
-  <path d="M 60 16 A 44 44 0 0 1 104 60 L 82 60 A 22 22 0 0 0 60 38 Z" fill="#8A1E33"/>
-  <path d="M 104 60 A 44 44 0 0 1 60 104 L 60 82 A 22 22 0 0 0 82 60 Z" fill="#8A1E33"/>
-  <path d="M 60 104 A 44 44 0 0 1 16 60 L 38 60 A 22 22 0 0 0 60 82 Z" fill="#0F2F4D"/>
-  <!-- Middle white ring gap -->
-  <circle cx="60" cy="60" r="28" fill="none" stroke="#FFFEF7" stroke-width="2.5"/>
-  <circle cx="60" cy="60" r="14.5" fill="none" stroke="#FFFEF7" stroke-width="2"/>
-  <!-- Crosshairs -->
-  <path d="M 16 60 H 104 M 60 16 V 104" stroke="#FFFEF7" stroke-width="1.6"/>
-  <path d="M 16 60 H 104 M 60 16 V 104" stroke="#0F2F4D" stroke-width="0.7" opacity="0.9"/>
-  <!-- Center dot split -->
-  <circle cx="60" cy="60" r="9" fill="#FFFEF7"/>
-  <path d="M 60 51 A 9 9 0 0 1 69 60 L 60 60 Z" fill="#8A1E33"/>
-  <path d="M 60 51 A 9 9 0 0 0 51 60 L 60 60 Z" fill="#0F2F4D"/>
-  <circle cx="60" cy="60" r="2.2" fill="#FFFEF7"/>
+  <!-- Outer halves: left navy, right garnet -->
+  <path d="M 60 12 A 48 48 0 0 0 60 108 L 60 84 A 24 24 0 0 1 60 36 Z" fill="#0F2F4D"/>
+  <path d="M 60 12 A 48 48 0 0 1 60 108 L 60 84 A 24 24 0 0 0 60 36 Z" fill="#7B1D2F"/>
+  <!-- Middle white rings -->
+  <circle cx="60" cy="60" r="36" fill="none" stroke="#FFFEF7" stroke-width="2.5"/>
+  <circle cx="60" cy="60" r="22" fill="none" stroke="#FFFEF7" stroke-width="2.5"/>
+  <circle cx="60" cy="60" r="10.5" fill="#FFFEF7"/>
+  <!-- Thin crosshairs navy -->
+  <g stroke="#0F2F4D" stroke-width="1.1">
+    <path d="M 12 60 H 108"/>
+    <path d="M 60 12 V 108"/>
+  </g>
+  <!-- Fine white cross overlay for crispness -->
+  <g stroke="#FFFEF7" stroke-width="0.7" opacity="0.95">
+    <path d="M 12 60 H 108"/>
+    <path d="M 60 12 V 108"/>
+  </g>
+  <!-- Center split -->
+  <path d="M 60 49.5 A 10.5 10.5 0 0 1 70.5 60 L 60 60 Z" fill="#7B1D2F"/>
+  <path d="M 60 49.5 A 10.5 10.5 0 0 0 49.5 60 L 60 60 Z" fill="#0F2F4D"/>
+  <path d="M 60 70.5 A 10.5 10.5 0 0 1 60 49.5 L 60 60 Z" fill="#7B1D2F" opacity="0.98"/>
+  <path d="M 49.5 60 A 10.5 10.5 0 0 0 60 70.5 L 60 60 Z" fill="#0F2F4D"/>
+  <circle cx="60" cy="60" r="2.6" fill="#FFFEF7"/>
+  <!-- Vertical/horizontal white dividers between halves for clean split -->
+  <rect x="59.1" y="12" width="1.8" height="96" fill="#FFFEF7"/>
 </svg>

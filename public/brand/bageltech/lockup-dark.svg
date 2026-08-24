@@ -1,12 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 72" role="img" aria-label="BagelTech logo">
-  <g transform="translate(0 6)">
-    <g fill="none" stroke-width="15">
-      <path d="M 12.5 36 A 25.5 25.5 0 1 0 62.8 23.2" stroke="#F7F3EA"/>
-      <path d="M 62.8 23.2 A 25.5 25.5 0 0 1 62.8 48.8" stroke="#8A1E33"/>
-      <path d="M 36 10.5 L 40.5 23" stroke="#0F2F4D" stroke-width="2.6"/>
-      <path d="M 12.5 36 L 26 36" stroke="#0F2F4D" stroke-width="2.6"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 110" role="img" aria-label="BagelTech logo dark">
+  <rect width="420" height="110" fill="#0F2F4D"/>
+  <g transform="translate(4 9)">
+    <circle cx="46" cy="46" r="40" fill="none" stroke="#FFFEF7" stroke-width="15.5"/>
+    <path d="M 80.2 66.9 A 40 40 0 0 0 80.2 25.1" fill="none" stroke="#C48A95" stroke-width="15.5" stroke-linecap="butt"/>
+    <g stroke="#0F2F4D" stroke-width="3.8" stroke-linecap="butt">
+      <path d="M 6 46 H 22"/>
+      <path d="M 73.2 17.4 L 86.8 8.2"/>
+      <path d="M 73.2 74.6 L 86.8 83.8"/>
     </g>
+    <circle cx="46" cy="46" r="21" fill="#0F2F4D"/>
   </g>
-  <text x="78" y="34" fill="#FFFEF7" font-family="Georgia, Times, serif" font-size="30" font-weight="600" letter-spacing="-0.02em">BagelTech</text>
-  <text x="78.5" y="50" fill="#FFFEF7" font-family="IBM Plex Mono, monospace" font-size="7.5" font-weight="600" letter-spacing="0.18em" opacity="0.9">TECHNOLOGY &amp; INTELLIGENCE</text>
+  <text x="114" y="62" fill="#FFFEF7" font-family="Georgia, 'Times New Roman', serif" font-size="52" font-weight="500" letter-spacing="-0.035em">BagelTech</text>
 </svg>

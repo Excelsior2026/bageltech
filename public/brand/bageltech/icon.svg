@@ -1,14 +1,18 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-label="BagelTech icon">
-  <!-- Mockup-accurate: split ring navy / garnet with white gutters -->
-  <g fill="none" stroke-width="22" stroke-linecap="butt">
-    <!-- Navy segment: ~240deg from 180deg around through top -->
-    <path d="M 18.5 60 A 41.5 41.5 0 1 0 101.2 38.2" stroke="#0F2F4D" />
-    <!-- Garnet segment: ~115deg on right -->
-    <path d="M 101.2 38.2 A 41.5 41.5 0 0 1 101.2 81.8" stroke="#8A1E33" />
-    <!-- White separators -->
-    <path d="M 60 18.5 L 68 38" stroke="#FFFEF7" stroke-width="4" />
-    <path d="M 18.5 60 L 40 60" stroke="#FFFEF7" stroke-width="4" />
-    <path d="M 98 36 L 82 46" stroke="#FFFEF7" stroke-width="3.5" />
-    <path d="M 98 84 L 82 74" stroke="#FFFEF7" stroke-width="3.5" />
+  <!-- Background transparent -->
+  <!-- Ring base navy -->
+  <circle cx="60" cy="60" r="40" fill="none" stroke="#0F2F4D" stroke-width="18"/>
+  <!-- Garnet overlay on right ~70deg arc (32deg to 328deg via east) -->
+  <path d="M 93.92 81.18 A 40 40 0 0 0 93.92 38.82" fill="none" stroke="#7B1D2F" stroke-width="18" stroke-linecap="butt"/>
+  <!-- White separators (gaps) -->
+  <g stroke="#FFFEF7" stroke-width="4.2" stroke-linecap="butt">
+    <!-- Left horizontal gap (180deg) -->
+    <path d="M 12 60 H 32"/>
+    <!-- Upper diagonal gap (328deg / -32deg) -->
+    <path d="M 86.2 30.2 L 101.5 20.1"/>
+    <!-- Lower diagonal gap (32deg) -->
+    <path d="M 86.2 89.8 L 101.5 99.9"/>
   </g>
+  <!-- Inner white hole -->
+  <circle cx="60" cy="60" r="22" fill="#FFFEF7"/>
 </svg>
