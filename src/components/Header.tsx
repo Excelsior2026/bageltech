@@ -6,11 +6,10 @@ import BrandMark from "./BrandMark";
 import styles from "./Header.module.css";
 
 const navLinks = [
-  { href: "/research", label: "Research" },
+  { href: "/bdb-labs", label: "Research" },
   { href: "/products", label: "Systems" },
-  { href: "/advisory", label: "Advisory" },
-  { href: "/writing", label: "Writing" },
-  { href: "/insights", label: "Insights" },
+  { href: "/bpv", label: "Services" },
+  { href: "/insights", label: "Writing" },
   { href: "/about", label: "About" },
 ];
 

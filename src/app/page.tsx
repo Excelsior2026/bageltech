@@ -61,137 +61,147 @@ export default function HomePage() {
       <main className={styles.home}>
         <section className={styles.hero}>
           <div className={styles.wrap}>
-            <div className={styles.heroCopy}>
-              <BrandMark brand="bageltech" variant="light" size="hero" className={styles.heroMark} priority />
-              <span className={styles.eyebrow}>Independent practice</span>
-              <h1>
-                Make consequential systems <em>answerable.</em>
-              </h1>
-              <p className={styles.lede}>
-                BagelTech helps institutions put evidence, authority, and escalation into the systems they depend on.
-              </p>
-              <div className={styles.heroActions}>
-                <SmartLink className={styles.btnPrimary} href="/research">
-                  Explore the research <span className={styles.arrow}>&#8599;</span>
-                </SmartLink>
-                <SmartLink className={styles.btnSecondary} href="/contact">
-                  Start a conversation <span className={styles.arrow}>&#8599;</span>
-                </SmartLink>
+            <div className={styles.heroInner}>
+              <div className={styles.heroCopy}>
+                <BrandMark brand="bageltech" variant="light" size="hero" className={styles.heroMark} priority />
+                <span className={styles.eyebrow}>Independent Practice</span>
+                <h1>
+                  Make consequential systems <em className={styles.italic}>answerable.</em>
+                </h1>
+                <p className={styles.lede}>
+                  BagelTech provides the research, systems, and advisory necessary to embed evidence, authority, and escalation into the critical infrastructure of modern institutions.
+                </p>
+                <div className={styles.heroActions}>
+                  <SmartLink className={styles.btnPrimary} href="/bdb-labs">
+                    Explore Research
+                  </SmartLink>
+                  <SmartLink className={styles.btnSecondary} href="/contact">
+                    Start a Conversation
+                  </SmartLink>
+                </div>
               </div>
+
+              <aside className={styles.heroStatement}>
+                <span className={styles.statementLabel}>The Standard</span>
+                <p>
+                  Important decisions should make clear what is known, what remains uncertain, and who is responsible for the next step.
+                </p>
+              </aside>
             </div>
-
-            <aside className={styles.heroStatement}>
-              <span className={styles.statementLabel}>A practical standard</span>
-              <p>
-                Important decisions should make clear what is known, what remains uncertain, and who is responsible
-                for the next step.
-              </p>
-            </aside>
           </div>
         </section>
 
-        <section className={styles.thesis}>
-          <div className={styles.wrap}>
-            <span className={styles.eyebrow}>The work</span>
-            <p>
-              AI and modernization fail in a familiar way: the decision path becomes opaque just when its
-              consequences become real. The work here makes that path visible—through durable evidence, explicit
-              authority, and uncertainty that escalates rather than disappears.
-            </p>
-          </div>
-        </section>
-
-        <section className={styles.practices} id="practice">
+        <section className={styles.architecture}>
           <div className={styles.wrap}>
             <div className={styles.sectionHead}>
-              <span className={styles.eyebrow}>One practice, three applications</span>
-              <h2>A single standard, applied through research, systems, and advisory.</h2>
+              <span className={styles.eyebrow}>Organizational Logic</span>
+              <h2>A unified standard, three applications.</h2>
             </div>
-            <div className={styles.practiceGrid}>
-              {practices.map((practice, index) => (
-                <SmartLink key={practice.name} href={practice.href} className={styles.practice}>
-                  <span className={styles.practiceNumber}>0{index + 1}</span>
-                  <span className={styles.practiceLabel}>{practice.label}</span>
-                  <h3>{practice.name}</h3>
-                  <p>{practice.description}</p>
-                  <span className={styles.practiceDetail}>
-                    {practice.detail} <span className={styles.arrow}>&#8594;</span>
-                  </span>
-                </SmartLink>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        <section className={styles.work}>
-          <div className={styles.wrap}>
-            <div className={styles.workHead}>
-              <div>
-                <span className={styles.eyebrow}>Selected research</span>
-                <h2>A public record, not a sales deck.</h2>
-              </div>
-              <SmartLink className={styles.textLink} href="/research">
-                View all research <span className={styles.arrow}>&#8594;</span>
+            <div className={styles.archGrid}>
+              <SmartLink href="/bdb-labs" className={styles.archCard}>
+                <span className={styles.archRole}>Research & Development</span>
+                <h3>BDB Labs</h3>
+                <p className={styles.archDesc}>Developing the frameworks for governable intelligence and institutional memory.</p>
+              </SmartLink>
+              <SmartLink href="/products" className={styles.archCard}>
+                <span className={styles.archRole}>Systems & Platforms</span>
+                <h3>BagelTech</h3>
+                <p className={styles.archDesc}>Commercial platforms that translate governance into operating reality.</p>
+              </SmartLink>
+              <SmartLink href="/bpv" className={styles.archCard}>
+                <span className={styles.archRole}>Services & Delivery</span>
+                <h3>Bagelle Parris Vargas</h3>
+                <p className={styles.archDesc}>Executive advisory for modernization, delivery risk, and transformation oversight.</p>
               </SmartLink>
             </div>
+          </div>
+        </section>
 
-            <div className={styles.publications}>
-              {selectedWork.map((publication) => (
-                <SmartLink className={styles.publication} href={publication.sourceUrl} key={publication.slug}>
-                  <span className={styles.publicationMeta}>
-                    {formatDate(publication.publishedAt)}
-                    <br />
-                    {publication.source}
-                  </span>
-                  <div>
-                    <h3>{publication.title}</h3>
-                    <p>{publication.summary}</p>
-                  </div>
-                  <span className={styles.publicationAction}>
-                    Read <span className={styles.arrow}>&#8599;</span>
-                  </span>
-                </SmartLink>
-              ))}
+        <section className={styles.evidence}>
+          <div className={styles.wrap}>
+            <div className={styles.sectionHead}>
+              <span className={styles.eyebrow}>What We Build</span>
+              <h2>Evidence of capability.</h2>
+            </div>
+            <div className={styles.evidenceGrid}>
+              <div className={styles.pillar}>
+                <h4>AI Governance & Alignment</h4>
+                <div className={styles.projectList}>
+                  <SmartLink href="/bdb-labs/research" className={styles.projectItem}>
+                    <span>ELEANOR Governance Engine</span>
+                  </SmartLink>
+                  <SmartLink href="/bdb-labs/publications" className={styles.projectItem}>
+                    <span>Constitutional AI Frameworks</span>
+                  </SmartLink>
+                </div>
+              </div>
+              <div className={styles.pillar}>
+                <h4>AI Safety & Evaluation</h4>
+                <div className={styles.projectList}>
+                  <SmartLink href="/bdb-labs/publications" className={styles.projectItem}>
+                    <span>AIRA: AI-Induced Risk Audit</span>
+                  </SmartLink>
+                  <SmartLink href="/bdb-labs/publications" className={styles.projectItem}>
+                    <span>Semantic Reward Collapse Research</span>
+                  </SmartLink>
+                </div>
+              </div>
+              <div className={styles.pillar}>
+                <h4>Enterprise Systems</h4>
+                <div className={styles.projectList}>
+                  <SmartLink href="/products/contractors" className={styles.projectItem}>
+                    <span>Electrical Contractor Platform</span>
+                  </SmartLink>
+                  <SmartLink href="/products" className={styles.projectItem}>
+                    <span>Contract Management Intelligence</span>
+                  </SmartLink>
+                </div>
+              </div>
+              <div className={styles.pillar}>
+                <h4>Modernization & Delivery</h4>
+                <div className={styles.projectList}>
+                  <SmartLink href="/bpv/advisory" className={styles.projectItem}>
+                    <span>ERP/PMO Governance Review</span>
+                  </SmartLink>
+                  <SmartLink href="/bpv/case-studies" className={styles.projectItem}>
+                    <span>Transformation Oversight</span>
+                  </SmartLink>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
-        <section className={styles.record}>
+        <section className={styles.writing}>
           <div className={styles.wrap}>
-            <div className={styles.recordHead}>
-              <span className={styles.eyebrow}>The record</span>
-              <h2>Rigorous enough to review. Practical enough to run.</h2>
+            <div className={styles.sectionHead}>
+              <span className={styles.eyebrow}>Intellectual Output</span>
+              <h2>Writing and Research.</h2>
             </div>
-            <div className={styles.recordGrid}>
-              <div>
-                <span className={styles.recordValue}>25+ years</span>
-                <span className={styles.recordLabel}>public-sector technology and operational leadership</span>
-              </div>
-              <div>
-                <span className={styles.recordValue}>$15M+</span>
-                <span className={styles.recordLabel}>enterprise ERP programs directed</span>
-              </div>
-              <div>
-                <span className={styles.recordValue}>PMP · CSM · DASSM</span>
-                <span className={styles.recordLabel}>delivery and agile leadership credentials</span>
-              </div>
-              <div>
-                <span className={styles.recordValue}>ORCID</span>
-                <a className={styles.recordLink} href={ORCID_URL} target="_blank" rel="noopener noreferrer">
-                  Review the public research record <span className={styles.arrow}>&#8599;</span>
-                </a>
-              </div>
+            <div className={styles.writingList}>
+              {PUBLICATIONS.filter(p => p.featured).slice(0, 4).map(pub => (
+                <SmartLink key={pub.slug} href={pub.sourceUrl} className={styles.writingRow}>
+                  <span className={styles.wDate}>{pub.publishedAt.split('-')[0]}</span>
+                  <span className={styles.wCat}>{pub.category}</span>
+                  <span className={styles.wTitle}>{pub.title}</span>
+                  <span className={styles.wArrow}>&#8594;</span>
+                </SmartLink>
+              ))}
+            </div>
+            <div style={{ textAlign: 'center', marginTop: '3rem' }}>
+              <SmartLink href="/insights" className={styles.btnSecondary}>
+                View the Full Archive
+              </SmartLink>
             </div>
           </div>
         </section>
 
         <section className={styles.cta}>
           <div className={styles.wrap}>
-            <span className={styles.eyebrow}>Start with context</span>
+            <span className={styles.eyebrow}>Next Steps</span>
             <h2>Bring the system, program, or decision that needs a clearer path.</h2>
-            <p>We can begin with the evidence, authority, and operating conditions already on the table.</p>
-            <SmartLink className={styles.btnPrimary} href="/contact">
-              Contact BagelTech <span className={styles.arrow}>&#8599;</span>
+            <SmartLink href="/contact" className={styles.btnPrimary}>
+              Contact BagelTech
             </SmartLink>
           </div>
         </section>

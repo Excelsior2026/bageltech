@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
 
-export default function LegacyBdbLabsPage() {
-  redirect("/research");
+export default function BdbLabsPage() {
+  redirect("/bdb-labs/research");
 }
