@@ -12,7 +12,9 @@ export const metadata: Metadata = {
     "Research, publications, frameworks, and prototypes from BDB Labs — the research and incubation arm of BagelTech.",
 };
 
-const bdbPublications = PUBLICATIONS.filter((p) => p.workstream === "BDB Labs");
+const bdbPublications = PUBLICATIONS.filter((p) => p.workstream === "BDB Labs").sort((a, b) =>
+  b.publishedAt.localeCompare(a.publishedAt),
+);
 
 function formatDate(value: string) {
   return new Intl.DateTimeFormat("en", { month: "short", year: "numeric", timeZone: "UTC" }).format(
@@ -27,7 +29,7 @@ export default function ResearchPage() {
         <section className={`${styles.pageHero} ${styles.pageHeroLabs}`}>
           <div className={styles.inner}>
             <ScrollReveal>
-              <BrandMark brand="bdb-labs" variant="light" size="hero" className={styles.heroMark} priority />
+              <BrandMark brand="bdb-labs" variant="icon-dark" size="hero" className={styles.heroMark} priority />
               <p className={styles.eyebrow}>BDB Labs — Research</p>
               <h1 className={styles.pageTitle}>Research, frameworks, and prototypes for governable systems.</h1>
               <p className={styles.bodyText}>
@@ -94,7 +96,7 @@ export default function ResearchPage() {
                   BDB Labs research feeds directly into BagelTech products and BPV advisory methods.
                 </p>
               </div>
-              <SmartLink className={styles.buttonPrimary} href="/writing">
+              <SmartLink className={styles.buttonPrimary} href="/insights">
                 Explore the writing hub
               </SmartLink>
             </ScrollReveal>

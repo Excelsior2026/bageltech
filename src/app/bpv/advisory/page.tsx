@@ -37,8 +37,8 @@ export default function AdvisoryPage() {
         <section className={`${styles.pageHero} ${styles.pageHeroBpv}`}>
           <div className={`${styles.inner} ${styles.pageHeroGrid}`}>
             <ScrollReveal>
-              <BrandMark brand="bpv" variant="light" size="hero" className={styles.heroMark} priority />
-              <p className={styles.eyebrow}>{advisoryStream.role}</p>
+              <BrandMark brand="bpv" variant="icon-dark" size="hero" className={styles.heroMark} priority />
+              <p className={styles.eyebrow}>Bagelle Parris Vargas — {advisoryStream.role}</p>
               <h1 className={styles.pageTitle}>Executive advisory for modernization that has to land.</h1>
               <p className={styles.bodyText}>
                 {advisoryStream.description} This lane centers executive support, experienced operations, speaking, and

@@ -62,7 +62,7 @@ export default function InsightsPage() {
         <section className={`${styles.pageHero} ${styles.pageHeroBpv}`}>
           <div className={styles.inner}>
             <ScrollReveal>
-              <BrandMark brand="bageltech" variant="light" size="hero" className={styles.heroMark} priority />
+              <BrandMark brand="bageltech" variant="dark" size="hero" className={styles.heroMark} priority />
               <p className={styles.eyebrow}>BagelTech — Writing</p>
               <h1 className={styles.pageTitle}>Thinking on governance, consequence, and delivery.</h1>
               <p className={styles.bodyText}>

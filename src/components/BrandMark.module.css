@@ -14,18 +14,18 @@
 
 /* Size variants */
 .header .img {
-  height: 32px;
+  height: 40px;
 }
 .compact .img {
   height: 28px;
 }
+/* SVGs here only carry a viewBox, so the height must be explicit for width to resolve */
 .hero .img {
-  height: auto;
-  max-height: 84px;
+  height: 64px;
   max-width: 320px;
 }
 .footer .img {
-  height: 30px;
+  height: 38px;
 }
 
 /* Icon-only variant */
@@ -53,6 +53,6 @@
     max-width: 240px;
   }
   .header .img {
-    height: 28px;
+    height: 34px;
   }
 }

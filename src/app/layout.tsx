@@ -1,32 +1,41 @@
 import type { Metadata } from "next";
-import { IBM_Plex_Mono, Public_Sans, Spectral } from "next/font/google";
+import { Geist, Geist_Mono, Instrument_Serif, Spectral } from "next/font/google";
 import "./globals.css";
 
-const sans = Public_Sans({
+const sans = Geist({
   variable: "--font-ui-sans",
   subsets: ["latin"],
 });
 
-const serif = Spectral({
-  variable: "--font-editorial-serif",
+const display = Instrument_Serif({
+  variable: "--font-display",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  weight: "400",
   style: ["normal", "italic"],
 });
 
-const mono = IBM_Plex_Mono({
+const mono = Geist_Mono({
   variable: "--font-code-mono",
   subsets: ["latin"],
   weight: ["400", "500"],
 });
 
+// Kept for the contractor platform and BMO surfaces, which set type in Spectral.
+const serif = Spectral({
+  variable: "--font-editorial-serif",
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  style: ["normal", "italic"],
+  preload: false,
+});
+
 export const metadata: Metadata = {
   title: {
-    default: "BagelTech | Governance for Consequential Systems",
+    default: "BagelTech | Bagelle Parris Vargas & BDB Labs",
     template: "%s | BagelTech",
   },
   description:
-    "BagelTech is an independent research, systems, and advisory practice for consequential systems. Founded and led by Bill Parris.",
+    "BagelTech is the home of Bagelle Parris Vargas, an executive advisory firm for modernization and delivery risk, and BDB Labs, a research lab for governable AI and decision systems.",
   authors: [{ name: "William Parris" }],
   robots: { index: true, follow: true },
   openGraph: {
@@ -46,7 +55,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${sans.variable} ${serif.variable} ${mono.variable}`}>{children}</body>
+      <body className={`${sans.variable} ${display.variable} ${mono.variable} ${serif.variable}`}>{children}</body>
     </html>
   );
 }

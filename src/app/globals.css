@@ -1,32 +1,60 @@
 @import "tailwindcss";
 
 :root {
+  /* Brand family — taken from the marks in /public/brand */
+  --navy: #0F2F4D;
+  --navy-deep: #0A2239;
+  --navy-raised: #143A5E;
+  --garnet: #7B1D2F;
+  --garnet-bright: #9C2840;
+  --rose: #E8A0B0;
+  --rose-muted: #C48A95;
+  --ivory: #FFFEF7;
+  --bone: #F4F1E8;
+  --stone: #4E5B6B;
+
+  /* Surfaces and lines */
+  --line-light: #DDD6C8;
+  --line-dark: rgba(255, 254, 247, 0.14);
+  --text-on-dark: #FFFEF7;
+  --muted-on-dark: rgba(255, 254, 247, 0.7);
+
+  /* Layout */
+  --header-height: 4.5rem;
+  --page-width: min(1240px, calc(100vw - 2.5rem));
+
+  /* Legacy names, still read by module stylesheets across the site */
   --color-ink-950: #081426;
   --color-ink-900: #0e223d;
-  --color-paper-50: #FFFEF7;
-  --color-paper-100: #F5F0E6;
-  --color-paper: #FFFEF7;
+  --color-paper-50: var(--ivory);
+  --color-paper-100: var(--bone);
+  --color-paper: var(--ivory);
+  --color-paper-warm: var(--bone);
   --color-bagel-gold: #d4a94d;
   --color-bagel-gold-dark: #a87b22;
   --color-bagel-teal: #25d6c8;
   --color-bagel-teal-soft: #7feae1;
   --color-bagel-navy: #0A2342;
   --color-bagel-navy-2: #112A4E;
-  --color-garnet: #8A1E33;
+  --color-bpv-ivory: var(--ivory);
+  --color-garnet: var(--garnet);
   --color-garnet-deep: #6E182A;
   --color-garnet-2: #9a3838;
+  --color-garnet-wash: rgba(123, 29, 47, 0.05);
   --color-line: #E8E1D4;
-  --color-line-2: #D9D0BF;
-  --color-ink: #0F2F4D;
+  --color-line-2: var(--line-light);
+  --color-ink: var(--navy);
   --color-ink-2: #1B3A5A;
-  --color-stone: #5A6576;
+  --color-stone: var(--stone);
   --color-stone-2: #8A95A7;
 
-  --background: #FFFEF7;
-  --foreground: #0F2F4D;
-  --muted: #5A6576;
-  --border: #E8E1D4;
-  --accent: #8A1E33;
+  --background: var(--ivory);
+  --foreground: var(--navy);
+  --muted: var(--stone);
+  --border: var(--line-light);
+  --accent: var(--garnet);
+  --accent-deep: var(--garnet);
+  --surface-strong: #FFFFFF;
 }
 
 @theme inline {
@@ -38,21 +66,26 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+html { scroll-behavior: smooth; scroll-padding-top: var(--header-height); }
 body {
   margin: 0;
   min-height: 100vh;
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  font-family: var(--font-ui-sans), system-ui, sans-serif;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
 }
 a { color: inherit; }
 img { display: block; max-width: 100%; }
 button, input, textarea, select { font: inherit; }
-::selection { background: rgba(138,30,51,0.12); color: var(--color-ink); }
+::selection { background: var(--rose); color: var(--navy); }
 h1,h2,h3,p,ul,ol,blockquote { margin-top: 0; }
+:focus-visible { outline: 2px solid var(--rose); outline-offset: 3px; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
 
 /* Layout */
 .container { width: min(1180px, calc(100% - 2.5rem)); margin: 0 auto; }
@@ -60,10 +93,10 @@ h1,h2,h3,p,ul,ol,blockquote { margin-top: 0; }
 
 /* Type helpers */
 .kicker,.articleMeta {
-  color: var(--color-garnet);
+  color: var(--garnet);
   font-family: var(--font-code-mono), monospace;
   font-size: 0.68rem;
-  font-weight: 600;
+  font-weight: 500;
   letter-spacing: 0.14em;
   text-transform: uppercase;
 }

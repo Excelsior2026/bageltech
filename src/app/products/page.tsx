@@ -44,7 +44,7 @@ export default function ProductsPage() {
         <section className={`${styles.pageHero} ${styles.pageHeroBageltech}`}>
           <div className={`${styles.inner} ${styles.pageHeroGrid}`}>
             <ScrollReveal>
-              <BrandMark brand="bageltech" variant="light" size="hero" className={styles.heroMark} priority />
+              <BrandMark brand="bageltech" variant="dark" size="hero" className={styles.heroMark} priority />
               <p className={styles.eyebrow}>{productsStream.role}</p>
               <h1 className={styles.pageTitle}>BagelTech builds systems institutions can actually govern.</h1>
               <p className={styles.bodyText}>

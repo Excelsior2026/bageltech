@@ -2,66 +2,87 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
+import BrandMark from "./BrandMark";
 import styles from "./Header.module.css";
 
 const navLinks = [
-  { href: "/products", label: "Products" },
-  { href: "/bdb-labs/research", label: "BDB Labs" },
-  { href: "/bpv/advisory", label: "Services" },
-  { href: "/insights", label: "Writing" },
-  { href: "/about", label: "About" },
-  { href: "/contact", label: "Contact" },
+  { href: "/bpv/advisory", label: "BPV Advisory", detail: "Bagelle Parris Vargas — executive advisory", match: ["/bpv"] },
+  { href: "/bdb-labs/research", label: "BDB Labs", detail: "Research, frameworks, and publications", match: ["/bdb-labs"] },
+  { href: "/products", label: "Products", detail: "BagelTech platforms and pilots", match: ["/products", "/contractors"] },
+  { href: "/insights", label: "Writing", detail: "Essays on governance and delivery", match: ["/insights"] },
+  { href: "/about", label: "About", detail: "The company and its founder", match: ["/about"] },
 ];
 
 export default function Header() {
+  const pathname = usePathname() ?? "/";
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    if (!isMobileMenuOpen) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsMobileMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => {
+      document.body.style.overflow = "";
+      window.removeEventListener("keydown", onKeyDown);
+    };
   }, [isMobileMenuOpen]);
 
-  const mobileMenuClasses = [styles.mobileMenu, isMobileMenuOpen ? styles.mobileMenuOpen : ""].filter(Boolean).join(" ");
-  const menuBtnClasses = [styles.mobileMenuButton, isMobileMenuOpen ? styles.open : ""].filter(Boolean).join(" ");
+  const isActive = (match: string[]) => match.some((prefix) => pathname.startsWith(prefix));
+  const closeMenu = () => setIsMobileMenuOpen(false);
 
   return (
     <header className={styles.header}>
       <div className={styles.headerInner}>
-        <Link href="/" className={styles.logo} aria-label="BagelTech home">
-          <img src="/brand/bageltech/lockup-light.svg" alt="BagelTech" className={styles.logoImg} width={260} height={52} />
+        <Link href="/" className={styles.logo} aria-label="BagelTech home" onClick={closeMenu}>
+          <BrandMark brand="bageltech" variant="dark" size="header" priority />
         </Link>
 
         <nav className={styles.desktopNav} aria-label="Main navigation">
           {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className={styles.navLink}>
+            <Link
+              key={link.href}
+              href={link.href}
+              className={styles.navLink}
+              aria-current={isActive(link.match) ? "page" : undefined}
+            >
               {link.label}
             </Link>
           ))}
         </nav>
 
-        <button className={styles.hamburger} aria-label="Open menu" onClick={() => setIsMobileMenuOpen((v)=>!v)}>
-          <span /><span /><span />
-        </button>
+        <Link href="/contact" className={styles.ctaButton}>
+          Start a conversation
+        </Link>
 
         <button
-          className={menuBtnClasses}
-          onClick={() => setIsMobileMenuOpen((v) => !v)}
+          type="button"
+          className={`${styles.menuButton} ${isMobileMenuOpen ? styles.menuButtonOpen : ""}`}
+          onClick={() => setIsMobileMenuOpen((open) => !open)}
           aria-expanded={isMobileMenuOpen}
-          aria-label="Toggle navigation menu"
+          aria-controls="mobile-menu"
+          aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
         >
-          <span className={styles.hamburgerLine} />
-          <span className={styles.hamburgerLine} />
-          <span className={styles.hamburgerLine} />
+          <span className={styles.menuLine} />
+          <span className={styles.menuLine} />
         </button>
       </div>
 
-      <div className={mobileMenuClasses}>
+      <div id="mobile-menu" className={`${styles.mobileMenu} ${isMobileMenuOpen ? styles.mobileMenuOpen : ""}`}>
         <nav className={styles.mobileNav} aria-label="Mobile navigation">
           {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className={styles.mobileNavLink} onClick={() => setIsMobileMenuOpen(false)}>
-              {link.label}
+            <Link key={link.href} href={link.href} className={styles.mobileNavLink} onClick={closeMenu}>
+              <span className={styles.mobileNavLabel}>{link.label}</span>
+              <span className={styles.mobileNavDetail}>{link.detail}</span>
             </Link>
           ))}
+          <Link href="/contact" className={styles.mobileCta} onClick={closeMenu}>
+            Start a conversation →
+          </Link>
         </nav>
       </div>
     </header>

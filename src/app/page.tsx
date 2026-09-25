@@ -1,167 +1,315 @@
 import type { Metadata } from "next";
+import BrandMark from "@/components/BrandMark";
 import MarketingLayout from "@/components/MarketingLayout";
 import SmartLink from "@/components/SmartLink";
+import { CASE_STUDIES } from "@/content/case-studies";
+import { PUBLICATIONS } from "@/content/publications";
+import { ADVISORY_OFFERS, EXTERNAL_LINKS, PROOF_POINTS } from "@/content/site";
+import { getAllArticles } from "@/lib/articles";
 import styles from "./home.module.css";
 
 export const metadata: Metadata = {
-  title: "BagelTech | Technology & Intelligence",
+  title: "BagelTech | Bagelle Parris Vargas & BDB Labs",
   description:
-    "BagelTech develops intelligent systems, explores what comes next, and helps organizations put technology to work in the real world.",
+    "BagelTech is the home of Bagelle Parris Vargas, an executive advisory firm for modernization and delivery risk, and BDB Labs, a research lab for governable AI and decision systems.",
   openGraph: {
-    title: "BagelTech | Technology & Intelligence",
+    title: "BagelTech | Advisory that lands. Research that holds up.",
     description:
-      "Technology built to make complex things more understandable, governable, and useful.",
+      "Bagelle Parris Vargas advises leadership teams through modernization. BDB Labs publishes the governance research behind it.",
     type: "website",
     url: "https://www.bageltech.net",
   },
 };
 
+const PRODUCTS = [
+  { title: "J-Box", body: "The operating platform for small trade contractors.", href: "/contractors" },
+  {
+    title: "Intelligent Contract Management",
+    body: "Contract intelligence, obligations, compliance, and operational oversight.",
+    href: "/products",
+  },
+  { title: "TrueTraining", body: "Adaptive institutional intelligence infrastructure.", href: "/products" },
+  { title: "TruePresence", body: "Privacy-preserving interaction authenticity and risk signals.", href: "/products" },
+];
+
+function formatDate(value: string) {
+  return new Intl.DateTimeFormat("en", { month: "short", year: "numeric", timeZone: "UTC" }).format(new Date(value));
+}
+
 export default function HomePage() {
+  const labsPublications = PUBLICATIONS.filter((item) => item.workstream === "BDB Labs");
+  const featuredResearch = labsPublications
+    .filter((item) => item.featured)
+    .sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
+    .slice(0, 4);
+  const latestWriting = getAllArticles().slice(0, 3);
+
   return (
     <MarketingLayout>
       <main className={styles.home}>
-        {/* ——— HERO + DIAGRAM ——— */}
+        {/* ——— HERO: the two practices ——— */}
         <section className={styles.hero}>
           <div className={styles.wrap}>
-            <div className={styles.heroGrid}>
-              <div className={styles.heroCopy}>
-                <h1 className={styles.heroTitle}>
-                  Technology built to make complex things more understandable, governable, and <em>useful.</em>
-                </h1>
-                <hr className={styles.rule} />
-                <p className={styles.lede}>
-                  BagelTech develops intelligent systems, explores what comes next, and helps organizations put technology to work in the real world.
-                </p>
-              </div>
-
-              <div className={styles.diagramWrap} aria-hidden="true">
-                <div className={styles.diagramInner}>
-                  {/* Arcs */}
-                  <svg className={styles.diagramSvg} viewBox="0 0 560 260" preserveAspectRatio="none">
-                    {/* outer arc over top */}
-                    <path d="M 92 136 A 210 210 0 0 1 468 136" fill="none" stroke="#C9C2B5" strokeWidth="1.2" />
-                    <circle cx="92" cy="136" r="3.5" fill="#C9C2B5" />
-                    <circle cx="468" cy="136" r="3.5" fill="#C9C2B5" />
-                    {/* inner arc below top */}
-                    <path d="M 148 172 A 190 85 0 0 0 412 172" fill="none" stroke="#C9C2B5" strokeWidth="1" />
-                    <circle cx="280" cy="142" r="3" fill="#FFFEF7" stroke="#C9C2B5" strokeWidth="1.2" />
-                  </svg>
-
-                  <div className={`${styles.logoPos} ${styles.posTop}`}>
-                    <img src="/brand/bageltech/icon.svg" alt="" width={118} height={118} />
-                    <div className={styles.posTopLabel}>
-                      <strong>BagelTech</strong>
-                      <span>THE COMPANY</span>
-                    </div>
-                  </div>
-
-                  <div className={`${styles.logoPos} ${styles.posLeft}`}>
-                    <img src="/brand/bdb-labs/icon.svg" alt="" width={132} height={132} />
-                  </div>
-
-                  <div className={`${styles.logoPos} ${styles.posRight}`}>
-                    <img src="/brand/bpv/icon.svg" alt="" width={160} height={160} />
-                  </div>
-
-                  <p className={styles.diagramCaption}>
-                    Research creates new possibilities. Experience turns them into impact. Together, we build what matters.
-                  </p>
-                </div>
-              </div>
+            <p className={styles.eyebrow}>BagelTech · Advisory &amp; Research</p>
+            <h1 className={styles.heroTitle}>
+              Advisory that <em>lands.</em>
+              <br />
+              Research that <em>holds&nbsp;up.</em>
+            </h1>
+            <div className={styles.heroFoot}>
+              <p className={styles.heroLede}>
+                BagelTech is home to two practices. Bagelle Parris Vargas guides leadership teams through
+                modernization and delivery risk. BDB Labs builds and publishes the governance research that the
+                advisory work stands on.
+              </p>
+              <SmartLink href="/about" className={styles.heroLink}>
+                About the founder <span aria-hidden="true">→</span>
+              </SmartLink>
             </div>
+          </div>
+
+          <div className={`${styles.wrap} ${styles.doors}`}>
+            <SmartLink href="/bpv/advisory" className={styles.door}>
+              <div className={styles.doorHead}>
+                <span aria-hidden="true">
+                  <BrandMark brand="bpv" variant="icon-dark" size="hero" priority />
+                </span>
+                <span className={styles.doorIndex}>01</span>
+              </div>
+              <p className={styles.doorRole}>Advisory &amp; professional services</p>
+              <h2 className={styles.doorTitle}>Bagelle Parris Vargas</h2>
+              <p className={styles.doorText}>
+                Executive advisory for leadership teams navigating modernization, ERP and PMO oversight, AI
+                governance, and delivery risk.
+              </p>
+              <ul className={styles.doorList}>
+                {ADVISORY_OFFERS.map((offer) => (
+                  <li key={offer.slug}>{offer.title}</li>
+                ))}
+              </ul>
+              <span className={styles.doorCta}>
+                Engage the firm <span aria-hidden="true">→</span>
+              </span>
+            </SmartLink>
+
+            <SmartLink href="/bdb-labs/research" className={styles.door}>
+              <div className={styles.doorHead}>
+                <span aria-hidden="true">
+                  <BrandMark brand="bdb-labs" variant="icon-dark" size="hero" priority />
+                </span>
+                <span className={styles.doorIndex}>02</span>
+              </div>
+              <p className={styles.doorRole}>Research &amp; incubation</p>
+              <h2 className={styles.doorTitle}>BDB Labs</h2>
+              <p className={styles.doorText}>
+                Governance methods, risk audits, and decision frameworks — developed as prototypes and published on
+                Zenodo and arXiv.
+              </p>
+              <ul className={styles.doorList}>
+                <li>ELEANOR runtime governance</li>
+                <li>AIRA: AI-Induced Risk Audit</li>
+                <li>{labsPublications.length} papers, frameworks, and specifications</li>
+              </ul>
+              <span className={styles.doorCta}>
+                Enter the lab <span aria-hidden="true">→</span>
+              </span>
+            </SmartLink>
+          </div>
+
+          <div className={`${styles.wrap} ${styles.proof}`}>
+            {PROOF_POINTS.map((point) => (
+              <div key={point.value} className={styles.proofItem}>
+                <p className={styles.proofValue}>{point.value}</p>
+                <p className={styles.proofLabel}>{point.label}</p>
+              </div>
+            ))}
           </div>
         </section>
 
-        {/* ——— TRIPTYCH ——— */}
-        <section className={styles.triptych} aria-label="Three pillars">
-          <SmartLink href="/products" className={`${styles.panel} ${styles.panelNavy}`}>
-            <p className={styles.kicker}>Build</p>
-            <h2 className={styles.panelTitle}>Products</h2>
-            <div className={styles.panelRule} />
-            <p className={styles.panelText}>Software solutions designed to solve real operational problems and improve how work gets done.</p>
-            <span className={styles.panelCta}>EXPLORE PRODUCTS →</span>
-            <svg className={styles.panelIcon} viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
-              <path d="M32 10 L54 20 L32 30 L10 20 Z" /><path d="M10 20 V40 L32 50 L54 40 V20" /><path d="M32 30 V50" />
-            </svg>
-          </SmartLink>
+        {/* ——— BAGELLE PARRIS VARGAS ——— */}
+        <section className={styles.bpv} id="advisory" aria-labelledby="bpv-title">
+          <div className={`${styles.wrap} ${styles.split}`}>
+            <div className={styles.splitAside}>
+              <span aria-hidden="true">
+                <BrandMark brand="bpv" variant="icon" size="hero" />
+              </span>
+              <p className={styles.sectionKicker}>Executive advisory</p>
+              <h2 id="bpv-title" className={styles.sectionTitle}>
+                Bagelle Parris Vargas
+              </h2>
+              <p className={styles.statement}>
+                Modernization that has to <em>land.</em>
+              </p>
+              <p className={styles.sectionLede}>
+                For executives, public-sector leaders, and delivery sponsors who need experienced counsel when
+                technology, procurement, and adoption risk meet one accountable operating model.
+              </p>
+              <div className={styles.actions}>
+                <SmartLink href={EXTERNAL_LINKS.advisory} className={styles.buttonDark}>
+                  Start an advisory inquiry
+                </SmartLink>
+                <SmartLink href="/bpv/case-studies" className={styles.buttonGhost}>
+                  Case studies
+                </SmartLink>
+              </div>
+            </div>
 
-          <SmartLink href="/bdb-labs/research" className={`${styles.panel} ${styles.panelNavy}`}>
-            <p className={styles.kicker}>Explore</p>
-            <h2 className={styles.panelTitle}>BDB Labs</h2>
-            <div className={styles.panelRule} />
-            <p className={styles.panelText}>Pushing the boundaries of intelligence, governance, reasoning, and trustworthy systems through research and development.</p>
-            <span className={styles.panelCta}>EXPLORE RESEARCH →</span>
-            <svg className={styles.panelIcon} viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.2" aria-hidden="true">
-              <circle cx="32" cy="32" r="22" /><circle cx="32" cy="32" r="14" /><circle cx="32" cy="32" r="6" />
-              <path d="M32 4 V60 M4 32 H60" />
-            </svg>
-          </SmartLink>
+            <ol className={styles.offers}>
+              {ADVISORY_OFFERS.map((offer, index) => (
+                <li key={offer.slug} className={styles.offer}>
+                  <span className={styles.offerIndex}>{String(index + 1).padStart(2, "0")}</span>
+                  <div>
+                    <h3 className={styles.offerTitle}>{offer.title}</h3>
+                    <p className={styles.offerText}>{offer.summary}</p>
+                    <p className={styles.offerAudience}>{offer.audience}</p>
+                    <ul className={styles.outcomes} aria-label="Outcomes">
+                      {offer.outcomes.map((outcome) => (
+                        <li key={outcome}>{outcome}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </li>
+              ))}
+            </ol>
+          </div>
 
-          <SmartLink href="/bpv/advisory" className={`${styles.panel} ${styles.panelGarnet}`}>
-            <p className={styles.kicker}>Deliver</p>
-            <h2 className={styles.panelTitle}>Bagelle Parris Vargas</h2>
-            <div className={styles.panelRule} />
-            <p className={styles.panelText}>Advisory and professional services that help organizations navigate complexity, adopt technology responsibly, and achieve results.</p>
-            <span className={styles.panelCta}>EXPLORE SERVICES →</span>
-            <svg className={`${styles.panelIcon} ${styles.panelIconGarnet}`} viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.3" aria-hidden="true">
-              <circle cx="32" cy="18" r="8" /><circle cx="16" cy="40" r="7" /><circle cx="48" cy="40" r="7" />
-              <path d="M12 56 C12 44 20 38 32 38 C44 38 52 44 52 56" />
-            </svg>
-          </SmartLink>
+          <div className={`${styles.wrap} ${styles.applies}`}>
+            <p className={styles.appliesLabel}>Where the work applies</p>
+            <ul className={styles.appliesList}>
+              {CASE_STUDIES.map((study) => (
+                <li key={study.title}>
+                  <SmartLink href="/bpv/case-studies">{study.title}</SmartLink>
+                </li>
+              ))}
+            </ul>
+          </div>
         </section>
 
-        {/* ——— PRODUCTS + INSIGHTS ——— */}
-        <section className={styles.productsStrip}>
+        {/* ——— BDB LABS ——— */}
+        <section className={styles.labs} id="labs" aria-labelledby="labs-title">
+          <div className={`${styles.wrap} ${styles.labsHead}`}>
+            <div>
+              <span aria-hidden="true">
+                <BrandMark brand="bdb-labs" variant="icon-dark" size="hero" />
+              </span>
+              <p className={styles.sectionKickerDark}>Research &amp; incubation</p>
+              <h2 id="labs-title" className={styles.sectionTitleDark}>
+                BDB Labs
+              </h2>
+              <p className={styles.statementDark}>
+                Governance research, <em>published in the open.</em>
+              </p>
+            </div>
+            <div>
+              <p className={styles.sectionLedeDark}>
+                BDB Labs develops and tests the ideas behind BagelTech: runtime governance, ensemble reasoning, risk
+                audits, and decision infrastructure. Every paper has a permanent public record.
+              </p>
+              <div className={styles.actions}>
+                <SmartLink href="/bdb-labs/research" className={styles.buttonRose}>
+                  Explore the research
+                </SmartLink>
+                <SmartLink href="/bdb-labs/repository" className={styles.buttonGhostDark}>
+                  Document repository
+                </SmartLink>
+              </div>
+            </div>
+          </div>
+
           <div className={styles.wrap}>
-            <div className={styles.stripGrid}>
-              <div className={styles.sideHead}>
-                <p className={styles.sideKicker}>OUR PRODUCTS</p>
-                <h2 className={styles.sideTitle}>Systems that help teams work better every day.</h2>
-                <SmartLink href="/products" className={styles.sideLink}>VIEW ALL PRODUCTS →</SmartLink>
-              </div>
+            <ol className={styles.ledger}>
+              {featuredResearch.map((item) => (
+                <li key={item.slug}>
+                  <SmartLink href={item.sourceUrl} className={styles.ledgerRow}>
+                    <span className={styles.ledgerMeta}>
+                      {formatDate(item.publishedAt)}
+                      <span>
+                        {item.category} · {item.source}
+                      </span>
+                    </span>
+                    <span className={styles.ledgerBody}>
+                      <span className={styles.ledgerTitle}>{item.title}</span>
+                      <span className={styles.ledgerText}>{item.summary}</span>
+                    </span>
+                    <span className={styles.ledgerArrow} aria-hidden="true">
+                      ↗
+                    </span>
+                  </SmartLink>
+                </li>
+              ))}
+            </ol>
+            <p className={styles.ledgerFoot}>
+              <SmartLink href="/bdb-labs/research">All {labsPublications.length} publications</SmartLink> · Full
+              record on <SmartLink href={EXTERNAL_LINKS.orcid}>ORCID</SmartLink>
+            </p>
+          </div>
+        </section>
 
-              <div className={styles.cardsGrid}>
-                <SmartLink href="/contractors" className={styles.productCard}>
-                  <span className={`${styles.cardIcon} ${styles.cardIconJ}`}>J</span>
-                  <h3 className={styles.cardTitle}>J-Box</h3>
-                  <p className={styles.cardDesc}>The operating platform for small trade contractors.</p>
-                  <span className={styles.cardCta}>LEARN MORE →</span>
+        {/* ——— BAGELTECH PRODUCTS ——— */}
+        <section className={styles.products} aria-labelledby="products-title">
+          <div className={`${styles.wrap} ${styles.productsHead}`}>
+            <p className={styles.sectionKicker}>Built by BagelTech</p>
+            <h2 id="products-title" className={styles.productsTitle}>
+              Where the advice and the research become software.
+            </h2>
+            <SmartLink href="/products" className={styles.textLink}>
+              All products →
+            </SmartLink>
+          </div>
+          <div className={`${styles.wrap} ${styles.productGrid}`}>
+            {PRODUCTS.map((product) => (
+              <SmartLink key={product.title} href={product.href} className={styles.productCard}>
+                <h3>{product.title}</h3>
+                <p>{product.body}</p>
+                <span aria-hidden="true">→</span>
+              </SmartLink>
+            ))}
+          </div>
+        </section>
+
+        {/* ——— WRITING ——— */}
+        {latestWriting.length > 0 && (
+          <section className={styles.writing} aria-labelledby="writing-title">
+            <div className={`${styles.wrap} ${styles.productsHead}`}>
+              <p className={styles.sectionKicker}>Writing</p>
+              <h2 id="writing-title" className={styles.productsTitle}>
+                Notes on governance, leadership, and delivery.
+              </h2>
+              <SmartLink href="/insights" className={styles.textLink}>
+                All writing →
+              </SmartLink>
+            </div>
+            <div className={`${styles.wrap} ${styles.writingGrid}`}>
+              {latestWriting.map((article) => (
+                <SmartLink key={article.slug} href={`/insights/${article.slug}`} className={styles.writingCard}>
+                  <span className={styles.writingDate}>{formatDate(article.date)}</span>
+                  <h3>{article.title}</h3>
+                  <p>{article.summary}</p>
                 </SmartLink>
+              ))}
+            </div>
+          </section>
+        )}
 
-                <SmartLink href="/products" className={styles.productCard}>
-                  <span className={`${styles.cardIcon} ${styles.cardIconShield}`}>
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L4 5v6c0 5 3.4 9.1 8 10 4.6-.9 8-5 8-10V5L12 2zm-1 14H8v-2h3V9h2v5h3v2h-3v1h-2v-1z"/></svg>
-                  </span>
-                  <h3 className={styles.cardTitle}>Intelligent Contract Management</h3>
-                  <p className={styles.cardDesc}>Contract intelligence, obligations, compliance, and operational oversight.</p>
-                  <span className={styles.cardCta}>LEARN MORE →</span>
-                </SmartLink>
-
-                <SmartLink href="/products" className={styles.productCard}>
-                  <span className={`${styles.cardIcon} ${styles.cardIconCap}`}>
-                    <svg width="26" height="22" viewBox="0 0 24 20" fill="currentColor" aria-hidden="true"><path d="M12 3L1 9l11 6 9-4.9V16h2V9L12 3zM5 11.2l7 3.8 7-3.8-7-3.8-7 3.8z"/></svg>
-                  </span>
-                  <h3 className={styles.cardTitle}>TrueTraining</h3>
-                  <p className={styles.cardDesc}>Adaptive institutional intelligence infrastructure.</p>
-                  <span className={styles.cardCta}>LEARN MORE →</span>
-                </SmartLink>
-
-                <SmartLink href="/products" className={styles.productCard}>
-                  <span className={`${styles.cardIcon} ${styles.cardIconPrint}`}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path d="M12 3a7 7 0 0 1 7 7v5M12 3a7 7 0 0 0-7 7v5M12 7a3 3 0 0 1 3 3v5M12 7a3 3 0 0 0-3 3v5"/><path d="M9 18c0-1 .7-1.5 1.5-1.5h3c.8 0 1.5.5 1.5 1.5v2H9z"/></svg>
-                  </span>
-                  <h3 className={styles.cardTitle}>TruePresence</h3>
-                  <p className={styles.cardDesc}>Privacy-preserving interaction authenticity and risk signals.</p>
-                  <span className={styles.cardCta}>LEARN MORE →</span>
-                </SmartLink>
-              </div>
-
-              <div className={styles.insightsSide}>
-                <p className={styles.sideKicker}>IDEAS &amp; INSIGHTS</p>
-                <h2 className={styles.insightsTitle}>Thoughts on technology, society, and intelligence.</h2>
-                <p className={styles.insightsDesc}>Articles, essays, research notes, and perspectives from across BagelTech.</p>
-                <SmartLink href="/insights" className={styles.sideLink}>READ THE LATEST →</SmartLink>
-              </div>
+        {/* ——— CLOSING: two ways in ——— */}
+        <section className={styles.closing} aria-labelledby="closing-title">
+          <div className={styles.wrap}>
+            <h2 id="closing-title" className={styles.closingTitle}>
+              Two ways <em>in.</em>
+            </h2>
+            <div className={styles.closingGrid}>
+              <SmartLink href={EXTERNAL_LINKS.advisory} className={styles.closingCard}>
+                <span className={styles.closingRole}>Bagelle Parris Vargas</span>
+                <span className={styles.closingText}>
+                  Advisory, modernization oversight, workshops, or speaking.
+                </span>
+                <span className={styles.closingCta}>Request advisory support →</span>
+              </SmartLink>
+              <SmartLink href={EXTERNAL_LINKS.research} className={styles.closingCard}>
+                <span className={styles.closingRole}>BDB Labs</span>
+                <span className={styles.closingText}>Research collaboration, frameworks, papers, or prototypes.</span>
+                <span className={styles.closingCta}>Propose a collaboration →</span>
+              </SmartLink>
             </div>
           </div>
         </section>
