@@ -34,38 +34,24 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <div className={styles.diagramWrap} aria-hidden="true">
-                <div className={styles.diagramInner}>
-                  {/* Arcs */}
-                  <svg className={styles.diagramSvg} viewBox="0 0 560 260" preserveAspectRatio="none">
-                    {/* outer arc over top */}
-                    <path d="M 92 136 A 210 210 0 0 1 468 136" fill="none" stroke="#C9C2B5" strokeWidth="1.2" />
-                    <circle cx="92" cy="136" r="3.5" fill="#C9C2B5" />
-                    <circle cx="468" cy="136" r="3.5" fill="#C9C2B5" />
-                    {/* inner arc below top */}
-                    <path d="M 148 172 A 190 85 0 0 0 412 172" fill="none" stroke="#C9C2B5" strokeWidth="1" />
-                    <circle cx="280" cy="142" r="3" fill="#FFFEF7" stroke="#C9C2B5" strokeWidth="1.2" />
-                  </svg>
-
-                  <div className={`${styles.logoPos} ${styles.posTop}`}>
-                    <img src="/brand/bageltech/icon.svg" alt="" width={118} height={118} />
-                    <div className={styles.posTopLabel}>
-                      <strong>BagelTech</strong>
-                      <span>THE COMPANY</span>
-                    </div>
+              <div className={styles.diagramWrap}>
+                <div className={styles.brandSystem} aria-label="BagelTech brand system">
+                  <div className={styles.brandSystemIntro}>
+                    <span>One operating system</span>
+                    <strong>Three ways to move work forward.</strong>
                   </div>
-
-                  <div className={`${styles.logoPos} ${styles.posLeft}`}>
-                    <img src="/brand/bdb-labs/icon.svg" alt="" width={132} height={132} />
+                  <img
+                    className={styles.brandSheet}
+                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Sep%2028%2C%202026%2C%2005_54_14%20PM-YgOokRWvlvpyf7DJPnyHBtMbfO12pJ.png"
+                    alt="BagelTech, bdb labs, and Bagelle Parris Vargas brand marks"
+                    width={1680}
+                    height={942}
+                  />
+                  <div className={styles.brandSystemGrid}>
+                    <SmartLink href="/bageltech" className={styles.brandNode}><strong>BagelTech</strong><span>Company &amp; platform</span></SmartLink>
+                    <SmartLink href="/bdb-labs" className={styles.brandNode}><strong>bdb labs</strong><span>Research &amp; development</span></SmartLink>
+                    <SmartLink href="/bagelle-parris-vargas" className={styles.brandNode}><strong>Bagelle Parris Vargas</strong><span>Strategy &amp; advisory</span></SmartLink>
                   </div>
-
-                  <div className={`${styles.logoPos} ${styles.posRight}`}>
-                    <img src="/brand/bpv/icon.svg" alt="" width={160} height={160} />
-                  </div>
-
-                  <p className={styles.diagramCaption}>
-                    Research creates new possibilities. Experience turns them into impact. Together, we build what matters.
-                  </p>
                 </div>
               </div>
             </div>
