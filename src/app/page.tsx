@@ -20,40 +20,49 @@ export default function HomePage() {
   return (
     <MarketingLayout>
       <main className={styles.home}>
-        {/* ——— HERO + DIAGRAM ——— */}
         <section className={styles.hero}>
           <div className={styles.wrap}>
             <div className={styles.heroGrid}>
               <div className={styles.heroCopy}>
+                <p className={styles.eyebrow}>BagelTech / Ideas in motion</p>
                 <h1 className={styles.heroTitle}>
-                  Technology built to make complex things more understandable, governable, and <em>useful.</em>
+                  Build what&apos;s next. <em>Make it matter.</em>
                 </h1>
-                <hr className={styles.rule} />
                 <p className={styles.lede}>
-                  BagelTech develops intelligent systems, explores what comes next, and helps organizations put technology to work in the real world.
+                  A technology company with three focused practices: building useful products, researching intelligent systems, and helping leaders turn complexity into progress.
                 </p>
+                <SmartLink href="/about" className={styles.heroCta}>Meet the company <span aria-hidden="true">↗</span></SmartLink>
               </div>
-
-              <div className={styles.diagramWrap}>
-                <div className={styles.brandSystem} aria-label="BagelTech brand system">
-                  <div className={styles.brandSystemIntro}>
-                    <span>One operating system</span>
-                    <strong>Three ways to move work forward.</strong>
-                  </div>
-                  <img
-                    className={styles.brandSheet}
-                    src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/ChatGPT%20Image%20Sep%2028%2C%202026%2C%2005_54_14%20PM-YgOokRWvlvpyf7DJPnyHBtMbfO12pJ.png"
-                    alt="BagelTech, bdb labs, and Bagelle Parris Vargas brand marks"
-                    width={1680}
-                    height={942}
-                  />
-                  <div className={styles.brandSystemGrid}>
-                    <SmartLink href="/bageltech" className={styles.brandNode}><strong>BagelTech</strong><span>Company &amp; platform</span></SmartLink>
-                    <SmartLink href="/bdb-labs" className={styles.brandNode}><strong>bdb labs</strong><span>Research &amp; development</span></SmartLink>
-                    <SmartLink href="/bagelle-parris-vargas" className={styles.brandNode}><strong>Bagelle Parris Vargas</strong><span>Strategy &amp; advisory</span></SmartLink>
-                  </div>
-                </div>
+              <div className={styles.heroSignal} aria-hidden="true">
+                <span className={styles.signalLine} />
+                <span className={styles.signalLine} />
+                <span className={styles.signalLine} />
+                <span className={styles.signalCore} />
               </div>
+            </div>
+            <div className={styles.divisionIntro}>
+              <span className={styles.eyebrow}>The BagelTech group</span>
+              <p>One company. Three distinct ways to create momentum.</p>
+            </div>
+            <div className={styles.divisions}>
+              <SmartLink href="/bageltech" className={`${styles.division} ${styles.divisionBagel}`}>
+                <img src="/brand/bageltech/lockup-dark.svg" alt="BagelTech" width={260} height={52} />
+                <span>Company &amp; platform</span>
+                <strong>Technology for real work.</strong>
+                <b>Explore BagelTech ↗</b>
+              </SmartLink>
+              <SmartLink href="/bdb-labs" className={`${styles.division} ${styles.divisionLabs}`}>
+                <img src="/brand/bdb-labs/lockup-dark.svg" alt="bdb labs" width={260} height={52} />
+                <span>AI research &amp; development</span>
+                <strong>Questions worth building toward.</strong>
+                <b>Visit bdb labs ↗</b>
+              </SmartLink>
+              <SmartLink href="/bagelle-parris-vargas" className={`${styles.division} ${styles.divisionBpv}`}>
+                <img src="/brand/bpv/lockup-dark.svg" alt="Bagelle Parris Vargas" width={260} height={52} />
+                <span>Strategy &amp; advisory</span>
+                <strong>Clarity that creates movement.</strong>
+                <b>Meet BPV ↗</b>
+              </SmartLink>
             </div>
           </div>
         </section>
