@@ -52,19 +52,19 @@ export default function HomePage() {
             </div>
             <div className={styles.divisions}>
               <SmartLink href="/bageltech" className={`${styles.division} ${styles.divisionBagel}`}>
-                <img src="/brand/bageltech/lockup-dark.svg" alt="BagelTech" width={260} height={52} />
+                <img src="/brand/bageltech/BTBannerSmall.png" alt="BagelTech — Ideas in Motion" width={545} height={162} />
                 <span>Company &amp; platform</span>
                 <strong>Technology for real work.</strong>
                 <b>Explore BagelTech ↗</b>
               </SmartLink>
               <SmartLink href="/bdb-labs" className={`${styles.division} ${styles.divisionLabs}`}>
-                <img src="/brand/bdb-labs/lockup-dark.svg" alt="bdb labs" width={260} height={52} />
+                <img src="/brand/bdb-labs/BDBBannerSmall.png" alt="bdb labs — AI research and development" width={545} height={162} />
                 <span>AI research &amp; development</span>
                 <strong>Questions worth building toward.</strong>
                 <b>Visit bdb labs ↗</b>
               </SmartLink>
               <SmartLink href="/bagelle-parris-vargas" className={`${styles.division} ${styles.divisionBpv}`}>
-                <img src="/brand/bpv/lockup-dark.svg" alt="Bagelle Parris Vargas" width={260} height={52} />
+                <img src="/brand/bpv/BPVBannerSmall.png" alt="Bagelle Parris Vargas — Strategy, Advisory, Results" width={545} height={162} />
                 <span>Strategy &amp; advisory</span>
                 <strong>Clarity that creates movement.</strong>
                 <b>Meet BPV ↗</b>

@@ -22,7 +22,7 @@
 .divisions { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--line); }
 .division { min-height: 250px; padding: 1.5rem 1.35rem 1.25rem; border-right: 1px solid var(--line); color: var(--foreground); text-decoration: none; transition: background .2s ease, transform .2s ease; }
 .division:first-child { border-left: 1px solid var(--line); }.division:hover { background: var(--paper-100); transform: translateY(-4px); }
-.division img { width: min(100%, 230px); height: 48px; object-fit: contain; object-position: left center; margin-bottom: 2.2rem; }
+.division img { display: block; width: calc(100% + 2.7rem); height: auto; aspect-ratio: 545 / 162; object-fit: cover; object-position: center; margin: -1.5rem -1.35rem 1.65rem; }
 .division span { display: block; margin-bottom: .75rem; color: var(--muted); font-family: var(--font-code-mono), monospace; font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; }
 .division strong { display: block; max-width: 13ch; font-family: var(--font-editorial-serif), Georgia, serif; font-size: 1.55rem; font-weight: 500; letter-spacing: -.03em; line-height: 1.05; }.division b { display: block; margin-top: 2.3rem; color: var(--accent); font-family: var(--font-code-mono), monospace; font-size: .6rem; letter-spacing: .1em; text-transform: uppercase; }
 .divisionLabs { background: #e9f5f4; }.divisionBpv { background: #f4ede5; }
