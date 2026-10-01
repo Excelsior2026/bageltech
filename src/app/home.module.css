@@ -14,6 +14,9 @@
 .signalLine { position: absolute; left: -10%; width: 125%; height: 1px; background: var(--accent); transform: rotate(-24deg); transform-origin: left center; opacity: .65; }
 .signalLine:nth-child(1) { top: 33%; }.signalLine:nth-child(2) { top: 49%; opacity: .28; }.signalLine:nth-child(3) { top: 65%; opacity: .16; }
 .signalCore { position: absolute; right: 15%; top: 42%; width: 52px; height: 52px; border: 1px solid var(--accent); border-radius: 50%; box-shadow: 0 0 0 12px var(--background), 0 0 0 13px var(--accent); }
+.accentLine { position: absolute; left: -10%; width: 125%; height: 1px; background: rgba(163,61,61,.42); transform: rotate(-24deg); transform-origin: left center; opacity: .52; }
+.accentLine:nth-child(1) { top: 33%; }.accentLine:nth-child(2) { top: 49%; opacity: .28; }.accentLine:nth-child(3) { top: 65%; opacity: .16; }
+.accentCircle { position: absolute; right: 15%; top: 42%; width: 52px; height: 52px; border: 1.5px solid rgba(163,61,61,.35); border-radius: 50%; box-shadow: 0 0 0 12px var(--background), 0 0 0 13.5px rgba(163,61,61,.22); }
 .divisionIntro { display: flex; align-items: baseline; justify-content: space-between; gap: 2rem; margin-top: 5.5rem; padding-bottom: 1rem; border-bottom: 1px solid var(--line); }
 .divisionIntro .eyebrow { margin: 0; }.divisionIntro p { margin: 0; color: var(--muted); font-family: var(--font-editorial-serif), Georgia, serif; font-size: 1.15rem; }
 .divisions { display: grid; grid-template-columns: repeat(3, 1fr); border-bottom: 1px solid var(--line); }

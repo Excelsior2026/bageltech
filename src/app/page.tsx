@@ -39,6 +39,12 @@ export default function HomePage() {
                 <span className={styles.signalLine} />
                 <span className={styles.signalCore} />
               </div>
+              <div className={styles.heroSignal} aria-hidden="true">
+                <span className={styles.accentLine} />
+                <span className={styles.accentLine} />
+                <span className={styles.accentLine} />
+                <span className={styles.accentCircle} />
+              </div>
             </div>
             <div className={styles.divisionIntro}>
               <span className={styles.eyebrow}>The BagelTech group</span>
