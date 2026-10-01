@@ -24,26 +24,19 @@ export default function HomePage() {
           <div className={styles.wrap}>
             <div className={styles.heroGrid}>
               <div className={styles.heroCopy}>
-                <p className={styles.eyebrow}>BagelTech / Ideas in motion</p>
                 <h1 className={styles.heroTitle}>
-                  Build what&apos;s next. <em>Make it matter.</em>
+                  Technology built to make complex things more understandable, governable, and <em>useful.</em>
                 </h1>
+                <hr className={styles.rule} />
                 <p className={styles.lede}>
-                  A technology company with three focused practices: building useful products, researching intelligent systems, and helping leaders turn complexity into progress.
+                  BagelTech develops intelligent systems, explores what comes next, and helps organizations put technology to work in the real world.
                 </p>
-                <SmartLink href="/about" className={styles.heroCta}>Meet the company <span aria-hidden="true">↗</span></SmartLink>
               </div>
               <div className={styles.heroSignal} aria-hidden="true">
                 <span className={styles.signalLine} />
                 <span className={styles.signalLine} />
                 <span className={styles.signalLine} />
                 <span className={styles.signalCore} />
-              </div>
-              <div className={styles.heroSignal} aria-hidden="true">
-                <span className={styles.accentLine} />
-                <span className={styles.accentLine} />
-                <span className={styles.accentLine} />
-                <span className={styles.accentCircle} />
               </div>
             </div>
             <div className={styles.divisionIntro}>

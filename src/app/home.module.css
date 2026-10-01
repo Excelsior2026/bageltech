@@ -1,13 +1,13 @@
 /* ——— Homepage: editorial brand system ——— */
 .home { display: flex; flex-direction: column; background: var(--background); }
 .wrap { width: min(1240px, calc(100% - 3rem)); margin: 0 auto; }
-.hero { padding: clamp(3rem, 8vw, 7rem) 0 3.5rem; background: var(--background); }
-.heroGrid { display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(220px, 0.8fr); gap: 4rem; align-items: end; }
-.heroCopy { display: flex; flex-direction: column; max-width: 680px; }
-.eyebrow { margin: 0 0 1.25rem; color: var(--accent); font-family: var(--font-code-mono), monospace; font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; }
-.heroTitle { margin: 0; color: var(--foreground); font-family: var(--font-editorial-serif), Georgia, serif; font-size: clamp(3rem, 7vw, 6.8rem); font-weight: 500; letter-spacing: -.065em; line-height: .92; max-width: 8ch; }
+.hero { padding: clamp(3rem, 7vw, 5rem) 0 3.5rem; background: var(--background); }
+.heroGrid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(340px, 1.15fr); gap: 3rem; align-items: center; }
+.heroCopy { display: flex; flex-direction: column; max-width: 430px; }
+.heroTitle { margin: 0; color: var(--foreground); font-family: var(--font-editorial-serif), Georgia, serif; font-size: clamp(2.35rem, 4.3vw, 3.65rem); font-weight: 500; letter-spacing: -.055em; line-height: .98; }
 .heroTitle em { color: var(--accent); font-style: normal; }
-.lede { margin: 1.75rem 0 0; max-width: 36rem; color: var(--muted); font-size: clamp(.95rem, 1.5vw, 1.1rem); line-height: 1.65; }
+.rule { width: 52px; height: 2px; margin: 1.4rem 0 1.1rem; border: 0; background: var(--accent); }
+.lede { margin: 0; max-width: 26rem; color: var(--muted); font-family: var(--font-code-mono), monospace; font-size: .78rem; line-height: 1.65; }
 .heroCta { display: inline-flex; width: fit-content; margin-top: 2rem; padding-bottom: .45rem; border-bottom: 1px solid var(--accent); color: var(--foreground); font-family: var(--font-code-mono), monospace; font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-decoration: none; text-transform: uppercase; }
 .heroCta span { margin-left: .65rem; color: var(--accent); font-size: 1rem; }
 .heroSignal { position: relative; height: 220px; align-self: center; overflow: hidden; border-left: 1px solid var(--line); background: radial-gradient(circle at 68% 48%, rgba(163,61,61,.08), transparent 31%), linear-gradient(135deg, transparent 49.8%, var(--line) 50%, transparent 50.2%); }
