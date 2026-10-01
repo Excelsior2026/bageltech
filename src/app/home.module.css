@@ -10,7 +10,7 @@
 .lede { margin: 1.75rem 0 0; max-width: 36rem; color: var(--muted); font-size: clamp(.95rem, 1.5vw, 1.1rem); line-height: 1.65; }
 .heroCta { display: inline-flex; width: fit-content; margin-top: 2rem; padding-bottom: .45rem; border-bottom: 1px solid var(--accent); color: var(--foreground); font-family: var(--font-code-mono), monospace; font-size: .68rem; font-weight: 700; letter-spacing: .1em; text-decoration: none; text-transform: uppercase; }
 .heroCta span { margin-left: .65rem; color: var(--accent); font-size: 1rem; }
-.heroSignal { position: relative; height: 270px; overflow: hidden; border-left: 1px solid var(--line); }
+.heroSignal { position: relative; height: 220px; align-self: center; overflow: hidden; border-left: 1px solid var(--line); background: radial-gradient(circle at 68% 48%, rgba(163,61,61,.08), transparent 31%), linear-gradient(135deg, transparent 49.8%, var(--line) 50%, transparent 50.2%); }
 .signalLine { position: absolute; left: -10%; width: 125%; height: 1px; background: var(--accent); transform: rotate(-24deg); transform-origin: left center; opacity: .65; }
 .signalLine:nth-child(1) { top: 33%; }.signalLine:nth-child(2) { top: 49%; opacity: .28; }.signalLine:nth-child(3) { top: 65%; opacity: .16; }
 .signalCore { position: absolute; right: 15%; top: 42%; width: 52px; height: 52px; border: 1px solid var(--accent); border-radius: 50%; box-shadow: 0 0 0 12px var(--background), 0 0 0 13px var(--accent); }
