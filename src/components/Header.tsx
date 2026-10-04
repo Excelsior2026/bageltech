@@ -28,7 +28,7 @@ export default function Header() {
     <header className={styles.header}>
       <div className={styles.headerInner}>
         <Link href="/" className={styles.logo} aria-label="BagelTech home">
-          <img src="/brand/bageltech/lockup-light.svg" alt="BagelTech" className={styles.logoImg} width={260} height={52} />
+          <img src="/brand/bageltech/lockup-dark.svg" alt="BagelTech" className={styles.logoImg} width={260} height={52} />
         </Link>
 
         <nav className={styles.desktopNav} aria-label="Main navigation">

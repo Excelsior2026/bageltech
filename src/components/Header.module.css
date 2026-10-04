@@ -22,9 +22,11 @@
   flex-shrink: 0;
 }
 .logoImg {
-  height: 38px;
-  width: auto;
   display: block;
+  width: 132px;
+  height: 34px;
+  object-fit: contain;
+  object-position: left center;
 }
 
 .desktopNav {

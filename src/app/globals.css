@@ -1,32 +1,32 @@
 @import "tailwindcss";
 
 :root {
-  --color-ink-950: #081426;
-  --color-ink-900: #0e223d;
-  --color-paper-50: #FFFEF7;
-  --color-paper-100: #F5F0E6;
-  --color-paper: #FFFEF7;
-  --color-bagel-gold: #d4a94d;
-  --color-bagel-gold-dark: #a87b22;
-  --color-bagel-teal: #25d6c8;
-  --color-bagel-teal-soft: #7feae1;
-  --color-bagel-navy: #0A2342;
-  --color-bagel-navy-2: #112A4E;
-  --color-garnet: #8A1E33;
-  --color-garnet-deep: #6E182A;
-  --color-garnet-2: #9a3838;
-  --color-line: #E8E1D4;
-  --color-line-2: #D9D0BF;
-  --color-ink: #0F2F4D;
-  --color-ink-2: #1B3A5A;
-  --color-stone: #5A6576;
-  --color-stone-2: #8A95A7;
+  --color-ink-950: #071018;
+  --color-ink-900: #0D1C24;
+  --color-paper-50: #FAF9F5;
+  --color-paper-100: #F1EEE7;
+  --color-paper: #FAF9F5;
+  --color-bagel-gold: #C78A3B;
+  --color-bagel-gold-dark: #8F5A22;
+  --color-bagel-teal: #0C8F91;
+  --color-bagel-teal-soft: #D9F0ED;
+  --color-bagel-navy: #102C3A;
+  --color-bagel-navy-2: #183C4A;
+  --color-garnet: #A33D3D;
+  --color-garnet-deep: #792E32;
+  --color-garnet-2: #C7654F;
+  --color-line: #D9DCD6;
+  --color-line-2: #BEC5BE;
+  --color-ink: #0D1C24;
+  --color-ink-2: #24414A;
+  --color-stone: #5C686B;
+  --color-stone-2: #899396;
 
-  --background: #FFFEF7;
-  --foreground: #0F2F4D;
-  --muted: #5A6576;
-  --border: #E8E1D4;
-  --accent: #8A1E33;
+  --background: #FAF9F5;
+  --foreground: #0D1C24;
+  --muted: #5C686B;
+  --border: #D9DCD6;
+  --accent: #A33D3D;
 }
 
 @theme inline {

@@ -20,7 +20,6 @@ export default function HomePage() {
   return (
     <MarketingLayout>
       <main className={styles.home}>
-        {/* ——— HERO + DIAGRAM ——— */}
         <section className={styles.hero}>
           <div className={styles.wrap}>
             <div className={styles.heroGrid}>
@@ -33,41 +32,36 @@ export default function HomePage() {
                   BagelTech develops intelligent systems, explores what comes next, and helps organizations put technology to work in the real world.
                 </p>
               </div>
-
-              <div className={styles.diagramWrap} aria-hidden="true">
-                <div className={styles.diagramInner}>
-                  {/* Arcs */}
-                  <svg className={styles.diagramSvg} viewBox="0 0 560 260" preserveAspectRatio="none">
-                    {/* outer arc over top */}
-                    <path d="M 92 136 A 210 210 0 0 1 468 136" fill="none" stroke="#C9C2B5" strokeWidth="1.2" />
-                    <circle cx="92" cy="136" r="3.5" fill="#C9C2B5" />
-                    <circle cx="468" cy="136" r="3.5" fill="#C9C2B5" />
-                    {/* inner arc below top */}
-                    <path d="M 148 172 A 190 85 0 0 0 412 172" fill="none" stroke="#C9C2B5" strokeWidth="1" />
-                    <circle cx="280" cy="142" r="3" fill="#FFFEF7" stroke="#C9C2B5" strokeWidth="1.2" />
-                  </svg>
-
-                  <div className={`${styles.logoPos} ${styles.posTop}`}>
-                    <img src="/brand/bageltech/icon.svg" alt="" width={118} height={118} />
-                    <div className={styles.posTopLabel}>
-                      <strong>BagelTech</strong>
-                      <span>THE COMPANY</span>
-                    </div>
-                  </div>
-
-                  <div className={`${styles.logoPos} ${styles.posLeft}`}>
-                    <img src="/brand/bdb-labs/icon.svg" alt="" width={132} height={132} />
-                  </div>
-
-                  <div className={`${styles.logoPos} ${styles.posRight}`}>
-                    <img src="/brand/bpv/icon.svg" alt="" width={160} height={160} />
-                  </div>
-
-                  <p className={styles.diagramCaption}>
-                    Research creates new possibilities. Experience turns them into impact. Together, we build what matters.
-                  </p>
-                </div>
+              <div className={styles.heroSignal} aria-hidden="true">
+                <span className={styles.signalLine} />
+                <span className={styles.signalLine} />
+                <span className={styles.signalLine} />
+                <span className={styles.signalCore} />
               </div>
+            </div>
+            <div className={styles.divisionIntro}>
+              <span className={styles.eyebrow}>The BagelTech group</span>
+              <p>One company. Three distinct ways to create momentum.</p>
+            </div>
+            <div className={styles.divisions}>
+              <SmartLink href="/bageltech" className={`${styles.division} ${styles.divisionBagel}`}>
+                <img src="/brand/bageltech/BTBannerSmall.png" alt="BagelTech — Ideas in Motion" width={545} height={162} />
+                <span>Company &amp; platform</span>
+                <strong>Technology for real work.</strong>
+                <b>Explore BagelTech ↗</b>
+              </SmartLink>
+              <SmartLink href="/bdb-labs" className={`${styles.division} ${styles.divisionLabs}`}>
+                <img src="/brand/bdb-labs/BDBBannerSmall.png" alt="bdb labs — AI research and development" width={545} height={162} />
+                <span>AI research &amp; development</span>
+                <strong>Questions worth building toward.</strong>
+                <b>Visit bdb labs ↗</b>
+              </SmartLink>
+              <SmartLink href="/bagelle-parris-vargas" className={`${styles.division} ${styles.divisionBpv}`}>
+                <img src="/brand/bpv/BPVBannerSmall.png" alt="Bagelle Parris Vargas — Strategy, Advisory, Results" width={545} height={162} />
+                <span>Strategy &amp; advisory</span>
+                <strong>Clarity that creates movement.</strong>
+                <b>Meet BPV ↗</b>
+              </SmartLink>
             </div>
           </div>
         </section>
