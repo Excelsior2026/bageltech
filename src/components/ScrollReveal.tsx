@@ -1,11 +1,33 @@
 "use client";
 
-import { useEffect, useRef, useState, ReactNode } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore, ReactNode } from "react";
 
 interface ScrollRevealProps {
   children: ReactNode;
   className?: string;
   delay?: number;
+}
+
+const REDUCED_MOTION_QUERY = "(prefers-reduced-motion: reduce)";
+
+/**
+ * Read the motion preference through useSyncExternalStore rather than setting
+ * state inside an effect. This keeps the preference correct on the very first
+ * render — important here, because a reduced-motion visitor should never see
+ * a frame of the offset/animated state.
+ */
+function subscribeToReducedMotion(onChange: () => void) {
+  const mq = window.matchMedia(REDUCED_MOTION_QUERY);
+  mq.addEventListener("change", onChange);
+  return () => mq.removeEventListener("change", onChange);
+}
+
+function getReducedMotionSnapshot() {
+  return window.matchMedia(REDUCED_MOTION_QUERY).matches;
+}
+
+function getReducedMotionServerSnapshot() {
+  return false;
 }
 
 export default function ScrollReveal({
@@ -15,15 +37,14 @@ export default function ScrollReveal({
 }: ScrollRevealProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
-  const [reducedMotion, setReducedMotion] = useState(false);
+  const reducedMotion = useSyncExternalStore(
+    subscribeToReducedMotion,
+    getReducedMotionSnapshot,
+    getReducedMotionServerSnapshot
+  );
 
   useEffect(() => {
-    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
-    if (mq.matches) {
-      setReducedMotion(true);
-      setIsVisible(true);
-      return;
-    }
+    if (reducedMotion) return;
 
     const fallback = window.setTimeout(() => {
       setIsVisible(true);
@@ -45,7 +66,7 @@ export default function ScrollReveal({
       window.clearTimeout(fallback);
       observer.disconnect();
     };
-  }, [delay]);
+  }, [delay, reducedMotion]);
 
   if (reducedMotion) {
     return <div ref={ref} className={className}>{children}</div>;

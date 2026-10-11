@@ -1,4 +1,5 @@
 ---
+slug: "build-the-path-for-uncertainty"
 title: "Build the Path for Uncertainty Before Launch"
 date: "2026-05-15"
 author: "William Parris"

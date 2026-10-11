@@ -1,6 +1,14 @@
 import type { Metadata } from "next";
 import MarketingLayout from "@/components/MarketingLayout";
 import SmartLink from "@/components/SmartLink";
+import BrandMark from "@/components/BrandMark";
+import {
+  FEATURED_PRODUCTS,
+  PRODUCTS,
+  PROOF_POINTS,
+  WORKSTREAMS,
+} from "@/content/site";
+import { WRITING } from "@/content/writing";
 import styles from "./home.module.css";
 
 export const metadata: Metadata = {
@@ -16,146 +24,164 @@ export const metadata: Metadata = {
   },
 };
 
+const featured = FEATURED_PRODUCTS.map((slug) => PRODUCTS.find((p) => p.slug === slug)).filter(
+  (p): p is (typeof PRODUCTS)[number] => Boolean(p),
+);
+
+const latestWriting = [...WRITING]
+  .sort((a, b) => new Date(b.publishedAt).getTime() - new Date(a.publishedAt).getTime())
+  .slice(0, 3);
+
+function formatDate(iso: string) {
+  return new Date(iso).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
+}
+
 export default function HomePage() {
   return (
     <MarketingLayout>
       <main className={styles.home}>
+        {/* ── HERO ───────────────────────────────────────── */}
         <section className={styles.hero}>
           <div className={styles.wrap}>
-            <div className={styles.heroGrid}>
-              <div className={styles.heroCopy}>
-                <h1 className={styles.heroTitle}>
-                  Technology built to make complex things more understandable, governable, and <em>useful.</em>
-                </h1>
-                <hr className={styles.rule} />
-                <p className={styles.lede}>
-                  BagelTech develops intelligent systems, explores what comes next, and helps organizations put technology to work in the real world.
-                </p>
-              </div>
-              <div className={styles.heroSignal} aria-hidden="true">
-                <span className={styles.signalLine} />
-                <span className={styles.signalLine} />
-                <span className={styles.signalLine} />
-                <span className={styles.signalCore} />
-              </div>
+            <p className={styles.eyebrow}>Independent research, systems, and advisory practice</p>
+            <h1 className={styles.heroTitle}>
+              Technology built to make complex things more understandable,
+              governable, and <em>useful.</em>
+            </h1>
+            <p className={styles.lede}>
+              BagelTech develops intelligent systems, explores what comes next, and helps
+              organizations put technology to work in the real world.
+            </p>
+
+            <div className={styles.heroActions}>
+              <SmartLink href="/products" className={styles.btnPrimary}>
+                Explore our work
+              </SmartLink>
+              <SmartLink href="/contact" className={styles.btnGhost}>
+                Start a conversation
+              </SmartLink>
             </div>
-            <div className={styles.divisionIntro}>
-              <span className={styles.eyebrow}>The BagelTech group</span>
-              <p>One company. Three distinct ways to create momentum.</p>
-            </div>
+
+            <dl className={styles.proofRow}>
+              {PROOF_POINTS.map((point) => (
+                <div key={point.label} className={styles.proofItem}>
+                  <dt className={styles.proofValue}>{point.value}</dt>
+                  <dd className={styles.proofLabel}>{point.label}</dd>
+                </div>
+              ))}
+            </dl>
+          </div>
+        </section>
+
+        {/* ── DIVISIONS ───────────────────────────────────── */}
+        <section className={styles.divisionsSection}>
+          <div className={styles.wrap}>
+            <header className={styles.sectionHead}>
+              <h2 className={styles.sectionTitle}>One group. Three ways to create momentum.</h2>
+              <p className={styles.sectionLead}>
+                Each division has its own remit, its own audience, and its own standard of proof.
+              </p>
+            </header>
+
             <div className={styles.divisions}>
-              <SmartLink href="/bageltech" className={`${styles.division} ${styles.divisionBagel}`}>
-                <img src="/brand/bageltech/BTBannerSmall.png" alt="BagelTech — Ideas in Motion" width={545} height={162} />
-                <span>Company &amp; platform</span>
-                <strong>Technology for real work.</strong>
-                <b>Explore BagelTech ↗</b>
-              </SmartLink>
-              <SmartLink href="/bdb-labs" className={`${styles.division} ${styles.divisionLabs}`}>
-                <img src="/brand/bdb-labs/BDBBannerSmall.png" alt="bdb labs — AI research and development" width={545} height={162} />
-                <span>AI research &amp; development</span>
-                <strong>Questions worth building toward.</strong>
-                <b>Visit bdb labs ↗</b>
-              </SmartLink>
-              <SmartLink href="/bagelle-parris-vargas" className={`${styles.division} ${styles.divisionBpv}`}>
-                <img src="/brand/bpv/BPVBannerSmall.png" alt="Bagelle Parris Vargas — Strategy, Advisory, Results" width={545} height={162} />
-                <span>Strategy &amp; advisory</span>
-                <strong>Clarity that creates movement.</strong>
-                <b>Meet BPV ↗</b>
-              </SmartLink>
+              {WORKSTREAMS.map((stream) => (
+                <SmartLink key={stream.slug} href={stream.href} className={styles.division}>
+                  <BrandMark brand={stream.brand} variant="icon" size="compact" />
+                  <p className={styles.divisionRole}>{stream.role}</p>
+                  <h3 className={styles.divisionName}>{stream.title}</h3>
+                  <p className={styles.divisionSummary}>{stream.summary}</p>
+                  <span className={styles.divisionCta}>
+                    {stream.cta} <span aria-hidden="true">→</span>
+                  </span>
+                </SmartLink>
+              ))}
             </div>
           </div>
         </section>
 
-        {/* ——— TRIPTYCH ——— */}
-        <section className={styles.triptych} aria-label="Three pillars">
-          <SmartLink href="/products" className={`${styles.panel} ${styles.panelNavy}`}>
-            <p className={styles.kicker}>Build</p>
-            <h2 className={styles.panelTitle}>Products</h2>
-            <div className={styles.panelRule} />
-            <p className={styles.panelText}>Software solutions designed to solve real operational problems and improve how work gets done.</p>
-            <span className={styles.panelCta}>EXPLORE PRODUCTS →</span>
-            <svg className={styles.panelIcon} viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.4" aria-hidden="true">
-              <path d="M32 10 L54 20 L32 30 L10 20 Z" /><path d="M10 20 V40 L32 50 L54 40 V20" /><path d="M32 30 V50" />
-            </svg>
-          </SmartLink>
+        {/* ── PRODUCTS ────────────────────────────────────── */}
+        <section className={styles.productsSection}>
+          <div className={styles.wrap}>
+            <header className={styles.sectionHeadSplit}>
+              <div>
+                <p className={styles.eyebrow}>Products</p>
+                <h2 className={styles.sectionTitle}>
+                  Systems that help teams work better every day.
+                </h2>
+              </div>
+              <SmartLink href="/products" className={styles.inlineLink}>
+                View all products <span aria-hidden="true">→</span>
+              </SmartLink>
+            </header>
 
-          <SmartLink href="/bdb-labs/research" className={`${styles.panel} ${styles.panelNavy}`}>
-            <p className={styles.kicker}>Explore</p>
-            <h2 className={styles.panelTitle}>BDB Labs</h2>
-            <div className={styles.panelRule} />
-            <p className={styles.panelText}>Pushing the boundaries of intelligence, governance, reasoning, and trustworthy systems through research and development.</p>
-            <span className={styles.panelCta}>EXPLORE RESEARCH →</span>
-            <svg className={styles.panelIcon} viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.2" aria-hidden="true">
-              <circle cx="32" cy="32" r="22" /><circle cx="32" cy="32" r="14" /><circle cx="32" cy="32" r="6" />
-              <path d="M32 4 V60 M4 32 H60" />
-            </svg>
-          </SmartLink>
-
-          <SmartLink href="/bpv/advisory" className={`${styles.panel} ${styles.panelGarnet}`}>
-            <p className={styles.kicker}>Deliver</p>
-            <h2 className={styles.panelTitle}>Bagelle Parris Vargas</h2>
-            <div className={styles.panelRule} />
-            <p className={styles.panelText}>Advisory and professional services that help organizations navigate complexity, adopt technology responsibly, and achieve results.</p>
-            <span className={styles.panelCta}>EXPLORE SERVICES →</span>
-            <svg className={`${styles.panelIcon} ${styles.panelIconGarnet}`} viewBox="0 0 64 64" fill="none" stroke="currentColor" strokeWidth="1.3" aria-hidden="true">
-              <circle cx="32" cy="18" r="8" /><circle cx="16" cy="40" r="7" /><circle cx="48" cy="40" r="7" />
-              <path d="M12 56 C12 44 20 38 32 38 C44 38 52 44 52 56" />
-            </svg>
-          </SmartLink>
+            <div className={styles.productGrid}>
+              {featured.map((product) => (
+                <SmartLink key={product.slug} href={product.href} className={styles.productCard}>
+                  <div className={styles.productCardTop}>
+                    <h3 className={styles.productName}>{product.title}</h3>
+                    <span className={styles.productStatus}>{product.status}</span>
+                  </div>
+                  <p className={styles.productCategory}>{product.category}</p>
+                  <p className={styles.productSummary}>{product.summary}</p>
+                  <span className={styles.productCta}>
+                    Learn more <span aria-hidden="true">→</span>
+                  </span>
+                </SmartLink>
+              ))}
+            </div>
+          </div>
         </section>
 
-        {/* ——— PRODUCTS + INSIGHTS ——— */}
-        <section className={styles.productsStrip}>
+        {/* ── WRITING ─────────────────────────────────────── */}
+        <section className={styles.writingSection}>
           <div className={styles.wrap}>
-            <div className={styles.stripGrid}>
-              <div className={styles.sideHead}>
-                <p className={styles.sideKicker}>OUR PRODUCTS</p>
-                <h2 className={styles.sideTitle}>Systems that help teams work better every day.</h2>
-                <SmartLink href="/products" className={styles.sideLink}>VIEW ALL PRODUCTS →</SmartLink>
+            <header className={styles.sectionHeadSplit}>
+              <div>
+                <p className={styles.eyebrow}>Ideas &amp; insights</p>
+                <h2 className={styles.sectionTitle}>
+                  Thoughts on technology, society, and intelligence.
+                </h2>
               </div>
+              <SmartLink href="/insights" className={styles.inlineLink}>
+                Read the latest <span aria-hidden="true">→</span>
+              </SmartLink>
+            </header>
 
-              <div className={styles.cardsGrid}>
-                <SmartLink href="/contractors" className={styles.productCard}>
-                  <span className={`${styles.cardIcon} ${styles.cardIconJ}`}>J</span>
-                  <h3 className={styles.cardTitle}>J-Box</h3>
-                  <p className={styles.cardDesc}>The operating platform for small trade contractors.</p>
-                  <span className={styles.cardCta}>LEARN MORE →</span>
+            <div className={styles.writingGrid}>
+              {latestWriting.map((item) => (
+                <SmartLink key={item.slug} href={item.sourceUrl} className={styles.writingCard}>
+                  <p className={styles.writingMeta}>
+                    <span className={styles.writingCategory}>{item.category}</span>
+                    <time dateTime={item.publishedAt}>{formatDate(item.publishedAt)}</time>
+                  </p>
+                  <h3 className={styles.writingTitle}>{item.title}</h3>
+                  {item.excerpt ? <p className={styles.writingExcerpt}>{item.excerpt}</p> : null}
                 </SmartLink>
+              ))}
+            </div>
+          </div>
+        </section>
 
-                <SmartLink href="/products" className={styles.productCard}>
-                  <span className={`${styles.cardIcon} ${styles.cardIconShield}`}>
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2L4 5v6c0 5 3.4 9.1 8 10 4.6-.9 8-5 8-10V5L12 2zm-1 14H8v-2h3V9h2v5h3v2h-3v1h-2v-1z"/></svg>
-                  </span>
-                  <h3 className={styles.cardTitle}>Intelligent Contract Management</h3>
-                  <p className={styles.cardDesc}>Contract intelligence, obligations, compliance, and operational oversight.</p>
-                  <span className={styles.cardCta}>LEARN MORE →</span>
-                </SmartLink>
-
-                <SmartLink href="/products" className={styles.productCard}>
-                  <span className={`${styles.cardIcon} ${styles.cardIconCap}`}>
-                    <svg width="26" height="22" viewBox="0 0 24 20" fill="currentColor" aria-hidden="true"><path d="M12 3L1 9l11 6 9-4.9V16h2V9L12 3zM5 11.2l7 3.8 7-3.8-7-3.8-7 3.8z"/></svg>
-                  </span>
-                  <h3 className={styles.cardTitle}>TrueTraining</h3>
-                  <p className={styles.cardDesc}>Adaptive institutional intelligence infrastructure.</p>
-                  <span className={styles.cardCta}>LEARN MORE →</span>
-                </SmartLink>
-
-                <SmartLink href="/products" className={styles.productCard}>
-                  <span className={`${styles.cardIcon} ${styles.cardIconPrint}`}>
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" aria-hidden="true"><path d="M12 3a7 7 0 0 1 7 7v5M12 3a7 7 0 0 0-7 7v5M12 7a3 3 0 0 1 3 3v5M12 7a3 3 0 0 0-3 3v5"/><path d="M9 18c0-1 .7-1.5 1.5-1.5h3c.8 0 1.5.5 1.5 1.5v2H9z"/></svg>
-                  </span>
-                  <h3 className={styles.cardTitle}>TruePresence</h3>
-                  <p className={styles.cardDesc}>Privacy-preserving interaction authenticity and risk signals.</p>
-                  <span className={styles.cardCta}>LEARN MORE →</span>
-                </SmartLink>
+        {/* ── CTA ─────────────────────────────────────────── */}
+        <section className={styles.ctaSection}>
+          <div className={styles.wrap}>
+            <div className={styles.ctaBand}>
+              <div>
+                <h2 className={styles.ctaTitle}>
+                  Consequential systems deserve accountable operators.
+                </h2>
+                <p className={styles.ctaLead}>
+                  If you are evaluating governance, modernization, or a platform decision,
+                  the fastest way forward is a short conversation.
+                </p>
               </div>
-
-              <div className={styles.insightsSide}>
-                <p className={styles.sideKicker}>IDEAS &amp; INSIGHTS</p>
-                <h2 className={styles.insightsTitle}>Thoughts on technology, society, and intelligence.</h2>
-                <p className={styles.insightsDesc}>Articles, essays, research notes, and perspectives from across BagelTech.</p>
-                <SmartLink href="/insights" className={styles.sideLink}>READ THE LATEST →</SmartLink>
-              </div>
+              <SmartLink href="/contact" className={styles.btnLight}>
+                Talk to us
+              </SmartLink>
             </div>
           </div>
         </section>

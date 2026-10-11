@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { existsSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import test from "node:test";
 
@@ -117,10 +117,70 @@ test("separates publications and insights into distinct curated content sources"
 
 test("homepage orients visitors to the three workstreams", () => {
   const homepage = read("src/app/page.tsx");
+  const site = read("src/content/site.ts");
+
+  // The homepage renders the workstreams from shared content rather than
+  // hardcoding them, so assert the wiring and the data itself.
+  assert.match(homepage, /WORKSTREAMS/, "homepage should render the shared workstreams");
+  assert.match(homepage, /stream\.href/, "homepage should link to each workstream's own href");
 
   ["BagelTech", "BDB Labs", "Bagelle Parris Vargas"].forEach((label) => {
-    assert.match(homepage, new RegExp(label), `homepage should route visitors to ${label}`);
+    assert.match(site, new RegExp(label), `workstream content should include ${label}`);
   });
+
+  // Each workstream must declare a known brand key so the shared BrandMark
+  // component can render its identity.
+  ["bageltech", "bdb-labs", "bpv"].forEach((brand) => {
+    assert.match(site, new RegExp(`brand: "${brand}"`), `workstreams should declare the ${brand} brand`);
+  });
+});
+
+test("every workstream and product link resolves to a real route or external URL", () => {
+  const site = read("src/content/site.ts");
+
+  // Collect href values declared inside WORKSTREAMS and PRODUCTS.
+  const hrefs = [...site.matchAll(/href:\s*"([^"]+)"/g)].map((m) => m[1]);
+  const internal = hrefs.filter((href) => href.startsWith("/") && !href.includes("${"));
+
+  assert.ok(internal.length > 0, "site content should declare internal links");
+
+  internal.forEach((href) => {
+    const route = `src/app${href}/page.tsx`;
+    assert.equal(exists(route), true, `${href} should resolve to a route (${route})`);
+  });
+
+  // The retired pre-namespaced paths must not reappear in content.
+  ["/research", "/advisory", "/publications", "/repository", "/case-studies"].forEach((stale) => {
+    assert.doesNotMatch(site, new RegExp(`href: "${stale}"`), `${stale} should not be linked directly`);
+  });
+});
+
+test("published writing links match the slugs the article router serves", () => {
+  const writing = read("src/content/writing.ts");
+  const articles = read("src/lib/articles.ts");
+
+  // Writing must link at the canonical /insights/ path, never /writing/.
+  assert.doesNotMatch(writing, /"\/writing\//, "writing should not link through the retired /writing/ path");
+
+  const links = [...writing.matchAll(/sourceUrl:\s*"\/insights\/([a-z0-9-]+)"/g)].map((m) => m[1]);
+  assert.ok(links.length >= 12, "every published piece should link to an insights article");
+
+  // Each declared slug must be backed by a real article file, otherwise the
+  // link 404s. Compare against the slug frontmatter in content/articles.
+  const dir = join(root, "content", "articles");
+  const declared = readdirSync(dir)
+    .filter((f) => f.endsWith(".md"))
+    .map((f) => {
+      const raw = readFileSync(join(dir, f), "utf8");
+      const m = raw.match(/^slug:\s*"([^"]+)"/m);
+      return m ? m[1] : f.replace(/\.md$/, "");
+    });
+
+  links.forEach((slug) => {
+    assert.ok(declared.includes(slug), `/insights/${slug} should have a backing article file`);
+  });
+
+  assert.match(articles, /canonicalSlug/, "article router should resolve declared slugs");
 });
 
 test("implements a document repository surface", () => {

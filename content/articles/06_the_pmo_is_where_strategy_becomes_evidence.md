@@ -1,4 +1,5 @@
 ---
+slug: "pmo-strategy-becomes-evidence"
 title: "The PMO Is Where Strategy Becomes Evidence"
 date: "2026-04-01"
 author: "William Parris"

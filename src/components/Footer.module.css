@@ -7,12 +7,11 @@
   display: grid;
   width: min(1280px, calc(100vw - 2rem));
   margin: 0 auto;
-  grid-template-columns: 1.35fr 0.75fr 0.75fr 0.75fr 1fr;
-  gap: 2rem;
+  grid-template-columns: 1.5fr repeat(4, 0.8fr) 1fr;
+  gap: 1.75rem;
   align-items: start;
 }
 .brandBlock { display: flex; flex-direction: column; gap: 0.9rem; }
-.brandLogo { height: 34px; width: auto; }
 .brandBlock p { margin: 0; color: #3D4E68; font-size: 0.82rem; line-height: 1.55; max-width: 22rem; }
 
 .kicker {
@@ -40,12 +39,40 @@
 .social a:hover { opacity: 1; }
 .social svg { width: 16px; height: 16px; fill: currentColor; }
 
+/* The quiet door to the BMO. Deliberately understated. */
+.pawRow {
+  width: min(1280px, calc(100vw - 2rem));
+  margin: 2rem auto 0;
+  padding-top: 1.4rem;
+  border-top: 1px solid #E6DED0;
+}
+.pawLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: #8A93A6;
+  font-size: 0.75rem;
+  font-style: italic;
+  text-decoration: none;
+  transition: color 180ms ease;
+}
+.pawLink:hover { color: #0F2F4D; }
+.pawLink > span:first-child { font-size: 0.85rem; font-style: normal; }
+
+@media (max-width: 1100px){
+  .inner{ grid-template-columns: 1.4fr repeat(2, 1fr); }
+}
 @media (max-width: 980px){
   .inner{ grid-template-columns: 1fr 1fr; gap: 2.2rem;}
   .brandBlock{ grid-column: 1 / -1; }
   .legalRight{ text-align: left; align-items: flex-start; grid-column: 1 / -1; border-top: 1px solid #E6DED0; padding-top: 1.2rem; margin-top: 0.5rem;}
+  .pawRow{ width: calc(100vw - 2rem); }
 }
 @media (max-width: 640px){
   .inner{ width: calc(100vw - 1.5rem); grid-template-columns: 1fr 1fr; gap: 1.8rem;}
   .footer{ padding: 2rem 0 1.25rem;}
+  .pawRow{ width: calc(100vw - 1.5rem); }
+  .pawText{ display: none; }
+  .pawLink{ font-size: 0; gap: 0; }
+  .pawLink > span:first-child{ font-size: 0.95rem; }
 }

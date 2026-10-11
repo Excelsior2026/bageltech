@@ -1,4 +1,5 @@
 ---
+slug: "confidence-is-not-governance"
 title: "Confidence Is Not Governance"
 date: "2026-01-15"
 author: "William Parris"

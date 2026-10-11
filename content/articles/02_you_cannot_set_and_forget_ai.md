@@ -1,4 +1,5 @@
 ---
+slug: "fallacy-of-set-it-and-forget-it-ai"
 title: "You Cannot Set and Forget AI"
 date: "2026-02-01"
 author: "William Parris"
