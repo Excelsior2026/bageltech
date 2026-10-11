@@ -1,4 +1,5 @@
 ---
+slug: "erp-oversight-is-not-ceremony"
 title: "ERP Oversight Is Not Ceremony"
 date: "2026-05-01"
 author: "William Parris"

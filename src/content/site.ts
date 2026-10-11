@@ -76,7 +76,7 @@ export const WORKSTREAMS: Workstream[] = [
     title: "BDB Labs",
     slug: "bdb-labs",
     brand: "bdb-labs",
-    href: "/research",
+    href: "/bdb-labs/research",
     role: "Research and incubation",
     summary: "Research, publications, frameworks, prototypes, and emerging methods.",
     description:
@@ -93,7 +93,7 @@ export const WORKSTREAMS: Workstream[] = [
     title: "Bagelle Parris Vargas",
     slug: "bagelle-parris-vargas",
     brand: "bpv",
-    href: "/advisory",
+    href: "/bpv/advisory",
     role: "Executive advisory",
     summary: "Executive advisory, modernization, transformation, ERP/PMO oversight, and speaking.",
     description:
@@ -110,12 +110,12 @@ export const WORKSTREAMS: Workstream[] = [
 
 export const PRODUCTS: ProductItem[] = [
   {
-    title: "Electrical Contractor Platform",
-    slug: "electrical-contractor-platform",
+    title: "J-Box",
+    slug: "j-box",
     status: "Managed setup requests open",
     category: "Contractor operations",
     summary:
-      "A configurable public site and private office workflow for electrical service intake, customers, estimates, jobs, invoices, and manual receipt records.",
+      "The operating platform for small trade contractors: a configurable public site plus a private office workflow for intake, customers, estimates, jobs, invoices, and receipt records.",
     audience: "U.S. electrical contractors seeking a managed, dedicated operating platform.",
     problem:
       "Public intake, customer records, estimates, jobs, and invoices are often split across disconnected tools and mutable documents.",
@@ -159,7 +159,34 @@ export const PRODUCTS: ProductItem[] = [
     approach: "Structure review around risk, obligations, insurance, funding checks, and lifecycle monitoring.",
     href: "mailto:bill@bageltech.net?subject=Contract intelligence pilot",
   },
+  {
+    title: "TrueTraining",
+    slug: "truetraining",
+    status: "In development",
+    category: "Institutional systems",
+    summary:
+      "Adaptive institutional intelligence infrastructure that keeps training and operational guidance current as the work changes.",
+    audience: "Institutions running continuous, regulated, or compliance-sensitive learning.",
+    problem: "Static training material goes stale the moment policy, tooling, or risk changes.",
+    approach: "Tie learning content to the operational systems and evidence it is supposed to govern.",
+    href: "mailto:bill@bageltech.net?subject=TrueTraining inquiry",
+  },
+  {
+    title: "TruePresence",
+    slug: "truepresence",
+    status: "In development",
+    category: "Trust and safety",
+    summary:
+      "Privacy-preserving interaction authenticity and risk signals for systems that need to know a human is really there.",
+    audience: "Teams running high-stakes flows where presence and intent both need evidence.",
+    problem: "Automation increasingly acts on sessions no one can prove a real person is behind.",
+    approach: "Produce authenticity signals without collecting the surveillance data that would justify them.",
+    href: "mailto:bill@bageltech.net?subject=TruePresence inquiry",
+  },
 ];
+
+/** A short, scannable subset for the homepage strip. */
+export const FEATURED_PRODUCTS = ["j-box", "eleanor", "truetraining", "truepresence"];
 
 export const ADVISORY_OFFERS: AdvisoryOffer[] = [
   {

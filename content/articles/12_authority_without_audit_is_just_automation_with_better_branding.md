@@ -1,4 +1,5 @@
 ---
+slug: "authority-without-audit"
 title: "Authority Without Audit Is Just Automation With Better Branding"
 date: "2026-07-01"
 author: "William Parris"

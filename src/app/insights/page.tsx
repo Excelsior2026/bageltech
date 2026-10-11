@@ -1,4 +1,3 @@
-import Link from "next/link";
 import MarketingLayout from "@/components/MarketingLayout";
 import { WRITING } from "@/content/writing";
 import styles from "@/components/Marketing.module.css";

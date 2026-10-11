@@ -1,4 +1,5 @@
 ---
+slug: "modernization-without-governance"
 title: "Modernization Without Governance Is Just Speed"
 date: "2026-02-15"
 author: "William Parris"

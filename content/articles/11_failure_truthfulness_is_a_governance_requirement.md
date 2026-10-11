@@ -1,4 +1,5 @@
 ---
+slug: "failure-truthfulness-is-a-governance-requirement"
 title: "Failure Truthfulness Is a Governance Requirement"
 date: "2026-06-15"
 author: "William Parris"

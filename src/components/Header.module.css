@@ -21,13 +21,6 @@
   text-decoration: none;
   flex-shrink: 0;
 }
-.logoImg {
-  display: block;
-  width: 132px;
-  height: 34px;
-  object-fit: contain;
-  object-position: left center;
-}
 
 .desktopNav {
   display: flex;
@@ -49,27 +42,6 @@
 .navLink:hover { color: #5A6576; }
 
 .ctaButton { display: none; }
-
-.hamburger {
-  display: inline-flex;
-  width: 2rem;
-  height: 2rem;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  border: none;
-  background: transparent;
-  cursor: pointer;
-  padding: 0;
-  margin-left: 0.25rem;
-}
-.hamburger span {
-  display: block;
-  width: 18px;
-  height: 1.5px;
-  background: #0F2F4D;
-}
 
 /* Mobile */
 .mobileMenuButton {
@@ -93,7 +65,6 @@
 
 @media (max-width: 960px) {
   .desktopNav { display: none; }
-  .hamburger { display: none; }
   .mobileMenuButton { display: inline-flex; }
   .mobileMenu {
     position: fixed;
@@ -114,5 +85,4 @@
 
 @media (max-width: 640px){
   .headerInner{ width: calc(100vw - 1.25rem); min-height: 3.9rem;}
-  .logoImg{ height: 30px; }
 }

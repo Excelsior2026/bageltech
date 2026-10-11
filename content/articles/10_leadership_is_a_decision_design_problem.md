@@ -1,4 +1,5 @@
 ---
+slug: "leadership-is-decision-design"
 title: "Leadership Is a Decision Design Problem"
 date: "2026-06-01"
 author: "William Parris"

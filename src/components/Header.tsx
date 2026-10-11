@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import BrandMark from "./BrandMark";
 import styles from "./Header.module.css";
 
 const navLinks = [
@@ -21,6 +22,14 @@ export default function Header() {
     return () => { document.body.style.overflow = ""; };
   }, [isMobileMenuOpen]);
 
+  useEffect(() => {
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsMobileMenuOpen(false);
+    };
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, []);
+
   const mobileMenuClasses = [styles.mobileMenu, isMobileMenuOpen ? styles.mobileMenuOpen : ""].filter(Boolean).join(" ");
   const menuBtnClasses = [styles.mobileMenuButton, isMobileMenuOpen ? styles.open : ""].filter(Boolean).join(" ");
 
@@ -28,7 +37,7 @@ export default function Header() {
     <header className={styles.header}>
       <div className={styles.headerInner}>
         <Link href="/" className={styles.logo} aria-label="BagelTech home">
-          <img src="/brand/bageltech/lockup-dark.svg" alt="BagelTech" className={styles.logoImg} width={260} height={52} />
+          <BrandMark brand="bageltech" variant="dark" size="header" priority />
         </Link>
 
         <nav className={styles.desktopNav} aria-label="Main navigation">
@@ -39,15 +48,12 @@ export default function Header() {
           ))}
         </nav>
 
-        <button className={styles.hamburger} aria-label="Open menu" onClick={() => setIsMobileMenuOpen((v)=>!v)}>
-          <span /><span /><span />
-        </button>
-
         <button
           className={menuBtnClasses}
           onClick={() => setIsMobileMenuOpen((v) => !v)}
           aria-expanded={isMobileMenuOpen}
-          aria-label="Toggle navigation menu"
+          aria-controls="mobile-navigation"
+          aria-label={isMobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
         >
           <span className={styles.hamburgerLine} />
           <span className={styles.hamburgerLine} />
@@ -55,7 +61,7 @@ export default function Header() {
         </button>
       </div>
 
-      <div className={mobileMenuClasses}>
+      <div className={mobileMenuClasses} id="mobile-navigation">
         <nav className={styles.mobileNav} aria-label="Mobile navigation">
           {navLinks.map((link) => (
             <Link key={link.href} href={link.href} className={styles.mobileNavLink} onClick={() => setIsMobileMenuOpen(false)}>

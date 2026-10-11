@@ -1,4 +1,5 @@
 ---
+slug: "ai-teams-need-red-team-thinking"
 title: "Red Team the Structure, Not Just the Model"
 date: "2026-03-01"
 author: "William Parris"
