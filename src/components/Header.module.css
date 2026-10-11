@@ -76,9 +76,19 @@
     background: #FFFEF7;
     opacity: 0;
     pointer-events: none;
+    /* `visibility` (unlike opacity/pointer-events) also removes the links from
+       the tab order, so a closed menu cannot be tabbed into. */
+    visibility: hidden;
+    transition: max-height 220ms ease, opacity 180ms ease, visibility 0s linear 220ms;
+  }
+  .mobileMenuOpen {
+    max-height: 28rem;
+    border-color: #E6DED0;
+    opacity: 1;
+    pointer-events: auto;
+    visibility: visible;
     transition: max-height 220ms ease, opacity 180ms ease;
   }
-  .mobileMenuOpen { max-height: 28rem; border-color: #E6DED0; opacity: 1; pointer-events: auto; }
   .mobileNav { display: grid; width: calc(100vw - 2rem); margin: 0 auto; padding: 1rem 0 1.5rem; }
   .mobileNavLink { padding: 0.9rem 0; border-bottom: 1px solid #EDE8DC; color: #0F2F4D; font-family: Georgia, serif; font-size: 1.15rem; text-decoration: none; }
 }

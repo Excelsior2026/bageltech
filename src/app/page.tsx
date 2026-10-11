@@ -37,6 +37,9 @@ function formatDate(iso: string) {
     year: "numeric",
     month: "short",
     day: "numeric",
+    // `publishedAt` is a plain calendar date (UTC midnight). Without this the
+    // server renders it in local time and shows the previous day.
+    timeZone: "UTC",
   });
 }
 

@@ -46,7 +46,7 @@ export default function Footer() {
             © {new Date().getFullYear()} BagelTech, Inc.<br />
             All rights reserved.
           </span>
-          <div className={styles.social} aria-label="Elsewhere">
+          <nav className={styles.social} aria-label="Elsewhere">
             <a href={EXTERNAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.48-2.23-1.67-2.23-0.91 0-1.45 0.61-1.69 1.2-0.09 0.21-0.11 0.5-0.11 0.8v5.8H9.88s0.05-9.42 0-10.4h3.55v1.47c0.47-0.72 1.31-1.76 3.2-1.76 2.33 0 4.08 1.52 4.08 4.79v5.9zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V10.05h3.56v10.4z" /></svg>
             </a>
@@ -56,7 +56,7 @@ export default function Footer() {
             <a href={EXTERNAL_LINKS.orcid} target="_blank" rel="noopener noreferrer" aria-label="ORCID">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zM7.37 20.9H4.7V3.1h2.67v17.8zm5.95 0H9.35V3.1h4.03c3.71 0 6.09 2.65 6.09 5.9 0 3.31-2.44 5.9-6.15 5.9h-2.96V3.1h-.04zm0-2.41h2.04c2.4 0 3.92-1.71 3.92-3.5 0-1.79-1.47-3.44-3.92-3.44h-2.04v6.94zM8.1 7.84a1.62 1.62 0 1 1 0-3.23 1.62 1.62 0 0 1 0 3.23z" /></svg>
             </a>
-          </div>
+          </nav>
         </div>
       </div>
 

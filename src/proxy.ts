@@ -25,15 +25,22 @@ const LEGACY_PREFIXES: Array<[string, string]> = [["/writing/", "/insights/"]];
 function redirectLegacyPath(req: NextRequest): NextResponse | null {
   const { pathname } = req.nextUrl;
 
+  const buildTarget = (to: string) => {
+    // Carry the inbound query string across, so analytics parameters on old
+    // links (utm_*, ref, …) survive the redirect.
+    const target = new URL(to, req.url);
+    target.search = req.nextUrl.search;
+    return target;
+  };
+
   const exact = LEGACY_REDIRECTS[pathname];
   if (exact) {
-    return NextResponse.redirect(new URL(exact, req.url), 308);
+    return NextResponse.redirect(buildTarget(exact), 308);
   }
 
   for (const [from, to] of LEGACY_PREFIXES) {
     if (pathname.startsWith(from)) {
-      const target = `${to}${pathname.slice(from.length)}`;
-      return NextResponse.redirect(new URL(target, req.url), 308);
+      return NextResponse.redirect(buildTarget(`${to}${pathname.slice(from.length)}`), 308);
     }
   }
 

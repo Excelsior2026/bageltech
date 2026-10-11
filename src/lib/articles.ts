@@ -138,17 +138,3 @@ export function getArticleBySlug(slug: string): Article | null {
     content: parsed.content,
   };
 }
-
-/** Every slug that should resolve for an article, canonical first. */
-export function getArticleAliases(slug: string): string[] {
-  const source = resolveSource(readArticles(), slug);
-  if (!source) return [];
-
-  return [
-    ...new Set([
-      canonicalSlug(source.file, source.meta),
-      derivedSlug(source.file),
-      legacySlug(source.file),
-    ]),
-  ];
-}

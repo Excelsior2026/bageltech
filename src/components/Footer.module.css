@@ -34,8 +34,7 @@
 
 .legalRight { text-align: right; display: flex; flex-direction: column; gap: 0.7rem; align-items: flex-end; }
 .copy { color: #6B778D; font-size: 0.72rem; line-height: 1.5; }
-.social { display: flex; gap: 0.9rem; align-items: center; }
-.social a { display: inline-flex; color: #0F2F4D; opacity: 0.9; }
+.social { display: flex; gap: 0.9rem; align-items: center; }.social a { display: inline-flex; color: #0F2F4D; opacity: 0.9; }
 .social a:hover { opacity: 1; }
 .social svg { width: 16px; height: 16px; fill: currentColor; }
 
