@@ -102,15 +102,18 @@ test("keeps the legacy Bagel URL as a redirect to BMO", () => {
   assert.match(legacyRoute, /redirect\(["']\/bmo["']\)/, "/bagel should redirect to /bmo");
 });
 
-test("separates publications and insights into distinct curated content sources", () => {
+test("keeps publications distinct from the derived insight registry", () => {
   assert.equal(exists("src/content/publications.ts"), true, "publications content should exist");
-  assert.equal(exists("src/content/insights.ts"), true, "insights content should exist");
+  assert.equal(exists("src/content/insights.ts"), true, "insights compatibility alias should exist");
 
   const publications = read("src/content/publications.ts");
   const insights = read("src/content/insights.ts");
+  const writing = read("src/content/writing.ts");
 
   assert.match(publications, /export const PUBLICATIONS/, "publications should export PUBLICATIONS");
-  assert.match(insights, /export const INSIGHTS/, "insights should export INSIGHTS");
+  assert.match(insights, /export \{ WRITING as INSIGHTS \}/, "insights should be a derived alias");
+  assert.doesNotMatch(insights, /title:\s*"/, "insights alias should carry no article metadata");
+  assert.match(writing, /getAllArticles\(\)/, "writing should derive from frontmatter");
   assert.doesNotMatch(publications, /export const INSIGHTS/, "publications should not export insights");
   assert.doesNotMatch(insights, /export const PUBLICATIONS/, "insights should not export publications");
 });
@@ -155,31 +158,42 @@ test("every workstream and product link resolves to a real route or external URL
   });
 });
 
-test("published writing links match the slugs the article router serves", () => {
+test("published writing slugs are unique and resolvable by the article router", () => {
   const writing = read("src/content/writing.ts");
   const articles = read("src/lib/articles.ts");
 
   // Writing must link at the canonical /insights/ path, never /writing/.
   assert.doesNotMatch(writing, /"\/writing\//, "writing should not link through the retired /writing/ path");
+  assert.match(
+    writing,
+    /sourceUrl:\s*`\/insights\/\$\{article\.slug\}`/,
+    "writing should derive article URLs from frontmatter slugs",
+  );
 
-  const links = [...writing.matchAll(/sourceUrl:\s*"\/insights\/([a-z0-9-]+)"/g)].map((m) => m[1]);
-  assert.ok(links.length >= 12, "every published piece should link to an insights article");
-
-  // Each declared slug must be backed by a real article file, otherwise the
-  // link 404s. Compare against the slug frontmatter in content/articles.
   const dir = join(root, "content", "articles");
-  const declared = readdirSync(dir)
-    .filter((f) => f.endsWith(".md"))
-    .map((f) => {
-      const raw = readFileSync(join(dir, f), "utf8");
-      const m = raw.match(/^slug:\s*"([^"]+)"/m);
-      return m ? m[1] : f.replace(/\.md$/, "");
+  const sources = readdirSync(dir)
+    .filter((file) => file.endsWith(".md"))
+    .map((file) => {
+      const raw = readFileSync(join(dir, file), "utf8");
+      const field = (key) => raw.match(new RegExp(`^${key}:\\s*"([^"]+)"`, "m"))?.[1];
+      const derived = file
+        .replace(/\.md$/, "")
+        .replace(/^\d+[_-]/, "")
+        .replace(/_/g, "-")
+        .toLowerCase();
+
+      return {
+        slug: field("slug") ?? derived,
+        status: field("status") ?? "published",
+      };
     });
 
-  links.forEach((slug) => {
-    assert.ok(declared.includes(slug), `/insights/${slug} should have a backing article file`);
-  });
+  const published = sources.filter((source) => source.status === "published");
+  assert.ok(published.length >= 12, "every published piece should have an article file");
 
+  const slugs = published.map((source) => source.slug);
+  assert.equal(new Set(slugs).size, slugs.length, "canonical article slugs must be unique");
+  assert.equal(exists("src/app/insights/[slug]/page.tsx"), true, "article route should exist");
   assert.match(articles, /canonicalSlug/, "article router should resolve declared slugs");
 });
 

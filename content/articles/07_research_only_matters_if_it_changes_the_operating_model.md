@@ -4,6 +4,10 @@ title: "Research Only Matters If It Changes the Operating Model"
 date: "2026-04-15"
 author: "William Parris"
 summary: "A report commissioned and a presentation delivered is not research integration. Useful research changes structure — who decides, what evidence is required, which assumptions are now untenable."
+category: "Systems"
+workstream: "BDB Labs"
+tags: "Research, Operating Model, Frameworks"
+excerpt: "A useful framework should clarify what gets built, what gets deferred, and what evidence a real institution needs."
 ---
 
 Organizations say they value research, but many treat it as a decorative layer on top of decisions that were already going to be made. A report is commissioned, a presentation is delivered, key phrases circulate, and the operating model remains exactly where it was before. That is not research integration. That is intellectual theater.

@@ -17,15 +17,39 @@ export interface Workstream {
   };
 }
 
+/**
+ * Controlled maturity vocabulary. These are statements of development stage,
+ * not claims of certification, compliance or production readiness.
+ */
+export type ProductMaturity =
+  | "research"
+  | "prototype"
+  | "active-development"
+  | "pilot"
+  | "limited-availability"
+  | "commercially-available";
+
 export interface ProductItem {
-  title: string;
+  /** Stable identifier. Never change once the product is published. */
+  id: string;
+  /** URL segment used by product detail routes. */
   slug: string;
-  status: string;
+  /** Canonical public name; all surfaces must render this value. */
+  name: string;
+  /** Human-readable availability statement. */
+  statusLabel: string;
+  maturity: ProductMaturity;
   category: string;
   summary: string;
   audience: string;
   problem: string;
   approach: string;
+  /** Explicit statements of scope or absence; never invented capability. */
+  limitations: string[];
+  engagement: { action: string; href: string };
+  /** Published references only. */
+  evidence: Array<{ label: string; href: string }>;
+  /** Primary destination for legacy consumers. */
   href: string;
 }
 
@@ -110,9 +134,11 @@ export const WORKSTREAMS: Workstream[] = [
 
 export const PRODUCTS: ProductItem[] = [
   {
-    title: "J-Box",
+    id: "j-box",
     slug: "j-box",
-    status: "Managed setup requests open",
+    name: "J-Box",
+    statusLabel: "Managed setup requests open",
+    maturity: "limited-availability",
     category: "Contractor operations",
     summary:
       "The operating platform for small trade contractors: a configurable public site plus a private office workflow for intake, customers, estimates, jobs, invoices, and receipt records.",
@@ -121,66 +147,114 @@ export const PRODUCTS: ProductItem[] = [
       "Public intake, customer records, estimates, jobs, and invoices are often split across disconnected tools and mutable documents.",
     approach:
       "One release line, structured company configuration, immutable customer documents, and explicit managed launch gates.",
+    limitations: [
+      "Managed setup is required; self-service activation is not offered.",
+      "Submitting a setup request does not activate or deploy a site.",
+    ],
+    engagement: { action: "Request setup", href: "/contractors" },
+    evidence: [{ label: "Managed setup workflow", href: "/contractors" }],
     href: "/contractors",
   },
   {
-    title: "ELEANOR",
+    id: "eleanor",
     slug: "eleanor",
-    status: "Core framework",
-    category: "Governance engine",
+    name: "ELEANOR",
+    statusLabel: "Research framework",
+    maturity: "research",
+    category: "Governance framework",
     summary:
-      "A runtime governance engine for consequential AI systems built around rights-based reasoning, escalation, and controlled execution.",
+      "A runtime governance framework for consequential AI systems built around rights-based reasoning, escalation, and controlled execution.",
     audience: "Regulated teams and institution-facing AI systems.",
     problem: "Model output often reaches users before authority, evidence, and escalation paths are clear.",
     approach: "Separate execution from oversight and move uncertainty through explicit controls.",
+    limitations: [
+      "This entry describes the published research framework, not a separately marketed commercial product.",
+      "No commercial support, certification or production-readiness claim is made here.",
+    ],
+    engagement: { action: "Read the framework", href: "https://doi.org/10.5281/zenodo.17605176" },
+    evidence: [
+      { label: "ELEANOR governance specification (Zenodo DOI)", href: "https://doi.org/10.5281/zenodo.17605176" },
+    ],
     href: "https://doi.org/10.5281/zenodo.17605176",
   },
   {
-    title: "CogniScribe",
+    id: "cogniscribe",
     slug: "cogniscribe",
-    status: "Active development",
+    name: "CogniScribe",
+    statusLabel: "Active development — early access enquiries",
+    maturity: "active-development",
     category: "Applied product",
     summary:
       "A lecture transcription and study companion for health-professions education, designed to preserve context and signal uncertainty.",
     audience: "Health-professions education programs and students.",
     problem: "Educational AI can flatten nuance and overstate confidence when instructors need fidelity.",
     approach: "Evidence-graded notes, instructor-aware summaries, and clear distinctions between notes and inference.",
+    limitations: [
+      "Early access is by enquiry; general availability is not asserted.",
+      "No published performance results are presented on this site.",
+    ],
+    engagement: { action: "Request early access", href: EXTERNAL_LINKS.product },
+    evidence: [],
     href: "mailto:bill@bageltech.net?subject=CogniScribe early access",
   },
   {
-    title: "Contract Management Intelligence",
+    id: "contract-management-intelligence",
     slug: "contract-management-intelligence",
-    status: "Pilot",
+    name: "Contract Management Intelligence",
+    statusLabel: "Pilot",
+    maturity: "pilot",
     category: "Domain intelligence",
     summary:
       "A contractor-side intelligence workflow for agreement review, obligation tracking, and compliance analysis.",
     audience: "Organizations managing bids, agreements, compliance, and contract lifecycle risk.",
     problem: "Contract obligations and exceptions are often scattered across documents, reviews, and decisions.",
     approach: "Structure review around risk, obligations, insurance, funding checks, and lifecycle monitoring.",
+    limitations: [
+      "The workflow is at pilot stage and availability depends on a scoped engagement.",
+      "No automated legal advice or compliance certification is claimed.",
+    ],
+    engagement: { action: "Discuss a pilot", href: "mailto:bill@bageltech.net?subject=Contract intelligence pilot" },
+    evidence: [],
     href: "mailto:bill@bageltech.net?subject=Contract intelligence pilot",
   },
   {
-    title: "TrueTraining",
+    id: "truetraining",
     slug: "truetraining",
-    status: "In development",
+    name: "TrueTraining",
+    statusLabel: "In development",
+    maturity: "active-development",
     category: "Institutional systems",
     summary:
       "Adaptive institutional intelligence infrastructure that keeps training and operational guidance current as the work changes.",
     audience: "Institutions running continuous, regulated, or compliance-sensitive learning.",
     problem: "Static training material goes stale the moment policy, tooling, or risk changes.",
     approach: "Tie learning content to the operational systems and evidence it is supposed to govern.",
+    limitations: [
+      "In development; no public demonstration or production deployment is asserted.",
+      "Integration scope is defined per engagement.",
+    ],
+    engagement: { action: "Request information", href: "mailto:bill@bageltech.net?subject=TrueTraining inquiry" },
+    evidence: [],
     href: "mailto:bill@bageltech.net?subject=TrueTraining inquiry",
   },
   {
-    title: "TruePresence",
+    id: "truepresence",
     slug: "truepresence",
-    status: "In development",
+    name: "TruePresence",
+    statusLabel: "In development",
+    maturity: "active-development",
     category: "Trust and safety",
     summary:
       "Privacy-preserving interaction authenticity and risk signals for systems that need to know a human is really there.",
     audience: "Teams running high-stakes flows where presence and intent both need evidence.",
     problem: "Automation increasingly acts on sessions no one can prove a real person is behind.",
     approach: "Produce authenticity signals without collecting the surveillance data that would justify them.",
+    limitations: [
+      "In development; no accuracy, identity-assurance or compliance claim is made.",
+      "Internal administrative tooling is not a public product demonstration.",
+    ],
+    engagement: { action: "Request information", href: "mailto:bill@bageltech.net?subject=TruePresence inquiry" },
+    evidence: [],
     href: "mailto:bill@bageltech.net?subject=TruePresence inquiry",
   },
 ];

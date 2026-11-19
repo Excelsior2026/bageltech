@@ -7,11 +7,11 @@ import TemplateGallery from "@/components/onboarding/TemplateGallery";
 import styles from "@/components/onboarding/Onboarding.module.css";
 
 export const metadata: Metadata = {
-  title: "Electrical Contractor Platform | BagelTech",
+  title: "Electrical Contractor Platform",
   description:
     "Choose a proven template or use an AI-assisted studio to shape a custom, field-ready website direction for BagelTech's managed electrical-contractor platform.",
   alternates: {
-    canonical: "https://www.bageltech.net/contractors",
+    canonical: "/contractors",
   },
   openGraph: {
     title: "A managed operating platform for electrical contractors",

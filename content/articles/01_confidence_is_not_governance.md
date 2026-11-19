@@ -4,6 +4,10 @@ title: "Confidence Is Not Governance"
 date: "2026-01-15"
 author: "William Parris"
 summary: "Confidence tells you how an answer is presented. Governance tells you who was allowed to decide, what constraints were binding, and what happens when the system is wrong."
+category: "AI Governance"
+workstream: "BagelTech"
+tags: "AI Governance, Authority, Audit"
+excerpt: "High-confidence output still needs authority boundaries, evidence, escalation logic, and a person who can review the decision."
 ---
 
 Confidence is an output style. Governance is a structural property. A system can sound certain, return an answer, and appear calm while operating outside any meaningful boundary of authority.

@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
-import { notFound } from "next/navigation";
+import { notFound, permanentRedirect } from "next/navigation";
 import MarketingLayout from "@/components/MarketingLayout";
-import { getAllArticles, getArticleBySlug } from "@/lib/articles";
+import { getAllArticles, getArticleBySlug, getCanonicalSlug } from "@/lib/articles";
+
+const SITE_URL = "https://www.bageltech.net";
 
 export function generateStaticParams() {
   return getAllArticles().map((article) => ({ slug: article.slug }));
@@ -13,15 +15,21 @@ export async function generateMetadata(
   const { slug } = await params;
   const article = getArticleBySlug(slug);
   if (!article) return {};
+
+  const canonical = `/insights/${article.slug}`;
   return {
     title: article.title,
     description: article.summary,
+    alternates: { canonical },
+    authors: [{ name: article.author }],
     openGraph: {
       title: article.title,
       description: article.summary,
       type: "article",
+      url: canonical,
       publishedTime: article.date,
       authors: [article.author],
+      siteName: "BagelTech",
     },
   };
 }
@@ -50,16 +58,34 @@ function renderMarkdown(content: string) {
 
 export default async function ArticlePage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const article = getArticleBySlug(slug);
+  const canonical = getCanonicalSlug(slug);
+  if (!canonical) notFound();
+  if (canonical !== slug) permanentRedirect(`/insights/${canonical}`);
 
+  const article = getArticleBySlug(slug);
   if (!article) notFound();
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.summary,
+    datePublished: article.date,
+    author: { "@type": "Person", name: article.author },
+    mainEntityOfPage: `${SITE_URL}/insights/${article.slug}`,
+    publisher: { "@type": "Organization", name: "BagelTech" },
+  };
 
   return (
     <MarketingLayout>
       <main className="section">
         <article className="container prose articleWrap">
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+          />
           <p className="articleMeta">
-            {article.date} · {article.author}
+            <time dateTime={article.date}>{article.date}</time> · {article.author} · {article.category}
           </p>
           <h1>{article.title}</h1>
           <p className="lede">{article.summary}</p>

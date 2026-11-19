@@ -25,7 +25,6 @@ export default function Footer() {
           <p className={styles.kicker}>Divisions</p>
           <Link href="/bdb-labs/research">BDB Labs</Link>
           <Link href="/bpv/advisory">Advisory</Link>
-          <Link href="/bdb-labs/repository">Repository</Link>
         </nav>
 
         <nav className={styles.col} aria-label="Resources">
@@ -37,8 +36,10 @@ export default function Footer() {
 
         <nav className={styles.col} aria-label="Legal">
           <p className={styles.kicker}>Legal</p>
-          <Link href="/contractors/privacy">Privacy Policy</Link>
-          <Link href="/contractors/terms">Terms of Service</Link>
+          <Link href="/privacy">Privacy Policy</Link>
+          <Link href="/terms">Terms of Use</Link>
+          <Link href="/security">Security</Link>
+          <Link href="/accessibility">Accessibility</Link>
         </nav>
 
         <div className={styles.legalRight}>

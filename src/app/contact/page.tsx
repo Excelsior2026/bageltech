@@ -8,7 +8,8 @@ import type { BrandKey } from "@/content/brand-tokens";
 import { CONTACT_OPTIONS, EXTERNAL_LINKS } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "Contact | BagelTech",
+  title: "Contact",
+  alternates: { canonical: "/contact" },
   description:
     "Start a product, research, advisory, speaking, or general inquiry with the right BagelTech workstream.",
 };
