@@ -6,7 +6,8 @@ import SmartLink from "@/components/SmartLink";
 import BrandMark from "@/components/BrandMark";
 
 export const metadata = {
-  title: "Writing | BagelTech",
+  title: "Writing",
+  alternates: { canonical: "/insights" },
   description: "Curated thinking on governance, consequence, and delivery.",
 };
 

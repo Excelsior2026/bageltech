@@ -4,7 +4,8 @@ import SmartLink from "@/components/SmartLink";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
-  title: "BMO — Beagle Mischief Office | BagelTech",
+  title: "BMO — Beagle Mischief Office",
+  alternates: { canonical: "/bmo" },
   description:
     "A deliberate BagelTech easter egg honoring Bagel, the Beagle Mischief Office, and the operational value of strategic chaos.",
 };

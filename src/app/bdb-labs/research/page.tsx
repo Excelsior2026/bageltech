@@ -7,7 +7,8 @@ import styles from "@/components/Marketing.module.css";
 import { PUBLICATIONS } from "@/content/publications";
 
 export const metadata: Metadata = {
-  title: "Research | BDB Labs",
+  title: "Research",
+  alternates: { canonical: "/bdb-labs/research" },
   description:
     "Research, publications, frameworks, and prototypes from BDB Labs — the research and incubation arm of BagelTech.",
 };
@@ -94,7 +95,7 @@ export default function ResearchPage() {
                   BDB Labs research feeds directly into BagelTech products and BPV advisory methods.
                 </p>
               </div>
-              <SmartLink className={styles.buttonPrimary} href="/writing">
+              <SmartLink className={styles.buttonPrimary} href="/insights">
                 Explore the writing hub
               </SmartLink>
             </ScrollReveal>

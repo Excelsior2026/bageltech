@@ -7,7 +7,8 @@ import styles from "@/components/Marketing.module.css";
 import { PUBLICATIONS } from "@/content/publications";
 
 export const metadata: Metadata = {
-  title: "Publications | BDB Labs",
+  title: "Publications",
+  alternates: { canonical: "/bdb-labs/publications" },
   description:
     "Peer-visible research, specifications, and frameworks from BagelTech — papers with permanent DOIs and arXiv records.",
 };

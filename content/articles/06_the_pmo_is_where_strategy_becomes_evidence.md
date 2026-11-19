@@ -4,6 +4,10 @@ title: "The PMO Is Where Strategy Becomes Evidence"
 date: "2026-04-01"
 author: "William Parris"
 summary: "A PMO is not a reporting layer. It is the institutional mechanism that determines whether leadership's decisions are based on real conditions or managed narrative."
+category: "Delivery"
+workstream: "Bagelle Parris Vargas"
+tags: "PMO, Delivery, Evidence"
+excerpt: "Modernization programs fail when decision rights, assumptions, risks, and tradeoffs do not survive contact with delivery."
 ---
 
 The PMO has an image problem. In many organizations it is associated with status reports, heat maps, and governance theater: a function that consumes information without improving decisions. That reputation is sometimes deserved. But it describes a failed PMO, not the function at its best.

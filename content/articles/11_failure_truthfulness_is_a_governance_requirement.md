@@ -4,6 +4,10 @@ title: "Failure Truthfulness Is a Governance Requirement"
 date: "2026-06-15"
 author: "William Parris"
 summary: "A system's observable behavior should accurately represent its actual success, failure, degradation, or uncertainty state. When those signals are suppressed, governance loses traction."
+category: "AI Governance"
+workstream: "BagelTech"
+tags: "AI Governance, Transparency, Audit"
+excerpt: "A system that cannot honestly surface its own failures cannot be trusted to govern anything at scale."
 ---
 
 Most software review still begins with the wrong question: does it work? That matters, of course. But in AI-mediated and governance-critical systems, an equally important question sits underneath it: does the system tell the truth about whether it is working?

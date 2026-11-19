@@ -3,6 +3,11 @@ title: "Why governance has to happen at execution time"
 date: "2026-02-13"
 summary: "If governance only exists in policy docs, autonomous systems still fail in production."
 author: "BagelTech"
+category: "Essay"
+workstream: "BagelTech"
+tags: "Governance, Execution"
+excerpt: "If governance only exists in policy docs, autonomous systems still fail in production."
+status: "draft"
 ---
 ## The gap
 Most teams define governance upstream (training) and downstream (audits). But production risk appears in the middle: at decision time.

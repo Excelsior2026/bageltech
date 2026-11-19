@@ -12,11 +12,12 @@ const advisoryStream =
   (() => { throw new Error("bagelle-parris-vargas workstream not found in WORKSTREAMS"); })();
 
 export const metadata: Metadata = {
-  title: "Advisory | Bagelle Parris Vargas",
+  title: "Advisory",
+  alternates: { canonical: "/bpv/advisory" },
   description:
     "Executive advisory for enterprise modernization, ERP and PMO oversight, delivery leadership, AI governance, speaking, and workshops.",
   openGraph: {
-    title: "Advisory | Bagelle Parris Vargas — BagelTech",
+    title: "Advisory | Bagelle Parris Vargas",
     description:
       "Executive advisory for enterprise modernization, ERP and PMO oversight, delivery leadership, AI governance, speaking, and workshops.",
     type: "website",

@@ -14,13 +14,16 @@ export async function generateMetadata(
   const { slug } = await params;
   const note = getBagelNoteBySlug(slug);
   if (!note) return {};
+  const canonical = `/bagels-corner/notes/${note.slug}`;
   return {
     title: note.title,
     description: note.summary,
+    alternates: { canonical },
     openGraph: {
       title: note.title,
       description: note.summary,
       type: "article",
+      url: canonical,
     },
   };
 }

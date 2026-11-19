@@ -12,7 +12,8 @@ import { WRITING } from "@/content/writing";
 import styles from "./home.module.css";
 
 export const metadata: Metadata = {
-  title: "BagelTech | Technology & Intelligence",
+  title: "Technology & Intelligence",
+  alternates: { canonical: "/" },
   description:
     "BagelTech develops intelligent systems, explores what comes next, and helps organizations put technology to work in the real world.",
   openGraph: {
@@ -125,8 +126,8 @@ export default function HomePage() {
               {featured.map((product) => (
                 <SmartLink key={product.slug} href={product.href} className={styles.productCard}>
                   <div className={styles.productCardTop}>
-                    <h3 className={styles.productName}>{product.title}</h3>
-                    <span className={styles.productStatus}>{product.status}</span>
+                    <h3 className={styles.productName}>{product.name}</h3>
+                    <span className={styles.productStatus}>{product.statusLabel}</span>
                   </div>
                   <p className={styles.productCategory}>{product.category}</p>
                   <p className={styles.productSummary}>{product.summary}</p>

@@ -4,6 +4,10 @@ title: "Build the Path for Uncertainty Before Launch"
 date: "2026-05-15"
 author: "William Parris"
 summary: "Uncertainty is a core operating condition, not a defect. Systems that are architecturally compelled to speak with authority when authority is absent are not more capable — they are less honest."
+category: "AI Governance"
+workstream: "BagelTech"
+tags: "AI Governance, Launch, Escalation"
+excerpt: "If a system does not know how to pause, escalate, ask for evidence, or hand off authority, the demo is not the design."
 ---
 
 Most organizations think about uncertainty too late. They treat it as something the system should ideally avoid, or as an embarrassing gap to smooth over before go-live. But in consequential AI systems, uncertainty is not a defect in the messaging layer. It is a core operating condition that must be deliberately designed for.

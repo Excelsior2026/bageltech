@@ -4,6 +4,10 @@ title: "Red Team the Structure, Not Just the Model"
 date: "2026-03-01"
 author: "William Parris"
 summary: "Testing prompt vulnerabilities is necessary but not sufficient. The deeper governance failures live in the architecture, not the outputs."
+category: "AI Governance"
+workstream: "BagelTech"
+tags: "AI Governance, Red Team, Safety"
+excerpt: "Building safe AI requires assuming things will go wrong, not that they'll work perfectly."
 ---
 
 A lot of AI red teaming today is still too narrow. Teams try to break prompts, elicit toxic outputs, or force a model into obvious failure. That work matters. But if that is all you test, you are red teaming the behavior layer while leaving the governance layer largely untouched.
