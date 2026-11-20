@@ -8,6 +8,7 @@ on:
       - "src/app/api/prism/**"
       - "docs/PRISM_**"
       - "tests/prism.test.mjs"
+      - "tests/prism-scoring.test.mjs"
       - "package.json"
       - "package-lock.json"
   workflow_dispatch:
