@@ -58,7 +58,12 @@ PRISM-48 is a future multimodal evaluation with 48 independent trials: literal c
 - **Implementation location:** `src/app/prism`.
 - **Media status:** Actor videos and recorded audio are not yet produced.
 - **Independent review:** Pending; this record is not evidence of acceptance.
-- **PR / CI / deployment:** To be recorded with verified URLs, commit IDs and outcomes when available.
+- **Draft PR:** [BagelTech PR #16](https://github.com/Excelsior2026/bageltech/pull/16), intentionally unmerged.
+- **CI evidence:** [PRISM Quality Gate run 44729214096](https://github.com/Excelsior2026/bageltech/actions/runs/44729214096), commit `b148eea2678b710d45006f2a37bcc79409991cc4`: tests, lint, TypeScript, and build PASS; dependency audit gate FAIL; detailed JSON report uploaded as `prism-production-audit` artifact.
+- **Research/media gate:** [BagelTech issue #17](https://github.com/Excelsior2026/bageltech/issues/17), unfulfilled.
+- **Security gate:** [BagelTech issue #18](https://github.com/Excelsior2026/bageltech/issues/18), unfulfilled.
+- **TruePresence backend gate:** [BDBLabs/TruePresenceESE issue #56](https://github.com/BDBLabs/TruePresenceESE/issues/56), unfulfilled.
+- **Deployment:** Not performed. `/prism` on the public site is not yet live.
 - **Known risks:** Incomplete audiovisual validity, unnormed content, self-report interpretation, cultural variability, prototype scoring uncertainty.
 
 ## TruePresence boundary (November 2026)
