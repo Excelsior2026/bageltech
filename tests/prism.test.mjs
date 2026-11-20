@@ -49,7 +49,7 @@ test("TruePresence check is separately opted in and stays out of PRISM scoring",
   assert.match(flow, /if \(!consent \|\| !configured/);
   assert.match(flow, /body: JSON\.stringify\(payload\)/);
   assert.match(route, /enforcement_mode: "observe"/);
-  assert.match(route, /onlyKeys\(outer, \["typing", "challenge"\]\)/);
+  assert.match(route, /validateTruePresenceFeatures\(JSON\.parse\(data\)\)/);
   assert.match(route, /function sameOrigin/);
   assert.match(route, /MAX_BODY_BYTES = 2048/);
   assert.doesNotMatch(route, /PRISM12_ITEMS|selfRating|explanation|question\.options/);
