@@ -28,6 +28,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -35,6 +37,8 @@ jobs:
           cache: npm
       - name: Install locked dependencies
         run: npm ci
+      - name: Audit production dependencies (high and critical)
+        run: npm audit --omit=dev --audit-level=high
       - name: Run unit and structural tests
         run: npm test
       - name: Run lint
@@ -43,5 +47,5 @@ jobs:
         run: npx tsc --noEmit
       - name: Production build
         run: npm run build
-      - name: Whitespace check
-        run: git diff --check
+      - name: Whitespace check for PR diff
+        run: git diff --check "$(git merge-base HEAD origin/main)" HEAD
