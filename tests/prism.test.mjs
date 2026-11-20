@@ -39,3 +39,19 @@ test("PRISM interface includes consent, optional skip and a separate results pha
   assert.match(client, /speechSynthesis/);
   assert.match(client, /not used to assess vocal sarcasm/);
 });
+
+test("TruePresence check is separately opted in and stays out of PRISM scoring", () => {
+  const flow = readFileSync(path.join(here, "../src/app/prism/TruePresenceCheck.tsx"), "utf8");
+  const route = readFileSync(path.join(here, "../src/app/api/prism/truepresence/route.ts"), "utf8");
+  assert.match(client, /<TruePresenceCheck \/>/);
+  assert.match(flow, /setOptIn/);
+  assert.match(flow, /checked=\{consent\}/);
+  assert.match(flow, /if \(!consent \|\| !configured/);
+  assert.match(flow, /body: JSON\.stringify\(payload\)/);
+  assert.match(route, /enforcement_mode: "observe"/);
+  assert.match(route, /onlyKeys\(outer, \["typing", "challenge"\]\)/);
+  assert.match(route, /function sameOrigin/);
+  assert.match(route, /MAX_BODY_BYTES = 2048/);
+  assert.doesNotMatch(route, /PRISM12_ITEMS|selfRating|explanation|question\.options/);
+  assert.doesNotMatch(flow, /body: JSON\.stringify\(\{.*entry/);
+});
