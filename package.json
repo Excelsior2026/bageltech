@@ -12,7 +12,7 @@
   "dependencies": {
     "@auth/core": "^0.41.3",
     "ai": "^7.0.58",
-    "next": "^16.3.0",
+    "next": "^16.4.6",
     "next-auth": "^5.0.0-beta.32",
     "react": "19.2.3",
     "react-dom": "19.2.3"
@@ -24,7 +24,7 @@
     "@types/react-dom": "^19",
     "babel-plugin-react-compiler": "1.0.0",
     "eslint": "^9",
-    "eslint-config-next": "^16.3.0",
+    "eslint-config-next": "^16.4.6",
     "tailwindcss": "^4",
     "typescript": "^5"
   },
