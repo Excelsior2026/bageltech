@@ -1,6 +1,7 @@
 # TEMPORARY remediation harness. Remove before merging the dependency PR.
 # It commits only reviewed npm manifest/lock changes back to this isolated branch
-# after install, tests, typecheck, build and production security audit pass.
+# after tests, typecheck, build and production security audit pass.
+# Any newly surfaced lint failures are reported afterward and block its PR.
 name: Candidate Dependency Security Remediation
 
 on:
@@ -37,8 +38,6 @@ jobs:
         run: npm ci
       - name: Test
         run: npm test
-      - name: Lint
-        run: npm run lint
       - name: Typecheck
         run: npx tsc --noEmit
       - name: Production build
@@ -62,3 +61,5 @@ jobs:
             -m "AI-Tool: ChatGPT-directed GitHub Actions" \
             -m "AI-Role: Author"
           git push origin HEAD:refs/heads/fix/bageltech-security-deps
+      - name: Report lint compatibility after saving isolated candidate
+        run: npm run lint
