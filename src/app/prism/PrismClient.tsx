@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import { PRISM12_ITEMS, type PrismItem } from "./items";
+import TruePresenceCheck from "./TruePresenceCheck";
 import styles from "./prism.module.css";
 
 type Response = {
@@ -263,6 +264,7 @@ export default function PrismClient() {
               norming, and professional interpretation. There is no evidence-based
               cutoff for automatically advancing to PRISM-48.
             </div>
+            <TruePresenceCheck />
             <button type="button" className={styles.secondary} onClick={() => setShowKey(!showKey)}
               aria-expanded={showKey}>
               {showKey ? "Hide" : "Review"} explanations
