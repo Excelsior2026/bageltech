@@ -37,8 +37,6 @@ jobs:
           cache: npm
       - name: Install locked dependencies
         run: npm ci
-      - name: Audit production dependencies (high and critical)
-        run: npm audit --omit=dev --audit-level=high
       - name: Run unit and structural tests
         run: npm test
       - name: Run lint
@@ -47,5 +45,7 @@ jobs:
         run: npx tsc --noEmit
       - name: Production build
         run: npm run build
+      - name: Audit production dependencies (high and critical)
+        run: npm audit --omit=dev --audit-level=high
       - name: Whitespace check for PR diff
         run: git diff --check "$(git merge-base HEAD origin/main)" HEAD
