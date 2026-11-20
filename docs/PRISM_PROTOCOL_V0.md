@@ -16,7 +16,7 @@ The PHQ-2 to PHQ-9 model informs only the design pattern: shorter screening foll
 - Twelve original scenarios administered individually, with four candidate interpretations each and an optional skip choice.
 - User-selectable confidence (1–5) and a free-text evidence explanation.
 - Initial self-report on perceived sarcasm difficulty, separate from observed item performance.
-- Local browser-only answers; no participant identity, login, database storage, analytics event submission, video capture, or microphone capture is implemented.
+- Local browser-only PRISM answers; no participant identity, login, database storage, analytics event submission, video capture, or microphone capture is implemented. A **separate**, expressly opted-in TruePresence check may send strictly limited aggregate timing features to a configured TruePresence backend, which may retain its own evidence artifacts.
 - A locally computed descriptive summary showing total and content-domain raw scores plus optional explanation review.
 - Illustration and browser speech synthesis are *demonstration materials*. They are **not** validated audiovisual performances; they do not support inference about visual social-cue processing or vocal prosody.
 - Automatic referral to PRISM-48 is disabled until validated decision criteria exist.
@@ -47,8 +47,8 @@ PRISM-48 is a future multimodal evaluation with 48 independent trials: literal c
 - Consent and a self-report response are required to begin.
 - Browser replay is optional and clearly labeled synthetic; absence of TTS does not block the test.
 - Results provide descriptive raw accuracy and disclaim clinical/deception interpretation.
-- No network requests from the PRISM UI, no hidden participant collection.
-- Mobile, keyboard, and screen-reader interaction tested manually.
+- No PRISM answers, question IDs, explanations, self-report, or scores leave the browser. The PRISM page fetches only TruePresence configuration status; a feature submission occurs only after separate consent and an optional typing challenge. No hidden participant collection.
+- Mobile, keyboard, and screen-reader interaction tested manually, including the opt-in TruePresence flow.
 - `npm test`, `npm run lint`, and `npm run build` pass before publication.
 
 ## Orchestration / evidence register
@@ -60,3 +60,9 @@ PRISM-48 is a future multimodal evaluation with 48 independent trials: literal c
 - **Independent review:** Pending; this record is not evidence of acceptance.
 - **PR / CI / deployment:** To be recorded with verified URLs, commit IDs and outcomes when available.
 - **Known risks:** Incomplete audiovisual validity, unnormed content, self-report interpretation, cultural variability, prototype scoring uncertainty.
+
+## TruePresence boundary (November 2026)
+
+PRISM interpretation scores and TruePresence interaction-authenticity signals are **independent**. TruePresence evaluates interaction behavior, not intended-language comprehension or whether a person is being truthful. The private upstream project is `BDBLabs/TruePresenceESE`, including the `/api/v1/truepresence/evaluate-interaction` API. Integration is optional, observes only, and **never gates or changes PRISM answers**.
+
+The BagelTech server route `/api/prism/truepresence` provides a configuration-status check and a tightly restricted same-origin forwarding adapter. Only aggregate typing cadence and a separate fixed-phrase challenge's duration/correctness are accepted. Responses are mapped to a limited status, and no private TruePresence source code or runtime secret is distributed through the public website repository. See `docs/PRISM_TRUEPRESENCE_INTEGRATION.md`.
