@@ -268,3 +268,39 @@
 @media (prefers-reduced-motion: reduce) {
   .primary, .secondary, .track > div { transition: none; }
 }
+
+.integrity {
+  margin: 1.8rem 0;
+  padding: 1.5rem;
+  border: 1px solid var(--color-line);
+  border-radius: 12px;
+  background: var(--color-paper-50);
+}
+.integrity h3 {
+  font-family: var(--font-editorial-serif), Georgia, serif;
+  font-size: 1.65rem;
+  font-weight: 500;
+  margin: .5rem 0 1rem;
+}
+.integrity p {
+  color: var(--color-ink-2);
+  line-height: 1.65;
+}
+.presenceForm { display: grid; gap: .85rem; }
+.presenceForm label { font-weight: 600; }
+.presenceForm input {
+  width: 100%;
+  padding: .9rem 1rem;
+  border: 1px solid var(--color-line-2);
+  border-radius: 7px;
+  background: white;
+}
+.presenceForm button { justify-self: start; }
+.phrase {
+  border: 1px dashed var(--color-line-2);
+  padding: .8rem 1rem;
+  background: white;
+  font-family: var(--font-code-mono), monospace;
+  font-size: .9rem;
+  overflow-wrap: anywhere;
+}
