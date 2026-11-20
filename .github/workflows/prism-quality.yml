@@ -6,9 +6,11 @@ on:
       - ".github/workflows/prism-quality.yml"
       - "src/app/prism/**"
       - "src/app/api/prism/**"
+      - "src/lib/prism/**"
       - "docs/PRISM_**"
       - "tests/prism.test.mjs"
       - "tests/prism-scoring.test.mjs"
+      - "tests/prism-truepresence.test.mjs"
       - "package.json"
       - "package-lock.json"
   workflow_dispatch:
