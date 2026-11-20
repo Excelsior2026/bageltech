@@ -466,6 +466,11 @@ export default function CustomSiteWizard() {
     payloadRef.current = null;
   }, [form]);
 
+  function clearSubmissionCache() {
+    requestIdRef.current = null;
+    payloadRef.current = null;
+  }
+
   function update<K extends keyof StudioState>(key: K, value: StudioState[K]) {
     setForm((current) => ({ ...current, [key]: value }));
     setError("");
