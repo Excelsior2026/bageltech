@@ -1,0 +1,73 @@
+# PRISM: Social Meaning and Intent Assessment
+
+**Status:** Experimental prototype, NOT clinically validated
+**Owner:** BagelTech / BDB Labs
+**Implementation:** `/prism` in this Next.js repository
+**Stage:** PRISM-12 pilot. PRISM-48 is only a proposed subsequent phase.
+
+## Purpose and limits
+
+PRISM explores interpretation of sarcasm, sincerity, nonliteral phrasing, indirect requests, mixed messages, and appropriate uncertainty. It is not a diagnosis, a measure of honesty, an assessment of malingering, or a measure of intentional misrepresentation. Performance discrepancies are never sufficient to infer willful misunderstanding.
+
+The PHQ-2 to PHQ-9 model informs only the design pattern: shorter screening followed by a longer optional evaluation when warranted. PRISM has no validated diagnostic thresholds, sensitivity, specificity, reliability coefficients, reference norms, or established progression cutoff. Do not use clinical screening labels such as "positive" or "negative" for its results.
+
+## Current prototype implementation
+
+- Twelve original scenarios administered individually, with four candidate interpretations each and an optional skip choice.
+- User-selectable confidence (1–5) and a free-text evidence explanation.
+- Initial self-report on perceived sarcasm difficulty, separate from observed item performance.
+- Local browser-only PRISM answers; no participant identity, login, database storage, analytics event submission, video capture, or microphone capture is implemented. A **separate**, expressly opted-in TruePresence check may send strictly limited aggregate timing features to a configured TruePresence backend, which may retain its own evidence artifacts.
+- A locally computed descriptive summary showing total and content-domain raw scores plus optional explanation review.
+- Illustration and browser speech synthesis are *demonstration materials*. They are **not** validated audiovisual performances; they do not support inference about visual social-cue processing or vocal prosody.
+- Automatic referral to PRISM-48 is disabled until validated decision criteria exist.
+- Route uses noindex because its scoring and media are research prototypes.
+
+## Required work before public screening or validation claims
+
+1. Write paired scripts for all 12 scenarios. Each script must define the context, literal utterance, intended interpretation, nonliteral clues, competing plausible interpretations, performance directions, and alternate versions.
+2. Record consented human-actor video and audio using controlled camera framing, volume, timing and pronunciation. Avoid synthetic vocal prosody for scored trials.
+3. Generate modality variants (audio-only, silent video, audiovisual) with counterbalanced assignment. Repetition of identical scripts in a single session may itself reveal the intended answer.
+4. Conduct blinded multi-rater item reviews and discard or revise items with ambiguous keys or weak agreement.
+5. Implement an asset manifest with checksums, versioned scoring key, locked content after completion, accessible transcripts, and an accessibility plan that records conditions without penalizing accommodations.
+6. Include controls for literal comprehension, vision, hearing, language and attention where relevant.
+7. Conduct pilot cognitive interviews and representative-user testing before testing reliability, validity, differential item functioning, and false-positive rates.
+8. Introduce ethics and privacy review, consent procedures, and data retention/deletion policies before any server-side response collection or recruitment.
+9. For any potential credibility/reported-difficulty discrepancy, use multiple independent performance-validity approaches reviewed by qualified researchers. Never classify individuals as faking or lying from PRISM.
+10. Commission an independent cross-model review of the final PR head and record the review before merge, per `AI_ATTRIBUTION.md`.
+
+## Proposed PRISM-48 second stage
+
+PRISM-48 is a future multimodal evaluation with 48 independent trials: literal comprehension, vocal inference, visual inference, integrated meaning, ambiguity, and transfer/consistency. Progression from PRISM-12 should be optional or professionally determined during research. Automated referral thresholds may be considered only after prospective validation against an appropriate external standard.
+
+## Acceptance checks for prototype
+
+- Exactly 12 unique scenario IDs, each with four distinct options and one predefined key.
+- A participant cannot submit an unanswered scenario without explicitly selecting Skip.
+- No rationales or keys appear before completion.
+- Consent and a self-report response are required to begin.
+- Browser replay is optional and clearly labeled synthetic; absence of TTS does not block the test.
+- Results provide descriptive raw accuracy and disclaim clinical/deception interpretation.
+- No PRISM answers, question IDs, explanations, self-report, or scores leave the browser. The PRISM page fetches only TruePresence configuration status; a feature submission occurs only after separate consent and an optional typing challenge. No hidden participant collection.
+- Mobile, keyboard, and screen-reader interaction tested manually, including the opt-in TruePresence flow.
+- `npm test`, `npm run lint`, and `npm run build` pass before publication.
+
+## Orchestration / evidence register
+
+- **Approach:** Small, separately reviewable PR for the Next.js route and original stimuli. No deployment on this branch.
+- **Authoring model:** GPT-6 (OpenAI / ChatGPT).
+- **Implementation location:** `src/app/prism`.
+- **Media status:** Actor videos and recorded audio are not yet produced.
+- **Independent review:** Pending; this record is not evidence of acceptance.
+- **Draft PR:** [BagelTech PR #16](https://github.com/Excelsior2026/bageltech/pull/16), intentionally unmerged.
+- **CI evidence:** [PRISM Quality Gate run 44729214096](https://github.com/Excelsior2026/bageltech/actions/runs/44729214096), commit `b148eea2678b710d45006f2a37bcc79409991cc4`: tests, lint, TypeScript, and build PASS; dependency audit gate FAIL; detailed JSON report uploaded as `prism-production-audit` artifact.
+- **Research/media gate:** [BagelTech issue #17](https://github.com/Excelsior2026/bageltech/issues/17), unfulfilled.
+- **Security gate:** [BagelTech issue #18](https://github.com/Excelsior2026/bageltech/issues/18), unfulfilled.
+- **TruePresence backend gate:** [BDBLabs/TruePresenceESE issue #56](https://github.com/BDBLabs/TruePresenceESE/issues/56), unfulfilled.
+- **Deployment:** Not performed. `/prism` on the public site is not yet live.
+- **Known risks:** Incomplete audiovisual validity, unnormed content, self-report interpretation, cultural variability, prototype scoring uncertainty.
+
+## TruePresence boundary (November 2026)
+
+PRISM interpretation scores and TruePresence interaction-authenticity signals are **independent**. TruePresence evaluates interaction behavior, not intended-language comprehension or whether a person is being truthful. The private upstream project is `BDBLabs/TruePresenceESE`, including the `/api/v1/truepresence/evaluate-interaction` API. Integration is optional, observes only, and **never gates or changes PRISM answers**.
+
+The BagelTech server route `/api/prism/truepresence` provides a configuration-status check and a tightly restricted same-origin forwarding adapter. Only aggregate typing cadence and a separate fixed-phrase challenge's duration/correctness are accepted. Responses are mapped to a limited status, and no private TruePresence source code or runtime secret is distributed through the public website repository. See `docs/PRISM_TRUEPRESENCE_INTEGRATION.md`.
