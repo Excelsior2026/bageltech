@@ -272,8 +272,9 @@ export default function PrismClient() {
           </section>
         )}
         <footer className={styles.footerNote}>
-          PRISM-12 v0.1 · BagelTech · Experimental use only · No personal
-          identification, recordings, or server-side response storage.
+          PRISM-12 v0.1 · BagelTech · Experimental use only · PRISM answers
+          remain in the browser. The separate, optional TruePresence check
+          may retain timing-feature evidence at its provider.
         </footer>
       </div>
     </main>
