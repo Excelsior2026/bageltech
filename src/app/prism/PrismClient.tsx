@@ -4,6 +4,8 @@ import { useEffect, useMemo, useState } from "react";
 import { PRISM12_ITEMS } from "./items";
 import { scorePrism12, type PrismResponse } from "./scoring";
 import TruePresenceCheck from "./TruePresenceCheck";
+import PrismMedia from "./PrismMedia";
+import { APPROVED_PRISM12_MEDIA } from "./media";
 import styles from "./prism.module.css";
 
 type Phase = "welcome" | "assessment" | "results";
@@ -148,7 +150,7 @@ export default function PrismClient() {
             </div>
             <h2>{item.title}</h2>
             <div className={styles.scene}>
-              <div className={styles.poster} aria-hidden="true">{item.illustration}</div>
+              <PrismMedia item={item} />
               <div>
                 <p className={styles.sceneLabel}>Situation</p>
                 <p>{item.setting}</p>
@@ -156,12 +158,16 @@ export default function PrismClient() {
                 <p>{item.visual}</p>
                 <p className={styles.sceneLabel}>Spoken line</p>
                 <blockquote><strong>{item.speaker}:</strong> &ldquo;{item.line}&rdquo;</blockquote>
-                <button className={styles.secondary} type="button" onClick={playPreview}>
-                  ▶ Play synthetic voice
-                </button>
-                <p className={styles.audioNote} aria-live="polite">
-                  {audioStatus || "Speech synthesis is optional and not used to assess vocal sarcasm."}
-                </p>
+                {!APPROVED_PRISM12_MEDIA[item.id] && (
+                  <>
+                    <button className={styles.secondary} type="button" onClick={playPreview}>
+                      ▶ Play synthetic voice
+                    </button>
+                    <p className={styles.audioNote} aria-live="polite">
+                      {audioStatus || "Speech synthesis is optional and not used to assess vocal sarcasm."}
+                    </p>
+                  </>
+                )}
               </div>
             </div>
             <fieldset className={styles.answers}>
