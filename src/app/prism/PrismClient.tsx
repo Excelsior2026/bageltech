@@ -1,34 +1,20 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { PRISM12_ITEMS, type PrismItem } from "./items";
+import { PRISM12_ITEMS } from "./items";
+import { scorePrism12, type PrismResponse } from "./scoring";
 import TruePresenceCheck from "./TruePresenceCheck";
 import styles from "./prism.module.css";
 
-type Response = {
-  choice: number | null;
-  confidence: number;
-  explanation: string;
-};
 type Phase = "welcome" | "assessment" | "results";
-const emptyResponses = (): Response[] =>
+const emptyResponses = (): PrismResponse[] =>
   PRISM12_ITEMS.map(() => ({ choice: null, confidence: 3, explanation: "" }));
-const categories: readonly { id: PrismItem["domain"]; label: string }[] = [
-  { id: "context", label: "Contextual inference" },
-  { id: "social-intent", label: "Social intention" },
-  { id: "uncertainty", label: "Uncertainty recognition" },
-];
-function countCorrect(responses: Response[]) {
-  return PRISM12_ITEMS.reduce(
-    (sum, item, idx) => sum + (responses[idx]?.choice === item.correct ? 1 : 0),
-    0
-  );
-}
+
 export default function PrismClient() {
   const [phase, setPhase] = useState<Phase>("welcome");
   const [consent, setConsent] = useState(false);
   const [selfRating, setSelfRating] = useState("");
-  const [responses, setResponses] = useState<Response[]>(emptyResponses);
+  const [responses, setResponses] = useState<PrismResponse[]>(emptyResponses);
   const [index, setIndex] = useState(0);
   const [showKey, setShowKey] = useState(false);
   const [audioStatus, setAudioStatus] = useState("");
@@ -44,25 +30,9 @@ export default function PrismClient() {
     };
   }, [index]);
 
-  const scores = useMemo(() => {
-    const domains = categories.map((category) => {
-      const indices = PRISM12_ITEMS.map((question, idx) =>
-        question.domain === category.id ? idx : -1
-      ).filter((idx) => idx >= 0);
-      return {
-        ...category,
-        total: indices.length,
-        correct: indices.filter((idx) =>
-          responses[idx]?.choice === PRISM12_ITEMS[idx].correct
-        ).length,
-      };
-    });
-    const confidence = responses.reduce((sum, answer) => sum + answer.confidence, 0) /
-      responses.length;
-    return { total: countCorrect(responses), domains, confidence };
-  }, [responses]);
+  const scores = useMemo(() => scorePrism12(PRISM12_ITEMS, responses), [responses]);
 
-  function patchResponse(patch: Partial<Response>) {
+  function patchResponse(patch: Partial<PrismResponse>) {
     setResponses((previous) =>
       previous.map((response, idx) => idx === index ? { ...response, ...patch } : response)
     );
@@ -240,7 +210,7 @@ export default function PrismClient() {
             <p className={styles.eyebrow}>Your experimental pilot summary</p>
             <h2 id="results-title">Your results</h2>
             <div className={styles.score}>
-              <strong>{scores.total}<span> / {PRISM12_ITEMS.length}</span></strong>
+              <strong>{scores.correct}<span> / {scores.total}</span></strong>
               <p>Best-supported interpretations identified</p>
             </div>
             <div className={styles.breakdown}>
@@ -252,8 +222,8 @@ export default function PrismClient() {
               ))}
             </div>
             <p>
-              Your average confidence selection was {scores.confidence.toFixed(1)}
-              /5. Your initial self-report was &ldquo;{selfRating.replaceAll("-", " ")}&rdquo;.
+              Your average confidence selection was {scores.confidence === null ? "not available" : scores.confidence.toFixed(1)}
+              /5. You skipped {scores.skipped} scenario{scores.skipped === 1 ? "" : "s"}. Your initial self-report was &ldquo;{selfRating.replaceAll("-", " ")}&rdquo;.
               These observations describe answers to this small set of scenarios,
               not underlying ability, motivation, or truthfulness.
             </p>
