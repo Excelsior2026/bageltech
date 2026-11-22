@@ -83,3 +83,11 @@ test("never accepts an embedded answer despite JSON nesting", () => {
     challenge: valid().challenge
   }), /unsupported_field/);
 });
+
+test("client caps characters_per_minute at the validator maximum (inherited issue fix)", () => {
+  const client = readFileSync(
+    path.join(here, "../src/app/prism/TruePresenceCheck.tsx"), "utf8"
+  );
+  assert.match(client, /characters_per_minute:\s*Math\.min\(20000,/);
+  assert.doesNotMatch(client, /characters_per_minute:\s*Math\.min\(3600000,/);
+});

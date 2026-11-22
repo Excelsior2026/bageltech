@@ -39,7 +39,7 @@ function summarize(clock: Clock, now: number, exact: boolean) {
     typing: {
       mean_inter_key_interval_ms: Math.max(0, mean),
       inter_key_interval_stddev_ms: Math.sqrt(variance),
-      characters_per_minute: Math.min(3600000, clock.keys * 60000 / duration),
+      characters_per_minute: Math.min(20000, clock.keys * 60000 / duration),
       correction_count: clock.corrections,
       correction_rate: clock.keys ? Math.min(1, clock.corrections / clock.keys) : 0,
       paste_count: clock.pastes,
