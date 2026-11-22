@@ -4,7 +4,7 @@
 **Branch:** `improvement/site-ux-commercial-readiness`
 **Base:** `main` @ `253050364c38ff2734924f4e54097a2715dafda3`
 **Scope:** Article routing/metadata, legal placeholders, product registry, canonical metadata, sitemap/robots, integrity tests, and preservation of the deployed visual design.
-**Deployment:** none. All checks below are local; Vercel metadata was queried read-only for the D-1 root cause.
+**Deployment:** no deploy/promotion performed. Local checks plus read-only Vercel queries for the D-1 root cause; after the owner-authorized alias correction, anonymous public HTTP verification was also run against `www.bageltech.net` and `bageltech.net`.
 
 > AI-Model: Big Pickle (`big-pickle`; exact build version not exposed by this runtime)
 > AI-Provider: OpenCode (`opencode`)
@@ -101,6 +101,10 @@ Started the final build with `npm start -- -p 3187` and issued requests with `fe
 
 Raw-header inspection confirmed a single `Location` header for the tested 308 redirects.
 
+### Public verification after alias correction (2026-11-22)
+
+After PR #15 was reviewed and before merge, the owner authorized correcting D-1. Both `www.bageltech.net` and `bageltech.net` were re-aliased to `dpl_3tWEx7iXM76N1yrVicvznAqTdyqU` (reviewed head `6c2df56734c638180525e344e9264102b7307677`). Anonymous public checks then passed **29/29** on `www.bageltech.net`: deployment marker, restored design signatures, registry products, absolute/OG titles, canonicals, sitemap/robots, article and noindex legal routes, and legacy 308 redirects. The apex domain redirects to `www` and serves the same build. See `BASELINE_AUDIT.md` §3 for the route table. PR #15 was merged after this verification as `0373fd8b0875db9d5f41102a0ec91c05793c865d`.
+
 ---
 
 ## 3. What the new tests lock down
@@ -129,7 +133,7 @@ Raw-header inspection confirmed a single `Location` header for the tested 308 re
 - No browser-level/keyboard or axe/WCAG 2.2 AA audit yet (Slice E).
 - No before/after screenshots were captured; no browser automation is configured in the repository (Slice E).
 - No Lighthouse lab or field performance data yet (Slice E).
-- No smoke has been run against `www.bageltech.net` after the fix because the domain alias is still pinned to stale deployment `dpl_Fdxa9u9XGmTaRhqevUcDEVuLurAK`. The root cause is confirmed; the alias correction needs explicit approval.
-- The previous head `9a09c68f884dba4dd4f0b7ab8ff14a58435b8a06` was reviewed by DeepSeek V4.1 Flash Free. The final head after the design restoration is uncommitted/unpushed and has **not** been cross-model reviewed.
+- No dedicated commit-specific post-deploy marker is implemented. Public verification used the observed Vercel deployment marker and the deployment's `gitSource.sha`; a purpose-built release marker remains outstanding.
+- The previous head `9a09c68f884dba4dd4f0b7ab8ff14a58435b8a06` was reviewed by DeepSeek V4.1 Flash Free (review `6010897735`). The final head `6c2df56734c638180525e344e9264102b7307677` was then reviewed by GPT-6.1 Sol (`gpt-6.1-sol`, Codex CLI 0.167.2) with verdict `APPROVE_WITH_COMMENTS` (review `6012578547`). PR #15 was merged as `0373fd8b0875db9d5f41102a0ec91c05793c865d` after all checks passed. The reviewer could not reproduce `npm run build` inside its sandbox (`EPERM` on `.next/trace`); the coordinator's build succeeded.
 
-These gaps are tracked in `REMAINING_RISKS.md` and are why this slice is **not release-ready for deployment**.
+These gaps are tracked in `REMAINING_RISKS.md` and are why a **new durable production promotion or release announcement** remains blocked. PR #15 and the owner-authorized alias correction are complete and publicly verified.

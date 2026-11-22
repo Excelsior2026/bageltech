@@ -15,7 +15,7 @@
 
 ## 1. Method
 
-1. Read `AGENTS.md`, `CLAUDE.md`, `AI_ATTRIBUTION.md`, `DEVELOPMENT_EVIDENCE_RETENTION.md`, `.github/workflows/*`.
+1. Read `AGENTS.md`, `CLAUDE.md`, `AI_ATTRIBUTION.md`, `.github/workflows/*`. A `DEVELOPMENT_EVIDENCE_RETENTION.md` was referenced but is not present in this checkout; the evidence-retention policy exists only as unmerged draft PR #13. This reference was corrected after the independent review flagged it.
 2. Inventoried all routes, navigation, content sources, product registry, metadata and API routes in the repository.
 3. Fetched production HTML and HTTP headers directly (homepage, `/insights`, article paths, `/products`, legacy paths, `/sitemap.xml`, `/robots.txt`).
 4. Compared production HTML signatures with a clean local production build of `main`.
@@ -82,9 +82,9 @@ The alias is pinned to the older production deployment. This is not a caching pr
 
 The older deployment is the design the owner wants preserved. Its `heroCopy`/`diagramWrap`/`triptych`/`productsStrip` homepage, raw SVG lockup, original color tokens and three-column footer were restored onto this branch from `2b1a952`. The newer `main` redesign (`heroActions`/`divisionsSection`/`proofRow`) is deliberately **not** the target design. The restoration keeps the Slice A correctness, metadata, legal and product fixes and does not reintroduce the misleading live links (`Careers → /about`, `Press → /insights`, `Security → /contact`, `X → https://x.com`).
 
-**Remedy (requires explicit human/Vercel approval):** after review of the final PR head, promote or alias the intended deployment to `www.bageltech.net`, then verify the commit-specific marker and route smoke. No redirect, cache purge or code change should be used to mask the stale alias.
+**Correction executed (2026-11-22):** with the owner's explicit approval, `www.bageltech.net` and `bageltech.net` were re-aliased from `dpl_Fdxa9u9XGmTaRhqevUcDEVuLurAK` to `dpl_3tWEx7iXM76N1yrVicvznAqTdyqU`, a READY build of reviewed PR #15 head `6c2df56734c638180525e344e9264102b7307677`. PR #15 was subsequently merged into `main` as `0373fd8b0875db9d5f41102a0ec91c05793c865d`. Public verification passed 29/29 checks on `www.bageltech.net`; the apex redirects to `www` and serves the same build. No redirect, cache purge or code change was used to mask the stale alias.
 
-**Severity: Critical until corrected.** No Slice A fix is observable on the public domain while the alias remains pinned to `dpl_Fdxa9u9XGmTaRhqevUcDEVuLurAK`.
+**Residual risk:** the public domain now serves a preview-target deployment whose `gitSource.sha` matches the merged PR head, rather than a separately promoted production-target deployment. Owner approval is still required for a durable promotion/release.
 
 ---
 
@@ -102,6 +102,22 @@ The older deployment is the design the owner wants preserved. Its `heroCopy`/`di
 | `/robots.txt` | **404** | No robots file exists in repo either |
 
 The previous review's `/writing/...` observation is accurate **for production**, but the repository had already migrated to `/insights/...` in `885ce64`. The underlying problem is the stale deployment, not merely a missing redirect.
+
+### Post-correction public verification (2026-11-22)
+
+After the alias correction, anonymous public requests were re-run against `https://www.bageltech.net` with cache-busting query strings.
+
+| Path | Status | Note |
+| --- | --- | --- |
+| `/` | 200 | HTML carries `dpl_3tWEx7iXM76N1yrVicvznAqTdyqU`; `heroCopy`, `diagramWrap`, `triptych`, `productsStrip`, `cardsGrid`; registry products; absolute title; no misleading links. |
+| `/sitemap.xml` | 200 | Canonical article present; legal/dashboard URLs excluded. |
+| `/robots.txt` | 200 | Sitemap reference and exact `/dashboard` disallow present. |
+| `/insights/confidence-is-not-governance` | 200 | Absolute canonical to `https://www.bageltech.net/insights/...`. |
+| `/privacy` | 200 | `noindex, follow` structural placeholder. |
+| `/repository` | 308 | Redirects to `/insights` (inbound query preserved). |
+| `https://bageltech.net/` | 308 → 200 | Redirects to `www`, which serves the same new deployment. |
+
+**Result: 29/29 checks passed on `www.bageltech.net`.** A Vercel deployment-metadata API still listed the old aliases, apparently cached; anonymous public HTTP responses and the HTML deployment marker are treated as authoritative.
 
 ---
 
@@ -216,7 +232,7 @@ All findings in §6 are **pre-existing**. No code was changed during the audit. 
 
 ## 8. Human decisions and access required
 
-1. **Vercel access and approval** to promote/alias the intended deployment to `www.bageltech.net` (D-1). The root cause is confirmed; only the authorized correction remains. No code change can substitute.
+1. **Vercel approval for a durable production promotion** (D-1 residual). The alias correction to the reviewed, now-merged build is complete and publicly verified; promoting a production-target deployment remains a separate owner decision.
 2. **Legal/human review** of any substantive site-wide privacy, terms, security or accessibility language. Placeholders will be structurally prepared but not represented as approved policy.
 3. **Product claim approval** for ELEANOR framing, maturity labels, ECHO/Sematik inclusion, and any screenshots/demonstrations.
 4. **Contact delivery integration** decision: no credentials or paid provider will be added without approval; form activation will remain gated until an approved destination exists.
