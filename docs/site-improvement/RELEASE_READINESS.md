@@ -1,6 +1,6 @@
 # Release Readiness — Slice A
 
-**Date:** 2026-11-18; design-restoration and post-merge update 2026-11-22
+**Date:** 2026-11-18; design-restoration, post-merge and draft-review update 2026-11-22
 **Release branch / PR:** `improvement/site-ux-commercial-readiness` / PR #15, merged to `main` as `0373fd8b0875db9d5f41102a0ec91c05793c865d`
 **Original base:** `main` @ `253050364c38ff2734924f4e54097a2715dafda3`
 **Decision:** **NO-GO for a new durable production promotion or public release announcement.** PR #15 was cross-model reviewed and merged, and the owner-authorized domain alias correction now serves that reviewed build; legal text, product wording and a separately approved production-target promotion remain open.
@@ -35,7 +35,7 @@
 3. **Product claim approval (P-1).** Maturity labels, status wording, ELEANOR framing, ECHO/Sematik exclusion and evidence references require owner approval.
 4. **Cross-model review (R-1) completed for this release.** DeepSeek V4.1 Flash Free reviewed old head `9a09c68f884dba4dd4f0b7ab8ff14a58435b8a06` (review `6010897735`). Final head `6c2df56734c638180525e344e9264102b7307677` was reviewed by GPT-6.1 Sol (`gpt-6.1-sol`, Codex CLI 0.167.2) with verdict `APPROVE_WITH_COMMENTS` (review `6012578547`); there were no blocking findings. Three low, nonblocking findings were left open by owner decision and no new commit was created. The reviewer could not reproduce `npm run build` inside its sandbox (`EPERM` on `.next/trace`); the coordinator's build succeeded.
 5. **Deployment approval (G-1) partially resolved.** The owner explicitly authorized the PR #15 merge and the specific alias correction. DNS was not changed. No new production-target deployment, promotion, DNS change or public release announcement is authorized.
-6. **Other draft PRs are not part of this release.** PR #10, #11 and #12 have blocking review findings. PR #13, #14, #16, #19 and #20 were not reviewed because the reviewer account reached its usage cap; they remain unmerged pending fresh reviews and any required fixes.
+6. **Other draft PRs are not part of this release.** All eight remaining drafts were independently reviewed at their current heads by GPT-6.1 Sol or GPT-5.6 Terra under Codex CLI 0.167.2, and the review metadata was recorded in each PR body. PR #10, #11 and #12 have blocking findings; PR #13, #14, #16, #19 and #20 received APPROVE verdicts. Approval is a review result, not merge authorization; all remain drafts pending owner decisions and any required fixes.
 7. **Quality gaps.** No browser/a11y audit, Lighthouse baseline, CI enforcement or dedicated commit-specific post-deploy marker yet. See `REMAINING_RISKS.md`.
 
 ## 3. Required approvals before go-live
@@ -64,4 +64,4 @@ No rollback has been performed.
 
 ## 5. Final statement
 
-Slice A plus the live-design restoration was reviewed, merged and made observable on the public domain through an owner-authorized alias correction. This is not a durable production promotion or an approved public release: legal text, product wording, quality work and a separately authorized production-target promotion remain open. Other draft PRs are outside this release and remain subject to their own reviews and owner decisions.
+Slice A plus the live-design restoration was reviewed, merged and made observable on the public domain through an owner-authorized alias correction. This is not a durable production promotion or an approved public release: legal text, product wording, quality work and a separately authorized production-target promotion remain open. Other draft PRs are outside this release; all have now received independent cross-model reviews, and their blocking findings or owner approval decisions remain separate.
