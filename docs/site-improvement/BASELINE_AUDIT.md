@@ -1,6 +1,6 @@
 # Baseline Audit — BagelTech.net Site Improvement
 
-**Status:** Baseline verified against production and repository on 2026-11-18.
+**Status:** Baseline verified against production and repository on 2026-11-18; D-1 root cause confirmed read-only on 2026-11-22.
 **Branch:** `improvement/site-ux-commercial-readiness` (created from `main` at `253050364c38ff2734924f4e54097a2715dafda3`).
 **Base commit:** `253050364c38ff2734924f4e54097a2715dafda3` (`Collapse: commit pending changes on main`).
 **Working tree at audit:** clean before changes.
@@ -21,6 +21,7 @@
 4. Compared production HTML signatures with a clean local production build of `main`.
 5. Queried the GitHub Deployments and commit APIs for release traceability.
 6. Ran baseline `npm ci`, `npm test`, `npm run lint`, `npm run build`.
+7. On 2026-11-22, queried Vercel CLI/API with the existing authenticated identity (`billparris-1374`) for deployment metadata, aliases and project configuration. All Vercel calls were read-only.
 
 No production configuration, DNS, deployment or GitHub setting was changed.
 
@@ -62,17 +63,28 @@ No production configuration, DNS, deployment or GitHub setting was changed.
 
 The local build of `2530503` contains `heroActions`/`divisionsSection` and **no** `productsStrip`/`triptych`.
 
-### Conclusion
+### Confirmed root cause (2026-11-22)
 
-The green GitHub/Vercel "Production" deployment record for the current commit is **not evidence that the domain serves that commit**. The live artifact behaves like the pre-`885ce64` tree. Possible causes that remain to be distinguished with Vercel account access:
+| Item | Value |
+| --- | --- |
+| Domain alias | `www.bageltech.net` is aliased to Vercel deployment `dpl_Fdxa9u9XGmTaRhqevUcDEVuLurAK` |
+| Live deployment | `bageltech-k2j3il2mo-bagel-tech.vercel.app`, `target: production`, `readyState: READY` |
+| `gitSource.sha` | `2b1a952866db3903488eb72fe2a9ed0ebe3bb665` (`ref: main`) |
+| Commit subject | `Mark repository as BagelTech-owned (LICENSE/README/package.json)` |
+| Design lineage | `04775c5` is an ancestor of `2b1a952`; the homepage, home CSS, header, footer, footer CSS and global CSS files are byte-identical between them |
+| Newer production deployment | `dpl_7rFNpCmUsc2xWhGsvG6HJJyLKi4x` from `253050364c38ff2734924f4e54097a2715dafda3` |
+| Newer deployment aliases | `bageltech-bagel-tech.vercel.app`, `bageltech-git-main-bagel-tech.vercel.app` — **no `www.bageltech.net`** |
+| Vercel identity | `billparris-1374`; all CLI/API calls were read-only |
 
-1. The `www.bageltech.net` domain alias is pinned/rolled back to an older Vercel deployment.
-2. More than one Vercel project exists (historical `Production – bageltech` and `Production – bageltech-jgux` deployments are recorded) and the domain points at a different project.
-3. A deployment succeeded technically but the alias promotion did not complete.
+The alias is pinned to the older production deployment. This is not a caching problem, a missing redirect, or a failed GitHub deployment record. The newer production deployment exists but was never given the `www` alias.
 
-**Remedy (requires human/Vercel access):** verify the live deployment's source SHA in the Vercel dashboard or `vercel inspect dpl_Fdxa9u9XGmTaRhqevUcDEVuLurAK`, confirm domain→deployment alias mapping, promote the correct deployment, and add an automated post-deploy smoke check that asserts a commit-specific marker (see ADR requirement in the implementation plan). No redirect, cache purge or code change should be used to mask this.
+### Design decision
 
-**Severity: Critical.** Every content fix on `main` is invisible to visitors until this is resolved.
+The older deployment is the design the owner wants preserved. Its `heroCopy`/`diagramWrap`/`triptych`/`productsStrip` homepage, raw SVG lockup, original color tokens and three-column footer were restored onto this branch from `2b1a952`. The newer `main` redesign (`heroActions`/`divisionsSection`/`proofRow`) is deliberately **not** the target design. The restoration keeps the Slice A correctness, metadata, legal and product fixes and does not reintroduce the misleading live links (`Careers → /about`, `Press → /insights`, `Security → /contact`, `X → https://x.com`).
+
+**Remedy (requires explicit human/Vercel approval):** after review of the final PR head, promote or alias the intended deployment to `www.bageltech.net`, then verify the commit-specific marker and route smoke. No redirect, cache purge or code change should be used to mask the stale alias.
+
+**Severity: Critical until corrected.** No Slice A fix is observable on the public domain while the alias remains pinned to `dpl_Fdxa9u9XGmTaRhqevUcDEVuLurAK`.
 
 ---
 
@@ -122,7 +134,7 @@ Proxy-only legacy redirects (`src/proxy.ts`): `/research`, `/publications`, `/re
 
 Header (`src/components/Header.tsx`): Products `/products`; BDB Labs `/bdb-labs/research`; Services `/bpv/advisory`; Writing `/insights`; About `/about`; Contact `/contact`. Desktop and mobile share the same list. Escape-to-close and body scroll lock are implemented. No active-page indicator, no persistent contact CTA.
 
-Footer (`src/components/Footer.tsx`): Company (About, Products, Contact); Divisions (BDB Labs, Advisory, Repository); Resources (Writing, Publications, Contractor Platform); Legal (Privacy Policy → `/contractors/privacy`, Terms of Service → `/contractors/terms`); social LinkedIn/GitHub/ORCID; Bagel `/bmo` row.
+Footer (`src/components/Footer.tsx`) on the audited `main` build: Company (About, Products, Contact); Divisions (BDB Labs, Advisory, Repository); Resources (Writing, Publications, Contractor Platform); Legal (Privacy Policy → `/contractors/privacy`, Terms of Service → `/contractors/terms`); social LinkedIn/GitHub/ORCID; Bagel `/bmo` row. The current branch restores the deployed three-column layout and keeps only corrected legal/social destinations (§2 design decision).
 
 ### 5.3 APIs
 
@@ -204,7 +216,7 @@ All findings in §6 are **pre-existing**. No code was changed during the audit. 
 
 ## 8. Human decisions and access required
 
-1. **Vercel access** to inspect `dpl_Fdxa9u9XGmTaRhqevUcDEVuLurAK`, confirm domain alias, and promote the correct deployment (D-1). No code change can substitute.
+1. **Vercel access and approval** to promote/alias the intended deployment to `www.bageltech.net` (D-1). The root cause is confirmed; only the authorized correction remains. No code change can substitute.
 2. **Legal/human review** of any substantive site-wide privacy, terms, security or accessibility language. Placeholders will be structurally prepared but not represented as approved policy.
 3. **Product claim approval** for ELEANOR framing, maturity labels, ECHO/Sematik inclusion, and any screenshots/demonstrations.
 4. **Contact delivery integration** decision: no credentials or paid provider will be added without approval; form activation will remain gated until an approved destination exists.

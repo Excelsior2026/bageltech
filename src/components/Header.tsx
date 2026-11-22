@@ -1,8 +1,8 @@
 "use client";
 
+/* eslint-disable @next/next/no-img-element -- Decorative static brand SVG preserves the deployed header design. */
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import BrandMark from "./BrandMark";
 import styles from "./Header.module.css";
 
 const navLinks = [
@@ -37,7 +37,13 @@ export default function Header() {
     <header className={styles.header}>
       <div className={styles.headerInner}>
         <Link href="/" className={styles.logo} aria-label="BagelTech home">
-          <BrandMark brand="bageltech" variant="dark" size="header" priority />
+          <img
+            src="/brand/bageltech/lockup-light.svg"
+            alt="BagelTech"
+            className={styles.logoImg}
+            width={260}
+            height={52}
+          />
         </Link>
 
         <nav className={styles.desktopNav} aria-label="Main navigation">

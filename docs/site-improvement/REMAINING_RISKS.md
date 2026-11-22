@@ -1,6 +1,6 @@
 # Remaining Risks and Unresolved Issues
 
-**Date:** 2026-11-18
+**Date:** 2026-11-18; design-restoration update 2026-11-22
 **Status:** Slice A code verified locally; release/deployment blocked.
 **Scope:** All findings still open after Slice A.
 
@@ -15,10 +15,10 @@
 
 | ID | Severity | Issue | Evidence | Required next action | Owner |
 | --- | --- | --- | --- | --- | --- |
-| D-1 | Critical | `www.bageltech.net` still serves pre-revamp deployment `dpl_Fdxa9u9XGmTaRhqevUcDEVuLurAK` (matching `04775c5`), not current `main` (`2530503`). | `BASELINE_AUDIT.md` §2; production HTML signatures and GitHub Deployments API. | Inspect Vercel deployment/alias mapping, promote the correct deployment, then run a commit-marker smoke check. No code or redirect can substitute. | Human with Vercel access |
+| D-1 | Critical | `www.bageltech.net` is aliased to stale deployment `dpl_Fdxa9u9XGmTaRhqevUcDEVuLurAK` (source `2b1a952866db3903488eb72fe2a9ed0ebe3bb665`); newer deployment `dpl_7rFNpCmUsc2xWhGsvG6HJJyLKi4x` has only Vercel app aliases. | `BASELINE_AUDIT.md` §2; read-only Vercel CLI/API deployment and alias metadata. | With explicit approval, promote/alias the intended deployment to `www.bageltech.net`, then run a commit-marker smoke check. No code or redirect can substitute. | Human with Vercel access |
 | L-1 | High | Site-wide legal pages are structural placeholders only and are intentionally `noindex`. | `src/components/LegalPlaceholder.tsx`, `/privacy`, `/terms`, `/security`, `/accessibility`. | Human/legal review and approval of substantive text; decide when to remove `noindex`. | Owner + legal counsel |
 | P-1 | High | Product maturity, status wording, ELEANOR framing, ECHO/Sematik inclusion and evidence references are not owner-approved. | `PRODUCT_CONTENT_INVENTORY.md`. | Approve or amend each entry before publication or product-detail pages. | Owner |
-| R-1 | High | Cross-model PR review is not complete. | `AI_ATTRIBUTION.md`; PR fields will record `Cross-Model-Review: not-complete`. | Assign a different model, review the final head SHA, update PR fields and leave a review if tooling permits. | Owner / reviewer model |
+| R-1 | High | Old head `9a09c68` was reviewed by DeepSeek V4.1 Flash Free, but the final design-restoration head has not been reviewed. | PR #15 review `6010897735`; `AI_ATTRIBUTION.md` §2. | Push the final head, obtain a fresh review from a different model, record that exact SHA in PR fields and a GitHub review. | Owner / reviewer model |
 | G-1 | High | No deployment or DNS change has been authorized. | Harness constraints and plan. | Explicit human approval after D-1 and review are resolved. | Owner |
 
 ---
@@ -47,7 +47,8 @@
 - The draft article `content/articles/governance-at-execution.md` remains in the repository with `status: "draft"` and is excluded from indexes, routes and sitemap. No content was invented or rewritten.
 - Legal placeholders deliberately contain no substantive policy language. They are linked so visitors can see the structure, but are not represented as approved policies.
 - The product registry contains no `commercially-available` entries and no unsupported certifications, clients, results, performance figures or compliance claims.
-- No production configuration, DNS, aliases, deployments or GitHub settings were changed.
+- The deployed visual design is intentionally preserved from `2b1a952`; the newer `main` redesign is not used. Misleading live footer links and the `X → https://x.com` social link are not reintroduced.
+- D-1 was investigated read-only with the authenticated Vercel CLI; no production configuration, DNS, alias, deployment or GitHub setting was changed.
 
 ---
 

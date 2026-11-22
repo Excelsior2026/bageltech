@@ -216,23 +216,25 @@ test("robots excludes private surfaces and advertises the sitemap", () => {
 
   for (const path of [
     "/api/",
+    "/dashboard",
     "/dashboard/",
     "/get-started",
     "/contractors/privacy",
     "/contractors/terms",
-    "/privacy",
-    "/terms",
-    "/security",
-    "/accessibility",
   ]) {
     assert.ok(robots.includes(`"${path}"`), `${path} should be disallowed`);
+  }
+
+  // Footer-linked placeholders must stay crawlable so their noindex can be read.
+  for (const path of ["/privacy", "/terms", "/security", "/accessibility"]) {
+    assert.ok(!robots.includes(`"${path}"`), `${path} should not be disallowed`);
   }
 });
 
 test("indexable routes declare canonical URLs and titles are not double branded", () => {
   const layout = read("src/app/layout.tsx");
   assert.match(layout, /metadataBase: new URL\("https:\/\/www\.bageltech\.net"\)/);
-  assert.match(layout, /canonical: "\/"/);
+  assert.doesNotMatch(layout, /canonical:/, "root layout must not leak a canonical to pages without one");
 
   const staticCanonicals = [
     ["src/app/page.tsx", "/"],
@@ -252,6 +254,22 @@ test("indexable routes declare canonical URLs and titles are not double branded"
     assert.ok(read(file).includes(`canonical: "${path}"`), `${file} should declare canonical ${path}`);
   }
 
+  assert.match(
+    read("src/app/page.tsx"),
+    /title:\s*\{\s*absolute:\s*"BagelTech \| Technology & Intelligence"\s*\}/,
+    "homepage title must include the brand without relying on a same-segment template",
+  );
+
+  for (const [file, title] of [
+    ["src/app/bdb-labs/research/page.tsx", "Research | BDB Labs | BagelTech"],
+    ["src/app/bdb-labs/publications/page.tsx", "Publications | BDB Labs | BagelTech"],
+    ["src/app/bpv/advisory/page.tsx", "Advisory | Bagelle Parris Vargas | BagelTech"],
+  ]) {
+    const source = read(file);
+    assert.ok(source.includes(`title: { absolute: "${title}" }`), `${file} should use an absolute branded title`);
+    assert.ok(source.includes(`title: "${title}"`), `${file} should make og:title match the rendered title`);
+  }
+
   assert.match(read("src/app/insights/[slug]/page.tsx"), /const canonical = `\/insights\/\$\{article\.slug\}`/);
   assert.match(read("src/app/insights/[slug]/page.tsx"), /alternates: \{ canonical \}/);
   assert.match(
@@ -264,11 +282,14 @@ test("indexable routes declare canonical URLs and titles are not double branded"
     ...sourceFiles("src/components", [".tsx"]),
     ...sourceFiles("src/content", [".ts"]),
   ]) {
-    assert.doesNotMatch(
-      read(file),
-      /\btitle:\s*["'][^"']*\| BagelTech["']/,
-      `${file} should not double-brand a title`,
-    );
+    const source = read(file);
+    for (const match of source.matchAll(/\btitle:\s*(["'])([^"']*\| BagelTech)\1/g)) {
+      const [, quote, title] = match;
+      assert.ok(
+        source.includes(`title: { absolute: ${quote}${title}${quote} }`),
+        `${file} should only use the branded title "${title}" as an absolute page title`,
+      );
+    }
   }
 });
 
@@ -362,10 +383,47 @@ test("product registry uses controlled maturity and consistent public fields", (
     assert.ok(values("id").includes(id), `featured product ${id} should exist in the registry`);
   }
 
-  assert.match(read("src/app/page.tsx"), /FEATURED_PRODUCTS/);
-  assert.match(read("src/app/page.tsx"), /product\.statusLabel/);
+  const home = read("src/app/page.tsx");
+  assert.match(home, /FEATURED_PRODUCTS/);
+  assert.match(home, /product\.id === id/, "featured products must resolve by stable id, not slug");
+  assert.match(home, /featured\.length !== FEATURED_PRODUCTS\.length/, "featured ids must fail loudly");
+  assert.match(home, /product\.engagement\.href/, "product destinations must use the engagement field");
+  assert.doesNotMatch(home, /product\.href/);
   assert.match(read("src/app/products/page.tsx"), /product\.limitations/);
   assert.match(read("src/app/products/page.tsx"), /product\.engagement\.href/);
+});
+
+test("homepage and shared chrome preserve the deployed visual design", () => {
+  const home = read("src/app/page.tsx");
+  for (const signature of [
+    "heroCopy",
+    "diagramWrap",
+    "triptych",
+    "productsStrip",
+    "cardsGrid",
+    "insightsSide",
+  ]) {
+    assert.ok(home.includes(signature), `homepage should keep the live ${signature} section`);
+  }
+  for (const removed of ["heroActions", "divisionsSection", "proofRow", "ctaSection"]) {
+    assert.ok(!home.includes(removed), `homepage should not reintroduce ${removed} from the replaced design`);
+  }
+
+  const homeCss = read("src/app/home.module.css");
+  assert.match(homeCss, /grid-template-columns:\s*1\.05fr 1\.22fr/);
+  assert.match(homeCss, /grid-template-columns:\s*210px 1fr 285px/);
+
+  const globals = read("src/app/globals.css");
+  assert.match(globals, /--background:\s*#FFFEF7/);
+  assert.match(globals, /--accent:\s*#8A1E33/);
+
+  const header = read("src/components/Header.tsx");
+  assert.match(header, /\/brand\/bageltech\/lockup-light\.svg/);
+  assert.match(read("src/components/Header.module.css"), /\.logoImg/);
+
+  const footerCss = read("src/components/Footer.module.css");
+  assert.match(footerCss, /grid-template-columns:\s*1\.35fr 0\.75fr 0\.75fr 0\.75fr 1fr/);
+  assert.ok(!footerCss.includes("pawRow"), "footer should keep the deployed layout, without the later paw row");
 });
 
 test("proxy matcher covers every legacy redirect", () => {
@@ -376,9 +434,9 @@ test("proxy matcher covers every legacy redirect", () => {
   for (const [from, to] of [
     ["/research", "/bdb-labs/research"],
     ["/publications", "/bdb-labs/publications"],
-    ["/repository", "/bdb-labs/repository"],
+    ["/repository", "/insights"],
     ["/advisory", "/bpv/advisory"],
-    ["/case-studies", "/bpv/case-studies"],
+    ["/case-studies", "/bpv/advisory"],
     ["/writing", "/insights"],
   ]) {
     assert.ok(table.includes(`"${from}": "${to}"`), `${from} should redirect to ${to}`);

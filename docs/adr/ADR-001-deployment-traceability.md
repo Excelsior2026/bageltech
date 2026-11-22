@@ -1,7 +1,7 @@
 # ADR-001: Deployment traceability and live-artifact verification
 
-**Date:** 2026-11-18
-**Status:** Proposed — requires owner approval and Vercel access
+**Date:** 2026-11-18; root-cause update 2026-11-22
+**Status:** Proposed — root cause confirmed; promotion pending explicit owner approval
 **Decision owners:** Repository owner / deployment administrator
 **Affected findings:** D-1, R-1, Q-3
 
@@ -14,7 +14,7 @@
 
 ## 1. Context
 
-The GitHub Deployments API reports a successful Production deployment for `main` commit `253050364c38ff2734924f4e54097a2715dafda3` (`6997936214`, created `2026-10-11T15:50:24Z`, target `https://bageltech-dswtpxiip-bagel-tech.vercel.app`). However, direct requests to `https://www.bageltech.net` serve HTML whose signatures match the pre-revamp tree at `04775c5` and carry Vercel deployment ID `dpl_Fdxa9u9XGmTaRhqevUcDEVuLurAK`.
+Direct requests to `https://www.bageltech.net` serve HTML carrying Vercel deployment ID `dpl_Fdxa9u9XGmTaRhqevUcDEVuLurAK`. A read-only Vercel CLI/API query on 2026-11-22 confirmed that deployment's `gitSource.sha` is `2b1a952866db3903488eb72fe2a9ed0ebe3bb665` (`ref: main`, subject `Mark repository as BagelTech-owned (LICENSE/README/package.json)`) and that `www.bageltech.net`, `bageltech.net` and `bageltech-sage.vercel.app` are among its aliases. The newer production deployment `dpl_7rFNpCmUsc2xWhGsvG6HJJyLKi4x`, built from `253050364c38ff2734924f4e54097a2715dafda3`, has only `bageltech-bagel-tech.vercel.app` and `bageltech-git-main-bagel-tech.vercel.app` aliases — it was never given the `www` alias.
 
 Observable production differences include:
 
@@ -24,7 +24,7 @@ Observable production differences include:
 - `/sitemap.xml` and `/robots.txt` return 404;
 - the homepage uses old `heroCopy`/`triptych`/`productsStrip` classes.
 
-A green deployment status is therefore not evidence that the production domain serves that commit. The root cause is not distinguished yet: possible explanations include a domain alias pinned to an older deployment, multiple Vercel projects, or incomplete alias promotion.
+A green deployment status is therefore not evidence that the production domain serves that commit. The root cause is confirmed: the domain alias is pinned to the older deployment. `04775c5` is an ancestor of `2b1a952`, and the homepage, home CSS, header, footer, footer CSS and global CSS files are byte-identical between them, which explains the observed design. All Vercel investigation was read-only under the authenticated identity `billparris-1374`; no alias, deployment, DNS or project setting was changed.
 
 ## 2. Decision
 
@@ -62,13 +62,13 @@ The marker can be a build-time environment value derived from the commit SHA and
 | Purge CDN cache | No evidence the cause is caching; does not establish source-SHA traceability. |
 | Rebuild and redeploy without verifying alias | Repeats the same unverified release condition. |
 
-## 5. Verification plan (not yet executed)
+## 5. Verification plan (partially executed 2026-11-22)
 
-1. In Vercel, inspect `dpl_Fdxa9u9XGmTaRhqevUcDEVuLurAK` and identify its source SHA/project.
-2. Confirm which project and deployment the `www.bageltech.net` alias points to.
-3. With human approval, promote the deployment built from the approved commit.
-4. Run the commit-marker smoke check against `https://www.bageltech.net`.
-5. Re-check the production signatures from `BASELINE_AUDIT.md` §2 and the routes in §3.
-6. Record the deployment ID, observed SHA marker, smoke output and timestamp in `RELEASE_READINESS.md`.
+1. [x] Inspect `dpl_Fdxa9u9XGmTaRhqevUcDEVuLurAK` and identify its source SHA/project — confirmed `2b1a952866db3903488eb72fe2a9ed0ebe3bb665`, project `bageltech` (`prj_5XHbukySyRJjD93sfS9uA6Mz7OC7`).
+2. [x] Confirm which deployment the `www.bageltech.net` alias points to — confirmed the stale `dpl_Fdxa9u9XGmTaRhqevUcDEVuLurAK`; newer `dpl_7rFNpCmUsc2xWhGsvG6HJJyLKi4x` has no `www` alias.
+3. [ ] With explicit human approval, promote or alias the deployment built from the reviewed, approved commit.
+4. [ ] Implement/verify a commit-specific marker and assert it against `https://www.bageltech.net`.
+5. [ ] Re-check the production signatures from `BASELINE_AUDIT.md` §2 and the routes in §3.
+6. [ ] Record the deployment ID, observed SHA marker, smoke output and timestamp in `RELEASE_READINESS.md`.
 
-**Current state:** steps 1–6 are outstanding. This ADR documents the required decision; it does not claim the deployment defect has been fixed.
+**Current state:** steps 1–2 are complete read-only; steps 3–6 remain outstanding. The owner wants the currently deployed visual design preserved, so the branch restored that design from `2b1a952` while retaining the Slice A correctness fixes. This ADR documents the required decision; it does not claim the deployment defect has been fixed.

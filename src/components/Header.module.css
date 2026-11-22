@@ -21,6 +21,11 @@
   text-decoration: none;
   flex-shrink: 0;
 }
+.logoImg {
+  height: 38px;
+  width: auto;
+  display: block;
+}
 
 .desktopNav {
   display: flex;
@@ -95,4 +100,5 @@
 
 @media (max-width: 640px){
   .headerInner{ width: calc(100vw - 1.25rem); min-height: 3.9rem;}
+  .logoImg{ height: 30px; }
 }

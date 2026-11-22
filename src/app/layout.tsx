@@ -29,7 +29,6 @@ export const metadata: Metadata = {
   description:
     "BagelTech is an independent research, systems, and advisory practice for consequential systems. Founded and led by Bill Parris.",
   authors: [{ name: "William Parris" }],
-  alternates: { canonical: "/" },
   robots: { index: true, follow: true },
   openGraph: {
     siteName: "BagelTech",

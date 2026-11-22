@@ -3,9 +3,9 @@ import type { MetadataRoute } from "next";
 const SITE_URL = "https://www.bageltech.net";
 
 /**
- * Only public, approved destinations are crawlable. Draft/onboarding surfaces,
- * site-wide policy placeholders and application internals are excluded here
- * and via per-route `robots` metadata.
+ * Application internals and unlinked draft/onboarding surfaces are disallowed.
+ * Footer-linked legal placeholders stay crawlable so crawlers can read their
+ * per-route `noindex` metadata; they are deliberately absent from the sitemap.
  */
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -14,14 +14,11 @@ export default function robots(): MetadataRoute.Robots {
       allow: "/",
       disallow: [
         "/api/",
+        "/dashboard",
         "/dashboard/",
         "/get-started",
         "/contractors/privacy",
         "/contractors/terms",
-        "/privacy",
-        "/terms",
-        "/security",
-        "/accessibility",
       ],
     },
     sitemap: `${SITE_URL}/sitemap.xml`,

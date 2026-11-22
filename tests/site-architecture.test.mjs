@@ -122,17 +122,20 @@ test("homepage orients visitors to the three workstreams", () => {
   const homepage = read("src/app/page.tsx");
   const site = read("src/content/site.ts");
 
-  // The homepage renders the workstreams from shared content rather than
-  // hardcoding them, so assert the wiring and the data itself.
-  assert.match(homepage, /WORKSTREAMS/, "homepage should render the shared workstreams");
-  assert.match(homepage, /stream\.href/, "homepage should link to each workstream's own href");
+  // The deployed triptych is intentionally static to preserve the approved
+  // visual design. Assert that it still exposes all three registry
+  // destinations, and that the shared registry retains the branded content.
+  for (const href of ["/products", "/bdb-labs/research", "/bpv/advisory"]) {
+    assert.ok(homepage.includes(`href="${href}"`), `homepage should link to ${href}`);
+  }
+  assert.match(homepage, /styles\.triptych/, "homepage should keep the deployed triptych");
 
   ["BagelTech", "BDB Labs", "Bagelle Parris Vargas"].forEach((label) => {
     assert.match(site, new RegExp(label), `workstream content should include ${label}`);
   });
 
   // Each workstream must declare a known brand key so the shared BrandMark
-  // component can render its identity.
+  // component can render its identity elsewhere.
   ["bageltech", "bdb-labs", "bpv"].forEach((brand) => {
     assert.match(site, new RegExp(`brand: "${brand}"`), `workstreams should declare the ${brand} brand`);
   });
@@ -243,9 +246,21 @@ test("implements the shared brand family system", () => {
     assert.match(tokens, new RegExp(value), `brand token ${value} should be exported`);
   });
 
+  // The live design uses the shared brand SVG assets directly; BrandMark
+  // remains available for the rest of the site.
   const homepage = read("src/app/page.tsx");
-  assert.match(homepage, /BrandMark/, "homepage should use shared brand marks");
+  for (const asset of [
+    "/brand/bageltech/icon.svg",
+    "/brand/bdb-labs/icon.svg",
+    "/brand/bpv/icon.svg",
+  ]) {
+    assert.ok(homepage.includes(asset), `homepage should use the shared ${asset} asset`);
+  }
 
   const header = read("src/components/Header.tsx");
-  assert.match(header, /BrandMark/, "header should use the BagelTech lockup");
+  assert.match(
+    header,
+    /\/brand\/bageltech\/lockup-light\.svg/,
+    "header should use the shared BagelTech lockup asset",
+  );
 });
