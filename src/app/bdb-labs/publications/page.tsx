@@ -7,9 +7,13 @@ import styles from "@/components/Marketing.module.css";
 import { PUBLICATIONS } from "@/content/publications";
 
 export const metadata: Metadata = {
-  title: "Publications | BDB Labs",
+  title: { absolute: "Publications | BDB Labs | BagelTech" },
+  alternates: { canonical: "/bdb-labs/publications" },
   description:
     "Peer-visible research, specifications, and frameworks from BagelTech — papers with permanent DOIs and arXiv records.",
+  openGraph: {
+    title: "Publications | BDB Labs | BagelTech",
+  },
 };
 
 const sorted = [...PUBLICATIONS].sort(

@@ -10,7 +10,8 @@ import { EXTERNAL_LINKS, PRODUCTS, WORKSTREAMS } from "@/content/site";
 const productsStream = WORKSTREAMS.find((stream) => stream.slug === "bageltech") ?? WORKSTREAMS[0];
 
 export const metadata: Metadata = {
-  title: "Products | BagelTech",
+  title: "Products",
+  alternates: { canonical: "/products" },
   description:
     "Governable AI systems, decision workflows, and institution-facing commercial offerings from BagelTech.",
 };
@@ -112,16 +113,19 @@ export default function ProductsPage() {
                 <article className={styles.featureCard} key={product.slug}>
                   <div className={styles.meta}>
                     <span>{product.category}</span>
-                    <span>{product.status}</span>
+                    <span>{product.statusLabel}</span>
                   </div>
-                  <h3 className={styles.cardTitle}>{product.title}</h3>
+                  <h3 className={styles.cardTitle}>{product.name}</h3>
                   <p className={styles.cardText}>{product.summary}</p>
                   <ul className={styles.list}>
-                    <li>{product.audience}</li>
-                    <li>{product.approach}</li>
+                    <li>Audience: {product.audience}</li>
+                    <li>Approach: {product.approach}</li>
+                    {product.limitations.map((limitation) => (
+                      <li key={limitation}>Boundary: {limitation}</li>
+                    ))}
                   </ul>
-                  <SmartLink className={styles.cardLink} href={product.href}>
-                    Engage on {product.title}
+                  <SmartLink className={styles.cardLink} href={product.engagement.href}>
+                    {product.engagement.action}
                   </SmartLink>
                 </article>
               ))}

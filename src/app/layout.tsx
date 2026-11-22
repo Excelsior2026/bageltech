@@ -21,6 +21,7 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.bageltech.net"),
   title: {
     default: "BagelTech | Governance for Consequential Systems",
     template: "%s | BagelTech",

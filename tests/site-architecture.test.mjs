@@ -102,15 +102,18 @@ test("keeps the legacy Bagel URL as a redirect to BMO", () => {
   assert.match(legacyRoute, /redirect\(["']\/bmo["']\)/, "/bagel should redirect to /bmo");
 });
 
-test("separates publications and insights into distinct curated content sources", () => {
+test("keeps publications distinct from the derived insight registry", () => {
   assert.equal(exists("src/content/publications.ts"), true, "publications content should exist");
-  assert.equal(exists("src/content/insights.ts"), true, "insights content should exist");
+  assert.equal(exists("src/content/insights.ts"), true, "insights compatibility alias should exist");
 
   const publications = read("src/content/publications.ts");
   const insights = read("src/content/insights.ts");
+  const writing = read("src/content/writing.ts");
 
   assert.match(publications, /export const PUBLICATIONS/, "publications should export PUBLICATIONS");
-  assert.match(insights, /export const INSIGHTS/, "insights should export INSIGHTS");
+  assert.match(insights, /export \{ WRITING as INSIGHTS \}/, "insights should be a derived alias");
+  assert.doesNotMatch(insights, /title:\s*"/, "insights alias should carry no article metadata");
+  assert.match(writing, /getAllArticles\(\)/, "writing should derive from frontmatter");
   assert.doesNotMatch(publications, /export const INSIGHTS/, "publications should not export insights");
   assert.doesNotMatch(insights, /export const PUBLICATIONS/, "insights should not export publications");
 });
@@ -119,17 +122,20 @@ test("homepage orients visitors to the three workstreams", () => {
   const homepage = read("src/app/page.tsx");
   const site = read("src/content/site.ts");
 
-  // The homepage renders the workstreams from shared content rather than
-  // hardcoding them, so assert the wiring and the data itself.
-  assert.match(homepage, /WORKSTREAMS/, "homepage should render the shared workstreams");
-  assert.match(homepage, /stream\.href/, "homepage should link to each workstream's own href");
+  // The deployed triptych is intentionally static to preserve the approved
+  // visual design. Assert that it still exposes all three registry
+  // destinations, and that the shared registry retains the branded content.
+  for (const href of ["/products", "/bdb-labs/research", "/bpv/advisory"]) {
+    assert.ok(homepage.includes(`href="${href}"`), `homepage should link to ${href}`);
+  }
+  assert.match(homepage, /styles\.triptych/, "homepage should keep the deployed triptych");
 
   ["BagelTech", "BDB Labs", "Bagelle Parris Vargas"].forEach((label) => {
     assert.match(site, new RegExp(label), `workstream content should include ${label}`);
   });
 
   // Each workstream must declare a known brand key so the shared BrandMark
-  // component can render its identity.
+  // component can render its identity elsewhere.
   ["bageltech", "bdb-labs", "bpv"].forEach((brand) => {
     assert.match(site, new RegExp(`brand: "${brand}"`), `workstreams should declare the ${brand} brand`);
   });
@@ -155,31 +161,42 @@ test("every workstream and product link resolves to a real route or external URL
   });
 });
 
-test("published writing links match the slugs the article router serves", () => {
+test("published writing slugs are unique and resolvable by the article router", () => {
   const writing = read("src/content/writing.ts");
   const articles = read("src/lib/articles.ts");
 
   // Writing must link at the canonical /insights/ path, never /writing/.
   assert.doesNotMatch(writing, /"\/writing\//, "writing should not link through the retired /writing/ path");
+  assert.match(
+    writing,
+    /sourceUrl:\s*`\/insights\/\$\{article\.slug\}`/,
+    "writing should derive article URLs from frontmatter slugs",
+  );
 
-  const links = [...writing.matchAll(/sourceUrl:\s*"\/insights\/([a-z0-9-]+)"/g)].map((m) => m[1]);
-  assert.ok(links.length >= 12, "every published piece should link to an insights article");
-
-  // Each declared slug must be backed by a real article file, otherwise the
-  // link 404s. Compare against the slug frontmatter in content/articles.
   const dir = join(root, "content", "articles");
-  const declared = readdirSync(dir)
-    .filter((f) => f.endsWith(".md"))
-    .map((f) => {
-      const raw = readFileSync(join(dir, f), "utf8");
-      const m = raw.match(/^slug:\s*"([^"]+)"/m);
-      return m ? m[1] : f.replace(/\.md$/, "");
+  const sources = readdirSync(dir)
+    .filter((file) => file.endsWith(".md"))
+    .map((file) => {
+      const raw = readFileSync(join(dir, file), "utf8");
+      const field = (key) => raw.match(new RegExp(`^${key}:\\s*"([^"]+)"`, "m"))?.[1];
+      const derived = file
+        .replace(/\.md$/, "")
+        .replace(/^\d+[_-]/, "")
+        .replace(/_/g, "-")
+        .toLowerCase();
+
+      return {
+        slug: field("slug") ?? derived,
+        status: field("status") ?? "published",
+      };
     });
 
-  links.forEach((slug) => {
-    assert.ok(declared.includes(slug), `/insights/${slug} should have a backing article file`);
-  });
+  const published = sources.filter((source) => source.status === "published");
+  assert.ok(published.length >= 12, "every published piece should have an article file");
 
+  const slugs = published.map((source) => source.slug);
+  assert.equal(new Set(slugs).size, slugs.length, "canonical article slugs must be unique");
+  assert.equal(exists("src/app/insights/[slug]/page.tsx"), true, "article route should exist");
   assert.match(articles, /canonicalSlug/, "article router should resolve declared slugs");
 });
 
@@ -229,9 +246,21 @@ test("implements the shared brand family system", () => {
     assert.match(tokens, new RegExp(value), `brand token ${value} should be exported`);
   });
 
+  // The live design uses the shared brand SVG assets directly; BrandMark
+  // remains available for the rest of the site.
   const homepage = read("src/app/page.tsx");
-  assert.match(homepage, /BrandMark/, "homepage should use shared brand marks");
+  for (const asset of [
+    "/brand/bageltech/icon.svg",
+    "/brand/bdb-labs/icon.svg",
+    "/brand/bpv/icon.svg",
+  ]) {
+    assert.ok(homepage.includes(asset), `homepage should use the shared ${asset} asset`);
+  }
 
   const header = read("src/components/Header.tsx");
-  assert.match(header, /BrandMark/, "header should use the BagelTech lockup");
+  assert.match(
+    header,
+    /\/brand\/bageltech\/lockup-light\.svg/,
+    "header should use the shared BagelTech lockup asset",
+  );
 });

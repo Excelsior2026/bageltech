@@ -7,7 +7,8 @@ import styles from "@/components/Marketing.module.css";
 import { EXTERNAL_LINKS, WORKSTREAMS } from "@/content/site";
 
 export const metadata: Metadata = {
-  title: "About | BagelTech",
+  title: "About",
+  alternates: { canonical: "/about" },
   description:
     "How BagelTech, BDB Labs, and Bagelle Parris Vargas connect through governance, research, operations, and institutional delivery.",
 };

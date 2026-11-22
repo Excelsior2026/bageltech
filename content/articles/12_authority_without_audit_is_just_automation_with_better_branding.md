@@ -4,6 +4,10 @@ title: "Authority Without Audit Is Just Automation With Better Branding"
 date: "2026-07-01"
 author: "William Parris"
 summary: "If a system's role cannot be reviewed, contested, and reconstructed after the fact, then what looks like innovation is often just automation with upgraded rhetoric."
+category: "AI Governance"
+workstream: "BagelTech"
+tags: "AI Governance, Authority, Audit, Automation"
+excerpt: "Delegating decisions to automated systems without audit trails, escalation paths, or human checkpoints is not governance. It is performance."
 ---
 
 A great deal of AI deployment today is really an effort to grant systems practical authority without admitting that authority is what is being granted. The language stays soft: recommendation, assistance, support, copilot. But once a system meaningfully shapes outcomes in hiring, lending, diagnosis, triage, investigations, or public service delivery, the semantics matter less than the structure.

@@ -4,7 +4,7 @@ import MarketingLayout from "@/components/MarketingLayout";
 import styles from "@/components/onboarding/Onboarding.module.css";
 
 export const metadata: Metadata = {
-  title: "Contractor Setup Request Terms | BagelTech",
+  title: "Contractor Setup Request Terms",
   robots: { index: false, follow: true },
 };
 

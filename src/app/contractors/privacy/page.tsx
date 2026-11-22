@@ -4,7 +4,7 @@ import MarketingLayout from "@/components/MarketingLayout";
 import styles from "@/components/onboarding/Onboarding.module.css";
 
 export const metadata: Metadata = {
-  title: "Contractor Setup Privacy Notice | BagelTech",
+  title: "Contractor Setup Privacy Notice",
   robots: { index: false, follow: true },
 };
 

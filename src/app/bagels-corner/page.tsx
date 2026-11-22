@@ -22,7 +22,8 @@ const projects = [
 ];
 
 export const metadata: Metadata = {
-  title: "Bagel's Corner | BagelTech",
+  title: "Bagel's Corner",
+  alternates: { canonical: "/bagels-corner" },
   description:
     "The playful side of BagelTech: stories, experiments, and Bagel Paris Vargas-approved mischief.",
 };

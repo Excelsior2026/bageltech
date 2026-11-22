@@ -5,7 +5,7 @@ import OnboardingWizard from "@/components/onboarding/OnboardingWizard";
 import styles from "@/components/onboarding/Onboarding.module.css";
 
 export const metadata: Metadata = {
-  title: "Contractor Website and Setup Studio | BagelTech",
+  title: "Contractor Website and Setup Studio",
   description:
     "Choose a proven template or create a structured custom-site blueprint for a managed BagelTech electrical-contractor platform.",
   robots: {

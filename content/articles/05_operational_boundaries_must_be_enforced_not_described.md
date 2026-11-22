@@ -4,6 +4,10 @@ title: "Operational Boundaries Must Be Enforced, Not Described"
 date: "2026-03-15"
 author: "William Parris"
 summary: "Policy language is not architecture. Operational boundaries only become real when the system is technically unable to collapse them under pressure."
+category: "Systems"
+workstream: "BagelTech"
+tags: "Systems, Boundaries, Automation"
+excerpt: "Clear boundaries between automated assistance and human authority aren't restrictive—they're enabling."
 ---
 
 Every organization deploying AI has some version of a boundary statement. The model may assist but not decide. It may recommend but not authorize. It may summarize but not interpret. It may draft but not finalize. These distinctions are sensible. They are also meaningless if they live only in policy language.

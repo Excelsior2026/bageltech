@@ -4,6 +4,10 @@ title: "Modernization Without Governance Is Just Speed"
 date: "2026-02-15"
 author: "William Parris"
 summary: "Speed by itself proves almost nothing. If governance is weak, modernization is just a faster way to lose what the institution actually knows."
+category: "Modernization"
+workstream: "BagelTech"
+tags: "Modernization, Governance, Risk"
+excerpt: "Fast delivery of poorly governed systems creates more risk than it solves."
 ---
 
 Organizations often talk about modernization as if speed were proof of seriousness. New platform, compressed timeline, visible momentum, executive sponsorship. But speed by itself proves almost nothing. If governance is weak, modernization is just a faster way to lose what the institution actually knows.

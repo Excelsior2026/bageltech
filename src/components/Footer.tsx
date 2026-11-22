@@ -1,5 +1,5 @@
+/* eslint-disable @next/next/no-img-element -- Decorative static brand SVG preserves the deployed footer design. */
 import Link from "next/link";
-import BrandMark from "./BrandMark";
 import { EXTERNAL_LINKS } from "@/content/site";
 import styles from "./Footer.module.css";
 
@@ -9,7 +9,13 @@ export default function Footer() {
       <div className={styles.inner}>
         <div className={styles.brandBlock}>
           <Link href="/" aria-label="BagelTech home">
-            <BrandMark brand="bageltech" variant="light" size="footer" />
+            <img
+              src="/brand/bageltech/lockup-light.svg"
+              alt="BagelTech"
+              className={styles.brandLogo}
+              width={180}
+              height={36}
+            />
           </Link>
           <p>Technology and intelligence<br />for a changing world.</p>
         </div>
@@ -21,32 +27,26 @@ export default function Footer() {
           <Link href="/contact">Contact</Link>
         </nav>
 
-        <nav className={styles.col} aria-label="Divisions">
-          <p className={styles.kicker}>Divisions</p>
-          <Link href="/bdb-labs/research">BDB Labs</Link>
-          <Link href="/bpv/advisory">Advisory</Link>
-          <Link href="/bdb-labs/repository">Repository</Link>
-        </nav>
-
         <nav className={styles.col} aria-label="Resources">
           <p className={styles.kicker}>Resources</p>
           <Link href="/insights">Writing</Link>
+          <Link href="/bdb-labs/research">Research</Link>
           <Link href="/bdb-labs/publications">Publications</Link>
-          <Link href="/contractors">Contractor Platform</Link>
         </nav>
 
         <nav className={styles.col} aria-label="Legal">
           <p className={styles.kicker}>Legal</p>
-          <Link href="/contractors/privacy">Privacy Policy</Link>
-          <Link href="/contractors/terms">Terms of Service</Link>
+          <Link href="/privacy">Privacy Policy</Link>
+          <Link href="/terms">Terms of Use</Link>
+          <Link href="/security">Security</Link>
+          <Link href="/accessibility">Accessibility</Link>
         </nav>
 
         <div className={styles.legalRight}>
           <span className={styles.copy}>
-            © {new Date().getFullYear()} BagelTech, Inc.<br />
-            All rights reserved.
+            © {new Date().getFullYear()} BagelTech, Inc.<br />All rights reserved.
           </span>
-          <nav className={styles.social} aria-label="Elsewhere">
+          <nav className={styles.social} aria-label="Social links">
             <a href={EXTERNAL_LINKS.linkedin} target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.45 20.45h-3.55v-5.57c0-1.33-.48-2.23-1.67-2.23-0.91 0-1.45 0.61-1.69 1.2-0.09 0.21-0.11 0.5-0.11 0.8v5.8H9.88s0.05-9.42 0-10.4h3.55v1.47c0.47-0.72 1.31-1.76 3.2-1.76 2.33 0 4.08 1.52 4.08 4.79v5.9zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V10.05h3.56v10.4z" /></svg>
             </a>
@@ -58,16 +58,6 @@ export default function Footer() {
             </a>
           </nav>
         </div>
-      </div>
-
-      {/* A quiet door for anyone who reads this far. */}
-      <div className={styles.pawRow}>
-        <Link href="/bmo" className={styles.pawLink}>
-          <span aria-hidden="true">🐾</span>
-          <span className={styles.pawText}>
-            Bagel, Chief Mischief Officer, has a small office on this site.
-          </span>
-        </Link>
       </div>
     </footer>
   );

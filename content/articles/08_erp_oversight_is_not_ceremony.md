@@ -4,6 +4,10 @@ title: "ERP Oversight Is Not Ceremony"
 date: "2026-05-01"
 author: "William Parris"
 summary: "Steering committees and vendor reports are not oversight. Real ERP governance asks whether the system will actually work under real conditions — and treats shadow systems as evidence, not resistance."
+category: "Modernization"
+workstream: "Bagelle Parris Vargas"
+tags: "ERP, Modernization, Oversight"
+excerpt: "Large modernization efforts need visible ownership, disciplined escalation, and program controls that decision-makers actually use."
 ---
 
 Large enterprise implementations generate a predictable ritual. There are steering committees, executive updates, vendor reports, heat maps, and status colors. Everyone becomes very busy managing the visible machinery of oversight. Yet many organizations still emerge from ERP transitions with broken workflows, exhausted staff, and systems that are technically live but operationally misunderstood.

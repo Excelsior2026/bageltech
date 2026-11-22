@@ -4,6 +4,10 @@ title: "Leadership Is a Decision Design Problem"
 date: "2026-06-01"
 author: "William Parris"
 summary: "Leadership failures in modernization are usually misdiagnosed. The visible issue looks like resistance or poor execution. The deeper issue is that the decision system was badly designed."
+category: "Leadership"
+workstream: "Bagelle Parris Vargas"
+tags: "Leadership, Decision Design, Authority"
+excerpt: "The strongest leaders do not absorb every decision. They define where decisions belong and what evidence must travel with them."
 ---
 
 Leadership is often described in moral or interpersonal terms: vision, courage, trust, communication. Those things matter. But in institutional settings, leadership is also a design problem. Leaders create the structures through which information rises, authority is exercised, and decisions become durable.

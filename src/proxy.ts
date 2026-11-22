@@ -13,9 +13,9 @@ import { auth } from "@/lib/auth";
 const LEGACY_REDIRECTS: Record<string, string> = {
   "/research": "/bdb-labs/research",
   "/publications": "/bdb-labs/publications",
-  "/repository": "/bdb-labs/repository",
+  "/repository": "/insights",
   "/advisory": "/bpv/advisory",
-  "/case-studies": "/bpv/case-studies",
+  "/case-studies": "/bpv/advisory",
   "/writing": "/insights",
 };
 

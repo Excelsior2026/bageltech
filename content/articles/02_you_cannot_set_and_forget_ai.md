@@ -4,6 +4,10 @@ title: "You Cannot Set and Forget AI"
 date: "2026-02-01"
 author: "William Parris"
 summary: "In consequential systems, deployment is the start of governance, not the end. AI systems drift, and so do the institutions around them."
+category: "AI Governance"
+workstream: "BagelTech"
+tags: "AI Governance, Oversight, Lifecycle"
+excerpt: "AI systems that operate without ongoing governance become liabilities as contexts evolve."
 ---
 
 One of the most dangerous ideas in enterprise AI is that once a model is deployed, tuned, and placed behind a policy document, the hard governance work is finished. It is not. In consequential systems, deployment is the start of governance, not the end.
