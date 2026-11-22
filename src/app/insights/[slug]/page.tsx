@@ -79,7 +79,7 @@ export default async function ArticlePage({ params }: { params: Promise<{ slug: 
   return (
     <MarketingLayout>
       <main className="section">
-        <article className="container prose articleWrap">
+        <article className="container prose articleWrap insightsArticle">
           <script
             type="application/ld+json"
             dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
