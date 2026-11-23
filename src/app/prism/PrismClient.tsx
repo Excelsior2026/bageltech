@@ -100,7 +100,8 @@ export default function PrismClient() {
               This is an exploratory educational pilot, not a validated clinical
               assessment. It cannot diagnose a condition or determine whether
               anyone is pretending not to understand. Your answers are scored
-              locally in this browser and are not sent to BagelTech.
+              locally in this browser and are not sent to BagelTech. There is no
+              server-side response storage.
             </p>
             <div className={styles.notice}>
               <strong>Media status:</strong> The visual storyboards and optional
