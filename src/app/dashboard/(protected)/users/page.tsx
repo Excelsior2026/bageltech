@@ -53,7 +53,11 @@ export default function UsersPage() {
     }
   }, [token]);
 
-  useEffect(() => { fetchUsers(); }, [fetchUsers]);
+  useEffect(() => {
+    let active = true;
+    queueMicrotask(() => { if (active) void fetchUsers(); });
+    return () => { active = false; };
+  }, [fetchUsers]);
 
   async function handleCreate(e: React.FormEvent) {
     e.preventDefault();

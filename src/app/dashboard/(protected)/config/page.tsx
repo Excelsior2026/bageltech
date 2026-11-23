@@ -68,7 +68,11 @@ export default function ConfigPage() {
     }
   }, [token]);
 
-  useEffect(() => { fetchConfig(); }, [fetchConfig]);
+  useEffect(() => {
+    let active = true;
+    queueMicrotask(() => { if (active) void fetchConfig(); });
+    return () => { active = false; };
+  }, [fetchConfig]);
 
   async function handleSave() {
     if (!token) return;

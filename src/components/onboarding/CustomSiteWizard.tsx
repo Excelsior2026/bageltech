@@ -459,6 +459,13 @@ export default function CustomSiteWizard() {
     headingRef.current?.focus();
   }, [step]);
 
+  // Clear retry/idempotency state only when form data actually changes.
+  // The effect keeps mutable request refs out of render-time event-handler factories.
+  useEffect(() => {
+    requestIdRef.current = null;
+    payloadRef.current = null;
+  }, [form]);
+
   function clearSubmissionCache() {
     requestIdRef.current = null;
     payloadRef.current = null;
@@ -467,7 +474,6 @@ export default function CustomSiteWizard() {
   function update<K extends keyof StudioState>(key: K, value: StudioState[K]) {
     setForm((current) => ({ ...current, [key]: value }));
     setError("");
-    clearSubmissionCache();
   }
 
   function updateBrief<K extends keyof StudioState>(key: K, value: StudioState[K]) {

@@ -32,9 +32,10 @@ export default function MonitorPage() {
   }, [token]);
 
   useEffect(() => {
-    fetchData();
-    const interval = setInterval(fetchData, 15000);
-    return () => clearInterval(interval);
+    let active = true;
+    queueMicrotask(() => { if (active) void fetchData(); });
+    const interval = setInterval(() => { void fetchData(); }, 15000);
+    return () => { active = false; clearInterval(interval); };
   }, [fetchData]);
 
   const pending = reviews.filter((r) => r.status === "pending").length;

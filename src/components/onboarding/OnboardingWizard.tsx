@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useRef, useState, type ChangeEvent, type CSSProperties } from "react";
+import { useEffect, useRef, useState, type ChangeEvent, type CSSProperties } from "react";
 import {
   CONTRACTOR_TEMPLATES,
   contractorTemplate,
@@ -142,11 +142,16 @@ export default function OnboardingWizard({ initialTemplate }: { initialTemplate:
         ? form.customDomain.trim().toLowerCase()
         : null;
 
+  // Invalidate idempotent retry state after actual form changes, not while
+  // event-handler closures are being created during render.
+  useEffect(() => {
+    requestIdRef.current = null;
+    payloadRef.current = null;
+  }, [form]);
+
   function update<K extends keyof WizardState>(key: K, value: WizardState[K]) {
     setForm((current) => ({ ...current, [key]: value }));
     setError("");
-    requestIdRef.current = null;
-    payloadRef.current = null;
   }
 
   function onTextChange(key: keyof WizardState) {

@@ -29,9 +29,10 @@ export default function ReviewsPage() {
   }, [token]);
 
   useEffect(() => {
-    fetchReviews();
-    const interval = setInterval(fetchReviews, 10000);
-    return () => clearInterval(interval);
+    let active = true;
+    queueMicrotask(() => { if (active) void fetchReviews(); });
+    const interval = setInterval(() => { void fetchReviews(); }, 10000);
+    return () => { active = false; clearInterval(interval); };
   }, [fetchReviews]);
 
   async function handleDecision(reviewId: string, decision: string) {
