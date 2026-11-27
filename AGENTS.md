@@ -13,3 +13,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 Read and obey [AI_ATTRIBUTION.md](AI_ATTRIBUTION.md) before creating commits, PRs, reviews, issues, releases, or other attributable GitHub artifacts. AI-authored commits must name the exact model/version. AI-drafted PRs require review of the final head SHA by a different model, and both models must be identified.
 <!-- END OWNER AI ATTRIBUTION POLICY -->
+
+## Common repository governance
+
+Before authoring or accepting changes, read and follow [GOVERNANCE_BASELINE.md](GOVERNANCE_BASELINE.md). Human approval, actual independent final-head review evidence, protected product boundaries, and truthful CI status are mandatory. Repo-specific restrictions remain in force.
