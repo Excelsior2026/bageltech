@@ -1,0 +1,83 @@
+name: PRISM Quality Gate
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/prism-quality.yml"
+      - "src/app/prism/**"
+      - "src/app/api/prism/**"
+      - "src/lib/prism/**"
+      - "docs/PRISM_**"
+      - "tests/prism.test.mjs"
+      - "tests/prism-scoring.test.mjs"
+      - "tests/prism-truepresence.test.mjs"
+      - "package.json"
+      - "package-lock.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: prism-quality-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Typecheck, lint, test, build
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+      - name: Install locked dependencies
+        run: npm ci
+      - name: Run unit and structural tests
+        run: npm test
+      - name: Run lint
+        run: npm run lint
+      - name: Typecheck
+        run: npx tsc --noEmit
+      - name: Production build
+        run: npm run build
+      - name: Capture production dependency audit evidence
+        run: |
+          npm audit --omit=dev --json > prism-npm-audit.json || true
+      - name: Upload dependency audit evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: prism-production-audit
+          path: prism-npm-audit.json
+          retention-days: 30
+          if-no-files-found: error
+      - name: Enforce production dependency audit (high and critical)
+        run: |
+          node - <<'NODE'
+          const fs = require("node:fs");
+          let report;
+          try {
+            report = JSON.parse(fs.readFileSync("prism-npm-audit.json", "utf8"));
+          } catch {
+            console.error("Dependency audit did not produce valid JSON");
+            process.exit(1);
+          }
+          const vulnerabilities = report.metadata?.vulnerabilities;
+          if (!vulnerabilities || typeof vulnerabilities.high !== "number" || typeof vulnerabilities.critical !== "number") {
+            console.error("Incomplete dependency audit report; fail closed");
+            process.exit(1);
+          }
+          console.log(JSON.stringify({high: vulnerabilities.high, critical: vulnerabilities.critical, moderate: vulnerabilities.moderate ?? 0}));
+          if (vulnerabilities.high + vulnerabilities.critical > 0) {
+            console.error("P0: unresolved production dependency advisories. See uploaded prism-production-audit artifact.");
+            process.exit(1);
+          }
+          NODE
+      - name: Whitespace check for PR diff
+        run: git diff --check "$(git merge-base HEAD origin/main)" HEAD
